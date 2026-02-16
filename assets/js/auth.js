@@ -2,13 +2,13 @@
  * BOTHOFLOW AUTHENTICATION LOGIC
  */
 
-const BothoflowAuth = {
+const MizanoAuth = {
     async loadDemoProfile() {
         try {
             const response = await fetch('./data/demo_profile.json');
             const kao = await response.json();
-            await window.BothoflowStorage.saveUser(kao);
-            window.BothoflowStorage.setCurrentUser(kao.profile_id);
+            await window.mizanoStorage.saveUser(kao);
+            window.mizanoStorage.setCurrentUser(kao.profile_id);
             return true;
         } catch (e) {
             console.error('Failed to load demo profile', e);
@@ -23,17 +23,17 @@ const BothoflowAuth = {
             created_at: new Date().toISOString(),
             ...profileData
         };
-        await window.BothoflowStorage.saveUser(user);
-        window.BothoflowStorage.setCurrentUser(user.profile_id);
+        await window.mizanoStorage.saveUser(user);
+        window.mizanoStorage.setCurrentUser(user.profile_id);
         return user;
     },
 
     async isLoggedIn() {
-        const id = window.BothoflowStorage.getCurrentUserId();
+        const id = window.mizanoStorage.getCurrentUserId();
         if (!id) return false;
-        const user = await window.BothoflowStorage.getUser(id);
+        const user = await window.mizanoStorage.getUser(id);
         return !!user;
     }
 };
 
-window.BothoflowAuth = BothoflowAuth;
+window.MizanoAuth = MizanoAuth;

@@ -415,11 +415,10 @@
     cursor: pointer;
 }
 
-/* DARK MODE OVERRIDES */
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg-white: #1E1E1E;
-        --text-primary: #D3D3D3;
-        --text-secondary: #909090;
+        --bg-white: #FFFFFF;
+        --text-primary: #333;
+        --text-secondary: #666;
     }
 }

@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const safety = window.MizanoSafety;
     const dataManager = window.mizanoData;
     const filterEngine = window.MizanoFilter;
-    const auth = window.BothoflowAuth;
-    const storage = window.BothoflowStorage;
+    const auth = window.MizanoAuth;
+    const storage = window.mizanoStorage;
 
     // 2. PANEL RENDERERS
     const renderers = {
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                         howToContent.innerHTML = `
                             <div style="padding: 10px;">
-                                <h1 style="color:var(--primary-blue); font-size:1.4rem;">Bothoflow Manual</h1>
+                                <h1 style="color:var(--primary-blue); font-size:1.4rem;">Mizano Manual</h1>
                                 <p style="font-style:italic; font-size:0.9rem; color:#666;">Tactile Intelligence for Minimalist Discovery</p>
                                 ${categories.map(cat => `
                                     <div class="mizano-card" style="margin-bottom:15px; cursor:pointer;" onclick="this.querySelector('.cat-desc').style.display = (this.querySelector('.cat-desc').style.display === 'none' ? 'block' : 'none')">

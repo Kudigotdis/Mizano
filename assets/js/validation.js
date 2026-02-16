@@ -1,8 +1,8 @@
 /**
- * BOTHOFLOW VALIDATION UTILITY
+ * MIZANO VALIDATION UTILITY
  */
 
-const BothoflowValidation = {
+const MizanoValidation = {
     isValidWhatsApp: (number) => {
         // Format: +267XXXXXXXX
         const regex = /^\+267\d{8}$/;
@@ -26,4 +26,4 @@ const BothoflowValidation = {
     }
 };
 
-window.BothoflowValidation = BothoflowValidation;
+window.MizanoValidation = MizanoValidation;

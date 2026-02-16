@@ -40,14 +40,14 @@ class DataManager {
             await this.hydrate(); // Load persistent state first
 
             // SEEDING LOGIC: Check if we need to seed 1,000 RDPs
-            if (window.BothoflowStorage) {
-                const existingUsers = await window.BothoflowStorage.getAllUsers();
+            if (window.mizanoStorage) {
+                const existingUsers = await window.mizanoStorage.getAllUsers();
                 if (existingUsers.length < 100) { // Seed if empty or mostly empty
                     console.log('DataManager: Database empty. Seeding 1,000 RDPs and School Fixtures...');
                     await this.seedDeepRDPs();
                 } else {
                     this.cache.users = existingUsers;
-                    this.cache.schools = await window.BothoflowStorage.getAllSchools();
+                    this.cache.schools = await window.mizanoStorage.getAllSchools();
                 }
             }
 
@@ -77,9 +77,9 @@ class DataManager {
             const schoolResponse = await fetch('./data/mizano_schools_fixtures.json');
             const schools = await schoolResponse.json();
 
-            if (window.BothoflowStorage) {
-                await window.BothoflowStorage.bulkSaveUsers(profiles);
-                await window.BothoflowStorage.saveSchools(schools);
+            if (window.mizanoStorage) {
+                await window.mizanoStorage.bulkSaveUsers(profiles);
+                await window.mizanoStorage.saveSchools(schools);
                 this.cache.users = profiles;
                 this.cache.schools = schools;
                 console.log(`DataManager: Successfully seeded ${profiles.length} RDPs and ${schools.length} Schools.`);
@@ -207,7 +207,7 @@ class DataManager {
      * AUTHENTICATION ENGINE (Simulated)
      */
     getCurrentUser() {
-        const storedUid = window.BothoflowStorage ? window.BothoflowStorage.getCurrentUserId() : window.localStorage.getItem('currentUser');
+        const storedUid = window.mizanoStorage ? window.mizanoStorage.getCurrentUserId() : window.localStorage.getItem('currentUser');
         if (storedUid) {
             const user = this.getById('users', storedUid);
             if (user) return user;
@@ -226,7 +226,7 @@ class DataManager {
 
     setCurrentUser(uid) {
         if (this.getById('users', uid)) {
-            if (window.BothoflowStorage) window.BothoflowStorage.setCurrentUser(uid);
+            if (window.mizanoStorage) window.mizanoStorage.setCurrentUser(uid);
             else window.localStorage.setItem('currentUser', uid);
             console.log(`DataManager: Switched active user to ${uid}`);
             if (window.MizanoMine) window.MizanoMine.render();
@@ -408,8 +408,8 @@ class DataManager {
         this.cache.businesses = this.cache.businesses || [];
         this.cache.businesses.push(newBusiness);
 
-        if (window.BothoflowStorage && window.BothoflowStorage.saveBusiness) {
-            await window.BothoflowStorage.saveBusiness(newBusiness);
+        if (window.mizanoStorage && window.mizanoStorage.saveBusiness) {
+            await window.mizanoStorage.saveBusiness(newBusiness);
         }
 
         if (window.mizanoStorage) {
@@ -436,8 +436,8 @@ class DataManager {
         }
 
         // Persist to IndexedDB
-        if (window.BothoflowStorage && window.BothoflowStorage.saveUser) {
-            await window.BothoflowStorage.saveUser(userToSave);
+        if (window.mizanoStorage && window.mizanoStorage.saveUser) {
+            await window.mizanoStorage.saveUser(userToSave);
         }
 
         // Legacy storage fallback

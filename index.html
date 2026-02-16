@@ -23,7 +23,7 @@
     <!-- SPLASH SCREEN OVERLAY -->
     <div id="splash-screen">
         <div class="splash-logo"></div>
-        <h2 style="font-weight: 700; color: #1E88E5;">BOTHOFLOW</h2>
+        <h2 style="font-weight: 700; color: #1E88E5;">MIZANO</h2>
     </div>
 
     <!-- AUTH REDIRECTION LOGIC -->
@@ -32,7 +32,7 @@
     <script>
         (async () => {
             const splash = document.getElementById('splash-screen');
-            const loggedIn = await window.BothoflowAuth.isLoggedIn();
+            const loggedIn = await window.MizanoAuth.isLoggedIn();
 
             // Always show splash for 2 seconds as requested for branding
             setTimeout(() => {

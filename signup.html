@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sign Up - Bothoflow</title>
+    <title>Sign Up - Mizano</title>
     <link rel="stylesheet" href="./assets/css/forms.css">
     <style>
         body {
@@ -157,18 +157,18 @@
                 return;
             }
 
-            if (!window.BothoflowValidation.isValidWhatsApp(data.whatsapp_number)) {
+            if (!window.MizanoValidation.isValidWhatsApp(data.whatsapp_number)) {
                 alert('Invalid WhatsApp number format');
                 return;
             }
 
-            const age = window.BothoflowValidation.calculateAge(data.dob);
+            const age = window.MizanoValidation.calculateAge(data.dob);
             if (age < 16) {
                 alert('As you are under 16, a Guardian must oversee this account.');
                 // Simplified for now - in real app would trigger Guardian section
             }
 
-            const user = await window.BothoflowAuth.signup(data);
+            const user = await window.MizanoAuth.signup(data);
             alert('Account created: ' + user.profile_id);
             location.href = 'index.html';
         };

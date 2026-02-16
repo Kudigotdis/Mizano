@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - Bothoflow</title>
+    <title>Login - Mizano</title>
     <link rel="stylesheet" href="./assets/css/forms.css">
     <style>
         body {
@@ -17,12 +17,14 @@
             min-height: 100vh;
         }
 
-        .step-container {
-            display: none;
-        }
-
-        .step-container.active {
-            display: block;
+        .auth-container {
+            max-width: 400px;
+            width: 90%;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .auth-logo {
@@ -38,57 +40,81 @@
             font-size: 2rem;
             font-weight: bold;
         }
+
+        .btn-auth {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.2s;
+        }
+
+        .btn-primary {
+            background: #1E88E5;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #607D8B;
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1E88E5;
+            color: #1E88E5;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 
 <body>
-    <div class="auth-container"
-        style="max-width: 400px; width: 90%; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+    <div class="auth-container">
         <div class="auth-logo">M</div>
-        <h1 class="auth-title" style="text-align: center; margin-bottom: 30px;">Bothoflow</h1>
+        <h1 style="margin-bottom: 30px;">Mizano</h1>
 
-        <!-- STEP 1: Identification -->
-        <div id="step-1" class="step-container active">
-            <h2 style="font-size: 1.2rem; margin-bottom: 20px;">Step 1: Identify</h2>
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label for="whatsapp">WhatsApp Number</label>
-                <input type="text" id="whatsapp" class="form-control" placeholder="+267XXXXXXXX" required>
-            </div>
-            <div class="form-group" style="margin-bottom: 25px;">
-                <label for="display-name">Display Name (Pick any)</label>
-                <input type="text" id="display-name" class="form-control" placeholder="Kao Mjekejeke">
-            </div>
-            <button onclick="goToStep(2)" class="btn-auth btn-primary">Next: Verify</button>
-            <button onclick="quickLogin()" class="btn-auth btn-secondary" style="margin-top: 10px;">Browse as
-                Guest</button>
+        <!-- CHOICE MENU -->
+        <div id="choice-menu">
+            <button onclick="quickLogin()" class="btn-auth btn-primary">Browser (Kao Mjekejeke)</button>
+            <button onclick="location.href='signup.html'" class="btn-auth btn-outline">Sign-Up</button>
+            <button onclick="showLoginForm()" class="btn-auth btn-secondary">Login</button>
         </div>
 
-        <!-- STEP 2: Verification -->
-        <div id="step-2" class="step-container">
-            <h2 style="font-size: 1.2rem; margin-bottom: 10px;">Step 2: Verify</h2>
-            <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">We sent a 6-digit code to your WhatsApp.
-                Enter it below to proceed.</p>
-            <div class="form-group" style="margin-bottom: 25px;">
-                <input type="text" id="otp-code" class="form-control" placeholder="000000" maxlength="6"
-                    style="text-align: center; font-size: 1.5rem; letter-spacing: 5px;">
+        <!-- LOGIN FORM -->
+        <div id="login-form" class="hidden">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="login-user" class="form-control" placeholder="Enter username">
             </div>
-            <button onclick="goToStep(3)" class="btn-auth btn-primary">Next: Connect</button>
-            <button onclick="goToStep(1)" class="btn-auth btn-secondary" style="margin-top: 10px;">Back</button>
-        </div>
-
-        <!-- STEP 3: Connect -->
-        <div id="step-3" class="step-container">
-            <h2 style="font-size: 1.2rem; margin-bottom: 20px;">Step 3: Connect</h2>
-            <div class="form-group" style="margin-bottom: 25px;">
-                <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" placeholder="••••••••">
+            <div class="form-group">
+                <label>WhatsApp Number</label>
+                <input type="text" id="login-whatsapp" class="form-control" placeholder="+267XXXXXXXX">
             </div>
-            <button onclick="finalLogin()" class="btn-auth btn-primary">Log In & Start Flow</button>
-            <button onclick="goToStep(2)" class="btn-auth btn-secondary" style="margin-top: 10px;">Back</button>
-        </div>
-
-        <div class="auth-footer" style="text-align: center; margin-top: 30px; font-size: 0.9rem;">
-            Don't have an account? <a href="signup.html">Sign Up</a>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="login-pass" class="form-control" placeholder="••••••••">
+            </div>
+            <button onclick="finalLogin()" class="btn-auth btn-primary">Sign In</button>
+            <button onclick="hideLoginForm()" class="btn-auth btn-secondary">Back</button>
         </div>
     </div>
 
@@ -96,37 +122,35 @@
     <script src="./assets/js/validation.js"></script>
     <script src="./assets/js/auth.js"></script>
     <script>
-        function goToStep(step) {
-            document.querySelectorAll('.step-container').forEach(c => c.classList.remove('active'));
-            document.getElementById(`step-${step}`).classList.add('active');
+        function showLoginForm() {
+            document.getElementById('choice-menu').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+        }
+
+        function hideLoginForm() {
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('choice-menu').classList.remove('hidden');
         }
 
         async function quickLogin() {
-            // Load Kao's profile by default for "Browse" if it exists, or guest
-            const success = await window.BothoflowAuth.loadDemoProfile();
-            location.href = 'index.html';
+            const success = await window.MizanoAuth.loadDemoProfile();
+            if (success) location.href = 'index.html';
         }
 
         async function finalLogin() {
-            const name = document.getElementById('display-name').value;
-            const whatsapp = document.getElementById('whatsapp').value;
+            const user = document.getElementById('login-user').value;
+            const wa = document.getElementById('login-whatsapp').value;
+            const pass = document.getElementById('login-pass').value;
 
-            // If the user enters Kao's ID or similar, we should load it.
-            // For the mock, we always load Kao if they provide certain details, or a generic user.
-            await window.BothoflowAuth.loadDemoProfile();
-            alert('Welcome back, ' + (name || 'Kao') + '!');
+            if (!user || !wa || !pass) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            // Simulated login: any valid-looking data works for the demo
+            await window.MizanoAuth.loadDemoProfile();
             location.href = 'index.html';
         }
-
-        // Handle enter key
-        document.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                const active = document.querySelector('.step-container.active');
-                if (active.id === 'step-1') goToStep(2);
-                else if (active.id === 'step-2') goToStep(3);
-                else if (active.id === 'step-3') finalLogin();
-            }
-        });
     </script>
 </body>
 
