@@ -365,7 +365,7 @@ class InstitutionDetail {
                 const index = this.dataManager.cache.schools.findIndex(s => s.id === id || s.school_id === id);
                 if (index !== -1) {
                     this.dataManager.cache.schools[index] = { ...this.dataManager.cache.schools[index], ...updatedData };
-                    if (window.BothoflowStorage) await window.BothoflowStorage.saveSchools([this.dataManager.cache.schools[index]]);
+                    if (window.mizanoStorage) await window.mizanoStorage.saveSchools([this.dataManager.cache.schools[index]]);
                 }
             } else {
                 const index = this.dataManager.cache.businesses.findIndex(b => b.id === id);

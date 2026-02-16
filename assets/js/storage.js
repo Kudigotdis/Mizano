@@ -1,11 +1,11 @@
 /**
- * BOTHOFLOW STORAGE UTILITY
+ * MIZANO STORAGE UTILITY
  * Handles IndexedDB for user profiles and localStorage for session persistence.
  */
 
-class BothoflowStorage {
+class MizanoStorage {
     constructor() {
-        this.dbName = 'BothoflowDB';
+        this.dbName = 'MizanoDB';
         this.dbVersion = 2; // Incremented version to support new store
         this.db = null;
     }
@@ -95,4 +95,4 @@ class BothoflowStorage {
     }
 }
 
-window.BothoflowStorage = new BothoflowStorage();
+window.mizanoStorage = new MizanoStorage();
