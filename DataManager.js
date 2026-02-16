@@ -571,10 +571,10 @@ class DataManager {
             console.log(`DataManager: Loaded ${this.cache.shopping.length} shopping items.`);
         }
 
-        // Bothoflow Stress Test Integration
+        // Mizano Stress Test Integration
         if (window.MIZANO_DATA && window.MIZANO_DATA.activities_stress) {
             this.cache.activities = [...(this.cache.activities || []), ...window.MIZANO_DATA.activities_stress];
-            console.log(`DataManager: BOTHOFLOW STRESS TEST - Injected ${window.MIZANO_DATA.activities_stress.length} activities.`);
+            console.log(`DataManager: MIZANO STRESS TEST - Injected ${window.MIZANO_DATA.activities_stress.length} activities.`);
         }
 
         // Load Associations

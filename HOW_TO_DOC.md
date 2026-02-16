@@ -1,9 +1,9 @@
-# Bothoflow - The Ultimate Navigation Manual
+# Mizano - The Ultimate Navigation Manual
 
-Welcome to the **Bothoflow**, the cognitive nerve center of the Mizano platform. This interface is designed with **Tactile Intelligence**, leveraging human cognitive behavior to make information discovery not just fast, but instinctive.
+Welcome to the **Mizano**, the cognitive nerve center of the Mizano platform. This interface is designed with **Tactile Intelligence**, leveraging human cognitive behavior to make information discovery not just fast, but instinctive.
 
 ## Design Philosophy: "Horizon Flux"
-The Bothoflow operates on a "Layered Consciousness" model. By stacking critical controls at the bottom (where your thumbs naturally rest) and using collapsible "folding" levels, we maximize screen real estate for content while keeping powerful filters instantly accessible. "Horizon Flux" describes the smooth, predictable motion of UI levels as they reveal themselves in response to your intent.
+The Mizano operates on a "Layered Consciousness" model. By stacking critical controls at the bottom (where your thumbs naturally rest) and using collapsible "folding" levels, we maximize screen real estate for content while keeping powerful filters instantly accessible. "Horizon Flux" describes the smooth, predictable motion of UI levels as they reveal themselves in response to your intent.
 
 ---
 
