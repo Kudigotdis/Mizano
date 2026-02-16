@@ -1,0 +1,425 @@
+/* MIZANO CARD DESIGN SYSTEM - 2D MINIMAL */
+/* Applied Android Studio Otter Pipeline standards */
+
+:root {
+    --color-orange: #FFA500;
+    --color-green: #70AD47;
+    --color-charcoal: #505050;
+    --color-blue: #4472C4;
+    --color-yellow: #FFD700;
+    --color-pink: #FF69B4;
+    --color-light-blue: #87CEEB;
+
+    --text-primary: #505050;
+    --text-secondary: #757575;
+    /* WCAG AA Compliant */
+    --text-grey: #A6A6A6;
+    --bg-white: #FFFFFF;
+    --border-opacity: 0.7;
+}
+
+/* BASE CARD */
+.mizano-card {
+    background-color: var(--bg-white);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    margin: 8px 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    min-height: 80px;
+    position: relative;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease-out;
+    /* No Shadows, No Gradients as per law */
+}
+
+/* 7-COLOR STATUS ENGINE */
+.mizano-card[data-status="live"] {
+    border-color: rgba(255, 165, 0, var(--border-opacity));
+}
+
+.mizano-card[data-status="recruiting"] {
+    border-color: rgba(112, 173, 71, var(--border-opacity));
+}
+
+.mizano-card[data-status="finished"] {
+    border-color: rgba(80, 80, 80, var(--border-opacity));
+    opacity: 0.85;
+}
+
+.mizano-card[data-status="interest"] {
+    border-color: rgba(68, 114, 196, var(--border-opacity));
+}
+
+.mizano-card[data-status="upcoming"] {
+    border-color: rgba(255, 215, 0, var(--border-opacity));
+}
+
+.mizano-card[data-status="engagement"] {
+    border-color: rgba(255, 105, 180, var(--border-opacity));
+}
+
+.mizano-card[data-status="ad"] {
+    border-color: rgba(135, 206, 235, var(--border-opacity));
+}
+
+/* INTERACTION STATES */
+.mizano-card[data-liked="true"] {
+    border-color: #FFD700 !important;
+    /* Gold */
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* CENTER SWIPE ZONE */
+.card-center-zone {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: grab;
+    user-select: none;
+    touch-action: pan-y;
+    /* Allow vertical scroll, handle horizontal manual */
+}
+
+.card-center-zone:active {
+    cursor: grabbing;
+}
+
+
+/* PULSING ANIMATION (Live) */
+@keyframes pulse-border {
+    0% {
+        border-color: rgba(255, 165, 0, 0.7);
+    }
+
+    50% {
+        border-color: rgba(255, 165, 0, 0.4);
+    }
+
+    100% {
+        border-color: rgba(255, 165, 0, 0.7);
+    }
+}
+
+.mizano-card[data-status="live"] {
+    animation: pulse-border 1s ease-in-out infinite;
+}
+
+/* LAYOUT: MATCH CARD */
+.card-match-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.team-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.team-info.left {
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.team-info.right {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.team-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    background-color: #EEE;
+    /* Placeholder bg */
+    border-radius: 4px;
+}
+
+.team-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    max-width: 80px;
+}
+
+.match-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+}
+
+.match-status {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-blue);
+}
+
+.mizano-card[data-status="live"] .match-status {
+    color: var(--color-orange);
+    font-size: 22px;
+}
+
+.mizano-card[data-status="finished"] .match-status {
+    color: var(--color-charcoal);
+}
+
+.match-meta {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* SAFETY FOOTER */
+.card-safety-footer {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed #DDD;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-charcoal);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.card-safety-footer.orange {
+    color: var(--color-orange);
+}
+
+/* LAYOUT: REGISTRATION CARD */
+.card-reg-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reg-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.reg-meta {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.urgency-badge {
+    padding: 4px 8px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.urgency-badge.orange {
+    background-color: var(--color-orange);
+    color: white;
+}
+
+.urgency-badge.yellow {
+    background-color: var(--color-yellow);
+    color: var(--text-primary);
+}
+
+.urgency-badge.red {
+    background-color: #FF0000;
+    color: white;
+}
+
+.urgency-badge.green {
+    background-color: var(--color-green);
+    color: white;
+}
+
+
+/* TEAM EXPLORER CARD STYLES */
+
+.card-team-layout {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+}
+
+.team-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.team-logo-large {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #000;
+    background: #EEE;
+    margin-right: 12px;
+}
+
+.team-id-block {
+    flex: 1;
+}
+
+.team-name {
+    font-size: 1.1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.team-location {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #666;
+}
+
+.team-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #EEE;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.sport-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    background: #000;
+    color: #FFF;
+}
+
+.join-team-btn {
+    background: #FFB300;
+    border: 2px solid #000;
+    padding: 6px 16px;
+    font-family: inherit;
+    font-weight: 900;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.verified-badge {
+    color: #1E88E5;
+    margin-left: 4px;
+}
+
+/* INSTITUTION CARD STYLES */
+.card-inst-layout {
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+}
+
+.inst-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.inst-icon-box {
+    width: 48px;
+    height: 48px;
+    background-color: var(--light-grey);
+    border: 1px solid var(--border-grey);
+    border-radius: 4px;
+}
+
+.inst-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.inst-meta {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.inst-actions {
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.inst-contact-btn {
+    background: var(--bg-white);
+    border: 1px solid var(--color-blue);
+    color: var(--color-blue);
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* COMPETITION CARD STYLES */
+.card-comp-layout {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.comp-banner {
+    background-color: var(--color-charcoal);
+    padding: 16px;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.comp-title {
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.comp-prize {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-yellow);
+}
+
+.comp-footer {
+    padding: 12px;
+    background: var(--bg-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comp-meta {
+    display: flex;
+    flex-direction: column;
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.comp-join-btn {
+    background: var(--color-yellow);
+    border: 2px solid var(--color-charcoal);
+    color: var(--color-charcoal);
+    padding: 8px 16px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+/* DARK MODE OVERRIDES */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-white: #1E1E1E;
+        --text-primary: #D3D3D3;
+        --text-secondary: #909090;
+    }
+}

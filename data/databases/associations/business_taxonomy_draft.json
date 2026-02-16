@@ -1,0 +1,28 @@
+{
+  "Business Services": {
+    "General Business": [
+      "Business Consultants",
+      "Start‑up Advisors",
+      "Franchise Opportunities",
+      "Business Brokers",
+      "Trade Associations"
+    ],
+    "General Office Services": [
+      "Reception Services",
+      "Mail Room",
+      "Document Shredding",
+      "Courier Services (Internal)",
+      "Office Cleaning"
+    ],
+    "Advertising": [
+      "Outdoor Billboards",
+      "Radio Advertising",
+      "TV Commercials",
+      "Social Media Ads",
+      "Print Media Ads"
+    ],
+    ... (all subcategories with ≥5 sub‑subcategories)
+  },
+  "Computers & Internet": { ... },
+  ...
+}

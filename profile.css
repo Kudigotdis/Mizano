@@ -1,0 +1,86 @@
+/* MIZANO PROFILE INTERFACE STYLES */
+
+.profile-container {
+    padding: 24px;
+    max-width: 500px;
+    margin: 0 auto;
+    background: #FFF;
+    border-radius: 2px;
+    /* Mizano 2D Minimalist */
+    border: 3px solid #000;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+.profile-form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    color: #444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #000;
+    font-family: inherit;
+    font-size: 1rem;
+    background: #F9F9F9;
+    border-radius: 0;
+    /* Strict 2D */
+}
+
+.form-group input:focus {
+    background: #FFF;
+    outline: none;
+    border-color: #007BFF;
+    /* Primary blue focus */
+}
+
+.profile-btn {
+    width: 100%;
+    padding: 16px;
+    background: #000;
+    color: #FFF;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.profile-btn:active {
+    transform: translate(2px, 2px);
+}
+
+.profile-btn.secondary {
+    background: #FFF;
+    color: #000;
+    border: 2px solid #000;
+    margin-top: 10px;
+}
+
+/* Success State Overlay */
+.profile-msg {
+    padding: 15px;
+    margin-top: 15px;
+    border: 2px solid #28a745;
+    background: #d4edda;
+    color: #155724;
+    display: none;
+    text-align: center;
+}

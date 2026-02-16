@@ -1,0 +1,653 @@
+/* MIZANO CORE SHELL STYLES */
+/* Based on MIZANO_DESIGN_GUIDE.md - 2D Minimal Design */
+
+:root {
+    --primary-blue: #1E88E5;
+    --charcoal: #424242;
+    --light-grey: #ecf1f6;
+    --border-grey: #E0E0E0;
+    --inactive-grey: #757575;
+    --gold: #FFB300;
+    --white: #FFFFFF;
+
+    /* APEX UI THEME */
+    --apex-grey: #808080;
+    --apex-dark: #242424;
+    --apex-mid: #363636;
+    --apex-faded: #545454;
+    --apex-light-bar: #dcdcdc;
+    --apex-day-block: #f3f3f3;
+
+    --top-bar-height: 56px;
+    --bottom-bar-height: 60px;
+}
+
+body {
+    font-family: 'Roboto', 'Inter', sans-serif;
+    background-color: var(--light-grey);
+    color: var(--charcoal);
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--top-bar-height);
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-grey);
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    z-index: 1000;
+}
+
+/* APEX HORIZON: SUB-HEADER (Location & Counter) */
+.places-filter-bar {
+    position: fixed;
+    top: var(--top-bar-height);
+    left: 0;
+    width: 100%;
+    height: 48px;
+    background-color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 999;
+}
+
+.location-selector {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.location-text {
+    background: #f0f0f0;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+}
+
+.location-text::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.card-tally {
+    display: flex;
+    align-items: center;
+}
+
+.tally-count {
+    font-size: 0.9rem;
+    color: #bfbfbf;
+    font-weight: 500;
+}
+
+.tally-count::before {
+    content: "+";
+}
+
+/* APEX DECK CONTAINER */
+/* FILTER PANEL OVERLAYS (Level B/C Extras) */
+.filter-category {
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    cursor: pointer;
+}
+
+.category-header h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--charcoal);
+}
+
+.category-items {
+    display: none;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 15px;
+}
+
+.filter-category.expanded .category-items {
+    display: flex;
+}
+
+.filter-category.expanded .toggle-icon {
+    transform: rotate(45deg);
+}
+
+.filter-item-chip {
+    padding: 8px 16px;
+    background: #f0f0f0;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-item-chip.active {
+    background: var(--primary-blue);
+    color: white;
+}
+
+/* LOCATION GRID */
+.location-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.location-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.location-item.active {
+    border-color: var(--primary-blue);
+    background: rgba(30, 136, 229, 0.05);
+}
+
+.location-item .iso {
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: var(--primary-blue);
+    margin-right: 10px;
+    background: rgba(30, 136, 229, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.location-item .label {
+    font-size: 0.9rem;
+    color: var(--charcoal);
+}
+
+.filter-sheet {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    max-height: 80vh;
+    background: white;
+    z-index: 3000;
+    transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.apex-deck {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.apex-deck.hidden {
+    transform: translateY(calc(100% - 4px));
+}
+
+.deck-level {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+}
+
+.deck-level.active {
+    height: 50px;
+    opacity: 1;
+}
+
+/* LEVEL A: MAIN NAVIGATION */
+.bottom-menu.level-a {
+    position: relative;
+    background-color: var(--apex-grey);
+    height: var(--bottom-bar-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s;
+}
+
+/* NOTIFICATION WIDGET */
+.notif-widget {
+    background-color: var(--apex-mid);
+    color: var(--white);
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+/* LEVEL B: ACTIVITY BAR */
+.level-b {
+    background-color: var(--apex-grey);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+}
+
+.filter-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex: 1;
+    margin-right: 15px;
+}
+
+.filter-text {
+    color: var(--white);
+    font-weight: bold;
+}
+
+.filter-tag {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.add-filter-btn {
+    background-color: var(--apex-faded);
+    color: var(--white);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* LEVEL C: TEMPORAL */
+.time-period-bar {
+    background-color: var(--apex-grey);
+}
+
+.time-carousel {
+    flex: 1;
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 8px 0;
+}
+
+.time-btn {
+    background-color: var(--apex-dark);
+    color: #888;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-size: 0.8rem;
+}
+
+.time-btn.active {
+    color: var(--white);
+}
+
+.date-picker-bar {
+    background-color: var(--apex-light-bar);
+    flex-direction: column;
+    height: auto !important;
+    padding: 0;
+}
+
+.calendar-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    background: var(--white);
+}
+
+.month-year-btn {
+    font-weight: bold;
+    color: black;
+}
+
+.day-tiles-scroll {
+    display: flex;
+    overflow-x: auto;
+    background: var(--white);
+    padding: 10px;
+    gap: 10px;
+    width: 100%;
+}
+
+.day-block {
+    background: var(--apex-day-block);
+    min-width: 60px;
+    padding: 8px;
+    text-align: center;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.day-name {
+    color: var(--apex-grey);
+    font-size: 0.7rem;
+}
+
+.day-status {
+    color: var(--apex-grey);
+    font-weight: bold;
+}
+
+.day-block.active {
+    background: var(--primary-blue);
+}
+
+.day-block.active * {
+    color: white;
+}
+
+.logo-tap {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.dir-nav {
+    width: 32px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--inactive-grey);
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.dir-nav:hover {
+    color: var(--primary-blue);
+}
+
+.dir-nav.left {
+    margin-right: 4px;
+}
+
+.dir-nav.right {
+    margin-left: 4px;
+}
+
+.owl-icon {
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary-blue);
+    mask: url('./images/icons/owl-icon.svg') no-repeat center;
+    /* Expected relative path */
+    -webkit-mask: url('./images/icons/owl-icon.svg') no-repeat center;
+    border-radius: 50%;
+    /* Placeholder shape */
+}
+
+.top-carousel-container {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin-left: 8px;
+}
+
+.top-carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.top-carousel {
+    display: inline-flex;
+    height: 100%;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--inactive-grey);
+    cursor: pointer;
+    height: var(--top-bar-height);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.nav-btn.active {
+    color: var(--charcoal);
+    font-weight: 700;
+}
+
+.nav-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background-color: var(--primary-blue);
+}
+
+/* PLACES FILTER BAR */
+.places-filter-bar {
+    position: fixed;
+    top: var(--top-bar-height);
+    left: 0;
+    width: 100%;
+    height: 48px;
+    background-color: var(--light-grey);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 900;
+}
+
+.location-text {
+    font-size: 14px;
+    color: #616161;
+}
+
+.tally-count {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+.panel-carousel-container {
+    padding-top: calc(var(--top-bar-height) + 48px);
+    padding-bottom: var(--bottom-bar-height);
+    width: 100vw;
+    height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.panel-carousel {
+    display: flex;
+    width: max-content;
+    height: 100%;
+}
+
+.panel {
+    width: 100vw;
+    height: 100%;
+    overflow-y: auto;
+    padding: 16px;
+    scroll-snap-align: center;
+}
+
+.drop-field {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.placeholder-msg {
+    text-align: center;
+    padding: 40px;
+    color: var(--inactive-grey);
+    font-style: italic;
+}
+
+/* BOTTOM MENU */
+.bottom-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--bottom-bar-height);
+    background-color: var(--charcoal);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+    width: 14%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.menu-btn:active {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(0.9);
+}
+
+.menu-btn.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-top: 3px solid var(--gold);
+}
+
+.menu-btn.gold {
+    color: var(--gold);
+}
+
+.notif-badge {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    background-color: #D32F2F;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+}
+
+/* OVERLAYS */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    z-index: 2000;
+    display: none;
+    flex-direction: column;
+}
+
+.overlay.active {
+    display: flex;
+}
+
+.overlay-header {
+    height: 56px;
+    border-bottom: 1px solid var(--border-grey);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.overlay-title {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/* MOBILE OPTIMIZATIONS */
+@media (max-width: 600px) {
+    .nav-btn {
+        padding: 0 12px;
+    }
+}

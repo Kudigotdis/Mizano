@@ -1,0 +1,56 @@
+{
+  "org_id": "ASSOC-ZA-SAFA-001",
+  "org_type": "National Association",
+  "org_name": "South African Football Association",
+  "sport": "soccer",
+  "founded": 1991,
+  "location": {
+    "headquarters": "SAFA House",
+    "street_address": "112 Boeing Road East",
+    "area": "Bedfordview",
+    "city": "Johannesburg",
+    "country": "South Africa",
+    "gps": "-26.1755, 28.1382"
+  },
+  "contact": {
+    "phone": "+27115515900",
+    "whatsapp": "+27115515900",
+    "email": "info@safa.net",
+    "website": "www.safa.net",
+    "facebook": "SAFA.net",
+    "twitter": "@SAFA_net"
+  },
+  "staff": [
+    {
+      "role": "President",
+      "name": "Danny Jordaan",
+      "age": 74,
+      "gender": "Male",
+      "nationality": "South African",
+      "email": "president@safa.net",
+      "phone": "+27821234501"
+    },
+    {
+      "role": "CEO",
+      "name": "Lydia Monyepao",
+      "age": 48,
+      "gender": "Female",
+      "nationality": "South African",
+      "email": "ceo@safa.net",
+      "phone": "+27821234502"
+    },
+    {
+      "role": "Technical Director",
+      "name": "Walter Steenbok",
+      "age": 52,
+      "gender": "Male",
+      "nationality": "South African",
+      "email": "technical@safa.net",
+      "phone": "+27821234503"
+    }
+  ],
+  "affiliated_clubs": 250,
+  "competitions_managed": ["PSL", "National First Division", "SAFA Women's League", "ABSA Cup"],
+  "sponsors": ["MTN", "Nedbank", "ABSA"],
+  "notes": "Governing body for football in SA. Member of CAF and FIFA."
+}

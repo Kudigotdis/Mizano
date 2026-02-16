@@ -1,0 +1,47 @@
+{
+  "org_id": "ASSOC-ZM-FAZ-001",
+  "org_type": "National Association",
+  "org_name": "Football Association of Zambia",
+  "sport": "soccer",
+  "founded": 1929,
+  "location": {
+    "headquarters": "Football House",
+    "street_address": "Plot 33, Alick Nkhata Road",
+    "area": "Longacres",
+    "city": "Lusaka",
+    "country": "Zambia",
+    "gps": "-15.4175, 28.3028"
+  },
+  "contact": {
+    "phone": "+260211254455",
+    "whatsapp": "+260977123456",
+    "email": "info@faz.co.zm",
+    "website": "www.faz.co.zm",
+    "facebook": "FAZFootball",
+    "twitter": "@FAZFootball"
+  },
+  "staff": [
+    {
+      "role": "President",
+      "name": "Andrew Kamanga",
+      "age": 56,
+      "gender": "Male",
+      "nationality": "Zambian",
+      "email": "president@faz.co.zm",
+      "phone": "+260977111111"
+    },
+    {
+      "role": "General Secretary",
+      "name": "Adrian Kashala",
+      "age": 44,
+      "gender": "Male",
+      "nationality": "Zambian",
+      "email": "gs@faz.co.zm",
+      "phone": "+260977222222"
+    }
+  ],
+  "affiliated_clubs": 80,
+  "competitions_managed": ["Zambian Super League", "Women's League", "Coca-Cola Cup"],
+  "sponsors": ["MTN Zambia", "Coca-Cola", "Zambian Breweries"],
+  "notes": "Member of CAF and FIFA."
+}

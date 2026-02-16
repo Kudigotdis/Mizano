@@ -1,0 +1,47 @@
+[
+    {
+        "id": "sug_001",
+        "title": "Try netball drills",
+        "description": "Improve your passing and footwork with these 3 basic drills.",
+        "activity_type": "netball",
+        "season": "all",
+        "weather": "any",
+        "week_offset": 0
+    },
+    {
+        "id": "sug_002",
+        "title": "Indoor chess tournament",
+        "description": "Rainy season? Gather friends for a chess challenge.",
+        "activity_type": "chess",
+        "season": "rainy",
+        "weather": "rain",
+        "week_offset": 1
+    },
+    {
+        "id": "sug_003",
+        "title": "Morning Jog",
+        "description": "Start your day with a 5k run.",
+        "activity_type": "running",
+        "season": "all",
+        "weather": "clear",
+        "week_offset": 2
+    },
+    {
+        "id": "sug_004",
+        "title": "Swimming Basics",
+        "description": "Learn the freestyle stroke.",
+        "activity_type": "swimming",
+        "season": "dry",
+        "weather": "sunny",
+        "week_offset": 3
+    },
+    {
+        "id": "sug_005",
+        "title": "Yoga for Flexibility",
+        "description": "15-minute routine to improve flexibility.",
+        "activity_type": "yoga",
+        "season": "all",
+        "weather": "any",
+        "week_offset": 4
+    }
+]

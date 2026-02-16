@@ -1,0 +1,162 @@
+/* MIZANO DETAIL VIEW STYLES */
+
+.detail-wrapper {
+    background: #FFF;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-header {
+    height: 56px;
+    border-bottom: 2px solid #000;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    background: #FFF;
+    z-index: 10;
+}
+
+.detail-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-left: 12px;
+}
+
+.detail-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 80px;
+    /* Space for action bar */
+}
+
+.detail-media-placeholder {
+    width: 100%;
+    height: 200px;
+    background: #F5F5F5;
+    border-bottom: 2px solid #EEE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.placeholder-text {
+    color: #AAA;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.detail-main {
+    padding: 20px;
+}
+
+.activity-h1 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+    color: #111;
+}
+
+.activity-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.detail-stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    flex: 1;
+    border: 2px solid #000;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #777;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #000;
+}
+
+.detail-description,
+.detail-rules {
+    margin-top: 32px;
+}
+
+.detail-description h3,
+.detail-rules h3 {
+    font-size: 1rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.detail-description p {
+    line-height: 1.5;
+    color: #444;
+}
+
+.rule-box {
+    background: #F9F9F9;
+    padding: 12px;
+    border-left: 4px solid #FFB300;
+}
+
+.detail-action-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #FFF;
+    border-top: 2px solid #000;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    z-index: 11;
+}
+
+.detail-btn {
+    width: 100%;
+    height: 48px;
+    border: 3px solid #000;
+    font-family: inherit;
+    font-weight: 900;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 #000;
+    transition: transform 0.1s;
+}
+
+.detail-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #000;
+}
+
+.detail-btn.active {
+    background: #1E88E5;
+    color: #FFF;
+}
+
+.detail-btn.locked {
+    background: #EEE;
+    color: #AAA;
+    border-color: #AAA;
+    box-shadow: 4px 4px 0 #AAA;
+    cursor: not-allowed;
+}

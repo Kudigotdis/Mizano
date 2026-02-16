@@ -1,0 +1,26 @@
+SCHOOLS Technical Guardrails & Schools Logic
+
+Mizano: Technical Guardrails & Schools Logic
+The "Scholarship Scout" Sync: During the 15-minute background sync pulse, if a student at an institution like Botho University or Al Nur Unified updates their Sports CV with a "National Record" or "First Place" (Category 13.2), the system automatically pushes a notification to verified Association and Staff profiles. This ensures that a kid in a rural village school like Beetsha Public Primary has the exact same visibility to scouts as someone at Baobab Primary in Gaborone.
+
+The "Guardian-Minor Handshake" for Schools: For any student under 16 at institutions like Acacia Primary or Ben Thema, participation in a "Game Cube" event requires a digital **Three-Way Handshake** (Guardian-School-Platform). The Guardian must approve the invite, the School confirms enrollment, and the Platform logs the profile view for safety. This logic is hard-coded into the Match Roster API to prevent unauthorized sign-ups.
+
+The "AcademicAlert" Brake: Schools can trigger an **AcademicAlert** (Standardized Column AR/AZ). This puts a "Hard-Block" on competitive joins (Matches/Tournaments) until the Guardian and School Admin lift the flag. Non-competitive lessons remain available.
+
+3-Level Search Optimization: To prevent the UI from lagging while scrolling through hundreds of schools (from ABM University to Butale), we use the 3-Level Rising Search.
+
+Level 1: Select Category (e.g., Public Primary, Tertiary).
+
+Level 2: Select District/Town (e.g., Kgalagadi, Gaborone).
+
+Level 3: Select Institution.
+
+This keeps the active dropdown packet under 200KB, maintaining that buttery 60 FPS on a low-RAM device in Broadhurst.
+
+Offline Institution Cache: The master list of schools is stored in the local SQLite database (approx. 2MB total for the whole country). This means if a teacher at Bere Public Primary is organizing an inter-house match in a zero-data zone, they can still select their school, tag the players, and log the scores. The data stays "Pending" (Category 14.1) until they hit a signal or sync manually.
+
+Data-Saver Social Prompts: If a user is tagged as a student at AFDA Botswana or Lobatse IHS, the Side Swipe Homepage will trigger area-specific prompts: "New creative arts hobby group forming near Block 3—want to join?" These prompts use WebP icons and text-only alerts to ensure zero-data bundles (WhatsApp/Facebook) aren't wasted on heavy image loading.
+
+The "Inter-House" Bluetooth Roster: For schools like John Mackenzie or Clifton, where multiple matches happen simultaneously, the app uses Match Roster Sync (Bluetooth). Coaches can "beam" the team sheets from one phone to another offline. Once one coach gets back to a 4G area, the "Last-Write-Wins" logic (Category 10.2) updates the central Google Sheets master for the whole school to see.
+
+Safety-First Verified Badges: Any Mentor or Creator claiming to be affiliated with a prestigious institution like BIUST or Maru-a-Pula must undergo a credential check. Until verified by the Educational Institution admin profile, the "Verified" badge is hidden, and they cannot send direct "Social Prompts" to minors at that school.

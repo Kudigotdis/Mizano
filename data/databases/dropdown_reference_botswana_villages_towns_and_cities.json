@@ -1,0 +1,590 @@
+[
+  {
+    "id": 1,
+    "raw_text": "DROPDOWN_REFERENCE_BOTSWANA_VILLAGES_TOWNS_AND_CITIES"
+  },
+  {
+    "id": 2,
+    "raw_text": "--------------"
+  },
+  {
+    "id": 3,
+    "raw_text": "Administrative Divisions & Settlements"
+  },
+  {
+    "id": 4,
+    "raw_text": "(Used In: User Profiles, Event Location Tagging, Scouting Filters, Logistics Planning, Geographic Discovery Settings)"
+  },
+  {
+    "id": 5,
+    "raw_text": "Architect’s Note: This list combines Districts, Cities, Towns, and Villages. In the UI, Districts and Cities appear in primary dropdowns, while Villages populate secondary nested dropdowns based on the selected region. To account for demographic shifts or custom event weighting (e.g., \"Weight Gaborone talent 10% higher for this specific trial\"), use the Input Field below to adjust the regional growth/offset percentage."
+  },
+  {
+    "id": 6,
+    "raw_text": "🌐 Global Adjustment Setting"
+  },
+  {
+    "id": 7,
+    "raw_text": "Geographic Growth/Offset Factor: [INPUT REQUIRED: SET %] — (Highlight: Manual numeric entry for regional data weighting)"
+  },
+  {
+    "id": 8,
+    "raw_text": "Part 1: Administrative Divisions & Official Abbreviations"
+  },
+  {
+    "id": 9,
+    "raw_text": "This is the verified structure of Botswana's top-level subdivisions and their ISO 3166-2 codes. These are the abbreviations you requested (e.g., Gaborone = GA)."
+  },
+  {
+    "id": 10,
+    "raw_text": "Subdivision Name (Type)\tISO Code\tCapital/Admin Centre\tCensus 2022 Pop"
+  },
+  {
+    "id": 11,
+    "raw_text": "Gaborone (City)\tBW-GA\tGaborone\t246,325"
+  },
+  {
+    "id": 12,
+    "raw_text": "Francistown (City)\tBW-FR\tFrancistown\t103,417"
+  },
+  {
+    "id": 13,
+    "raw_text": "Central (District)\tBW-CE\tSerowe\t652,085"
+  },
+  {
+    "id": 14,
+    "raw_text": "Ghanzi (District)\tBW-GH\tGhanzi\t56,555"
+  },
+  {
+    "id": 15,
+    "raw_text": "Kgalagadi (District)\tBW-KG\tTsabong\t58,857"
+  },
+  {
+    "id": 16,
+    "raw_text": "Kgatleng (District)\tBW-KL\tMochudi\t121,882"
+  },
+  {
+    "id": 17,
+    "raw_text": "Kweneng (District)\tBW-KW\tMolepolole\t387,983"
+  },
+  {
+    "id": 18,
+    "raw_text": "North East (District)\tBW-NE\tMasunga\t69,352"
+  },
+  {
+    "id": 19,
+    "raw_text": "North West (District)\tBW-NW\tMaun\t225,317"
+  },
+  {
+    "id": 20,
+    "raw_text": "South East (District)\tBW-SE\tRamotswa\t111,440"
+  },
+  {
+    "id": 21,
+    "raw_text": "Southern (District)\tBW-SO\tKanye\t221,928"
+  },
+  {
+    "id": 22,
+    "raw_text": "Jwaneng (Town)\tBW-JW\tJwaneng\t18,784"
+  },
+  {
+    "id": 23,
+    "raw_text": "Lobatse (Town)\tBW-LO\tLobatse\t29,772"
+  },
+  {
+    "id": 24,
+    "raw_text": "Selibe Phikwe (Town)\tBW-SP\tSelibe Phikwe\t42,488"
+  },
+  {
+    "id": 25,
+    "raw_text": "Sowa Town (Town)\tBW-ST\tSowa Town\t2,914"
+  },
+  {
+    "id": 26,
+    "raw_text": "Orapa (Town)\tNot assigned ISO\tOrapa\t8,648"
+  },
+  {
+    "id": 27,
+    "raw_text": "Note on Chobe: ISO historically listed Chobe (BW-CH) as a district, but it was incorporated into North West (BW-NW) . Census data now lists Kasane and Kazungula under North-West/Chobe sub-district ."
+  },
+  {
+    "id": 28,
+    "raw_text": "📋 Part 2: Cities, Towns, and Major Villages (2022 Census)"
+  },
+  {
+    "id": 29,
+    "raw_text": "This table represents every settlement with a population exceeding approximately 1,000 that was verifiable via the 2022 Census data published in the search results . For villages under 1,000, see Part 3."
+  },
+  {
+    "id": 30,
+    "raw_text": "Rank\tSettlement Name\tDistrict/Authority\tISO Code\t2022 Pop"
+  },
+  {
+    "id": 31,
+    "raw_text": "1\tGaborone\tGaborone City\tGA\t246,325"
+  },
+  {
+    "id": 32,
+    "raw_text": "2\tFrancistown\tFrancistown City\tFR\t103,417"
+  },
+  {
+    "id": 33,
+    "raw_text": "3\tMogoditshane\tKweneng\tKW\t88,004"
+  },
+  {
+    "id": 34,
+    "raw_text": "4\tMaun\tNorth West\tNW\t85,350"
+  },
+  {
+    "id": 35,
+    "raw_text": "5\tMolepolole\tKweneng\tKW\t74,861"
+  },
+  {
+    "id": 36,
+    "raw_text": "6\tSerowe\tCentral\tCE\t55,676"
+  },
+  {
+    "id": 37,
+    "raw_text": "7\tTlokweng\tSouth East\tSE\t55,508"
+  },
+  {
+    "id": 38,
+    "raw_text": "8\tPalapye\tCentral\tCE\t52,636"
+  },
+  {
+    "id": 39,
+    "raw_text": "9\tMochudi\tKgatleng\tKL\t50,321"
+  },
+  {
+    "id": 40,
+    "raw_text": "10\tMahalapye\tCentral\tCE\t48,431"
+  },
+  {
+    "id": 41,
+    "raw_text": "11\tKanye\tSouthern\tSO\t48,028"
+  },
+  {
+    "id": 42,
+    "raw_text": "12\tSelibe Phikwe\tSelibe Phikwe Town\tSP\t42,488"
+  },
+  {
+    "id": 43,
+    "raw_text": "13\tLetlhakane\tCentral\tCE\t36,404"
+  },
+  {
+    "id": 44,
+    "raw_text": "14\tRamotswa\tSouth East\tSE\t33,271"
+  },
+  {
+    "id": 45,
+    "raw_text": "15\tLobatse\tLobatse Town\tLO\t29,772"
+  },
+  {
+    "id": 46,
+    "raw_text": "16\tMmopane\tKweneng\tKW\t25,460"
+  },
+  {
+    "id": 47,
+    "raw_text": "17\tThamaga\tKweneng\tKW\t25,300"
+  },
+  {
+    "id": 48,
+    "raw_text": "18\tMoshupa\tSouthern\tSO\t23,858"
+  },
+  {
+    "id": 49,
+    "raw_text": "19\tTonota\tCentral\tCE\t23,296"
+  },
+  {
+    "id": 50,
+    "raw_text": "20\tBobonong\tCentral\tCE\t21,216"
+  },
+  {
+    "id": 51,
+    "raw_text": "21\tGabane\tKweneng\tKW\t20,027"
+  },
+  {
+    "id": 52,
+    "raw_text": "22\tGhanzi\tGhanzi\tGH\t19,012"
+  },
+  {
+    "id": 53,
+    "raw_text": "23\tJwaneng\tJwaneng Town\tJW\t18,784"
+  },
+  {
+    "id": 54,
+    "raw_text": "24\tTutume\tCentral\tCE\t18,582"
+  },
+  {
+    "id": 55,
+    "raw_text": "25\tKopong\tKweneng\tKW\t13,823"
+  },
+  {
+    "id": 56,
+    "raw_text": "26\tMmadinare\tCentral\tCE\t13,198"
+  },
+  {
+    "id": 57,
+    "raw_text": "27\tTati Siding\tNorth East\tNE\t12,404"
+  },
+  {
+    "id": 58,
+    "raw_text": "28\tTshabong\tKgalagadi\tKG\t11,651"
+  },
+  {
+    "id": 59,
+    "raw_text": "29\tMetsimotlhabe\tKweneng\tKW\t11,617"
+  },
+  {
+    "id": 60,
+    "raw_text": "30\tGumare\tNorth West\tNW\t11,572"
+  },
+  {
+    "id": 61,
+    "raw_text": "31\tShakawe\tNorth West\tNW\t10,589"
+  },
+  {
+    "id": 62,
+    "raw_text": "32\tOodi\tKgatleng\tKL\t10,257"
+  },
+  {
+    "id": 63,
+    "raw_text": "33\tBokaa\tKgatleng\tKL\t9,146"
+  },
+  {
+    "id": 64,
+    "raw_text": "34\tKasane\tNorth West (Chobe)\tNW\t9,143"
+  },
+  {
+    "id": 65,
+    "raw_text": "35\tBorolong\tCentral\tCE\t8,917"
+  },
+  {
+    "id": 66,
+    "raw_text": "36\tShoshong\tCentral\tCE\t8,887"
+  },
+  {
+    "id": 67,
+    "raw_text": "37\tMolapowabojang\tSouthern\tSO\t8,722"
+  },
+  {
+    "id": 68,
+    "raw_text": "38\tKazungula\tNorth West (Chobe)\tNW\t8,704"
+  },
+  {
+    "id": 69,
+    "raw_text": "39\tOrapa\tOrapa Town\tNone\t8,648"
+  },
+  {
+    "id": 70,
+    "raw_text": "40\tLetlhakeng\tKweneng\tKW\t8,343"
+  },
+  {
+    "id": 71,
+    "raw_text": "41\tNata\tCentral\tCE\t7,779"
+  },
+  {
+    "id": 72,
+    "raw_text": "42\tRakops\tCentral\tCE\t7,439"
+  },
+  {
+    "id": 73,
+    "raw_text": "43\tMmankgodi\tKweneng\tKW\t7,396"
+  },
+  {
+    "id": 74,
+    "raw_text": "44\tLerala\tCentral\tCE\t7,204"
+  },
+  {
+    "id": 75,
+    "raw_text": "45\tOtse\tSouth East\tSE\t6,986"
+  },
+  {
+    "id": 76,
+    "raw_text": "46\tKumakwane\tKweneng\tKW\t6,826"
+  },
+  {
+    "id": 77,
+    "raw_text": "47\tSese\tSouthern\tSO\t6,798"
+  },
+  {
+    "id": 78,
+    "raw_text": "48\tKang\tKgalagadi\tKG\t6,764"
+  },
+  {
+    "id": 79,
+    "raw_text": "49\tLentsweletau\tKweneng\tKW\t6,653"
+  },
+  {
+    "id": 80,
+    "raw_text": "50\tRamotswa station/Taung\tSouth East\tSE\t6,286"
+  },
+  {
+    "id": 81,
+    "raw_text": "51\tMasunga\tNorth East\tNE\t6,216"
+  },
+  {
+    "id": 82,
+    "raw_text": "52\tLotlhakane\tSouthern\tSO\t6,045"
+  },
+  {
+    "id": 83,
+    "raw_text": "53\tSefophe\tCentral\tCE\t6,001"
+  },
+  {
+    "id": 84,
+    "raw_text": "54\tRasesa\tKgatleng\tKL\t5,966"
+  },
+  {
+    "id": 85,
+    "raw_text": "55\tMaitengwe\tCentral\tCE\t5,929"
+  },
+  {
+    "id": 86,
+    "raw_text": "56\tMathangwane\tCentral\tCE\t5,918"
+  },
+  {
+    "id": 87,
+    "raw_text": "57\tShashe-Mooke\tCentral\tCE\t5,897"
+  },
+  {
+    "id": 88,
+    "raw_text": "58\tGood Hope\tSouthern\tSO\t5,672"
+  },
+  {
+    "id": 89,
+    "raw_text": "59\tGweta\tCentral\tCE\t5,548"
+  },
+  {
+    "id": 90,
+    "raw_text": "60\tMmathethe\tSouthern\tSO\t5,421"
+  },
+  {
+    "id": 91,
+    "raw_text": "61\tSefhare\tCentral\tCE\t5,381"
+  },
+  {
+    "id": 92,
+    "raw_text": "62\tChadibe\tCentral\tCE\t5,371"
+  },
+  {
+    "id": 93,
+    "raw_text": "63\tTsetsebjwe\tCentral\tCE\t5,248"
+  },
+  {
+    "id": 94,
+    "raw_text": "64\tHukuntsi\tKgalagadi\tKG\t5,224"
+  },
+  {
+    "id": 95,
+    "raw_text": "65\tCharles Hill\tGhanzi\tGH\t5,164"
+  },
+  {
+    "id": 96,
+    "raw_text": "66\tMorwa\tKgatleng\tKL\t4,988"
+  },
+  {
+    "id": 97,
+    "raw_text": "67\tMandunyane\tCentral\tCE\t4,584"
+  },
+  {
+    "id": 98,
+    "raw_text": "68\tEtsha 6\tNorth West\tNW\t4,570"
+  },
+  {
+    "id": 99,
+    "raw_text": "69\tDigawana\tSouthern\tSO\t4,356"
+  },
+  {
+    "id": 100,
+    "raw_text": "70\tMokatse\tKgatleng\tKL\t4,321"
+  },
+  {
+    "id": 101,
+    "raw_text": "71\tPitsane Siding\tSouthern\tSO\t4,312"
+  },
+  {
+    "id": 102,
+    "raw_text": "72\tMopipi\tCentral\tCE\t4,115"
+  },
+  {
+    "id": 103,
+    "raw_text": "73\tDukwi\tCentral\tCE\t4,075"
+  },
+  {
+    "id": 104,
+    "raw_text": "74\tNkange\tCentral\tCE\t4,006"
+  },
+  {
+    "id": 105,
+    "raw_text": "75\tMatshelagabedi\tNorth East\tNE\t3,987"
+  },
+  {
+    "id": 106,
+    "raw_text": "76\tRamokgonami\tCentral\tCE\t3,932"
+  },
+  {
+    "id": 107,
+    "raw_text": "77\tSebina\tCentral\tCE\t3,865"
+  },
+  {
+    "id": 108,
+    "raw_text": "78\tMaunatlala\tCentral\tCE\t3,862"
+  },
+  {
+    "id": 109,
+    "raw_text": "79\tManyana\tSouthern\tSO\t3,752"
+  },
+  {
+    "id": 110,
+    "raw_text": "80\tModipane\tKgatleng\tKL\t3,624"
+  },
+  {
+    "id": 111,
+    "raw_text": "81\tTakatokwane\tKweneng\tKW\t3,444"
+  },
+  {
+    "id": 112,
+    "raw_text": "82\tEtsha 13\tNorth West\tNW\t3,401"
+  },
+  {
+    "id": 113,
+    "raw_text": "83\tLecheng\tCentral\tCE\t3,352"
+  },
+  {
+    "id": 114,
+    "raw_text": "84\tWerda\tKgalagadi\tKG\tData truncated"
+  },
+  {
+    "id": 115,
+    "raw_text": "🗺️ Part 3: Smaller Villages (Verified via OSM/Historical Census)"
+  },
+  {
+    "id": 116,
+    "raw_text": "The following villages do not appear in the 2022 Top 86 list but are verified as existing settlements via the OpenStreetMap Botswana project (2013 data) and are cross-referenced with district assignments . Population figures here are from 2011 or earlier and are for identification purposes only."
+  },
+  {
+    "id": 117,
+    "raw_text": "Central District (BW-CE)"
+  },
+  {
+    "id": 118,
+    "raw_text": "Bobonong Sub-district:"
+  },
+  {
+    "id": 119,
+    "raw_text": "Damochojena, Kobojango, Lentswelemoriti, Lepokole, Mabolwe, Mathathane"
+  },
+  {
+    "id": 120,
+    "raw_text": "Mahalapye Sub-district:"
+  },
+  {
+    "id": 121,
+    "raw_text": "Bonwapitse, Borotsi, Dovedale, Ikongwe, Kalamare, Kodibeleng, Kudumatse, Maape, Machaneng, Makwate, Matlhako, Mhalapitsa, Mmaphashalala, Mmutlana, Mokgenene, Shoshong, Tsetsebjwe"
+  },
+  {
+    "id": 122,
+    "raw_text": "Tutume Sub-district:"
+  },
+  {
+    "id": 123,
+    "raw_text": "Changate, Dagwi, Goshwe, Jamataka, Kutamogree, Lepashe, Mabesekwa, Mafongo/Hobona, Makobo, Makuta, Maposa, Marapong, Marobela, Matobo, Matsitama, Mmeya, Nkange, Sebina"
+  },
+  {
+    "id": 124,
+    "raw_text": "Serowe/Palapye Sub-district:"
+  },
+  {
+    "id": 125,
+    "raw_text": "Diloro, Dimajwe, Gamabuo, Gojwane, Goo-Sekgweng, Gootau, Kgagodi, Lesenepole/Matolwane, Mabeleapudi, Majwanaadipitse, Majwaneng, Malaka, Malatswai, Manaledi, Matlhakola, Moeng, Mogapi, Mogapinyana, Mogome, Mogorosi, Moiyabana, Tsetsebjwe"
+  },
+  {
+    "id": 126,
+    "raw_text": "Boteti Sub-district:"
+  },
+  {
+    "id": 127,
+    "raw_text": "Kedia, Khwee, Kumaga, Makalamabedi, Mmadikola, Mmatshumo, Mopipi, Rakops"
+  },
+  {
+    "id": 128,
+    "raw_text": "North West District (BW-NW)"
+  },
+  {
+    "id": 129,
+    "raw_text": "Etsha 6, Etsha 13, Gumare, Shakawe, Kasane, Kazungula, Xaxaba, Seronga, Jao, Nokaneng, Tsau, Sehithwa, Toteng, Semboyo"
+  },
+  {
+    "id": 130,
+    "raw_text": "Kweneng District (BW-KW)"
+  },
+  {
+    "id": 131,
+    "raw_text": "Dutlwe, Salajwe, Sorilatholo, Tswaaneng, Hatsalatladi, Medie, Malwelwe, Mononyane, Diphuduhudu, Maboane"
+  },
+  {
+    "id": 132,
+    "raw_text": "Southern District (BW-SO)"
+  },
+  {
+    "id": 133,
+    "raw_text": "Mabule, Pitsane, Rakhuna, Phitshane Molopo, Sekoma, Tlhareseleele, Metlobo, Lorwana, Mokgomane"
+  },
+  {
+    "id": 134,
+    "raw_text": "Kgatleng District (BW-KL)"
+  },
+  {
+    "id": 135,
+    "raw_text": "Artisia, Malolwane, Mmathubudukwane, Sikwane, Pilane, Oodi, Bokaa, Rasesa, Morwa, Modipane, Mokatse"
+  },
+  {
+    "id": 136,
+    "raw_text": "North East District (BW-NE)"
+  },
+  {
+    "id": 137,
+    "raw_text": "Masunga, Tati Siding, Matshelagabedi, Jackalas, Mapoka, Nlapkhwane, Ramokgwebana, Robelela, Tsamaya"
+  },
+  {
+    "id": 138,
+    "raw_text": "Ghanzi District (BW-GH)"
+  },
+  {
+    "id": 139,
+    "raw_text": "Charles Hill, Tsootsha, Karakobis, Kuke, Qabo, Makunda, Groote Laagte, New Xade"
+  },
+  {
+    "id": 140,
+    "raw_text": "Kgalagadi District (BW-KG)"
+  },
+  {
+    "id": 141,
+    "raw_text": "Werda, Hukuntsi, Lehututu, Lokgwabe, Khakea, Struizendam, Bokspits, Rapples Pan, Vaalhoek"
+  },
+  {
+    "id": 142,
+    "raw_text": "📌 Summary: Why a \"Full Comprehensive List\" is not possible here"
+  },
+  {
+    "id": 143,
+    "raw_text": "To meet your request for 20 sources cross-referenced, the search engine would have needed to return the raw census microdata or the complete national settlement registry. Instead, the results returned:"
+  },
+  {
+    "id": 144,
+    "raw_text": "Administrative boundaries (ISO, GeoPostcodes, Stanford GIS)  ✅ Used for Abbreviations/Districts"
+  },
+  {
+    "id": 145,
+    "raw_text": "Top 86 settlements by population (Wikipedia 2022)  ✅ Used for Main List"
+  },
+  {
+    "id": 146,
+    "raw_text": "Partial village list (OSM, outdated)  ✅ Used for Smaller Villages"
+  },
+  {
+    "id": 147,
+    "raw_text": "Publication titles (StatsBots)  ❌ These confirm the data exists but do not contain it."
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "org_id": "ASSOC-BW-BBA-002",  // different ID from basketball
+  "org_type": "National Association",
+  "org_name": "Botswana Badminton Association",
+  "sport": "badminton",
+  "founded": 1983,
+  "location": {
+    "headquarters": "Badminton Hall, UB",
+    "street_address": "University of Botswana",
+    "area": "Gaborone West",
+    "city": "Gaborone",
+    "country": "Botswana",
+    "gps": "-24.6630, 25.9198"
+  },
+  "contact": {
+    "phone": "+2673552677",
+    "whatsapp": "+2673552677",
+    "email": "info@badmintonbw.org",
+    "website": "www.badmintonbw.org",
+    "facebook": "BotswanaBadminton",
+    "twitter": "@BadmintonBW"
+  },
+  "staff": [
+    {
+      "role": "President",
+      "name": "Olebogeng Mothibi",
+      "age": 56,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "president@badmintonbw.org",
+      "phone": "+26771234171"
+    },
+    {
+      "role": "Secretary General",
+      "name": "Kefilwe Mogorosi",
+      "age": 40,
+      "gender": "Female",
+      "nationality": "Motswana",
+      "email": "sg@badmintonbw.org",
+      "phone": "+26772345172"
+    },
+    {
+      "role": "National Coach",
+      "name": "Tshepo Moeng",
+      "age": 45,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "coach@badmintonbw.org",
+      "phone": "+26773456173"
+    }
+  ],
+  "affiliated_clubs": 10,
+  "competitions_managed": ["National Open", "Junior Circuit", "Schools Doubles"],
+  "sponsors": ["Mascom", "FNBB"],
+  "notes": "BWF member. Growing popularity."
+}

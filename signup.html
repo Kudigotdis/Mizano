@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign Up - Bothoflow</title>
+    <link rel="stylesheet" href="./assets/css/forms.css">
+    <style>
+        body {
+            font-family: 'Inter', 'Roboto', sans-serif;
+            background: #F5F5F5;
+            padding: 20px;
+        }
+
+        .page-header {
+            max-width: 600px;
+            margin: 0 auto 20px;
+            text-align: center;
+        }
+
+        #signup-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-header">
+        <h1>Create Your Profile</h1>
+        <p>Join the Mizano community and start your flow.</p>
+    </div>
+
+    <form id="signup-form">
+        <!-- 1. CORE IDENTITY -->
+        <div class="collapsible-section" id="section-identity">
+            <div class="section-header">
+                <h3>Core Identity</h3>
+                <span class="toggle-icon">–</span>
+            </div>
+            <div class="section-content">
+                <div class="field-group">
+                    <label>Full Name</label>
+                    <input type="text" name="full_name" class="form-control" required>
+                </div>
+                <div class="field-group">
+                    <label>Date of Birth</label>
+                    <input type="date" name="dob" id="dob-input" class="form-control" required>
+                </div>
+                <div class="field-group">
+                    <label>Gender</label>
+                    <select name="gender" class="form-control">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="non-binary">Non-binary</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label>Nationality</label>
+                    <input type="text" name="nationality" class="form-control" placeholder="e.g. Motswana">
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. CONTACT & LOCATION -->
+        <div class="collapsible-section" id="section-contact">
+            <div class="section-header">
+                <h3>Contact & Location</h3>
+                <span class="toggle-icon">–</span>
+            </div>
+            <div class="section-content">
+                <div class="field-group">
+                    <label>WhatsApp Number</label>
+                    <input type="text" name="whatsapp_number" class="form-control" placeholder="+267XXXXXXXX" required>
+                </div>
+                <div class="field-group">
+                    <label>Email (Optional)</label>
+                    <input type="email" name="email" class="form-control">
+                </div>
+                <div class="field-group">
+                    <label>Village / Town / City</label>
+                    <input type="text" name="city" class="form-control" placeholder="Gaborone">
+                </div>
+                <div class="field-group">
+                    <label>Area / Neighborhood</label>
+                    <input type="text" name="area" class="form-control" placeholder="Block 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. CAPABILITIES -->
+        <div class="collapsible-section" id="section-capabilities">
+            <div class="section-header">
+                <h3>Profile Capabilities</h3>
+                <span class="toggle-icon">–</span>
+            </div>
+            <div class="section-content">
+                <label>I want to be a:</label>
+                <div style="margin-top:10px;">
+                    <label><input type="checkbox" name="capabilities" value="Player"> Player</label><br>
+                    <label><input type="checkbox" name="capabilities" value="Mentor"> Mentor</label><br>
+                    <label><input type="checkbox" name="capabilities" value="Creator"> Creator</label><br>
+                    <label><input type="checkbox" name="capabilities" value="Guardian"> Guardian</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. ACCOUNT SECURITY -->
+        <div class="collapsible-section" id="section-security">
+            <div class="section-header">
+                <h3>Account Security</h3>
+                <span class="toggle-icon">–</span>
+            </div>
+            <div class="section-content">
+                <div class="field-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" minlength="8" required>
+                </div>
+                <div class="field-group">
+                    <label>Confirm Password</label>
+                    <input type="password" name="confirm_password" class="form-control" required>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-auth btn-primary" style="margin-top:20px;">Create Account</button>
+        <div class="auth-footer" style="margin-bottom:40px;">
+            Already have an account? <a href="login.html">Log In</a>
+        </div>
+    </form>
+
+    <script src="./assets/js/storage.js"></script>
+    <script src="./assets/js/validation.js"></script>
+    <script src="./assets/js/auth.js"></script>
+    <script>
+        // Toggle logic
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.onclick = () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.toggle-icon');
+                content.classList.toggle('collapsed');
+                icon.innerText = content.classList.contains('collapsed') ? '+' : '–';
+            };
+        });
+
+        document.getElementById('signup-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            // Collect multi-select checkboxes
+            data.capabilities = Array.from(formData.getAll('capabilities'));
+
+            if (data.password !== data.confirm_password) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            if (!window.BothoflowValidation.isValidWhatsApp(data.whatsapp_number)) {
+                alert('Invalid WhatsApp number format');
+                return;
+            }
+
+            const age = window.BothoflowValidation.calculateAge(data.dob);
+            if (age < 16) {
+                alert('As you are under 16, a Guardian must oversee this account.');
+                // Simplified for now - in real app would trigger Guardian section
+            }
+
+            const user = await window.BothoflowAuth.signup(data);
+            alert('Account created: ' + user.profile_id);
+            location.href = 'index.html';
+        };
+    </script>
+</body>
+
+</html>

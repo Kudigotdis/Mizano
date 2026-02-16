@@ -1,0 +1,424 @@
+COMPREHENSIVE DATA COLLECTION LIST FOR MIZANO
+
+CATEGORY 1: USER IDENTITY & DEMOGRAPHICS
+1.1 Basic Identity
+
+Full Name (First, Middle, Last)
+Date of Birth (DOB) / Age
+Gender (Male, Female, Non-binary, Prefer not to say)
+Profile Type (Browser, User, Player, Mentor, Guardian, Creator, Group/Club, Business, Association, Staff, Admin, Educational Institution)
+User ID (Unique system identifier)
+Firebase Auth Token
+Profile Creation Date
+Last Login Date/Time
+Account Status (Active, Inactive, Suspended, Deleted)
+
+1.2 Contact Information
+
+WhatsApp Number (International format: +267...)
+Email Address (Optional)
+Facebook Profile Link / Page Link (for Businesses/Associations - Column AT)
+Emergency Contact Number (for Players/Minors)
+Preferred Communication Method (WhatsApp, Facebook, SMS)
+
+1.3 Geographic Data
+
+Village/Town/City (e.g., Gaborone, Molepolole)
+Area/Neighbourhood (e.g., Block 3, Broadhurst)
+Default Location (Set by user in Settings)
+GPS Coordinates (for venue/event check-ins - optional)
+Home Address (Optional - for delivery/emergency only)
+Work/School Location (for commute patterns)
+Frequently Visited Areas (algorithmically tracked)
+
+1.4 Socioeconomic Indicators
+
+Employment Status (Employed, Unemployed, Student, Self-employed, Retired)
+Job Title/Occupation (from Bulletin job applications)
+Household Size (Number of people in household)
+Primary Device Type (Android, iOS - for tech access assessment)
+Data Bundle Type (Social Bundle, General Data, None)
+Internet Access Type (Mobile Data, Wi-Fi at home, Wi-Fi at public spaces only, None)
+Language Preference (English, Setswana, Other)
+
+
+CATEGORY 2: ACTIVITY & SPORTS PARTICIPATION
+2.1 Activity Engagement
+
+Sports/Activities Participated In (Soccer, Chess, Volleyball, etc. - multi-select)
+Skill Level per Activity (Beginner, Intermediate, Advanced, Expert)
+Position/Role (e.g., Goalkeeper, Forward, Chess opening specialist)
+Competitive vs. Non-Competitive Preference
+Activity Frequency (Daily, Weekly, Monthly, Occasional)
+Preferred Activity Times (Morning, Afternoon, Evening, Weekend)
+Indoor vs. Outdoor Preference
+Group Size Preference (Solo, Small group 2-5, Medium 6-15, Large 16+)
+
+2.2 Participation History
+
+Total Matches/Events Joined (lifetime count)
+Matches Completed (showed up)
+No-Show Rate (didn't attend after RSVP)
+Average Participation Duration (hours per week/month)
+Matches Won/Lost/Drawn (for competitive)
+Tournament Participation Count
+Call-Out Responses (how often user responds to urgent call-outs)
+Spectator Check-Ins (attendance as viewer, not participant)
+
+2.3 Performance Statistics (Player-Specific)
+
+Goals Scored / Points Earned (per sport)
+Assists (team sports)
+Games Played (by position)
+Win Rate (%)
+MVP/Awards Received
+Certifications Earned (coaching badges, referee licenses, etc.)
+Personal Bests (fastest time, longest distance, etc.)
+Ranking/Leaderboard Position (local, regional, national)
+
+
+CATEGORY 3: HEALTH & FITNESS DATA
+3.1 Medical Information (Player Profile)
+
+Blood Type
+Allergies (Food, Environmental, Medication)
+Chronic Conditions (Asthma, Diabetes, Epilepsy, etc.)
+Current Medications
+Medical Aid/Insurance Provider (Optional)
+Emergency Medical Instructions
+Date of Last Medical Check-up
+Doctor/Clinic Name (for emergency contact)
+
+3.2 Injury & Incident Tracking
+
+Injury History (Date, Type, Severity, Recovery Time)
+Current Injuries (Active/Healing)
+Injury Alerts Sent (to Guardian/Staff)
+First-Aid Incidents (received treatment at event)
+Return-to-Play Date (post-injury)
+Injury-Prone Body Parts (for risk assessment)
+
+3.3 Fitness & Wellness
+
+Height
+Weight
+BMI (calculated or user-input)
+Fitness Level Self-Assessment (Poor, Fair, Good, Excellent)
+Physical Limitations (mobility issues, vision, hearing)
+Dietary Restrictions (Vegetarian, Vegan, Halal, etc.)
+Sleep Patterns (if tracked via wellness features)
+Hydration Habits (if tracked)
+Mental Health Notes (stress, anxiety - optional, self-reported)
+
+
+CATEGORY 4: EDUCATIONAL DATA (Students & Schools)
+4.1- **Educational Institution & Performance (Columns AM - AR)**
+  - SchoolID (AM): Link to active Educational Institution profile.
+  - GradeYear (AN): e.g., Standard 7, Form 5, Year 1.
+  - TeacherLead (AO): Supervising teacher or PE Head.
+  - HouseColor (AP): School house (e.g., Red, Blue) for inter-house engagement.
+  - NationalLeagueID (AQ): Association-level ID for competitive scouting.
+  - AcademicAlert (AR): failing status -> triggers "Play Only if Pass" safeguards.
+
+- **Connectivity & Ecosystem (Columns AS - AV)**
+  - WhatsAppNumber (AS): Deep-linking connectivity for zero-rated WhatsApp.
+  - FBPageLink (AT): Link to official Facebook business/association page.
+  - GroupChatURL (AU): Invitation link for team WhatsApp/FB group.
+  - PreFillMessage (AV): Message template for automated one-tap outreach.
+
+- **Short-String Keys (Sync Optimization)**
+  - cb (color blindness)
+  - baha (hearing aid)
+  - episodic (disability duration)
+  - daily (training frequency)
+  - moderate (training intensity)
+
+- **Technical Sync Metadata**
+  - Background Pulse: 15 minutes.
+  - Packet Limit: 500KB.
+  - Conflict Resolution: Last-Write-Wins (Timestamp-based).
+School Type (Government, Private, Rural)
+School Location (Village/City)
+
+4.2 Academic Performance (Private - Guardian/School Only)
+
+Current GPA / Academic Standing
+Academic Alert Status (Boolean - Column AR: Grades low?)
+Attendance Rate (%)
+Academic Subjects (for scholarship matching)
+Extra-Curricular Participation (clubs, societies)
+Scholarship Status (Recipient, Applicant, None)
+
+4.3 School Sports Representation
+
+School Team Membership (e.g., "U13 Soccer Team - Northside Primary")
+Captain/Leadership Role (Yes/No)
+Inter-School Match History (school vs. school)
+National League ID (links to official leagues - Column AQ)
+School Competition Results (wins, losses, championships)
+Sports Certificates from School
+Sports CV Exports (count, date of last export)
+
+
+CATEGORY 5: GUARDIAN & MINOR SAFETY DATA
+5.1 Guardian Profile (Column AR)
+
+Guardian ID (Unique)
+Relationship to Minor (Parent, Grandparent, Legal Guardian, Other)
+Number of Linked Minors
+Guardian Approval History (all approved join requests)
+Security Log Views (every time minor's profile viewed by scout)
+Academic Alert Triggers (number of times grades flagged)
+Injury Alert Notifications Received
+
+5.2 Minor Protection
+
+Age Verification (Under 16 flag)
+Guardian-School Handshake Status (Approved, Pending, Rejected)
+Join Request History (all activities requested + outcomes)
+Profile View Log (who viewed minor's profile, when, why)
+Scouting Transparency Log (Associations/Clubs that viewed profile)
+Consent for Public Sports Stats (Yes/No toggle)
+
+
+CATEGORY 6: COMMUNITY ENGAGEMENT & SOCIAL BEHAVIOR
+6.1 Bulletin Feed Activity
+
+Bulletin Posts Created (count)
+Bulletin Post Topics (Jobs, Events, Lost Items, Funeral Notices)
+Job Applications Submitted (via "Quick-Apply")
+Lost & Found Posts (items reported)
+Boost Payments (P2.00 call-outs for lost items)
+Bulletin Engagement (views, comments - if applicable)
+
+6.2 Social Interactions
+
+Favorites/Wishlist Items (activities, equipment saved)
+Event Shares to Facebook (count)
+WhatsApp Deep Link Clicks (engagement tracking)
+Group Chat Memberships (WhatsApp Group URLs joined via app)
+Stream Submissions (Facebook Live links shared)
+Stream Views (streams watched)
+Spectator Check-Ins (community events attended as viewer)
+
+6.3 Trust & Reputation
+
+Borrow Score (1-5 stars, weighted average)
+Equipment Borrowed (count, item types)
+Equipment Return Rate (% returned on time)
+Dual-Rating Scores (as borrower, as lender)
+Borrow Score Restriction Flags (low score warnings)
+Equipment Damage Reports (filed or received)
+Referee Ratings Given (to local volunteer referees)
+Referee Ratings Received (if user is a referee)
+Report Submissions (content flagged as inappropriate)
+Reports Received (user's content reported by others)
+
+
+CATEGORY 7: CREATOR & ORGANIZER DATA
+7.1 Event Organization
+
+Events Created (total count)
+Event Types (Soccer match, Chess lesson, Hiking trip, etc.)
+Event Status Distribution (Active Soon, Active Now, Passed, Cancelled, etc.)
+Average Event Attendance (participants per event)
+No-Show Rate for Events (% of RSVPs who didn't attend)
+Call-Outs Issued (urgent participant needs)
+Call-Out Success Rate (% filled via call-out)
+Weather Alerts Sent (for outdoor events)
+Event Cancellation Rate
+
+7.2 Event Features Used
+
+Facebook Live Stream Toggles (ON/OFF count)
+Fan Stream Submissions Allowed (Yes/No)
+Sponsor-a-Game Requests (count, total funds raised)
+Equipment Wishlists Created
+Venue Bookings Made
+Tournament Brackets Created (Tournament Management Suite usage)
+Referee Assignments (for matches)
+
+
+CATEGORY 8: MONETIZATION & FINANCIAL DATA
+8.1 Transactions
+
+Total Sponsorship Contributions Made (as sponsor)
+Total Sponsorship Received (as beneficiary)
+Mizano Commission Paid (5% of sponsorships)
+Venue Booking Fees Paid
+Equipment Rental Fees Paid
+Lost & Found Boost Payments (P2.00)
+Sports CV PDF Exports Purchased (P5-10)
+Match History PDF Exports Purchased
+Business Subscription Fees (Monthly - P50-100)
+Venue Broadcasting Fees (5% standard, 10% instant book)
+Digital Merchandise Purchases (House Tokens, badges - P1-5)
+
+8.2 Business/Institutional Subscriptions
+
+Subscription Type (Tier 1, Tier 2, Free with waiver)
+Village Waiver Status (Free or Paid)
+Subscription Start Date
+Payment Method (MTN Mobile Money, Orange Money, PayPal)
+Payment History (transaction log)
+Analytics Dashboard Access (Business/Educational Institution)
+
+8.3 Revenue Research (Aggregate Insights)
+
+Recruitment Discovery Fee Payments (Associations querying school data)
+Tournament Management Suite Purchases (one-time P50-100)
+Institutional Sponsorship Fees (5% of school team sponsorships)
+Ad Views/Clicks (WebP ads in Shopping/Shops/Businesses panels)
+
+
+CATEGORY 9: EQUIPMENT & RESOURCE USAGE
+9.1 Equipment Ledger (Offline-First)
+
+Items Checked Out (ID, type, date, time)
+Items Checked In (return date, time, condition)
+Item Condition Reports (Excellent, Good, Fair, Poor, Damaged)
+Borrow Duration (average hours per checkout)
+Late Returns (count, duration late)
+Equipment Wishlist Requests (items desired)
+Equipment Sponsored (items donated/funded)
+Equipment Damage Claims (filed or disputed)
+
+9.2 Venue Usage
+
+Venue Bookings (date, time, duration)
+Venue Type (Field, Court, Hall, etc.)
+Venue Location (mapped to neighbourhoods)
+Booking Frequency (per user/group)
+Venue Amenities Used (lights, seating, parking, etc.)
+Instant Book Usage (auto-approval bookings)
+Venue Reviews/Ratings (if implemented)
+
+
+CATEGORY 10: MENTORSHIP & COACHING
+10.1 Mentor Profile
+
+Mentor Visibility Toggle (Discoverable Yes/No)
+Coaching Specialties (Sports, Activities listed)
+Mentee Count (total students coached)
+Mentee Demographics (age range, gender breakdown)
+Sessions Led (count, dates)
+Mentorship Notifications Received (targeted for training/clinics)
+Certifications Held (coaching badges, first-aid, etc.)
+
+10.2 Mentee Experience
+
+Mentor Assigned (linked profile)
+Sessions Attended (count, dates)
+Skill Progression (tracked by mentor)
+Feedback Received from Mentor
+Mentorship Duration (start date, ongoing/completed)
+
+
+CATEGORY 11: CITY PLANNING & INFRASTRUCTURE DATA
+11.1 Geographic Activity Patterns
+
+Game Cube Visits (frequency, duration per location)
+Activity Hotspots (most-used fields, courts, parks)
+Offline Sign-Up Locations (Bluetooth join data by Game Cube)
+Venue Capacity Utilization (bookings vs. availability)
+Peak Activity Times (heatmap: day of week, time of day)
+Travel Patterns (home location → activity location distances)
+Area-Specific Activity Preferences (Block 3 prefers soccer, Broadhurst prefers chess)
+
+11.2 Infrastructure Needs
+
+Equipment Shortages (wishlist aggregates by area)
+Venue Shortage Indicators (high demand, low supply areas)
+First-Aid Access (areas with/without on-site first aiders)
+Lost & Found Item Trends (common lost items by location)
+Offline Connectivity Gaps (sync failure rates by area)
+Public Facility Usage (parks, schools, community centres)
+
+
+CATEGORY 12: BEHAVIORAL & USAGE ANALYTICS
+12.1 App Engagement
+
+Daily Active Users (DAU) status
+Session Duration (average time per app open)
+Panel Navigation Patterns (most-used swipe panels)
+Search Queries (keywords, filters used)
+Filter Usage Frequency (Level 1, 2, 3)
+Favorites Starred (count, categories)
+Notification Interaction Rate (clicked vs. dismissed)
+Manual Sync Frequency (Settings → Sync Now usage)
+
+12.2 Feature Adoption
+
+Bluetooth Join Usage (vs. online join)
+Offline Mode Duration (hours spent without connectivity)
+Map Tile Downloads (Gaborone neighbourhoods)
+Data Saver Mode Enabled (Yes/No)
+Dark Mode Usage
+Panel Reordering (custom swipe order set)
+Betting Awareness Opt-In (toggle ON - <5% target)
+
+12.3 Content Consumption
+
+Activity Card Views (by status: Active Soon, Now, Passed, etc.)
+Activity Page Deep Dives (time spent, sections expanded)
+Archive Library Visits (historic sports moments viewed)
+News Flash Engagement (Association announcements read)
+Shopping/Shops/Businesses Panel Views
+WebP Ad Impressions (low-data ads viewed)
+
+
+CATEGORY 13: RECRUITMENT & TALENT PIPELINE DATA
+13.1 School Talent Analytics (Aggregate Only - Privacy Protected)
+
+Player Performance by School (aggregate stats, not individual)
+Top Performers by Position (e.g., "Top U13 strikers in Gaborone")
+National Leaderboard Rankings (inter-school)
+Scholarship Eligibility Indicators (performance + academic)
+Scout Profile Views (Association views of student profiles)
+Talent Flags Issued (schools flagging bright athletes)
+Recruitment Queries by Associations (paid discovery searches)
+
+13.2 Sports CV Builder
+
+Sports CV Exports (count, frequency)
+CV Content (schools, achievements, certifications, health, fitness)
+CV Usage (scholarship applications, job applications)
+Student-Athlete Portfolio Purchases (branded PDF for applications)
+
+
+CATEGORY 14: SYNC & TECHNICAL METADATA
+14.1 Offline-First Sync Data
+
+Sync Status (Pending, Synced, Conflict, Error)
+Sync Attempts (retry count per record)
+Last Sync Time (timestamp)
+Sync Errors (error type, frequency)
+Conflict Resolutions (Last-Write-Wins, Staff Override)
+Local SQLite Database Size (storage used)
+Cloud ID (Google Sheets row ID)
+
+14.2 Device & Performance
+
+Device Model (for compatibility testing)
+OS Version (Android, iOS)
+App Version (e.g., "Mizano v1.2 - Gaborone Edition")
+Battery Impact (% drain per 8-hour day - monitored)
+Data Transfer per Sync (<500KB target)
+Crash Logs (technical errors for debugging)
+
+
+CATEGORY 15: MISCELLANEOUS & NICHE DATA
+15.1 Responsible Gambling Awareness
+
+Betting Opt-In Status (ON/OFF - default OFF)
+Educational Materials Viewed (addiction awareness)
+Gambling Authority Adverts Viewed (impressions)
+Help Resources Accessed (for gambling addiction support)
+
+15.2 Customization & Preferences
+
+UI Preferences (panel order, color themes)
+Notification Settings (Urgent only, All, Muted)
+Preferred Activity Radius (willingness to travel for events)
+Timezone (for event scheduling)
+Accessibility Settings (large text, high contrast, etc.)

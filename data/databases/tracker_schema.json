@@ -1,0 +1,140 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": [
+        "user_id",
+        "goal_id",
+        "timestamp",
+        "activity_id"
+    ],
+    "properties": {
+        "entry_id": {
+            "type": "string",
+            "description": "UUID, generated client‑side"
+        },
+        "user_id": {
+            "type": "string",
+            "description": "Mizano user ID"
+        },
+        "goal_id": {
+            "type": "string",
+            "description": "ID of the goal this entry belongs to (optional for ad‑hoc logs)"
+        },
+        "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp (ms) of the entry"
+        },
+        "activity_id": {
+            "type": "string",
+            "description": "Value from sports dropdown, e.g., 'gym_strength'"
+        },
+        "template_group": {
+            "type": "string",
+            "enum": [
+                "timer_split",
+                "set_cap",
+                "leaderboard",
+                "turn_cycle",
+                "bout_logic",
+                "hybrid",
+                "custom"
+            ]
+        },
+        "metric": {
+            "type": "object",
+            "description": "Metrics depend on template_group",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/leaderboard_metrics"
+                },
+                {
+                    "$ref": "#/definitions/turn_cycle_metrics"
+                },
+                {
+                    "$ref": "#/definitions/timer_split_metrics"
+                },
+                {
+                    "$ref": "#/definitions/custom_metrics"
+                }
+            ]
+        },
+        "notes": {
+            "type": "string",
+            "maxLength": 200
+        },
+        "sync_status": {
+            "type": "string",
+            "enum": [
+                "local",
+                "synced"
+            ],
+            "default": "local"
+        }
+    },
+    "definitions": {
+        "leaderboard_metrics": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "string",
+                    "enum": [
+                        "kg",
+                        "lb",
+                        "km",
+                        "miles",
+                        "min",
+                        "sec",
+                        "points",
+                        "reps"
+                    ]
+                }
+            },
+            "required": [
+                "value",
+                "unit"
+            ]
+        },
+        "turn_cycle_metrics": {
+            "type": "object",
+            "properties": {
+                "sets": {
+                    "type": "integer"
+                },
+                "reps_per_set": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "weight_kg": {
+                    "type": "number"
+                }
+            }
+        },
+        "timer_split_metrics": {
+            "type": "object",
+            "properties": {
+                "duration_min": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "duration_min"
+            ]
+        },
+        "custom_metrics": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

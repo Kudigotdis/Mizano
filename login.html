@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Bothoflow</title>
+    <link rel="stylesheet" href="./assets/css/forms.css">
+    <style>
+        body {
+            font-family: 'Inter', 'Roboto', sans-serif;
+            background: #F5F5F5;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .step-container {
+            display: none;
+        }
+
+        .step-container.active {
+            display: block;
+        }
+
+        .auth-logo {
+            width: 60px;
+            height: 60px;
+            background: #1E88E5;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="auth-container"
+        style="max-width: 400px; width: 90%; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+        <div class="auth-logo">M</div>
+        <h1 class="auth-title" style="text-align: center; margin-bottom: 30px;">Bothoflow</h1>
+
+        <!-- STEP 1: Identification -->
+        <div id="step-1" class="step-container active">
+            <h2 style="font-size: 1.2rem; margin-bottom: 20px;">Step 1: Identify</h2>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label for="whatsapp">WhatsApp Number</label>
+                <input type="text" id="whatsapp" class="form-control" placeholder="+267XXXXXXXX" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 25px;">
+                <label for="display-name">Display Name (Pick any)</label>
+                <input type="text" id="display-name" class="form-control" placeholder="Kao Mjekejeke">
+            </div>
+            <button onclick="goToStep(2)" class="btn-auth btn-primary">Next: Verify</button>
+            <button onclick="quickLogin()" class="btn-auth btn-secondary" style="margin-top: 10px;">Browse as
+                Guest</button>
+        </div>
+
+        <!-- STEP 2: Verification -->
+        <div id="step-2" class="step-container">
+            <h2 style="font-size: 1.2rem; margin-bottom: 10px;">Step 2: Verify</h2>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">We sent a 6-digit code to your WhatsApp.
+                Enter it below to proceed.</p>
+            <div class="form-group" style="margin-bottom: 25px;">
+                <input type="text" id="otp-code" class="form-control" placeholder="000000" maxlength="6"
+                    style="text-align: center; font-size: 1.5rem; letter-spacing: 5px;">
+            </div>
+            <button onclick="goToStep(3)" class="btn-auth btn-primary">Next: Connect</button>
+            <button onclick="goToStep(1)" class="btn-auth btn-secondary" style="margin-top: 10px;">Back</button>
+        </div>
+
+        <!-- STEP 3: Connect -->
+        <div id="step-3" class="step-container">
+            <h2 style="font-size: 1.2rem; margin-bottom: 20px;">Step 3: Connect</h2>
+            <div class="form-group" style="margin-bottom: 25px;">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="••••••••">
+            </div>
+            <button onclick="finalLogin()" class="btn-auth btn-primary">Log In & Start Flow</button>
+            <button onclick="goToStep(2)" class="btn-auth btn-secondary" style="margin-top: 10px;">Back</button>
+        </div>
+
+        <div class="auth-footer" style="text-align: center; margin-top: 30px; font-size: 0.9rem;">
+            Don't have an account? <a href="signup.html">Sign Up</a>
+        </div>
+    </div>
+
+    <script src="./assets/js/storage.js"></script>
+    <script src="./assets/js/validation.js"></script>
+    <script src="./assets/js/auth.js"></script>
+    <script>
+        function goToStep(step) {
+            document.querySelectorAll('.step-container').forEach(c => c.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+        }
+
+        async function quickLogin() {
+            // Load Kao's profile by default for "Browse" if it exists, or guest
+            const success = await window.BothoflowAuth.loadDemoProfile();
+            location.href = 'index.html';
+        }
+
+        async function finalLogin() {
+            const name = document.getElementById('display-name').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+
+            // If the user enters Kao's ID or similar, we should load it.
+            // For the mock, we always load Kao if they provide certain details, or a generic user.
+            await window.BothoflowAuth.loadDemoProfile();
+            alert('Welcome back, ' + (name || 'Kao') + '!');
+            location.href = 'index.html';
+        }
+
+        // Handle enter key
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const active = document.querySelector('.step-container.active');
+                if (active.id === 'step-1') goToStep(2);
+                else if (active.id === 'step-2') goToStep(3);
+                else if (active.id === 'step-3') finalLogin();
+            }
+        });
+    </script>
+</body>
+
+</html>

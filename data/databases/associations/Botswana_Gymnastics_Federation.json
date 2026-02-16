@@ -1,0 +1,56 @@
+{
+  "org_id": "ASSOC-BW-BGF-001",
+  "org_type": "National Association",
+  "org_name": "Botswana Gymnastics Federation",
+  "sport": "gymnastics",
+  "founded": 1996,
+  "location": {
+    "headquarters": "Gymnastics House, Gaborone",
+    "street_address": "Plot 321, Extension 12",
+    "area": "Extension 12",
+    "city": "Gaborone",
+    "country": "Botswana",
+    "gps": "-24.6389, 25.8978"
+  },
+  "contact": {
+    "phone": "+2673907788",
+    "whatsapp": "+2673907788",
+    "email": "info@gymnasticsbw.org",
+    "website": "www.gymnasticsbw.org",
+    "facebook": "BotswanaGymnastics",
+    "twitter": "@BGymnasticsFed"
+  },
+  "staff": [
+    {
+      "role": "President",
+      "name": "Masego Mooketsi",
+      "age": 50,
+      "gender": "Female",
+      "nationality": "Motswana",
+      "email": "president@gymnasticsbw.org",
+      "phone": "+26771234211"
+    },
+    {
+      "role": "Secretary General",
+      "name": "Keitumetse Moilwa",
+      "age": 37,
+      "gender": "Female",
+      "nationality": "Motswana",
+      "email": "sg@gymnasticsbw.org",
+      "phone": "+26772345212"
+    },
+    {
+      "role": "Head Coach",
+      "name": "Thato Senna",
+      "age": 42,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "coach@gymnasticsbw.org",
+      "phone": "+26773456213"
+    }
+  ],
+  "affiliated_clubs": 5,
+  "competitions_managed": ["National Artistic Champs", "Rhythmic Cup"],
+  "sponsors": ["FNBB", "Debswana"],
+  "notes": "FIG member. Small but growing discipline."
+}

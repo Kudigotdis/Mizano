@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mizano Platform Shell</title>
+    <link rel="stylesheet" href="./shell.css">
+    <link rel="stylesheet" href="./cards.css">
+    <link rel="stylesheet" href="./pulse.css">
+    <link rel="stylesheet" href="./profile.css">
+    <link rel="stylesheet" href="./detail.css">
+    <link rel="stylesheet" href="./builder.css">
+    <link rel="stylesheet" href="./marathon.css">
+    <link rel="stylesheet" href="./teams.css">
+    <link rel="stylesheet" href="./filters.css">
+    <link rel="stylesheet" href="./mine.css">
+    <link rel="stylesheet" href="./assets/css/forms.css">
+</head>
+
+<body style="background-color: #ecf1f6;">
+
+    <!-- SPLASH SCREEN OVERLAY -->
+    <div id="splash-screen">
+        <div class="splash-logo"></div>
+        <h2 style="font-weight: 700; color: #1E88E5;">BOTHOFLOW</h2>
+    </div>
+
+    <!-- AUTH REDIRECTION LOGIC -->
+    <script src="./assets/js/storage.js"></script>
+    <script src="./assets/js/auth.js"></script>
+    <script>
+        (async () => {
+            const splash = document.getElementById('splash-screen');
+            const loggedIn = await window.BothoflowAuth.isLoggedIn();
+
+            // Always show splash for 2 seconds as requested for branding
+            setTimeout(() => {
+                if (loggedIn) {
+                    splash.style.display = 'none';
+                } else {
+                    window.location.href = 'login.html';
+                }
+            }, 2000);
+        })();
+    </script>
+
+    <!-- TOP BAR (Level 1) -->
+    <header class="top-bar">
+        <div class="logo-tap" id="settings-trigger">
+            <!-- Blue Owl Icon (Placeholder) -->
+            <div class="owl-icon"></div>
+        </div>
+        <div class="dir-nav left" id="nav-prev" title="Previous Panel">‹</div>
+        <nav class="top-carousel-container">
+            <div class="top-carousel" id="top-nav-carousel">
+                <button class="nav-btn active" data-panel="0">Home</button>
+                <button class="nav-btn" data-panel="1">Sports</button>
+                <button class="nav-btn" data-panel="2">Hobbies</button>
+                <button class="nav-btn" data-panel="3">Leisure</button>
+                <button class="nav-btn" data-panel="4">Lessons</button>
+                <button class="nav-btn" data-panel="5">Events</button>
+                <button class="nav-btn" data-panel="6">Groups</button>
+                <button class="nav-btn" data-panel="7">Discover</button>
+                <button class="nav-btn" data-panel="8">Mine</button>
+                <button class="nav-btn" data-panel="9">Community</button>
+                <button class="nav-btn" data-panel="10">Leaderboard</button>
+                <button class="nav-btn" data-panel="11">Shopping</button>
+                <button class="nav-btn" data-panel="12">Shops</button>
+                <button class="nav-btn" data-panel="13">Businesses</button>
+                <button class="nav-btn" data-panel="14">Schools</button>
+                <button class="nav-btn" data-panel="15">Venues</button>
+            </div>
+        </nav>
+        <div class="dir-nav right" id="nav-next" title="Next Panel">›</div>
+    </header>
+
+    <!-- PLACES FILTER BAR (Level 2) -->
+    <div class="places-filter-bar">
+        <div class="location-selector" id="location-trigger">
+            <span class="location-text">GC · All</span>
+        </div>
+        <div class="card-tally">
+            <span class="tally-count" id="card-count">0</span>
+        </div>
+    </div>
+
+    <!-- MAIN PANEL CAROUSEL -->
+    <main class="panel-carousel-container">
+        <div class="panel-carousel" id="main-carousel">
+            <!-- Panel 0: Home -->
+            <section class="panel active" id="panel-0">
+                <h2>Home</h2>
+                <div class="drop-field" id="drop-field-home">
+                    <div class="placeholder-msg">Loading Grassroots Content...</div>
+                </div>
+            </section>
+
+            <!-- Panel 1: Sports -->
+            <section class="panel" id="panel-1">
+                <h2>Sports</h2>
+                <div class="drop-field" id="drop-field-sports">
+                    <div class="placeholder-msg">Loading Sports...</div>
+                </div>
+            </section>
+
+            <!-- Panel 2: Hobbies -->
+            <section class="panel" id="panel-2">
+                <h2>Hobbies</h2>
+                <div class="drop-field" id="drop-field-hobbies">
+                    <div class="placeholder-msg">Exploring Hobbies...</div>
+                </div>
+            </section>
+
+            <!-- Panel 3: Leisure -->
+            <section class="panel" id="panel-3">
+                <h2>Leisure</h2>
+                <div class="drop-field" id="drop-field-leisure">
+                    <div class="placeholder-msg">Exploring Leisure...</div>
+                </div>
+            </section>
+
+            <!-- Panel 4: Lessons -->
+            <section class="panel" id="panel-4">
+                <h2>Lessons</h2>
+                <div class="drop-field" id="drop-field-lessons">
+                    <div class="placeholder-msg">Loading Lessons...</div>
+                </div>
+            </section>
+
+            <!-- Panel 5: Events -->
+            <section class="panel" id="panel-5">
+                <h2>Events</h2>
+                <div class="drop-field" id="drop-field-events">
+                    <div class="placeholder-msg">Loading Events...</div>
+                </div>
+            </section>
+
+            <!-- Panel 6: Groups -->
+            <section class="panel" id="panel-6">
+                <h2>Groups</h2>
+                <div class="drop-field" id="drop-field-groups">
+                    <div class="placeholder-msg">Loading Groups & Teams...</div>
+                </div>
+            </section>
+
+            <!-- Panel 7: Discover -->
+            <section class="panel" id="panel-7">
+                <h2>Discover</h2>
+                <div class="drop-field" id="drop-field-discover">
+                    <div class="placeholder-msg">Discovering New Activities...</div>
+                </div>
+            </section>
+
+            <!-- Panel 8: Mine -->
+            <section class="panel" id="panel-8">
+                <h2>Mine</h2>
+                <div class="drop-field" id="drop-field-mine">
+                    <div class="placeholder-msg">Please Sign In to View Your Dashboard</div>
+                </div>
+            </section>
+
+            <!-- Panel 9: Community -->
+            <section class="panel" id="panel-9">
+                <h2>Community</h2>
+                <div class="drop-field" id="drop-field-community">
+                    <div class="placeholder-msg">Loading Community Bulletin...</div>
+                </div>
+            </section>
+
+            <!-- Panel 10: Leaderboard -->
+            <section class="panel" id="panel-10">
+                <h2>Leaderboard</h2>
+                <div class="drop-field" id="drop-field-leaderboard">
+                    <div class="placeholder-msg">Loading Rankings...</div>
+                </div>
+            </section>
+
+            <!-- Panel 11: Shopping -->
+            <section class="panel" id="panel-11">
+                <h2>Shopping</h2>
+                <div class="drop-field" id="drop-field-shopping">
+                    <div class="placeholder-msg">Loading Deals...</div>
+                </div>
+            </section>
+
+            <!-- Panel 12: Shops -->
+            <section class="panel" id="panel-12">
+                <h2>Shops</h2>
+                <div class="drop-field" id="drop-field-shops">
+                    <div class="placeholder-msg">Loading Shops...</div>
+                </div>
+            </section>
+
+            <!-- Panel 13: Businesses -->
+            <section class="panel" id="panel-13">
+                <h2>Businesses</h2>
+                <div class="drop-field" id="drop-field-businesses">
+                    <div class="placeholder-msg">Loading Services...</div>
+                </div>
+            </section>
+
+            <!-- Panel 14: Schools -->
+            <section class="panel" id="panel-14">
+                <h2>Schools</h2>
+                <div class="drop-field" id="drop-field-schools">
+                    <div class="placeholder-msg">Loading Schools...</div>
+                </div>
+            </section>
+
+            <!-- Panel 15: Venues -->
+            <section class="panel" id="panel-15">
+                <h2>Venues</h2>
+                <div class="drop-field" id="drop-field-venues">
+                    <div class="placeholder-msg">Loading Venues...</div>
+                </div>
+            </section>
+
+            <!-- Panel 16: Tracker (New) -->
+            <section class="panel" id="panel-16">
+                <!-- Header hidden/handled by TrackerRenderer -->
+                <div class="drop-field" id="drop-field-tracker">
+                    <div class="placeholder-msg">Loading Tracker...</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- APEX UI NAVIGATION DECK -->
+    <div id="apex-deck" class="apex-deck">
+
+        <!-- LEVEL C: Temporal Controls (Folds Upward) -->
+        <div id="level-c-calendar" class="deck-level level-c date-picker-bar">
+            <div class="calendar-header">
+                <span class="month-year-btn">Month / Year</span>
+                <button class="calendar-toggle-btn">📅</button>
+            </div>
+            <div class="day-tiles-scroll" id="day-tiles">
+                <!-- Generated Day Tiles -->
+            </div>
+        </div>
+
+        <div id="level-c-time" class="deck-level level-c time-period-bar">
+            <div class="time-carousel" id="time-carousel">
+                <button class="time-btn active" data-time="all">All</button>
+                <button class="time-btn" data-time="past">Past</button>
+                <button class="time-btn" data-time="yesterday">Yesterday</button>
+                <button class="time-btn" data-time="today">Today</button>
+                <button class="time-btn" data-time="upcoming">Upcoming</button>
+            </div>
+            <button class="clock-icon-btn">🕒</button>
+        </div>
+
+        <!-- LEVEL B: Activity Filter Bar (#808080) -->
+        <div id="level-b-activity" class="deck-level level-b">
+            <div class="filter-status">
+                <span id="filter-label" class="filter-text">All</span>
+                <span class="filter-tag">Activity Field</span>
+            </div>
+            <button id="btn-add-filter" class="add-filter-btn">+Add</button>
+        </div>
+
+        <!-- LEVEL A: Main Navigation (#808080) -->
+        <footer class="bottom-menu level-a">
+            <button class="menu-btn" id="btn-activity-plus" title="Activity Field Plus">👤</button>
+            <button class="menu-btn" id="btn-location" title="Location Filter">📍</button>
+            <button class="menu-btn" id="btn-panels" title="Panels">☰</button>
+            <button class="menu-btn" id="btn-search" title="Search">🔍</button>
+            <button class="menu-btn" id="btn-add" title="Add">+</button>
+            <div class="notif-widget" id="btn-notif">
+                <span id="notif-count">888</span>
+            </div>
+            <button class="menu-btn" id="btn-hamburger" title="Menu">≡</button>
+        </footer>
+    </div>
+
+    <!-- OVERLAYS (Settings, Menus, etc.) -->
+    <!-- SETTINGS OVERLAY -->
+    <div id="settings-overlay" class="overlay">
+        <div class="overlay-header">
+            <button id="settings-close">Back</button>
+            <h2 style="margin-left: 10px;">Settings</h2>
+        </div>
+        <div class="overlay-content">
+            <div id="settings-auth-container"
+                style="padding: 10px; margin-bottom: 20px; border-bottom: 1px solid #eee;">
+                <!-- Auth Switcher Injected Here -->
+            </div>
+            <div class="mizano-card" data-status="interest">
+                <h3>Account Settings</h3>
+                <p>Profile, Privacy, Security</p>
+            </div>
+            <div class="mizano-card" data-status="upcoming">
+                <h3>Display</h3>
+                <p>Dark Mode, Language (Setswana)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH OVERLAY (New) -->
+    <!-- SEARCH OVERLAY (Optimized for Filtering) -->
+    <div id="search-overlay" class="overlay">
+        <div class="overlay-header">
+            <button class="back-btn" id="search-back-btn">‹</button>
+            <input type="text" id="mizano-search-input" placeholder="Search matches, sports, venues..."
+                style="flex:1; margin: 0 10px; padding: 12px; border: 2px solid #000; font-family: inherit; font-size: 1rem; border-radius: 0;">
+        </div>
+        <div class="overlay-content" id="search-results-container" style="padding: 16px;">
+            <div id="search-results">
+                <p style="text-align: center; color: #777; margin-top: 50px;">Start typing to search activities, places,
+                    and people.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAIL VIEW OVERLAY -->
+    <div id="detail-view" class="overlay"></div>
+    <div id="builder-view" class="overlay"></div>
+    <div id="builder-choice-overlay" class="overlay"></div>
+    <div id="leaderboard-overlay" class="level-b-overlay"></div>
+    <div id="hamburger-overlay" class="overlay">
+        <div class="overlay-header">
+            <button class="back-btn" onclick="window.MizanoNav.back()">‹ Back</button>
+            <h2 style="margin-left: 10px;">Menu</h2>
+        </div>
+        <div class="overlay-content" style="padding: 16px;">
+            <div class="mizano-card" onclick="window.MizanoNav.pushPage('my-reservations')"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px; background: linear-gradient(135deg, #1b5e20, #2e7d32); color: white;">
+                <span style="font-size:1.5rem; margin-right:15px;">📅</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">My Bookings & Waitlists</h3>
+                    <p style="margin:0; font-size:0.8rem; opacity:0.9;">View and manage your venue reservations</p>
+                </div>
+                <span>›</span>
+            </div>
+
+            <div class="mizano-card" onclick="window.MizanoNav.openOverlay('how-to')"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <span style="font-size:1.5rem; margin-right:15px;">❓</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">How To Guide</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">Learn how Bothoflow works</p>
+                </div>
+                <span>›</span>
+            </div>
+
+            <div class="mizano-card" onclick="window.MizanoNav.openOverlay('settings')"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <span style="font-size:1.5rem; margin-right:15px;">⚙️</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">Settings</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">Account, Privacy, and Language</p>
+                </div>
+                <span>›</span>
+            </div>
+
+            <div class="mizano-card" onclick="window.MizanoNav.openOverlay('how-to')"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px; background: #fff; border: 1px solid #eee;">
+                <span style="font-size:1.5rem; margin-right:15px;">📖</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">How To</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">Platform Manual & Features</p>
+                </div>
+                <span>›</span>
+            </div>
+
+            <div class="mizano-card"
+                style="display:flex; align-items:center; padding:15px; margin-bottom:12px; opacity:0.6;">
+                <span style="font-size:1.5rem; margin-right:15px;">📊</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">Statistics</h3>
+                    <p style="margin:0; font-size:0.8rem;">Coming Soon</p>
+                </div>
+            </div>
+
+            <div class="mizano-card" onclick="window.BothoflowStorage.logout(); window.location.href='login.html';"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-top:20px; background: #ffebee; border: 1px solid #ef9a9a;">
+                <span style="font-size:1.5rem; margin-right:15px;">🚪</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0; color: #c62828;">Log Out</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOW TO OVERLAY -->
+    <div id="how-to-overlay" class="overlay">
+        <div class="overlay-header">
+            <button class="back-btn" onclick="window.MizanoNav.back()">‹ Back</button>
+            <h2 style="margin-left: 10px;">How To Guide</h2>
+        </div>
+        <div class="overlay-content" id="how-to-content" style="padding: 20px;">
+            <!-- Content will be injected from HOW_TO_DOC.md logic -->
+        </div>
+    </div>
+
+    <!-- PANELS MENU OVERLAY -->
+    <div id="panels-menu-overlay" class="overlay">
+        <div class="overlay-header">
+            <button class="back-btn" onclick="window.MizanoNav.back()">‹ Back</button>
+            <h2 style="margin-left: 10px;">All Panels</h2>
+        </div>
+        <div class="overlay-content" id="panels-list"
+            style="padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <!-- Generated in shell.js -->
+        </div>
+    </div>
+
+
+    <script src="./StorageManager.js"></script>
+    <script src="./ImageManager.js"></script>
+    <!-- Data Source Scripts (Auto-Generated) -->
+    <script src="./data/databases/teams.js"></script>
+    <script src="./data/databases/activities.js"></script>
+    <script src="./data/databases/schools.js"></script>
+    <script src="./data/databases/users_generated.js"></script>
+    <script src="./data/databases/users_personas.js"></script>
+    <script src="./data/databases/generated_matches.js"></script>
+    <script src="./data/databases/generated_leaderboards.js"></script>
+    <!-- Phase 10: Expanded Datasets -->
+    <script src="./data/databases/events_complete.js"></script>
+    <script src="./data/databases/community_generated.js"></script>
+    <script src="./data/databases/competitions_generated.js"></script>
+    <script src="./data/databases/corporate_teams_generated.js"></script>
+    <script src="./data/databases/hobbies_leisure_300.js"></script>
+    <script src="./data/databases/event_lab_archetype_mapper.js"></script>
+    <!-- Shopping Panel Data -->
+    <script src="./data/databases/shopping_items.js"></script>
+    <script src="./data/databases/businesses.js"></script>
+    <!-- Associations Data -->
+    <!-- Bothoflow Stress Test Data -->
+    <script src="./data/databases/activities_stress.js"></script>
+    <script src="./AuthManager.js"></script>
+    <script src="./DataManager.js"></script>
+    <script src="./NavigationController.js"></script>
+    <script src="./InfiniteScroll.js"></script>
+    <script src="./CardRenderer.js"></script>
+    <script src="./PulseUpdater.js"></script>
+    <script src="./PulseTriggers.js"></script>
+    <script src="./AssociationPulseCard.js"></script>
+    <script src="./AssociationsOverlay.js"></script>
+    <script src="./MinePanel.js"></script>
+    <script src="./GuardianSafety.js"></script>
+    <script src="./ProfileInterface.js"></script>
+    <script src="./ProfileDetail.js"></script>
+    <script src="./MarathonDetail.js"></script>
+    <script src="./MarathonRegForm.js"></script>
+    <script src="./TeamBuilder.js"></script>
+    <script src="./TeamDetail.js"></script>
+    <script src="./FilterPanels.js"></script>
+    <script src="./DetailInterface.js"></script>
+    <script src="./InstitutionDetail.js"></script>
+    <script src="./ShoppingDetail.js"></script>
+    <script src="./CompetitionBuilder.js"></script>
+    <script src="./BusinessBuilder.js"></script>
+    <script src="./FilterEngine.js"></script>
+    <script src="./MineRenderer.js"></script>
+    <script src="data/databases/athletics_records.js"></script> <!-- Phase 6 -->
+    <script src="LeaderboardEngine.js"></script> <!-- Phase 6 -->
+    <script src="ResultEntryForm.js"></script> <!-- Phase 6 -->
+    <script src="LeaderboardEngine.js"></script> <!-- Phase 6 -->
+    <script src="ResultEntryForm.js"></script> <!-- Phase 6 -->
+    <!-- Tracker Feature -->
+    <script src="./scripts/TrackerStorage.js"></script>
+    <script src="./scripts/GoalBuilder.js"></script>
+    <script src="./scripts/TrackerRenderer.js"></script>
+    <!-- Venue Booking System -->
+    <script src="./data/databases/venues.js"></script>
+    <script src="./data/databases/spaces.js"></script>
+    <script src="./data/databases/time_slots.js"></script>
+    <script src="./BookingManager.js"></script>
+    <script src="./VenueDetail.js"></script>
+    <script src="./VenueBooking.js"></script>
+    <script src="./ReservationsView.js"></script>
+    <script src="shell.js"></script>
+</body>
+
+</html>

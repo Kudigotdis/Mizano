@@ -1,0 +1,118 @@
+{
+  "profileID": "BW-GAB-XXXX",
+  "profileType": "User",
+  "capabilities": ["Player", "Guardian", "Creator", "Mentor"],
+  "name": {
+    "firstName": "",
+    "middleNames": "",
+    "surname": "",
+    "preferredName": ""
+  },
+  "demographics": {
+    "dateOfBirth": "",
+    "age": 0,
+    "gender": "Male/Female",
+    "ethnicity": "Black / African",
+    "nationality": "Motswana / South African / Zimbabwean / Zambian",
+    "relationshipStatus": "Married/Single/Widowed",
+    "spouseProfileID": null,
+    "children": []
+  },
+  "location": {
+    "homeType": "House/Flat",
+    "plotNumber": "",
+    "street": "",
+    "area": "",
+    "city": "",
+    "country": "Botswana",
+    "gps": { "lat": 0, "lng": 0 }
+  },
+  "contact": {
+    "whatsapp": "",
+    "mobileNetwork": "Mascom/Orange/BTC",
+    "mobileMoney": "MyZaka/Orange Money/Smega",
+    "email": "",
+    "facebook": "",
+    "instagram": ""
+  },
+  "education": [
+    {
+      "institutionID": "SCH-...",           // from MIZANO_SAMPLE_DATASET.md
+      "institutionName": "",
+      "level": "primary/secondary/tertiary",
+      "startYear": 1990,
+      "endYear": 1995,
+      "activities": [
+        {
+          "sport": "Soccer",
+          "level": "Intermediate/Advanced/Beginner",
+          "coachProfileID": "BW-GAB-YYYY",
+          "teammates": ["BW-GAB-ZZZZ", "BW-GAB-WWWW", ...], // min 5
+          "teams": ["TEAM-BW-GAB-001"]                      // min 3 total across activities
+        }
+        // at least 3 activities per school
+      ]
+    }
+  ],
+  "work": {
+    "employer": "",
+    "role": "",
+    "monthlyIncome": ">P5000 / P3000-5000 / P1000-3000 / <P1000",
+    "employmentStatus": "Employed/Self-Employed/Student/Retired"
+  },
+  "health": {
+    "bloodType": "O+/A-/etc",
+    "allergies": [],
+    "chronicConditions": [],
+    "disability": "none",
+    "medicalInsurance": "BOMAID/Pula Medical Aid/None",
+    "injuryHistory": [],
+    "donorStatus": "active/inactive"
+  },
+  "dietary": {
+    "restrictions": [],
+    "preferences": ["Traditional", "Low salt", "Vegetarian"],
+    "hydrationHabits": "good/average/poor"
+  },
+  "sleepPattern": "regular/light_sleeper",
+  "mentalHealthStatus": "low_stress/moderate_stress",
+  "fitnessMetrics": {
+    "weight_kg": 0,
+    "height_cm": 0,
+    "bmi": 0,
+    "restingHR": 0,
+    "vo2max": 0,
+    "gripStrength": 0,
+    "bodyFat": 0
+  },
+  "interests": [
+    { "sport": "Soccer", "level": "Intermediate", "since": 1990 },
+    { "sport": "Chess", "level": "Advanced", "since": 2005 },
+    ... // 15 total
+  ],
+  "teams": [
+    { "teamID": "TEAM-BTC-001", "role": "Player", "since": "2015" }
+  ],
+  "events": [
+    { "eventID": "MAS-KC-2026", "role": "Participant" }
+  ],
+  "goals": [
+    { "goalID": "GT-0595", "title": "Solo Long Run", "progress": 65 }
+  ],
+  "guardian": {
+    "linkedMinors": [],
+    "approvalQueue": []
+  },
+  "creator": {
+    "eventsCreated": 0,
+    "teamsManaged": []
+  },
+  "mentor": {
+    "areas": [],
+    "activeMentees": 0,
+    "visibility": "hidden/discoverable"
+  },
+  "borrowScore": 0.0,
+  "borrowHistory": [],
+  "securityLog": []
+}

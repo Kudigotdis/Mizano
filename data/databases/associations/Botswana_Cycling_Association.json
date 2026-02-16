@@ -1,0 +1,56 @@
+{
+  "org_id": "ASSOC-BW-BCA-002",  // different from cricket ID
+  "org_type": "National Association",
+  "org_name": "Botswana Cycling Association",
+  "sport": "cycling",
+  "founded": 1985,
+  "location": {
+    "headquarters": "Gaborone Cycling Hub",
+    "street_address": "Plot 78, Phakalane",
+    "area": "Phakalane",
+    "city": "Gaborone",
+    "country": "Botswana",
+    "gps": "-24.5712, 25.9621"
+  },
+  "contact": {
+    "phone": "+2673923344",
+    "whatsapp": "+2673923344",
+    "email": "info@botswanacycling.bw",
+    "website": "www.botswanacycling.bw",
+    "facebook": "BotswanaCycling",
+    "twitter": "@BCycling_BW"
+  },
+  "staff": [
+    {
+      "role": "President",
+      "name": "Mpho Mooketsi",
+      "age": 52,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "president@bca.bw",
+      "phone": "+26771234101"
+    },
+    {
+      "role": "Secretary General",
+      "name": "Gaone Sebina",
+      "age": 39,
+      "gender": "Female",
+      "nationality": "Motswana",
+      "email": "sg@bca.bw",
+      "phone": "+26772345102"
+    },
+    {
+      "role": "Head Coach",
+      "name": "Thapelo Moilwa",
+      "age": 41,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "coach@bca.bw",
+      "phone": "+26773456103"
+    }
+  ],
+  "affiliated_clubs": 15,
+  "competitions_managed": ["National Road Champs", "Mountain Bike Series", "Tour de Botswana"],
+  "sponsors": ["Debswana", "Spar"],
+  "notes": "UCI member. Developing road and MTB."
+}

@@ -1,0 +1,30 @@
+[
+    {
+        "entry_id": "trk_sample1",
+        "user_id": "usr_demo",
+        "goal_id": "goal_pushup",
+        "timestamp": 1709472000000,
+        "activity_id": "calisthenics",
+        "template_group": "turn_cycle",
+        "metric": {
+            "sets": 3,
+            "reps_per_set": [
+                15,
+                12,
+                10
+            ]
+        }
+    },
+    {
+        "entry_id": "trk_sample2",
+        "user_id": "usr_demo",
+        "goal_id": "goal_weight",
+        "timestamp": 1709472000000,
+        "activity_id": "weight_management",
+        "template_group": "leaderboard",
+        "metric": {
+            "value": 82.5,
+            "unit": "kg"
+        }
+    }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "id": "sug_001",
+    "title": "Try netball drills",
+    "description": "Improve your passing and footwork with these 3 basic drills.",
+    "activity_type": "netball",
+    "season": "all",
+    "weather": "any",
+    "week_offset": 0  // used for simple rotation
+  },
+  {
+    "id": "sug_002",
+    "title": "Indoor chess tournament",
+    "description": "Rainy season? Gather friends for a chess challenge.",
+    "activity_type": "chess",
+    "season": "rainy",
+    "weather": "rain",
+    "week_offset": 1
+  }
+  // ... more
+]

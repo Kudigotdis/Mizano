@@ -1,0 +1,333 @@
+/**
+ * MIZANO EXECUTIVE PULSE DASHBOARD STYLES
+ * 2D Minimal Design - No shadows, clean borders
+ */
+
+/* Main Pulse Card */
+.pulse-card {
+    background: #FFFFFF;
+    border: 2px solid #424242;
+    margin: 16px 0;
+    transition: all 0.3s ease;
+}
+
+.pulse-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #E0E0E0;
+    cursor: pointer;
+    user-select: none;
+}
+
+.pulse-header:hover {
+    background: #F5F5F5;
+}
+
+.pulse-title h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #424242;
+    font-weight: 600;
+}
+
+.pulse-subtitle {
+    font-size: 12px;
+    color: #757575;
+    display: block;
+    margin-top: 4px;
+}
+
+.pulse-score-container {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.pulse-score {
+    font-size: 32px;
+    font-weight: 700;
+    color: #4472C4;
+}
+
+.pulse-score-label {
+    font-size: 16px;
+    color: #757575;
+}
+
+.toggle-btn {
+    background: none;
+    border: 1px solid #424242;
+    padding: 4px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #424242;
+    font-family: monospace;
+}
+
+.toggle-btn:hover {
+    background: #424242;
+    color: #FFFFFF;
+}
+
+.pulse-body {
+    padding: 16px;
+}
+
+/* Sector Cards */
+.sector-card {
+    background: #FAFAFA;
+    border: 1px solid #E0E0E0;
+    margin-bottom: 12px;
+}
+
+.sector-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.sector-header:hover {
+    background: #F0F0F0;
+}
+
+.sector-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sector-icon {
+    font-size: 24px;
+}
+
+.sector-info h4 {
+    margin: 0;
+    font-size: 16px;
+    color: #424242;
+    font-weight: 600;
+}
+
+.sector-score-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sector-score {
+    font-size: 18px;
+    font-weight: 600;
+    color: #424242;
+}
+
+.toggle-btn-small {
+    background: none;
+    border: 1px solid #757575;
+    padding: 2px 8px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #757575;
+    font-family: monospace;
+}
+
+.toggle-btn-small:hover {
+    background: #757575;
+    color: #FFFFFF;
+}
+
+.sector-body {
+    padding: 12px;
+    border-top: 1px solid #E0E0E0;
+}
+
+/* Category Sections */
+.category-section {
+    margin-bottom: 16px;
+}
+
+.category-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #424242;
+    margin: 0 0 8px 0;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.kpi-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* KPI Rows */
+.kpi-row {
+    display: grid;
+    grid-template-columns: 2fr 3fr 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 8px;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+}
+
+.kpi-label {
+    font-size: 13px;
+    color: #424242;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.kpi-progress {
+    display: flex;
+    align-items: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #E0E0E0;
+    border: 1px solid #424242;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.kpi-value {
+    text-align: right;
+    font-size: 14px;
+    font-weight: 600;
+    color: #424242;
+}
+
+.kpi-target {
+    font-size: 12px;
+    color: #757575;
+    font-weight: 400;
+}
+
+/* Offline Indicator */
+.pulse-offline {
+    display: inline-block;
+    padding: 4px 8px;
+    background: #FFC000;
+    color: #424242;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid #424242;
+    margin-left: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .kpi-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .kpi-label {
+        white-space: normal;
+    }
+
+    .pulse-score {
+        font-size: 24px;
+    }
+
+    .sector-icon {
+        font-size: 20px;
+    }
+}
+
+/* Associations Overlay */
+.associations-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+}
+
+.associations-overlay.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.associations-panel {
+    background: #FFFFFF;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 2px solid #424242;
+}
+
+.associations-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 2px solid #424242;
+    background: #F5F5F5;
+}
+
+.associations-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #424242;
+}
+
+.close-btn {
+    background: none;
+    border: 1px solid #424242;
+    padding: 4px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #424242;
+    font-family: monospace;
+}
+
+.close-btn:hover {
+    background: #424242;
+    color: #FFFFFF;
+}
+
+.associations-list {
+    padding: 16px;
+}
+
+.association-card {
+    background: #FAFAFA;
+    border: 1px solid #E0E0E0;
+    padding: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.association-card:hover {
+    background: #F0F0F0;
+    border-color: #4472C4;
+}
+
+.association-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #424242;
+}
+
+.association-card p {
+    margin: 4px 0;
+    font-size: 13px;
+    color: #757575;
+}

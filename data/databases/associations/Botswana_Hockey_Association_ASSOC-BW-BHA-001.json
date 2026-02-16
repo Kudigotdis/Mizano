@@ -1,0 +1,28 @@
+// Gym workout (turn_cycle)
+{
+  "entry_id": "trk_abc123",
+  "user_id": "usr_bob",
+  "goal_id": "goal_pushups",
+  "timestamp": 1709472000000,
+  "activity_id": "calisthenics",
+  "template_group": "turn_cycle",
+  "metric": {
+    "sets": 3,
+    "reps_per_set": [15, 12, 10],
+    "weight_kg": 0
+  }
+}
+
+// Weight check‑in (leaderboard)
+{
+  "entry_id": "trk_def456",
+  "user_id": "usr_bob",
+  "goal_id": "goal_weightloss",
+  "timestamp": 1709472000000,
+  "activity_id": "weight_management",
+  "template_group": "leaderboard",
+  "metric": {
+    "value": 82.5,
+    "unit": "kg"
+  }
+}

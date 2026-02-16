@@ -1,0 +1,56 @@
+{
+  "org_id": "ASSOC-BW-BCF-001",
+  "org_type": "National Association",
+  "org_name": "Botswana Chess Federation",
+  "sport": "chess",
+  "founded": 1980,
+  "location": {
+    "headquarters": "Gaborone Chess Centre",
+    "street_address": "Plot 125, Independence Avenue",
+    "area": "Gaborone Central",
+    "city": "Gaborone",
+    "country": "Botswana",
+    "gps": "-24.6548, 25.9095"
+  },
+  "contact": {
+    "phone": "+2673901122",
+    "whatsapp": "+2673901122",
+    "email": "info@botswanachess.co.bw",
+    "website": "www.botswanachess.co.bw",
+    "facebook": "BotswanaChess",
+    "twitter": "@BChessFed"
+  },
+  "staff": [
+    {
+      "role": "President",
+      "name": "Tshepo Sitale",
+      "age": 48,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "president@bcf.bw",
+      "phone": "+26771234071"
+    },
+    {
+      "role": "Secretary General",
+      "name": "Onalenna Keleboge",
+      "age": 35,
+      "gender": "Female",
+      "nationality": "Motswana",
+      "email": "sg@bcf.bw",
+      "phone": "+26772345072"
+    },
+    {
+      "role": "Head of Development",
+      "name": "Keabetswe Modise",
+      "age": 41,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "development@bcf.bw",
+      "phone": "+26773456073"
+    }
+  ],
+  "affiliated_clubs": 22,
+  "competitions_managed": ["National Championships", "Schools League", "Open Rapid"],
+  "sponsors": ["Choppies", "Spar"],
+  "notes": "FIDE member. Strong youth program."
+}

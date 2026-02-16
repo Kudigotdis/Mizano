@@ -1,0 +1,47 @@
+{
+  "org_id": "ASSOC-ZW-ZIFA-001",
+  "org_type": "National Association",
+  "org_name": "Zimbabwe Football Association",
+  "sport": "soccer",
+  "founded": 1965,
+  "location": {
+    "headquarters": "ZIFA Village",
+    "street_address": "254 Rotten Row",
+    "area": "Belvedere",
+    "city": "Harare",
+    "country": "Zimbabwe",
+    "gps": "-17.8268, 31.0352"
+  },
+  "contact": {
+    "phone": "+2634773000",
+    "whatsapp": "+263774000000",
+    "email": "info@zifa.org.zw",
+    "website": "www.zifa.org.zw",
+    "facebook": "ZIFAOfficial",
+    "twitter": "@ZIFAOfficial"
+  },
+  "staff": [
+    {
+      "role": "President",
+      "name": "Felton Kamambo",
+      "age": 55,
+      "gender": "Male",
+      "nationality": "Zimbabwean",
+      "email": "president@zifa.org.zw",
+      "phone": "+263772111111"
+    },
+    {
+      "role": "CEO",
+      "name": "Joseph Mamutse",
+      "age": 48,
+      "gender": "Male",
+      "nationality": "Zimbabwean",
+      "email": "ceo@zifa.org.zw",
+      "phone": "+263772222222"
+    }
+  ],
+  "affiliated_clubs": 60,
+  "competitions_managed": ["Premier Soccer League", "Cup of Zimbabwe", "Women's League"],
+  "sponsors": ["Econet", "Delta Beverages", "Nyaradzo"],
+  "notes": "Member of CAF and FIFA."
+}

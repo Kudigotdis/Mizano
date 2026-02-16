@@ -1,0 +1,56 @@
+[
+    {
+        "local_id": 2001,
+        "cloud_id": "act_001",
+        "activity_id": "gaborone-sunday-social-soccer",
+        "title": "Gaborone Sunday Social Soccer",
+        "sport": "Football (Soccer)",
+        "activity_type": "match",
+        "organizer_uid": "mizano_thabo_001",
+        "status": "published",
+        "start_time": 1708268400000,
+        "end_time": 1708275600000,
+        "venue_id": "venue_001",
+        "location_name": "Block 3 Community Field",
+        "entry_fee": 20.0,
+        "capacity": {
+            "min_players": 11,
+            "max_players": 22,
+            "per_team": 11
+        },
+        "rules_template": "timer_split",
+        "rules": {
+            "match_duration": 90,
+            "halves": 2,
+            "overtime": {
+                "extra_time": true,
+                "penalties": true
+            }
+        },
+        "visibility": "public",
+        "sync_status": "synced",
+        "sync_attempts": 0,
+        "last_modified": 1707897600000,
+        "created_at": 1707897600000
+    },
+    {
+        "local_id": 2002,
+        "cloud_id": "act_002",
+        "activity_id": "beginner-tennis-lessons-feb",
+        "title": "Beginner Tennis Technique",
+        "sport": "Tennis",
+        "activity_type": "lesson",
+        "organizer_uid": "mizano_instructor_001",
+        "status": "published",
+        "start_time": 1708333200000,
+        "end_time": 1708340400000,
+        "venue_id": "venue_002",
+        "location_name": "Notwane Club Courts",
+        "entry_fee": 100.0,
+        "rules_template": "set_cap",
+        "sync_status": "synced",
+        "sync_attempts": 0,
+        "last_modified": 1707897600000,
+        "created_at": 1707897600000
+    }
+]

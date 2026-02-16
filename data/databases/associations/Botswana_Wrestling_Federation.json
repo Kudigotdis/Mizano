@@ -1,0 +1,56 @@
+{
+  "org_id": "ASSOC-BW-BWF-002",  // different from weightlifting
+  "org_type": "National Association",
+  "org_name": "Botswana Wrestling Federation",
+  "sport": "wrestling",
+  "founded": 1998,
+  "location": {
+    "headquarters": "Wrestling Centre, Gaborone",
+    "street_address": "Plot 123, Block 8",
+    "area": "Block 8",
+    "city": "Gaborone",
+    "country": "Botswana",
+    "gps": "-24.6456, 25.9221"
+  },
+  "contact": {
+    "phone": "+2673936677",
+    "whatsapp": "+2673936677",
+    "email": "info@wrestlingbw.org",
+    "website": "www.wrestlingbw.org",
+    "facebook": "BotswanaWrestling",
+    "twitter": "@BWrestlingFed"
+  },
+  "staff": [
+    {
+      "role": "President",
+      "name": "Tumelo Mothibi",
+      "age": 47,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "president@wrestlingbw.org",
+      "phone": "+26771234221"
+    },
+    {
+      "role": "Secretary General",
+      "name": "Onalenna Mogorosi",
+      "age": 38,
+      "gender": "Female",
+      "nationality": "Motswana",
+      "email": "sg@wrestlingbw.org",
+      "phone": "+26772345222"
+    },
+    {
+      "role": "National Coach",
+      "name": "Modiri Mooketsi",
+      "age": 45,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "coach@wrestlingbw.org",
+      "phone": "+26773456223"
+    }
+  ],
+  "affiliated_clubs": 6,
+  "competitions_managed": ["National Wrestling Champs", "Freestyle/Greco-Roman Cup"],
+  "sponsors": ["Spar", "Choppies"],
+  "notes": "UWW member. Developing amateur wrestling."
+}

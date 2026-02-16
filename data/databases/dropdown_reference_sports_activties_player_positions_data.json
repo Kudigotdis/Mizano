@@ -1,0 +1,4238 @@
+[
+  {
+    "id": 1,
+    "raw_text": "DROPDOWN_REFERENCE_SPORTS_ACTIVTIES_PLAYER_POSITIONS_DATA"
+  },
+  {
+    "id": 2,
+    "raw_text": "**Used In:** Player Profile, Team Management, Match Roster, Scout Filters, Tactical Boards, Player Performance Analytics"
+  },
+  {
+    "id": 3,
+    "raw_text": "**Architect’s Note:**"
+  },
+  {
+    "id": 4,
+    "raw_text": "For each sport/activity below, a **searchable dropdown** of positions/roles is presented."
+  },
+  {
+    "id": 5,
+    "raw_text": "✅ **Every position includes an adjustable percentage input field** (`Weight %` slider / manual entry, 0–100) — used for proficiency, playing time allocation, or scout weighting."
+  },
+  {
+    "id": 6,
+    "raw_text": "🌐 **`Other (Please Specify)`** always triggers a manual text input field for custom/hybrid roles."
+  },
+  {
+    "id": 7,
+    "raw_text": "--"
+  },
+  {
+    "id": 8,
+    "raw_text": "(Used In: Gymnastics/Performance profiles, Troupe management)"
+  },
+  {
+    "id": 9,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 10,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 11,
+    "raw_text": "| base | Base | Supports and lifts flyers; foundation of stunts | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 12,
+    "raw_text": "| flyer | Flyer | Performs at the top of stunts; requires flexibility & strength | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 13,
+    "raw_text": "| spotter | Spotter | Protects flyers; ensures safety during dismounts | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 14,
+    "raw_text": "| tumbler | Tumbler | Executes floor passes and tumbling runs | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 15,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Custom acrobatic role | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 16,
+    "raw_text": "--"
+  },
+  {
+    "id": 17,
+    "raw_text": "(Used In: Aviation sport profiles, competitive flying)"
+  },
+  {
+    "id": 18,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 19,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 20,
+    "raw_text": "| pilot | Pilot | Controls the aircraft during aerobatic maneuvers | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 21,
+    "raw_text": "| co_pilot | Co-Pilot | Assists pilot; safety monitoring | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 22,
+    "raw_text": "| judge | Judge (if applicable) | Official evaluator in competitions | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 23,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Crew, coach, etc. | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 24,
+    "raw_text": "--"
+  },
+  {
+    "id": 25,
+    "raw_text": "(Used In: General aviation, recreational flying)"
+  },
+  {
+    "id": 26,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 27,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 28,
+    "raw_text": "| pilot | Pilot | Primary operator of aircraft | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 29,
+    "raw_text": "| passenger | Passenger | Non-operating participant | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 30,
+    "raw_text": "| instructor | Instructor | Provides training and certification | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 31,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Ground crew, spotter | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 32,
+    "raw_text": "--"
+  },
+  {
+    "id": 33,
+    "raw_text": "(Used In: Team management, roster, scouting)"
+  },
+  {
+    "id": 34,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 35,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 36,
+    "raw_text": "| qb | Quarterback | Offensive leader; throws passes | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 37,
+    "raw_text": "| rb | Running Back | Carries the ball; runs routes | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 38,
+    "raw_text": "| wr | Wide Receiver | Catches passes; runs deep routes | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 39,
+    "raw_text": "| te | Tight End | Hybrid blocker/receiver | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 40,
+    "raw_text": "| ol | Offensive Lineman | Blocks for QB and runners | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 41,
+    "raw_text": "| dt | Defensive Tackle | Interior line; stops run | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 42,
+    "raw_text": "| de | Defensive End | Edge rusher; contains outside | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 43,
+    "raw_text": "| lb | Linebacker | Versatile defender; coverage/run stop | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 44,
+    "raw_text": "| cb | Cornerback | Pass coverage on receivers | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 45,
+    "raw_text": "| s | Safety | Deep coverage; run support | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 46,
+    "raw_text": "| k | Kicker | Placekicks, kickoffs | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 47,
+    "raw_text": "| p | Punter | Kicks on fourth down | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 48,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Utility, special teams gunner | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 49,
+    "raw_text": "--"
+  },
+  {
+    "id": 50,
+    "raw_text": "(Used In: Individual precision sport, Olympic pipeline)"
+  },
+  {
+    "id": 51,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 52,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 53,
+    "raw_text": "| recurve | Recurve Archer | Olympic discipline; standard bow | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 54,
+    "raw_text": "| compound | Compound Archer | Uses pulley system; higher precision | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 55,
+    "raw_text": "| barebow | Barebow Archer | Minimal equipment; traditional | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 56,
+    "raw_text": "| longbow | Longbow Archer | Historical style | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 57,
+    "raw_text": "| coach | Coach | Technical/tactical trainer | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 58,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Judge, marshal | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 59,
+    "raw_text": "--"
+  },
+  {
+    "id": 60,
+    "raw_text": "(Used In: Olympic gymnastics, club competition)"
+  },
+  {
+    "id": 61,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 62,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 63,
+    "raw_text": "| aa | All-Around | Competes in all apparatus | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 64,
+    "raw_text": "| fx | Floor Specialist | Focus on floor exercise | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 65,
+    "raw_text": "| vt | Vault Specialist | Focus on vault | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 66,
+    "raw_text": "| ub | Uneven Bars Specialist | Women's apparatus | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 67,
+    "raw_text": "| bb | Balance Beam Specialist | Women's apparatus | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 68,
+    "raw_text": "| ph | Pommel Horse Specialist | Men's apparatus | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 69,
+    "raw_text": "| sr | Still Rings Specialist | Men's apparatus | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 70,
+    "raw_text": "| pb | Parallel Bars Specialist | Men's apparatus | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 71,
+    "raw_text": "| hb | Horizontal Bar Specialist | Men's apparatus | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 72,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Choreographer, coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 73,
+    "raw_text": "--"
+  },
+  {
+    "id": 74,
+    "raw_text": "(Used In: Aquatics, synchronized swimming)"
+  },
+  {
+    "id": 75,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 76,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 77,
+    "raw_text": "| solo | Solo Swimmer | Performs alone | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 78,
+    "raw_text": "| duet | Duet Partner | Pairs routine | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 79,
+    "raw_text": "| team | Team Member | Part of a team routine | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 80,
+    "raw_text": "| combo | Combo Swimmer | Participates in combination routine | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 81,
+    "raw_text": "| figure | Figure Specialist | Focuses on technical figures | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 82,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Choreographer, coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 83,
+    "raw_text": "--"
+  },
+  {
+    "id": 84,
+    "raw_text": "(Used In: Primary talent pipeline, individual/team events)"
+  },
+  {
+    "id": 85,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 86,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 87,
+    "raw_text": "| sprints | Sprints (100m–400m) | Short-distance speed events | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 88,
+    "raw_text": "| hurdles | Hurdles | Sprint with obstacles | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 89,
+    "raw_text": "| mid_dist | Middle Distance (800m–3000m) | Tactical racing | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 90,
+    "raw_text": "| long_dist | Long Distance (5000m+) | Endurance events | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 91,
+    "raw_text": "| marathon | Marathon / Road Running | 42.195km specialist | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 92,
+    "raw_text": "| race_walk | Race Walking | Technical endurance | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 93,
+    "raw_text": "| jumps_hj | High Jump | Vertical jump | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 94,
+    "raw_text": "| jumps_pv | Pole Vault | Vertical jump with pole | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 95,
+    "raw_text": "| jumps_lj | Long Jump | Horizontal jump | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 96,
+    "raw_text": "| jumps_tj | Triple Jump | Horizontal jump with phases | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 97,
+    "raw_text": "| throws_sp | Shot Put | Throwing heavy metal ball | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 98,
+    "raw_text": "| throws_dt | Discus Throw | Throwing discus | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 99,
+    "raw_text": "| throws_jt | Javelin Throw | Throwing javelin | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 100,
+    "raw_text": "| throws_ht | Hammer Throw | Throwing hammer | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 101,
+    "raw_text": "| combined | Combined Events (Decathlon/Heptathlon) | Multi-event athlete | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 102,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, official | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 103,
+    "raw_text": "--"
+  },
+  {
+    "id": 104,
+    "raw_text": "(Used In: Team sport, Australian football)"
+  },
+  {
+    "id": 105,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 106,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 107,
+    "raw_text": "| fwd | Forward | Primary goal scorer | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 108,
+    "raw_text": "| mid | Midfielder | Ball winner; link-up play | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 109,
+    "raw_text": "| def | Defender | Prevents opposition scoring | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 110,
+    "raw_text": "| ruck | Ruckman | Taps ball at stoppages | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 111,
+    "raw_text": "| utl | Utility | Plays multiple positions | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 112,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, runner | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 113,
+    "raw_text": "--"
+  },
+  {
+    "id": 114,
+    "raw_text": "(Used In: Racquet sport, Olympic)"
+  },
+  {
+    "id": 115,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 116,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 117,
+    "raw_text": "| singles | Singles Player | 1v1 court coverage | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 118,
+    "raw_text": "| doubles_f | Doubles (Front) | Net player; fast reactions | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 119,
+    "raw_text": "| doubles_r | Doubles (Rear) | Backcourt attacker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 120,
+    "raw_text": "| mixed | Mixed Doubles | Gender-combined team | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 121,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 122,
+    "raw_text": "--"
+  },
+  {
+    "id": 123,
+    "raw_text": "(Used In: Aviation lifestyle sport)"
+  },
+  {
+    "id": 124,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 125,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 126,
+    "raw_text": "| pilot | Pilot | Controls hot air balloon | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 127,
+    "raw_text": "| crew | Crew Member | Ground support, chase crew | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 128,
+    "raw_text": "| passenger | Passenger | Participant | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 129,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Instructor | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 130,
+    "raw_text": "--"
+  },
+  {
+    "id": 131,
+    "raw_text": "(Used In: Team sport, bat-and-ball)"
+  },
+  {
+    "id": 132,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 133,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 134,
+    "raw_text": "| p | Pitcher | Throws ball to batter | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 135,
+    "raw_text": "| c | Catcher | Receives pitches; defends home plate | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 136,
+    "raw_text": "| 1b | First Baseman | Infield; catches throws at first | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 137,
+    "raw_text": "| 2b | Second Baseman | Infield; double-play pivot | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 138,
+    "raw_text": "| 3b | Third Baseman | Infield; quick reflexes | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 139,
+    "raw_text": "| ss | Shortstop | Infield captain; range and arm | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 140,
+    "raw_text": "| lf | Left Fielder | Outfield; left side | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 141,
+    "raw_text": "| cf | Center Fielder | Outfield; speed and coverage | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 142,
+    "raw_text": "| rf | Right Fielder | Outfield; strong arm | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 143,
+    "raw_text": "| dh | Designated Hitter | Hits in place of pitcher (AL rules) | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 144,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, pinch runner | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 145,
+    "raw_text": "--"
+  },
+  {
+    "id": 146,
+    "raw_text": "(Used In: Primary talent pipeline, Olympic)"
+  },
+  {
+    "id": 147,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 148,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 149,
+    "raw_text": "| pg | Point Guard | Primary ball-handler; playmaker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 150,
+    "raw_text": "| sg | Shooting Guard | Scoring guard; perimeter shooter | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 151,
+    "raw_text": "| sf | Small Forward | Versatile wing; slash and defend | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 152,
+    "raw_text": "| pf | Power Forward | Interior scorer; rebounder | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 153,
+    "raw_text": "| c | Center | Post player; rim protector | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 154,
+    "raw_text": "| other | 🌐 Other (Please Specify) | 6th man, specialist | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 155,
+    "raw_text": "--"
+  },
+  {
+    "id": 156,
+    "raw_text": "(Used In: Olympic half-court format)"
+  },
+  {
+    "id": 157,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 158,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 159,
+    "raw_text": "| primary | Primary Ball-Handler | Initiates offense | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 160,
+    "raw_text": "| shooter | Shooter | Spot-up perimeter threat | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 161,
+    "raw_text": "| post | Post Player | Inside scoring/rebounding | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 162,
+    "raw_text": "| utility | Utility | Fills gaps; defensive stopper | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 163,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Specialist | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 164,
+    "raw_text": "--"
+  },
+  {
+    "id": 165,
+    "raw_text": "(Used In: Team sport, sand variant)"
+  },
+  {
+    "id": 166,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 167,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 168,
+    "raw_text": "| fw | Forward | Primary attacker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 169,
+    "raw_text": "| df | Defender | Stops opposition attacks | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 170,
+    "raw_text": "| gk | Goalkeeper | Shots on goal | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 171,
+    "raw_text": "| spec | Specialist | Spin shots, 360° moves | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 172,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 173,
+    "raw_text": "--"
+  },
+  {
+    "id": 174,
+    "raw_text": "(Used In: Team sport, sand)"
+  },
+  {
+    "id": 175,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 176,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 177,
+    "raw_text": "| gk | Goalkeeper | Shot stopper on sand | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 178,
+    "raw_text": "| df | Defender | Back line | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 179,
+    "raw_text": "| mf | Midfielder | Transition, link-up | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 180,
+    "raw_text": "| fw | Forward | Attacker, acrobatic finishes | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 181,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Pivot, specialist | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 182,
+    "raw_text": "--"
+  },
+  {
+    "id": 183,
+    "raw_text": "(Used In: Olympic sand court, 2v2)"
+  },
+  {
+    "id": 184,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 185,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 186,
+    "raw_text": "| blocker | Blocker | Net defense; blocks spikes | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 187,
+    "raw_text": "| defender | Defender | Backcourt digs, serves receive | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 188,
+    "raw_text": "| all_around | All-Around | Both blocking and defending | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 189,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, partner | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 190,
+    "raw_text": "--"
+  },
+  {
+    "id": 191,
+    "raw_text": "(Used In: Combat sport on sand)"
+  },
+  {
+    "id": 192,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 193,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 194,
+    "raw_text": "| wrestler | Wrestler | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 195,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 196,
+    "raw_text": "--"
+  },
+  {
+    "id": 197,
+    "raw_text": "(Used In: Winter sport, cross-country + shooting)"
+  },
+  {
+    "id": 198,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 199,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 200,
+    "raw_text": "| sprinter | Sprint Specialist | Shorter distance, high pace | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 201,
+    "raw_text": "| pursuit | Pursuit Specialist | Starting intervals, tactical | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 202,
+    "raw_text": "| individual | Individual Specialist | Longer distance, penalty minutes | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 203,
+    "raw_text": "| relay | Relay Team Member | Team event leg | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 204,
+    "raw_text": "| mass_start | Mass Start Specialist | Pack racing, shooting under pressure | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 205,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, technician | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 206,
+    "raw_text": "--"
+  },
+  {
+    "id": 207,
+    "raw_text": "(Used In: Cue sport, precision)"
+  },
+  {
+    "id": 208,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 209,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 210,
+    "raw_text": "| player | Player | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 211,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 212,
+    "raw_text": "--"
+  },
+  {
+    "id": 213,
+    "raw_text": "(Used In: Olympic cycling, racing/freestyle)"
+  },
+  {
+    "id": 214,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 215,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 216,
+    "raw_text": "| racer | BMX Racer | Gate start, speed, jumps | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 217,
+    "raw_text": "| freestyler | BMX Freestyle | Park, flatland, street tricks | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 218,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, judge | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 219,
+    "raw_text": "--"
+  },
+  {
+    "id": 220,
+    "raw_text": "(Used In: Winter sport, sleigh racing)"
+  },
+  {
+    "id": 221,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 222,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 223,
+    "raw_text": "| pilot | Pilot | Steers the sled | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 224,
+    "raw_text": "| brakeman | Brakeman | Stops sled at finish; powerful push | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 225,
+    "raw_text": "| crew | Crew Member (2-man/4-man) | Pusher, keeps low | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 226,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, technician | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 227,
+    "raw_text": "--"
+  },
+  {
+    "id": 228,
+    "raw_text": "(Used In: Parasport, precision ball sport)"
+  },
+  {
+    "id": 229,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 230,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 231,
+    "raw_text": "| bc1 | BC1 | Athlete with assistant | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 232,
+    "raw_text": "| bc2 | BC2 | Athlete without assistant | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 233,
+    "raw_text": "| bc3 | BC3 | Athlete uses ramp; assistant | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 234,
+    "raw_text": "| bc4 | BC4 | Severe physical impairment | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 235,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Ramp operator, coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 236,
+    "raw_text": "--"
+  },
+  {
+    "id": 237,
+    "raw_text": "(Used In: Precision sport, alley)"
+  },
+  {
+    "id": 238,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 239,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 240,
+    "raw_text": "| stroker | Stroker | Smooth, consistent release | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 241,
+    "raw_text": "| cranker | Cranker | High rev rate, power | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 242,
+    "raw_text": "| tweener | Tweener | Between stroker and cranker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 243,
+    "raw_text": "| two_handed | Two-Handed | No thumb, high revs | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 244,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 245,
+    "raw_text": "--"
+  },
+  {
+    "id": 246,
+    "raw_text": "(Used In: Combat sport, Olympic)"
+  },
+  {
+    "id": 247,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 248,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 249,
+    "raw_text": "| out_boxer | Out-Boxer | Utilizes reach, footwork | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 250,
+    "raw_text": "| swarmer | Swarmer | Pressure fighter, volume puncher | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 251,
+    "raw_text": "| slugger | Slugger | Power puncher, brawler | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 252,
+    "raw_text": "| boxer_puncher | Boxer-Puncher | Balanced offense/defense | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 253,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, cutman | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 254,
+    "raw_text": "--"
+  },
+  {
+    "id": 255,
+    "raw_text": "(Used In: Olympic performance, street dance)"
+  },
+  {
+    "id": 256,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 257,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 258,
+    "raw_text": "| bboy | B-Boy/B-Girl | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 259,
+    "raw_text": "| top_rock | Top Rock Specialist | Standing moves | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 260,
+    "raw_text": "| down_rock | Down Rock Specialist | Footwork on floor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 261,
+    "raw_text": "| freeze | Freeze Specialist | Power holds | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 262,
+    "raw_text": "| power | Power Move Specialist | Windmills, flares, etc. | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 263,
+    "raw_text": "| other | 🌐 Other (Please Specify) | DJ, MC, judge | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 264,
+    "raw_text": "--"
+  },
+  {
+    "id": 265,
+    "raw_text": "(Used In: Mental performance, card game)"
+  },
+  {
+    "id": 266,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 267,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 268,
+    "raw_text": "| declarer | Declarer | Plays the hand | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 269,
+    "raw_text": "| dummy | Dummy | Partner of declarer; places cards | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 270,
+    "raw_text": "| defender | Defender | Opponent trying to defeat contract | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 271,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, tournament director | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 272,
+    "raw_text": "--"
+  },
+  {
+    "id": 273,
+    "raw_text": "(Used In: Aquatics, Olympic)"
+  },
+  {
+    "id": 274,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 275,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 276,
+    "raw_text": "| sprinter | Sprint Canoeist | Flatwater, 200m/500m/1000m | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 277,
+    "raw_text": "| slalom | Slalom Canoeist | Whitewater, gates | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 278,
+    "raw_text": "| coastal | Coastal Canoeist | Open water, waves | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 279,
+    "raw_text": "| kayak | Kayaker | Sit-in boat, double-bladed paddle | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 280,
+    "raw_text": "| canadian | Canadian Canoe | Single-bladed paddle, kneeling | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 281,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, safety boater | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 282,
+    "raw_text": "--"
+  },
+  {
+    "id": 283,
+    "raw_text": "(Used In: Mental performance, mind sport)"
+  },
+  {
+    "id": 284,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 285,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 286,
+    "raw_text": "| player | Player | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 287,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, arbiter | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 288,
+    "raw_text": "--"
+  },
+  {
+    "id": 289,
+    "raw_text": "(Used In: Team sport, bat-and-ball)"
+  },
+  {
+    "id": 290,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 291,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 292,
+    "raw_text": "| bat | Batter | Scores runs | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 293,
+    "raw_text": "| bowl | Bowler | Delivers ball; pace/spin | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 294,
+    "raw_text": "| wk | Wicket-Keeper | Behind stumps; catches | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 295,
+    "raw_text": "| ar | All-Rounder | Competent batter and bowler | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 296,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, umpire | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 297,
+    "raw_text": "--"
+  },
+  {
+    "id": 298,
+    "raw_text": "(Used In: Winter sport, team)"
+  },
+  {
+    "id": 299,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 300,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 301,
+    "raw_text": "| skip | Skip | Calls shots; throws last two stones | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 302,
+    "raw_text": "| vice | Vice-Skip | Holds broom for skip; throws third | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 303,
+    "raw_text": "| second | Second | Throws second two stones | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 304,
+    "raw_text": "| lead | Lead | Throws first two stones; sweeping | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 305,
+    "raw_text": "| alternate | Alternate | Substitute | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 306,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, technical official | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 307,
+    "raw_text": "--"
+  },
+  {
+    "id": 308,
+    "raw_text": "(Used In: Unique cycling sport, indoor)"
+  },
+  {
+    "id": 309,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 310,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 311,
+    "raw_text": "| attacker | Attacker | Scores goals | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 312,
+    "raw_text": "| defender | Defender | Prevents goals | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 313,
+    "raw_text": "| all_round | All-Round | Both roles | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 314,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 315,
+    "raw_text": "--"
+  },
+  {
+    "id": 316,
+    "raw_text": "(Used In: Primary talent pipeline)"
+  },
+  {
+    "id": 317,
+    "raw_text": "**Road Cycling:**"
+  },
+  {
+    "id": 318,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 319,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 320,
+    "raw_text": "| gc | General Classification | Stage race contender | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 321,
+    "raw_text": "| sprinter | Sprinter | Flat finish specialist | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 322,
+    "raw_text": "| climber | Climber | Mountain specialist | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 323,
+    "raw_text": "| tt | Time Trialist | Against-the-clock specialist | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 324,
+    "raw_text": "| domestique | Domestique | Supports team leaders | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 325,
+    "raw_text": "| puncheur | Puncheur | Short, steep hills | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 326,
+    "raw_text": "**Mountain Bike:**"
+  },
+  {
+    "id": 327,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 328,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 329,
+    "raw_text": "| xc | Cross-Country | Endurance, technical climbs | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 330,
+    "raw_text": "| dh | Downhill | High-speed descent | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 331,
+    "raw_text": "| enduro | Enduro | Mixed terrain, timed stages | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 332,
+    "raw_text": "| trail | Trail Rider | Recreational/backcountry | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 333,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, mechanic | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 334,
+    "raw_text": "--"
+  },
+  {
+    "id": 335,
+    "raw_text": "(Used In: Performance, competitive dance)"
+  },
+  {
+    "id": 336,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 337,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 338,
+    "raw_text": "| latin | Latin Dancer | Cha-cha, samba, rumba, etc. | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 339,
+    "raw_text": "| ballroom | Ballroom Dancer | Waltz, tango, foxtrot, etc. | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 340,
+    "raw_text": "| lead | Lead | Guides partner | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 341,
+    "raw_text": "| follow | Follow | Responds to lead | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 342,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Choreographer, coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 343,
+    "raw_text": "--"
+  },
+  {
+    "id": 344,
+    "raw_text": "(Used In: Precision sport)"
+  },
+  {
+    "id": 345,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 346,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 347,
+    "raw_text": "| player | Player | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 348,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, scorer | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 349,
+    "raw_text": "--"
+  },
+  {
+    "id": 350,
+    "raw_text": "(Used In: Aquatics, Olympic)"
+  },
+  {
+    "id": 351,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 352,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 353,
+    "raw_text": "| springboard | Springboard Diver | 1m/3m flexible board | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 354,
+    "raw_text": "| platform | Platform Diver | 10m rigid platform | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 355,
+    "raw_text": "| synchronized | Synchronized Diver | Pair synchronized | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 356,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 357,
+    "raw_text": "--"
+  },
+  {
+    "id": 358,
+    "raw_text": "(Used In: Botswana regional/cultural sport)"
+  },
+  {
+    "id": 359,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 360,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 361,
+    "raw_text": "| jockey | Jockey | Rides the donkey | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 362,
+    "raw_text": "| trainer | Trainer | Prepares donkey for race | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 363,
+    "raw_text": "| owner | Owner | Enters donkey in competition | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 364,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Groom, handler | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 365,
+    "raw_text": "--"
+  },
+  {
+    "id": 366,
+    "raw_text": "(Used In: Animal sport, Olympic)"
+  },
+  {
+    "id": 367,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 368,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 369,
+    "raw_text": "| dressage | Dressage Rider | Precision, elegance | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 370,
+    "raw_text": "| jumping | Show Jumper | Obstacle course | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 371,
+    "raw_text": "| eventing | Eventer | Combined: dressage, XC, jumping | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 372,
+    "raw_text": "| endurance | Endurance Rider | Long-distance competition | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 373,
+    "raw_text": "| reining | Reining | Western patterns, spins, stops | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 374,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Groom, coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 375,
+    "raw_text": "--"
+  },
+  {
+    "id": 376,
+    "raw_text": "(Used In: Digital talent pipeline)"
+  },
+  {
+    "id": 377,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 378,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 379,
+    "raw_text": "| carry | Carry (MOBA) | Main damage dealer | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 380,
+    "raw_text": "| support | Support | Utility, vision, heals | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 381,
+    "raw_text": "| tank | Tank | Initiates fights, absorbs damage | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 382,
+    "raw_text": "| jungler | Jungler (MOBA) | Roams between lanes | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 383,
+    "raw_text": "| awper | AWPer (FPS) | Sniper rifle specialist | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 384,
+    "raw_text": "| rifler | Rifler (FPS) | Rifle primary | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 385,
+    "raw_text": "| igl | In-Game Leader | Calls strategies | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 386,
+    "raw_text": "| flex | Flex Player | Plays multiple roles | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 387,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, analyst | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 388,
+    "raw_text": "--"
+  },
+  {
+    "id": 389,
+    "raw_text": "(Used In: Combat, Olympic)"
+  },
+  {
+    "id": 390,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 391,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 392,
+    "raw_text": "| foil | Foilist | Light thrusting weapon; right-of-way | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 393,
+    "raw_text": "| epee | Epeeist | Heavier; whole body target; simultaneous hits | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 394,
+    "raw_text": "| sabre | Sabreur | Cutting/thrusting; above waist; right-of-way | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 395,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 396,
+    "raw_text": "--"
+  },
+  {
+    "id": 397,
+    "raw_text": "(Used In: Performance, Olympic winter)"
+  },
+  {
+    "id": 398,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 399,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 400,
+    "raw_text": "| singles | Singles Skater | Individual routine | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 401,
+    "raw_text": "| pairs | Pairs Skater | Partnered lifts, throws | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 402,
+    "raw_text": "| ice_dance | Ice Dancer | Focus on footwork, rhythm | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 403,
+    "raw_text": "| synchronized | Synchronized Skater | Team formations | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 404,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Choreographer, coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 405,
+    "raw_text": "--"
+  },
+  {
+    "id": 406,
+    "raw_text": "(Used In: Non-contact team sport)"
+  },
+  {
+    "id": 407,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 408,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 409,
+    "raw_text": "| qb | Quarterback | Passer | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 410,
+    "raw_text": "| rb | Running Back | Ball carrier | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 411,
+    "raw_text": "| wr | Wide Receiver | Pass catcher | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 412,
+    "raw_text": "| db | Defensive Back | Pulls flags, coverage | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 413,
+    "raw_text": "| blitzer | Blitzer | Rushes QB | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 414,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 415,
+    "raw_text": "--"
+  },
+  {
+    "id": 416,
+    "raw_text": "(Used In: Indoor team sport)"
+  },
+  {
+    "id": 417,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 418,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 419,
+    "raw_text": "| gk | Goalkeeper | No stick; saves with body | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 420,
+    "raw_text": "| df | Defender | Protects own goal | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 421,
+    "raw_text": "| fw | Forward | Attacks opponent goal | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 422,
+    "raw_text": "| center | Center | Two-way player | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 423,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 424,
+    "raw_text": "--"
+  },
+  {
+    "id": 425,
+    "raw_text": "(Used In: Winter sport, aerial/moguls)"
+  },
+  {
+    "id": 426,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 427,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 428,
+    "raw_text": "| moguls | Moguls Skier | Bumps, jumps | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 429,
+    "raw_text": "| aerials | Aerials Skier | High jumps, twists | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 430,
+    "raw_text": "| ski_cross | Ski Cross | Head-to-head racing | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 431,
+    "raw_text": "| halfpipe | Halfpipe Skier | Tricks in U-shaped pipe | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 432,
+    "raw_text": "| slopestyle | Slopestyle Skier | Rails, jumps on course | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 433,
+    "raw_text": "| big_air | Big Air | Single massive jump | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 434,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 435,
+    "raw_text": "--"
+  },
+  {
+    "id": 436,
+    "raw_text": "(Used In: Indoor soccer variant)"
+  },
+  {
+    "id": 437,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 438,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 439,
+    "raw_text": "| gk | Goalkeeper | Shot stopper; distribution | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 440,
+    "raw_text": "| fixo | Fixo (Defender) | Last line before keeper | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 441,
+    "raw_text": "| ala | Ala (Winger) | Right/left wide player | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 442,
+    "raw_text": "| pivo | Pivo (Pivot) | Target forward; holds up play | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 443,
+    "raw_text": "| universal | Universal | All-rounder | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 444,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 445,
+    "raw_text": "--"
+  },
+  {
+    "id": 446,
+    "raw_text": "(Used In: Irish team sport)"
+  },
+  {
+    "id": 447,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 448,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 449,
+    "raw_text": "| gk | Goalkeeper | Sole player who can touch ground with hands | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 450,
+    "raw_text": "| fb | Full Back | Defensive core | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 451,
+    "raw_text": "| hb | Half Back | Defensive wing | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 452,
+    "raw_text": "| mf | Midfielder | Aerial duels, link play | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 453,
+    "raw_text": "| hf | Half Forward | Attacking support | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 454,
+    "raw_text": "| ff | Full Forward | Primary scorer | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 455,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 456,
+    "raw_text": "--"
+  },
+  {
+    "id": 457,
+    "raw_text": "(Used In: Strategic board game)"
+  },
+  {
+    "id": 458,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 459,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 460,
+    "raw_text": "| player | Player | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 461,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 462,
+    "raw_text": "--"
+  },
+  {
+    "id": 463,
+    "raw_text": "(Used In: Motor sport, entry-level)"
+  },
+  {
+    "id": 464,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 465,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 466,
+    "raw_text": "| driver | Driver | Controls kart | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 467,
+    "raw_text": "| mechanic | Mechanic | Maintains kart | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 468,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 469,
+    "raw_text": "--"
+  },
+  {
+    "id": 470,
+    "raw_text": "(Used In: Safety/inclusion, visually impaired)"
+  },
+  {
+    "id": 471,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 472,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 473,
+    "raw_text": "| center | Center | Central defender, often thrower | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 474,
+    "raw_text": "| left_wing | Left Wing | Left side defender | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 475,
+    "raw_text": "| right_wing | Right Wing | Right side defender | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 476,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Guide, coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 477,
+    "raw_text": "--"
+  },
+  {
+    "id": 478,
+    "raw_text": "(Used In: Precision, Olympic)"
+  },
+  {
+    "id": 479,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 480,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 481,
+    "raw_text": "| player | Player | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 482,
+    "raw_text": "| caddie | Caddie | Carries clubs, advises | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 483,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 484,
+    "raw_text": "--"
+  },
+  {
+    "id": 485,
+    "raw_text": "(Used In: Combat, Olympic; no holds below waist)"
+  },
+  {
+    "id": 486,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 487,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 488,
+    "raw_text": "| wrestler | Wrestler | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 489,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 490,
+    "raw_text": "--"
+  },
+  {
+    "id": 491,
+    "raw_text": "(Used In: Team sport, Olympic)"
+  },
+  {
+    "id": 492,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 493,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 494,
+    "raw_text": "| gk | Goalkeeper | Shot stopper | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 495,
+    "raw_text": "| lw | Left Wing | Fast breaks, corner shots | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 496,
+    "raw_text": "| rw | Right Wing | Fast breaks, corner shots | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 497,
+    "raw_text": "| lb | Left Back | Powerful shooter from distance | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 498,
+    "raw_text": "| rb | Right Back | Powerful shooter from distance | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 499,
+    "raw_text": "| cm | Centre Back | Playmaker, pivot distribution | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 500,
+    "raw_text": "| pv | Pivot | Line player; close range, screens | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 501,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 502,
+    "raw_text": "--"
+  },
+  {
+    "id": 503,
+    "raw_text": "(Used In: Team sport, Olympic)"
+  },
+  {
+    "id": 504,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 505,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 506,
+    "raw_text": "| gk | Goalkeeper | Full protective gear; stops shots | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 507,
+    "raw_text": "| df | Defender | Back line, tackles | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 508,
+    "raw_text": "| mf | Midfielder | Link-up, transition | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 509,
+    "raw_text": "| fw | Forward | Attacker, scorer | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 510,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, umpire | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 511,
+    "raw_text": "--"
+  },
+  {
+    "id": 512,
+    "raw_text": "(Used In: Team sport, winter Olympic)"
+  },
+  {
+    "id": 513,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 514,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 515,
+    "raw_text": "| g | Goaltender | Stops pucks | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 516,
+    "raw_text": "| ld | Left Defense | Defensive left side | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 517,
+    "raw_text": "| rd | Right Defense | Defensive right side | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 518,
+    "raw_text": "| lw | Left Wing | Offensive left side | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 519,
+    "raw_text": "| c | Center | Faceoffs, two-way | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 520,
+    "raw_text": "| rw | Right Wing | Offensive right side | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 521,
+    "raw_text": "| en | Enforcer | Physical play, fights | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 522,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 523,
+    "raw_text": "--"
+  },
+  {
+    "id": 524,
+    "raw_text": "(Used In: Team sport, quad/inline)"
+  },
+  {
+    "id": 525,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 526,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 527,
+    "raw_text": "| gk | Goalkeeper | Kneeling or standing | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 528,
+    "raw_text": "| df | Defender | Back line | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 529,
+    "raw_text": "| fw | Forward | Attacker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 530,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 531,
+    "raw_text": "--"
+  },
+  {
+    "id": 532,
+    "raw_text": "(Used In: Animal sport, team)"
+  },
+  {
+    "id": 533,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 534,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 535,
+    "raw_text": "| 1 | Number 1 | Primary attacker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 536,
+    "raw_text": "| 2 | Number 2 | Offensive support | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 537,
+    "raw_text": "| 3 | Number 3 | Playmaker, pivot | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 538,
+    "raw_text": "| 4 | Number 4 | Defender | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 539,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, umpire | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 540,
+    "raw_text": "--"
+  },
+  {
+    "id": 541,
+    "raw_text": "(Used In: Animal sport, racing)"
+  },
+  {
+    "id": 542,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 543,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 544,
+    "raw_text": "| jockey | Jockey | Rides horse | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 545,
+    "raw_text": "| trainer | Trainer | Prepares horse | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 546,
+    "raw_text": "| owner | Owner | Enters horse | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 547,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Groom | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 548,
+    "raw_text": "--"
+  },
+  {
+    "id": 549,
+    "raw_text": "(Used In: Combat, Olympic)"
+  },
+  {
+    "id": 550,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 551,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 552,
+    "raw_text": "| tori | Tori | Executes technique | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 553,
+    "raw_text": "| uke | Uke | Receiver of technique | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 554,
+    "raw_text": "| competitor | Competitor | Match player | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 555,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 556,
+    "raw_text": "--"
+  },
+  {
+    "id": 557,
+    "raw_text": "(Used In: Botswana regional/cultural sport)"
+  },
+  {
+    "id": 558,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 559,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 560,
+    "raw_text": "| thrower | Thrower | Aims skey at peg | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 561,
+    "raw_text": "| captain | Team Captain | Calls tactics | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 562,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, scorer | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 563,
+    "raw_text": "--"
+  },
+  {
+    "id": 564,
+    "raw_text": "(Used In: Combat, Olympic)"
+  },
+  {
+    "id": 565,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 566,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 567,
+    "raw_text": "| kumite | Kumite Competitor | Sparring | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 568,
+    "raw_text": "| kata | Kata Competitor | Forms demonstration | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 569,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, judge | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 570,
+    "raw_text": "--"
+  },
+  {
+    "id": 571,
+    "raw_text": "(Used In: Team sport, stick-based)"
+  },
+  {
+    "id": 572,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 573,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 574,
+    "raw_text": "| a | Attack | Scores goals | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 575,
+    "raw_text": "| m | Midfield | Transition, ground balls | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 576,
+    "raw_text": "| d | Defense | Prevents goals | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 577,
+    "raw_text": "| g | Goalie | Protects net | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 578,
+    "raw_text": "| foso | Face-Off Specialist | Wins possession at face-off | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 579,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 580,
+    "raw_text": "--"
+  },
+  {
+    "id": 581,
+    "raw_text": "(Used In: Precision, green)"
+  },
+  {
+    "id": 582,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 583,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 584,
+    "raw_text": "| lead | Lead | Delivers first bowls | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 585,
+    "raw_text": "| second | Second | Follows lead | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 586,
+    "raw_text": "| third | Third | Vice-skip, advises | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 587,
+    "raw_text": "| skip | Skip | Team captain, delivers last bowls | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 588,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 589,
+    "raw_text": "--"
+  },
+  {
+    "id": 590,
+    "raw_text": "(Used In: Winter sport, sledding)"
+  },
+  {
+    "id": 591,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 592,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 593,
+    "raw_text": "| singles | Singles Luger | One-person sled | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 594,
+    "raw_text": "| doubles | Doubles Luger | Two-person sled | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 595,
+    "raw_text": "| team_relay | Team Relay Member | Mixed-gender team event | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 596,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, technician | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 597,
+    "raw_text": "--"
+  },
+  {
+    "id": 598,
+    "raw_text": "(Used In: Athletics, mass participation)"
+  },
+  {
+    "id": 599,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 600,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 601,
+    "raw_text": "| elite | Elite Runner | Professional, top tier | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 602,
+    "raw_text": "| age_group | Age-Group Runner | Competitive in category | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 603,
+    "raw_text": "| pacer | Pacer | Sets even pace for others | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 604,
+    "raw_text": "| wheelchair | Wheelchair Athlete | Para division | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 605,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, guide runner | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 606,
+    "raw_text": "--"
+  },
+  {
+    "id": 607,
+    "raw_text": "(Used In: Combat sport, cage/ring)"
+  },
+  {
+    "id": 608,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 609,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 610,
+    "raw_text": "| striker | Striker | Stand-up fighter | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 611,
+    "raw_text": "| grappler | Grappler | Wrestling/BJJ specialist | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 612,
+    "raw_text": "| all_rounder | All-Rounder | Balanced skills | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 613,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, cornerman | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 614,
+    "raw_text": "--"
+  },
+  {
+    "id": 615,
+    "raw_text": "(Used In: Multi-sport, Olympic)"
+  },
+  {
+    "id": 616,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 617,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 618,
+    "raw_text": "| pentathlete | Pentathlete | Competes in all five disciplines | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 619,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, horse handler | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 620,
+    "raw_text": "--"
+  },
+  {
+    "id": 621,
+    "raw_text": "(Used In: Motor sport)"
+  },
+  {
+    "id": 622,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 623,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 624,
+    "raw_text": "| rider | Rider | Controls motorcycle | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 625,
+    "raw_text": "| mechanic | Mechanic | Maintains bike | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 626,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Team manager | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 627,
+    "raw_text": "--"
+  },
+  {
+    "id": 628,
+    "raw_text": "(Used In: Cycling discipline) *See Cycling (Road/Mountain Bike)*"
+  },
+  {
+    "id": 629,
+    "raw_text": "--"
+  },
+  {
+    "id": 630,
+    "raw_text": "(Used In: Combat sport, Thai boxing)"
+  },
+  {
+    "id": 631,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 632,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 633,
+    "raw_text": "| muay_femur | Muay Femur | Technical, intelligent fighter | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 634,
+    "raw_text": "| muay_mat | Muay Mat | Aggressive, pressure fighter | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 635,
+    "raw_text": "| muay_khao | Muay Khao | Clinch, knee specialist | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 636,
+    "raw_text": "| muay_dtae | Muay Dtae | Kicking specialist | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 637,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, corner | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 638,
+    "raw_text": "--"
+  },
+  {
+    "id": 639,
+    "raw_text": "(Used In: Primary talent pipeline, women's team sport)"
+  },
+  {
+    "id": 640,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 641,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 642,
+    "raw_text": "| gs | Goal Shooter | Scores in goal circle | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 643,
+    "raw_text": "| ga | Goal Attack | Feeds shooter, scores | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 644,
+    "raw_text": "| wa | Wing Attack | Feeds circle, center passes | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 645,
+    "raw_text": "| c | Centre | Links attack/defense, restart | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 646,
+    "raw_text": "| wd | Wing Defence | Marks WA, intercepts | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 647,
+    "raw_text": "| gd | Goal Defence | Marks GA, defends circle | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 648,
+    "raw_text": "| gk | Goal Keeper | Marks GS, blocks shots | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 649,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, umpire | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 650,
+    "raw_text": "--"
+  },
+  {
+    "id": 651,
+    "raw_text": "(Used In: Obstacle/performance, TV competitions)"
+  },
+  {
+    "id": 652,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 653,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 654,
+    "raw_text": "| speed | Speed Specialist | Fast obstacle clearance | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 655,
+    "raw_text": "| strength | Strength Specialist | Upper body dominant | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 656,
+    "raw_text": "| grip | Grip Specialist | Hanging, laches | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 657,
+    "raw_text": "| balance | Balance Specialist | Precision obstacles | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 658,
+    "raw_text": "| all_round | All-Round | Competent in all areas | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 659,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, course builder | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 660,
+    "raw_text": "--"
+  },
+  {
+    "id": 661,
+    "raw_text": "(Used In: Winter sport, ski jumping + cross-country)"
+  },
+  {
+    "id": 662,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 663,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 664,
+    "raw_text": "| jumper | Jump Specialist | Strong ski jumping phase | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 665,
+    "raw_text": "| skier | Cross-Country Specialist | Fast skier | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 666,
+    "raw_text": "| all_round | All-Round | Balanced | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 667,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 668,
+    "raw_text": "--"
+  },
+  {
+    "id": 669,
+    "raw_text": "(Used In: Performance, endurance)"
+  },
+  {
+    "id": 670,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 671,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 672,
+    "raw_text": "| elite | Elite OCR | Competitive racer | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 673,
+    "raw_text": "| open | Open Racer | Mass participation | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 674,
+    "raw_text": "| team | Team Member | Group competition | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 675,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 676,
+    "raw_text": "--"
+  },
+  {
+    "id": 677,
+    "raw_text": "(Used In: Aquatics, non-pool)"
+  },
+  {
+    "id": 678,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 679,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 680,
+    "raw_text": "| swimmer | Swimmer | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 681,
+    "raw_text": "| escort | Escort Pilot | Kayak/boat support | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 682,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, safety | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 683,
+    "raw_text": "--"
+  },
+  {
+    "id": 684,
+    "raw_text": "(Used In: Racquet sport, doubles)"
+  },
+  {
+    "id": 685,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 686,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 687,
+    "raw_text": "| drive | Right-side Player | Often more consistent | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 688,
+    "raw_text": "| revés | Left-side Player | Often stronger hitter | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 689,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 690,
+    "raw_text": "--"
+  },
+  {
+    "id": 691,
+    "raw_text": "(Used In: Air sport, skydiving)"
+  },
+  {
+    "id": 692,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 693,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 694,
+    "raw_text": "| solo | Solo Jumper | Individual | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 695,
+    "raw_text": "| formation | Formation Skydiver | Relative work in groups | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 696,
+    "raw_text": "| freefly | Freeflyer | Head-down, vertical flight | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 697,
+    "raw_text": "| canopy | Canopy Pilot | Steers parachute for accuracy | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 698,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Instructor, videographer | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 699,
+    "raw_text": "--"
+  },
+  {
+    "id": 700,
+    "raw_text": "(Used In: Safety/inclusion, umbrella category)"
+  },
+  {
+    "id": 701,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 702,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 703,
+    "raw_text": "| athlete | Athlete | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 704,
+    "raw_text": "| guide | Guide | Assists visually impaired | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 705,
+    "raw_text": "| handler | Handler | Assists physical impairment | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 706,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, classifier | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 707,
+    "raw_text": "--"
+  },
+  {
+    "id": 708,
+    "raw_text": "(Used In: Racquet sport, paddle)"
+  },
+  {
+    "id": 709,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 710,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 711,
+    "raw_text": "| singles | Singles Player | 1v1 | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 712,
+    "raw_text": "| doubles | Doubles Player | 2v2 | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 713,
+    "raw_text": "| mixed | Mixed Doubles | Gender-combined | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 714,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 715,
+    "raw_text": "--"
+  },
+  {
+    "id": 716,
+    "raw_text": "(Used In: Unique sport variants)"
+  },
+  {
+    "id": 717,
+    "raw_text": "**Bicycle Polo:**"
+  },
+  {
+    "id": 718,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 719,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 720,
+    "raw_text": "| attacker | Attacker | Scores goals | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 721,
+    "raw_text": "| defender | Defender | Protects goal | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 722,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 723,
+    "raw_text": "**Elephant Polo:**"
+  },
+  {
+    "id": 724,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 725,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 726,
+    "raw_text": "| mahout | Mahout | Drives elephant | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 727,
+    "raw_text": "| hitter | Hitter | Strikes ball | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 728,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, umpire | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 729,
+    "raw_text": "--"
+  },
+  {
+    "id": 730,
+    "raw_text": "(Used In: Cue sport)"
+  },
+  {
+    "id": 731,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 732,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 733,
+    "raw_text": "| player | Player | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 734,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 735,
+    "raw_text": "--"
+  },
+  {
+    "id": 736,
+    "raw_text": "(Used In: Racquet sport, indoor)"
+  },
+  {
+    "id": 737,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 738,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 739,
+    "raw_text": "| singles | Singles Player | 1v1 | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 740,
+    "raw_text": "| doubles | Doubles Player | 2v2 | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 741,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 742,
+    "raw_text": "--"
+  },
+  {
+    "id": 743,
+    "raw_text": "(Used In: Gymnastics/Olympic)"
+  },
+  {
+    "id": 744,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 745,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 746,
+    "raw_text": "| hoop | Hoop Specialist | Apparatus: hoop | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 747,
+    "raw_text": "| ball | Ball Specialist | Apparatus: ball | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 748,
+    "raw_text": "| clubs | Clubs Specialist | Apparatus: clubs | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 749,
+    "raw_text": "| ribbon | Ribbon Specialist | Apparatus: ribbon | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 750,
+    "raw_text": "| individual | Individual All-Around | Competes all apparatus | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 751,
+    "raw_text": "| group | Group Gymnast | Team routine | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 752,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, choreographer | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 753,
+    "raw_text": "--"
+  },
+  {
+    "id": 754,
+    "raw_text": "(Used In: Aquatics, Olympic)"
+  },
+  {
+    "id": 755,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 756,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 757,
+    "raw_text": "| sweep | Sweep Rower | One oar | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 758,
+    "raw_text": "| scull | Sculler | Two oars | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 759,
+    "raw_text": "| coxswain | Coxswain | Steers, motivates (if applicable) | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 760,
+    "raw_text": "| bow | Bow Seat | Sets rhythm | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 761,
+    "raw_text": "| stroke | Stroke Seat | Sets pace | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 762,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 763,
+    "raw_text": "--"
+  },
+  {
+    "id": 764,
+    "raw_text": "(Used In: Team sport, 13-a-side)"
+  },
+  {
+    "id": 765,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 766,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 767,
+    "raw_text": "| fb | Fullback | Last line, counter-attack | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 768,
+    "raw_text": "| wg | Wing | Finisher, speed | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 769,
+    "raw_text": "| ce | Centre | Midfield attacker/defender | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 770,
+    "raw_text": "| fe | Five-Eighth | Playmaker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 771,
+    "raw_text": "| hb | Halfback | Scrum-half, primary kicker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 772,
+    "raw_text": "| pr | Prop | Front row, powerful runner | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 773,
+    "raw_text": "| hk | Hooker | Dummy-half, distributor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 774,
+    "raw_text": "| sr | Second Row | Ball-carrying forward | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 775,
+    "raw_text": "| lk | Lock | Loose forward, workhorse | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 776,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 777,
+    "raw_text": "--"
+  },
+  {
+    "id": 778,
+    "raw_text": "(Used In: Team sport, Olympic, 7-a-side)"
+  },
+  {
+    "id": 779,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 780,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 781,
+    "raw_text": "| speedster | Speedster | Explosive pace, wide attack | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 782,
+    "raw_text": "| playmaker | Playmaker | Distributor, decision maker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 783,
+    "raw_text": "| power | Power Forward | Strong carrier, tackler | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 784,
+    "raw_text": "| defensive | Defensive Specialist | Key tackler, breakdown | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 785,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 786,
+    "raw_text": "--"
+  },
+  {
+    "id": 787,
+    "raw_text": "(Used In: Team sport, 15-a-side)"
+  },
+  {
+    "id": 788,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 789,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 790,
+    "raw_text": "| 1 | Loosehead Prop | Front row, scrum stability | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 791,
+    "raw_text": "| 2 | Hooker | Throw-in at lineout | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 792,
+    "raw_text": "| 3 | Tighthead Prop | Front row, scrum power | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 793,
+    "raw_text": "| 4 | Lock (Second Row) | Lineout jumper, engine room | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 794,
+    "raw_text": "| 5 | Lock (Second Row) | Lineout jumper, engine room | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 795,
+    "raw_text": "| 6 | Blindside Flanker | Physical, tackling | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 796,
+    "raw_text": "| 7 | Openside Flanker | Poacher, breakdown specialist | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 797,
+    "raw_text": "| 8 | Number 8 | Ball carrier, base of scrum | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 798,
+    "raw_text": "| 9 | Scrum-Half | Distributor from base | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 799,
+    "raw_text": "| 10 | Fly-Half | Playmaker, kicker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 800,
+    "raw_text": "| 11 | Left Wing | Finisher | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 801,
+    "raw_text": "| 12 | Inside Centre | Powerful runner, distributor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 802,
+    "raw_text": "| 13 | Outside Centre | Speed, evasion | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 803,
+    "raw_text": "| 14 | Right Wing | Finisher | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 804,
+    "raw_text": "| 15 | Fullback | Last line, counter-attack | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 805,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 806,
+    "raw_text": "--"
+  },
+  {
+    "id": 807,
+    "raw_text": "(Used In: Aquatics, Olympic)"
+  },
+  {
+    "id": 808,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 809,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 810,
+    "raw_text": "| skipper | Skipper | Helm, in charge | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 811,
+    "raw_text": "| crew | Crew | Trim sails, balance | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 812,
+    "raw_text": "| tactician | Tactician | Strategy, race decisions | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 813,
+    "raw_text": "| bowman | Bowman | Foredeck, sail changes | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 814,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 815,
+    "raw_text": "--"
+  },
+  {
+    "id": 816,
+    "raw_text": "(Used In: Combat sport, wrestling)"
+  },
+  {
+    "id": 817,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 818,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 819,
+    "raw_text": "| sport_sambo | Sport Sambo | Similar to judo/wrestling | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 820,
+    "raw_text": "| combat_sambo | Combat Sambo | Striking allowed | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 821,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 822,
+    "raw_text": "--"
+  },
+  {
+    "id": 823,
+    "raw_text": "(Used In: Precision, Olympic)"
+  },
+  {
+    "id": 824,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 825,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 826,
+    "raw_text": "| rifle | Rifle Shooter | Prone/standing/kneeling | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 827,
+    "raw_text": "| pistol | Pistol Shooter | 10m/25m/50m | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 828,
+    "raw_text": "| shotgun | Shotgun Shooter | Trap, skeet, double trap | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 829,
+    "raw_text": "| running_target | Running Target | Moving target | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 830,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 831,
+    "raw_text": "--"
+  },
+  {
+    "id": 832,
+    "raw_text": "(Used In: Winter sport, head-first sled)"
+  },
+  {
+    "id": 833,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 834,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 835,
+    "raw_text": "| slider | Slider | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 836,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 837,
+    "raw_text": "--"
+  },
+  {
+    "id": 838,
+    "raw_text": "(Used In: Winter sport, aerial)"
+  },
+  {
+    "id": 839,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 840,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 841,
+    "raw_text": "| normal_hill | Normal Hill Specialist | HS 90-100 | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 842,
+    "raw_text": "| large_hill | Large Hill Specialist | HS 120-140 | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 843,
+    "raw_text": "| flying | Ski Flying Specialist | HS > 180 | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 844,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 845,
+    "raw_text": "--"
+  },
+  {
+    "id": 846,
+    "raw_text": "(Used In: Winter sport, climbing + skiing)"
+  },
+  {
+    "id": 847,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 848,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 849,
+    "raw_text": "| climber | Climber | Ascents specialist | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 850,
+    "raw_text": "| skier | Skier | Descent specialist | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 851,
+    "raw_text": "| all_round | All-Round | Balanced | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 852,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 853,
+    "raw_text": "--"
+  },
+  {
+    "id": 854,
+    "raw_text": "(Used In: Winter sport, Olympic)"
+  },
+  {
+    "id": 855,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 856,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 857,
+    "raw_text": "| alpine | Alpine Snowboarder | Carving, GS | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 858,
+    "raw_text": "| freestyle | Freestyle Snowboarder | Park, pipe, slopestyle | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 859,
+    "raw_text": "| boardercross | Boardercross | Head-to-head racing | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 860,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 861,
+    "raw_text": "--"
+  },
+  {
+    "id": 862,
+    "raw_text": "(Used In: Primary talent pipeline, global team sport)"
+  },
+  {
+    "id": 863,
+    "raw_text": "*Refer to the detailed example in the prompt – this dropdown is mandatory for soccer profiles.*"
+  },
+  {
+    "id": 864,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 865,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 866,
+    "raw_text": "| gk | Goalkeeper | Last line of defense; unique rules apply | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 867,
+    "raw_text": "| lb | Left Back | Wide defender on the left; supports wing play | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 868,
+    "raw_text": "| rb | Right Back | Wide defender on the right; supports wing play | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 869,
+    "raw_text": "| cb | Centre Back | Core of the defense; responsible for marking and clearances | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 870,
+    "raw_text": "| dm | Defensive Midfield | The shield; protects the back four and disrupts play | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 871,
+    "raw_text": "| cm | Central Midfield | The engine room; links defense to attack | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 872,
+    "raw_text": "| am | Attacking Midfield | The \"Number 10\"; creative playmaker behind the strikers | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 873,
+    "raw_text": "| lw | Left Wing | Attacker on the left flank; focuses on crosses and cutting in | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 874,
+    "raw_text": "| rw | Right Wing | Attacker on the right flank; focuses on speed and crosses | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 875,
+    "raw_text": "| cf | Centre Forward | Target man; plays high up, often with back to goal | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 876,
+    "raw_text": "| st | Striker | Primary goal scorer; focused on finishing in the box | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 877,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Triggers text box for hybrid/niche roles | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 878,
+    "raw_text": "--"
+  },
+  {
+    "id": 879,
+    "raw_text": "(Used In: Team sport, variant of baseball)"
+  },
+  {
+    "id": 880,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 881,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 882,
+    "raw_text": "| p | Pitcher | Underhand windmill | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 883,
+    "raw_text": "| c | Catcher | Squats, receives | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 884,
+    "raw_text": "| 1b | First Base | Infield | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 885,
+    "raw_text": "| 2b | Second Base | Infield | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 886,
+    "raw_text": "| 3b | Third Base | Infield | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 887,
+    "raw_text": "| ss | Shortstop | Infield captain | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 888,
+    "raw_text": "| lf | Left Field | Outfield | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 889,
+    "raw_text": "| cf | Center Field | Outfield | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 890,
+    "raw_text": "| rf | Right Field | Outfield | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 891,
+    "raw_text": "| dp | Designated Player | Hits for a fielder | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 892,
+    "raw_text": "| flex | Flex | Plays defense for DP | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 893,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 894,
+    "raw_text": "--"
+  },
+  {
+    "id": 895,
+    "raw_text": "(Used In: Winter sport, Olympic)"
+  },
+  {
+    "id": 896,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 897,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 898,
+    "raw_text": "| long_track | Long Track | 400m oval, timed | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 899,
+    "raw_text": "| short_track | Short Track | 111m oval, pack racing | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 900,
+    "raw_text": "| marathon | Marathon Skater | Long distance outdoor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 901,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 902,
+    "raw_text": "--"
+  },
+  {
+    "id": 903,
+    "raw_text": "(Used In: Racquet sport, indoor)"
+  },
+  {
+    "id": 904,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 905,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 906,
+    "raw_text": "| singles | Singles Player | 1v1 | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 907,
+    "raw_text": "| doubles | Doubles Player | 2v2 (rare) | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 908,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 909,
+    "raw_text": "--"
+  },
+  {
+    "id": 910,
+    "raw_text": "(Used In: Combat, cultural)"
+  },
+  {
+    "id": 911,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 912,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 913,
+    "raw_text": "| rikishi | Rikishi | Wrestler | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 914,
+    "raw_text": "| yokozuna | Yokozuna | Grand champion rank | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 915,
+    "raw_text": "| ozeki | Ozeki | Champion rank | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 916,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Gyoji (referee), coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 917,
+    "raw_text": "--"
+  },
+  {
+    "id": 918,
+    "raw_text": "(Used In: Aquatics, Olympic)"
+  },
+  {
+    "id": 919,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 920,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 921,
+    "raw_text": "| freestyle | Freestyle Specialist | 50m-1500m | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 922,
+    "raw_text": "| backstroke | Backstroke Specialist | 50m-200m | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 923,
+    "raw_text": "| breaststroke | Breaststroke Specialist | 50m-200m | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 924,
+    "raw_text": "| butterfly | Butterfly Specialist | 50m-200m | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 925,
+    "raw_text": "| im | Individual Medley | All four strokes | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 926,
+    "raw_text": "| relay | Relay Swimmer | Team events | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 927,
+    "raw_text": "| open_water | Open Water Swimmer | Non-pool | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 928,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 929,
+    "raw_text": "--"
+  },
+  {
+    "id": 930,
+    "raw_text": "(Used In: Racquet, Olympic)"
+  },
+  {
+    "id": 931,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 932,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 933,
+    "raw_text": "| shakehand | Shakehand Grip | Common grip | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 934,
+    "raw_text": "| penhold | Penhold Grip | Traditional Asian grip | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 935,
+    "raw_text": "| chopper | Chopper | Defensive, heavy backspin | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 936,
+    "raw_text": "| looper | Looper | Heavy topspin attacker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 937,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 938,
+    "raw_text": "--"
+  },
+  {
+    "id": 939,
+    "raw_text": "(Used In: Combat, Olympic)"
+  },
+  {
+    "id": 940,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 941,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 942,
+    "raw_text": "| kyorugi | Kyorugi (Sparring) | Olympic-style competition | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 943,
+    "raw_text": "| poomsae | Poomsae (Forms) | Patterns, technique | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 944,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 945,
+    "raw_text": "--"
+  },
+  {
+    "id": 946,
+    "raw_text": "(Used In: Unique football-based sport)"
+  },
+  {
+    "id": 947,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 948,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 949,
+    "raw_text": "| singles | Singles Player | 1v1 | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 950,
+    "raw_text": "| doubles | Doubles Player | 2v2 | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 951,
+    "raw_text": "| mixed | Mixed Doubles | 1 man + 1 woman | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 952,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 953,
+    "raw_text": "--"
+  },
+  {
+    "id": 954,
+    "raw_text": "(Used In: Racquet, Olympic)"
+  },
+  {
+    "id": 955,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 956,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 957,
+    "raw_text": "| singles | Singles Player | 1v1 | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 958,
+    "raw_text": "| doubles | Doubles Player | 2v2 | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 959,
+    "raw_text": "| mixed | Mixed Doubles | Gender-combined | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 960,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 961,
+    "raw_text": "--"
+  },
+  {
+    "id": 962,
+    "raw_text": "(Used In: Gymnastics, Olympic)"
+  },
+  {
+    "id": 963,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 964,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 965,
+    "raw_text": "| individual | Individual Trampolinist | Solo routine | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 966,
+    "raw_text": "| synchronized | Synchronized Trampolinist | Paired, same routine | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 967,
+    "raw_text": "| double_mini | Double Mini Trampolinist | Two landing surfaces | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 968,
+    "raw_text": "| tumbling | Tumbling | Floor passes on track | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 969,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 970,
+    "raw_text": "--"
+  },
+  {
+    "id": 971,
+    "raw_text": "(Used In: Multi-sport, Olympic)"
+  },
+  {
+    "id": 972,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 973,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 974,
+    "raw_text": "| swimmer | Swim Specialist | Strong in water | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 975,
+    "raw_text": "| cyclist | Bike Specialist | Powerful on two wheels | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 976,
+    "raw_text": "| runner | Run Specialist | Fast off the bike | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 977,
+    "raw_text": "| all_round | All-Round | Balanced | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 978,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 979,
+    "raw_text": "--"
+  },
+  {
+    "id": 980,
+    "raw_text": "(Used In: Team sport, disc)"
+  },
+  {
+    "id": 981,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 982,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 983,
+    "raw_text": "| handler | Handler | Primary thrower, playmaker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 984,
+    "raw_text": "| cutter | Cutter | Runs deep, catches goals | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 985,
+    "raw_text": "| defender | Defender | Marks opponent, forces turnovers | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 986,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, spirit captain | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 987,
+    "raw_text": "--"
+  },
+  {
+    "id": 988,
+    "raw_text": "(Used In: Team sport, Olympic)"
+  },
+  {
+    "id": 989,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 990,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 991,
+    "raw_text": "| s | Setter | Orchestrates offense | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 992,
+    "raw_text": "| oh | Outside Hitter | Left side attacker, primary | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 993,
+    "raw_text": "| mb | Middle Blocker | Net defense, quick attacks | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 994,
+    "raw_text": "| op | Opposite Hitter | Right side attacker, backup setter | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 995,
+    "raw_text": "| l | Libero | Defensive specialist, different color jersey | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 996,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 997,
+    "raw_text": "--"
+  },
+  {
+    "id": 998,
+    "raw_text": "(Used In: Aquatics, Olympic)"
+  },
+  {
+    "id": 999,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 1000,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 1001,
+    "raw_text": "| gk | Goalkeeper | Stands in goal, blocks shots | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1002,
+    "raw_text": "| cf | Center Forward (Hole Set) | Offensive pivot near goal | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1003,
+    "raw_text": "| cd | Center Defender (Hole D) | Guards center forward | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1004,
+    "raw_text": "| wg | Wing | Outside shooter, drives | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1005,
+    "raw_text": "| pt | Point | Point guard, sets offense | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1006,
+    "raw_text": "| fld | Flat / Driver | Mid-range attacker | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1007,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 1008,
+    "raw_text": "--"
+  },
+  {
+    "id": 1009,
+    "raw_text": "(Used In: Power, Olympic)"
+  },
+  {
+    "id": 1010,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 1011,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 1012,
+    "raw_text": "| snatch | Snatch Specialist | One continuous lift overhead | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1013,
+    "raw_text": "| cj | Clean & Jerk Specialist | Two-part lift | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1014,
+    "raw_text": "| all_round | All-Round | Competes in both | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1015,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 1016,
+    "raw_text": "--"
+  },
+  {
+    "id": 1017,
+    "raw_text": "(Used In: Safety/inclusion, parasport)"
+  },
+  {
+    "id": 1018,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 1019,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 1020,
+    "raw_text": "| wheelchair_basketball | Wheelchair Basketball | Classification specific | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1021,
+    "raw_text": "| wheelchair_rugby | Wheelchair Rugby (Quad Rugby) | High-contact | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1022,
+    "raw_text": "| wheelchair_tennis | Wheelchair Tennis | Two-bounce rule | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1023,
+    "raw_text": "| wheelchair_racing | Wheelchair Racing | Track, road | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1024,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, classifier | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 1025,
+    "raw_text": "--"
+  },
+  {
+    "id": 1026,
+    "raw_text": "(Used In: Unique niche sport)"
+  },
+  {
+    "id": 1027,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 1028,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 1029,
+    "raw_text": "| carrier | Carrier | Carries the partner | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1030,
+    "raw_text": "| carried | Carried | Is carried | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1031,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, organizer | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 1032,
+    "raw_text": "--"
+  },
+  {
+    "id": 1033,
+    "raw_text": "(Used In: Performance/Agility)"
+  },
+  {
+    "id": 1034,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 1035,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 1036,
+    "raw_text": "| evader | Evader | Avoids being tagged | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1037,
+    "raw_text": "| chaser | Chaser | Tries to tag evader | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1038,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, referee | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 1039,
+    "raw_text": "--"
+  },
+  {
+    "id": 1040,
+    "raw_text": "(Used In: Combat, Olympic)"
+  },
+  {
+    "id": 1041,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 1042,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 1043,
+    "raw_text": "| wrestler | Wrestler | Competitor | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1044,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 1045,
+    "raw_text": "--"
+  },
+  {
+    "id": 1046,
+    "raw_text": "(Used In: Combat/Performance)"
+  },
+  {
+    "id": 1047,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 1048,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 1049,
+    "raw_text": "| taolu | Taolu (Forms) | Choreographed routines | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1050,
+    "raw_text": "| sanda | Sanda (Sanshou) | Full-contact fighting | `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1051,
+    "raw_text": "| other | 🌐 Other (Please Specify) | Coach, judge | `[TEXT INPUT]` |"
+  },
+  {
+    "id": 1052,
+    "raw_text": "--"
+  },
+  {
+    "id": 1053,
+    "raw_text": "(Used In: Any sport not listed above)"
+  },
+  {
+    "id": 1054,
+    "raw_text": "| Value | Display (Dropdown Option) | Typical Role Description | Weight % (Input) |"
+  },
+  {
+    "id": 1055,
+    "raw_text": "|-------|---------------------------|--------------------------|------------------|"
+  },
+  {
+    "id": 1056,
+    "raw_text": "| custom | — | **Manual Input Required** – User defines sport & role | `[TEXT INPUT]` + `[SLIDER 0-100]` |"
+  },
+  {
+    "id": 1057,
+    "raw_text": "--"
+  },
+  {
+    "id": 1058,
+    "raw_text": "**End of Document – All 126 Sports & Activities Covered**"
+  },
+  {
+    "id": 1059,
+    "raw_text": "*Each dropdown includes a `Weight % (Input)` slider for performance/scout weighting.*"
+  }
+]

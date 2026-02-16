@@ -1,0 +1,56 @@
+{
+  "org_id": "ASSOC-BW-BRU-001",
+  "org_type": "National Association",
+  "org_name": "Botswana Rugby Union",
+  "sport": "rugby",
+  "founded": 1990,
+  "location": {
+    "headquarters": "UB Rugby Fields",
+    "street_address": "University of Botswana",
+    "area": "Gaborone West",
+    "city": "Gaborone",
+    "country": "Botswana",
+    "gps": "-24.6620, 25.9195"
+  },
+  "contact": {
+    "phone": "+2673552456",
+    "whatsapp": "+2673552456",
+    "email": "info@bru.co.bw",
+    "website": "www.bru.co.bw",
+    "facebook": "BotswanaRugby",
+    "twitter": "@BotswanaRugby"
+  },
+  "staff": [
+    {
+      "role": "President",
+      "name": "Bakang Malela",
+      "age": 49,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "president@bru.co.bw",
+      "phone": "+26771234051"
+    },
+    {
+      "role": "Secretary General",
+      "name": "Tsholofelo Mosinyi",
+      "age": 36,
+      "gender": "Female",
+      "nationality": "Motswana",
+      "email": "sg@bru.co.bw",
+      "phone": "+26772345052"
+    },
+    {
+      "role": "Technical Director",
+      "name": "Lemogang Moepedi",
+      "age": 42,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "technical@bru.co.bw",
+      "phone": "+26773456053"
+    }
+  ],
+  "affiliated_clubs": 12,
+  "competitions_managed": ["National League", "Sevens Series", "Schools Rugby"],
+  "sponsors": ["First Capital Bank", "SAB"],
+  "notes": "Member of Rugby Africa. Focus on 15s and 7s."
+}

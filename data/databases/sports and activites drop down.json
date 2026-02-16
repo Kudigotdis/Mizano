@@ -1,0 +1,482 @@
+[
+  {
+    "id": 1,
+    "raw_text": "SPORTS AND ACTIVITES DROP DOWN"
+  },
+  {
+    "id": 2,
+    "raw_text": "Sport & Activity Category"
+  },
+  {
+    "id": 3,
+    "raw_text": "(Used In: Player Interests, Event Creation, Search Filters, National Talent Pipeline, Club Profiles)"
+  },
+  {
+    "id": 4,
+    "raw_text": "Architect’s Note: This is the primary filter for the entire platform. In the UI, this appears as a searchable dropdown. If a niche sport is missing, the \"Other\" option triggers a manual Input field to capture new community trends."
+  },
+  {
+    "id": 5,
+    "raw_text": "Value,Display (Dropdown Option),Category/Notes"
+  },
+  {
+    "id": 6,
+    "raw_text": "acrobatic_arts,Acrobatic Arts,Gymnastics/Performance"
+  },
+  {
+    "id": 7,
+    "raw_text": "aerobatics,Aerobatics,Aviation/Technical"
+  },
+  {
+    "id": 8,
+    "raw_text": "air_sports,Air Sports,General Aviation"
+  },
+  {
+    "id": 9,
+    "raw_text": "american_football,American Football,Team Sport"
+  },
+  {
+    "id": 10,
+    "raw_text": "archery,Archery,Precision/Olympic"
+  },
+  {
+    "id": 11,
+    "raw_text": "artistic_gymnastics,Artistic Gymnastics,Gymnastics/Olympic"
+  },
+  {
+    "id": 12,
+    "raw_text": "artistic_swimming,Artistic Swimming,Aquatics/Olympic"
+  },
+  {
+    "id": 13,
+    "raw_text": "athletics,Athletics (Track & Field),Primary Talent Pipeline"
+  },
+  {
+    "id": 14,
+    "raw_text": "aus_rules_football,Australian Rules Football,Team Sport"
+  },
+  {
+    "id": 15,
+    "raw_text": "badminton,Badminton,Racquet/Olympic"
+  },
+  {
+    "id": 16,
+    "raw_text": "ballooning,Ballooning,Aviation/Lifestyle"
+  },
+  {
+    "id": 17,
+    "raw_text": "baseball,Baseball,Team Sport"
+  },
+  {
+    "id": 18,
+    "raw_text": "basketball,Basketball,Primary Talent Pipeline"
+  },
+  {
+    "id": 19,
+    "raw_text": "basketball_3x3,Basketball 3x3,Team Sport/Olympic"
+  },
+  {
+    "id": 20,
+    "raw_text": "beach_handball,Beach Handball,Team Sport"
+  },
+  {
+    "id": 21,
+    "raw_text": "beach_soccer,Beach Soccer,Team Sport"
+  },
+  {
+    "id": 22,
+    "raw_text": "beach_volleyball,Beach Volleyball,Team Sport/Olympic"
+  },
+  {
+    "id": 23,
+    "raw_text": "beach_wrestling,Beach Wrestling,Combat/Beach"
+  },
+  {
+    "id": 24,
+    "raw_text": "biathlon,Biathlon,Winter Sport/Olympic"
+  },
+  {
+    "id": 25,
+    "raw_text": "billiards,Billiards,Cue Sport"
+  },
+  {
+    "id": 26,
+    "raw_text": "bmx_cycling,BMX (Cycling),Cycling/Olympic"
+  },
+  {
+    "id": 27,
+    "raw_text": "bobsleigh,Bobsleigh,Winter Sport/Olympic"
+  },
+  {
+    "id": 28,
+    "raw_text": "boccia,Boccia (Parasport),Safety/Inclusion"
+  },
+  {
+    "id": 29,
+    "raw_text": "bowling,Bowling (Ten-pin/Nine-pin),Precision"
+  },
+  {
+    "id": 30,
+    "raw_text": "boxing,Boxing (Amateur/Pro),Combat/Olympic"
+  },
+  {
+    "id": 31,
+    "raw_text": "breaking,Breaking (Dance Sport),Performance/Olympic"
+  },
+  {
+    "id": 32,
+    "raw_text": "bridge,Bridge (Mind Sport),Mental Performance"
+  },
+  {
+    "id": 33,
+    "raw_text": "canoeing,Canoeing (Coastal/Slalom/Sprint),Aquatics/Olympic"
+  },
+  {
+    "id": 34,
+    "raw_text": "chess,Chess,Mental Performance"
+  },
+  {
+    "id": 35,
+    "raw_text": "cricket,Cricket,Team Sport"
+  },
+  {
+    "id": 36,
+    "raw_text": "curling,Curling,Winter Sport/Olympic"
+  },
+  {
+    "id": 37,
+    "raw_text": "cycleball,Cycleball,Cycling/Unique"
+  },
+  {
+    "id": 38,
+    "raw_text": "cycling,Cycling (Road/Mountain Bike),Primary Talent Pipeline"
+  },
+  {
+    "id": 39,
+    "raw_text": "dance_sport,Dance Sport,Performance"
+  },
+  {
+    "id": 40,
+    "raw_text": "darts,Darts,Precision"
+  },
+  {
+    "id": 41,
+    "raw_text": "diving,Diving,Aquatics/Olympic"
+  },
+  {
+    "id": 42,
+    "raw_text": "donkey_racing,Donkey Racing,BW Regional/Cultural"
+  },
+  {
+    "id": 43,
+    "raw_text": "equestrian,Equestrian,Animal/Olympic"
+  },
+  {
+    "id": 44,
+    "raw_text": "esports,Esports (Competitive Gaming),Digital Talent Pipeline"
+  },
+  {
+    "id": 45,
+    "raw_text": "fencing,Fencing,Combat/Olympic"
+  },
+  {
+    "id": 46,
+    "raw_text": "figure_skating,Figure Skating,Performance/Olympic"
+  },
+  {
+    "id": 47,
+    "raw_text": "flag_football,Flag Football,Team Sport"
+  },
+  {
+    "id": 48,
+    "raw_text": "floorball,Floorball,Team Sport"
+  },
+  {
+    "id": 49,
+    "raw_text": "freestyle_skiing,Freestyle Skiing,Winter Sport/Olympic"
+  },
+  {
+    "id": 50,
+    "raw_text": "futsal,Futsal,Team Sport/Indoor"
+  },
+  {
+    "id": 51,
+    "raw_text": "gaelic_football,Gaelic Football,Team Sport"
+  },
+  {
+    "id": 52,
+    "raw_text": "go_mind_sport,Go (Mind Sport),Mental Performance"
+  },
+  {
+    "id": 53,
+    "raw_text": "go_karting,Go Karting,Motor Sport"
+  },
+  {
+    "id": 54,
+    "raw_text": "goalball,Goalball (Parasport),Safety/Inclusion"
+  },
+  {
+    "id": 55,
+    "raw_text": "golf,Golf,Precision/Olympic"
+  },
+  {
+    "id": 56,
+    "raw_text": "greco_roman_wrestling,Greco-Roman Wrestling,Combat/Olympic"
+  },
+  {
+    "id": 57,
+    "raw_text": "handball,Handball,Team Sport/Olympic"
+  },
+  {
+    "id": 58,
+    "raw_text": "hockey_field,Hockey (Field),Team Sport/Olympic"
+  },
+  {
+    "id": 59,
+    "raw_text": "hockey_ice,Hockey (Ice),Team Sport/Olympic"
+  },
+  {
+    "id": 60,
+    "raw_text": "hockey_roller,Hockey (Roller),Team Sport"
+  },
+  {
+    "id": 61,
+    "raw_text": "horse_polo,Horse Polo,Animal/Sport"
+  },
+  {
+    "id": 62,
+    "raw_text": "horse_racing,Horse Racing,Animal/Sport"
+  },
+  {
+    "id": 63,
+    "raw_text": "judo,Judo,Combat/Olympic"
+  },
+  {
+    "id": 64,
+    "raw_text": "jukskei,Jukskei,Regional/Cultural"
+  },
+  {
+    "id": 65,
+    "raw_text": "karate,Karate,Combat/Olympic"
+  },
+  {
+    "id": 66,
+    "raw_text": "lacrosse,Lacrosse,Team Sport"
+  },
+  {
+    "id": 67,
+    "raw_text": "lawn_bowls,Lawn Bowls,Precision"
+  },
+  {
+    "id": 68,
+    "raw_text": "luge,Luge,Winter Sport/Olympic"
+  },
+  {
+    "id": 69,
+    "raw_text": "marathon,Marathon & Road Running,Athletics"
+  },
+  {
+    "id": 70,
+    "raw_text": "mma,Mixed Martial Arts (MMA),Combat Sport"
+  },
+  {
+    "id": 71,
+    "raw_text": "modern_pentathlon,Modern Pentathlon,Multi-Sport/Olympic"
+  },
+  {
+    "id": 72,
+    "raw_text": "motorcycle_racing,Motorcycle Racing (MotoGP/Motocross),Motor Sport"
+  },
+  {
+    "id": 73,
+    "raw_text": "mountain_biking,Mountain Biking,Cycling"
+  },
+  {
+    "id": 74,
+    "raw_text": "muay_thai,Muay Thai,Combat Sport"
+  },
+  {
+    "id": 75,
+    "raw_text": "netball,Netball,Primary Talent Pipeline"
+  },
+  {
+    "id": 76,
+    "raw_text": "ninja_sport,Ninja Sport,Obstacle/Performance"
+  },
+  {
+    "id": 77,
+    "raw_text": "nordic_combined,Nordic Combined,Winter Sport/Olympic"
+  },
+  {
+    "id": 78,
+    "raw_text": "ocr,Obstacle Course Racing (OCR),Performance"
+  },
+  {
+    "id": 79,
+    "raw_text": "open_water_swimming,Open Water Swimming,Aquatics"
+  },
+  {
+    "id": 80,
+    "raw_text": "padel,Padel,Racquet Sport"
+  },
+  {
+    "id": 81,
+    "raw_text": "parachuting,Parachuting,Air Sport"
+  },
+  {
+    "id": 82,
+    "raw_text": "parasports_general,Parasports (General),Safety/Inclusion"
+  },
+  {
+    "id": 83,
+    "raw_text": "pickleball,Pickleball,Racquet Sport"
+  },
+  {
+    "id": 84,
+    "raw_text": "polo_bicycle_elephant,Polo (Bicycle/Elephant),Unique Sport"
+  },
+  {
+    "id": 85,
+    "raw_text": "pool_snooker,Pool / Snooker,Cue Sport"
+  },
+  {
+    "id": 86,
+    "raw_text": "racquetball,Racquetball,Racquet Sport"
+  },
+  {
+    "id": 87,
+    "raw_text": "rhythmic_gymnastics,Rhythmic Gymnastics,Gymnastics/Olympic"
+  },
+  {
+    "id": 88,
+    "raw_text": "rowing,Rowing,Aquatics/Olympic"
+  },
+  {
+    "id": 89,
+    "raw_text": "rugby_league,Rugby League,Team Sport"
+  },
+  {
+    "id": 90,
+    "raw_text": "rugby_sevens,Rugby Sevens,Team Sport/Olympic"
+  },
+  {
+    "id": 91,
+    "raw_text": "rugby_union,Rugby Union,Team Sport"
+  },
+  {
+    "id": 92,
+    "raw_text": "sailing,Sailing,Aquatics/Olympic"
+  },
+  {
+    "id": 93,
+    "raw_text": "sambo,Sambo,Combat Sport"
+  },
+  {
+    "id": 94,
+    "raw_text": "shooting,Shooting,Precision/Olympic"
+  },
+  {
+    "id": 95,
+    "raw_text": "skeleton,Skeleton,Winter Sport/Olympic"
+  },
+  {
+    "id": 96,
+    "raw_text": "ski_jumping,Ski Jumping,Winter Sport/Olympic"
+  },
+  {
+    "id": 97,
+    "raw_text": "ski_mountaineering,Ski Mountaineering (Skimo),Winter Sport/Olympic"
+  },
+  {
+    "id": 98,
+    "raw_text": "snowboarding,Snowboarding,Winter Sport/Olympic"
+  },
+  {
+    "id": 99,
+    "raw_text": "soccer,Soccer,Primary Talent Pipeline"
+  },
+  {
+    "id": 100,
+    "raw_text": "softball,Softball,Team Sport"
+  },
+  {
+    "id": 101,
+    "raw_text": "speed_skating,Speed Skating,Winter Sport/Olympic"
+  },
+  {
+    "id": 102,
+    "raw_text": "squash,Squash,Racquet Sport"
+  },
+  {
+    "id": 103,
+    "raw_text": "sumo,Sumo,Combat/Cultural"
+  },
+  {
+    "id": 104,
+    "raw_text": "swimming,Swimming,Aquatics/Olympic"
+  },
+  {
+    "id": 105,
+    "raw_text": "table_tennis,Table Tennis,Racquet/Olympic"
+  },
+  {
+    "id": 106,
+    "raw_text": "taekwondo,Taekwondo,Combat/Olympic"
+  },
+  {
+    "id": 107,
+    "raw_text": "teqball,Teqball,Unique/Football-based"
+  },
+  {
+    "id": 108,
+    "raw_text": "tennis,Tennis,Racquet/Olympic"
+  },
+  {
+    "id": 109,
+    "raw_text": "trampoline,Trampoline,Gymnastics/Olympic"
+  },
+  {
+    "id": 110,
+    "raw_text": "triathlon,Triathlon,Multi-Sport/Olympic"
+  },
+  {
+    "id": 111,
+    "raw_text": "ultimate_frisbee,Ultimate Frisbee,Team Sport"
+  },
+  {
+    "id": 112,
+    "raw_text": "volleyball,Volleyball,Team Sport/Olympic"
+  },
+  {
+    "id": 113,
+    "raw_text": "water_polo,Water Polo,Aquatics/Olympic"
+  },
+  {
+    "id": 114,
+    "raw_text": "weightlifting,Weightlifting,Power/Olympic"
+  },
+  {
+    "id": 115,
+    "raw_text": "wheelchair_sports,Wheelchair Sports,Safety/Inclusion"
+  },
+  {
+    "id": 116,
+    "raw_text": "wife_carrying,Wife Carrying,Unique/Niche"
+  },
+  {
+    "id": 117,
+    "raw_text": "world_chase_tag,World Chase Tag (WCT),Performance/Agility"
+  },
+  {
+    "id": 118,
+    "raw_text": "wrestling_freestyle,Wrestling (Freestyle),Combat/Olympic"
+  },
+  {
+    "id": 119,
+    "raw_text": "wushu,Wushu,Combat/Performance"
+  },
+  {
+    "id": 120,
+    "raw_text": "other,🌐 Other (Please Specify),[INPUT REQUIRED]"
+  }
+]

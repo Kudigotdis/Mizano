@@ -1,0 +1,2162 @@
+[
+  {
+    "id": "GT-0316",
+    "activity": "Cycling (Road/Mountain Bike)",
+    "name": "Solo Hill Climb",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Check bike gears", "target": 1},
+      {"type": "tally", "description": "Hill repeats (times)", "target": 5},
+      {"type": "timer", "description": "Fastest climb (minutes)", "target": 10},
+      {"type": "photo", "description": "Summit selfie", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0317",
+    "activity": "Cycling (Road/Mountain Bike)",
+    "name": "Solo Time Trial",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Set up aero bars", "target": 1},
+      {"type": "tally", "description": "10km TT (times)", "target": 2},
+      {"type": "timer", "description": "Personal best (minutes)", "target": 18},
+      {"type": "photo", "description": "GPS data screenshot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0318",
+    "activity": "Cycling (Road/Mountain Bike)",
+    "name": "Solo Trail Ride",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Pack repair kit", "target": 1},
+      {"type": "tally", "description": "Distance (km)", "target": 30},
+      {"type": "timer", "description": "Ride time (hours)", "target": 2},
+      {"type": "photo", "description": "Trail scenery photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0319",
+    "activity": "Cycling (Road/Mountain Bike)",
+    "name": "Duo Pace Line",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Learn pace line signals", "target": 2},
+      {"type": "tally", "description": "Take turns leading (minutes)", "target": 30},
+      {"type": "handshake", "description": "Rate smoothness", "target": 1},
+      {"type": "photo", "description": "Action shot of both", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0320",
+    "activity": "Cycling (Road/Mountain Bike)",
+    "name": "Duo Sprint Finish",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Pick a sprint point", "target": 2},
+      {"type": "tally", "description": "Sprints (times)", "target": 5},
+      {"type": "handshake", "description": "Loser buys coffee", "target": 1},
+      {"type": "photo", "description": "Finish line photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0321",
+    "activity": "Cycling (Road/Mountain Bike)",
+    "name": "Duo Cornering",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Find a twisty road", "target": 2},
+      {"type": "tally", "description": "Corners taken (times)", "target": 15},
+      {"type": "handshake", "description": "Give feedback on line", "target": 1},
+      {"type": "photo", "description": "Video of cornering", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0322",
+    "activity": "Cycling (Road/Mountain Bike)",
+    "name": "Team Century Ride",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Plan 100km route", "target": 3},
+      {"type": "tally", "description": "Ride together (km)", "target": 100},
+      {"type": "gps_verify", "description": "Track entire route", "target": 1},
+      {"type": "photo", "description": "Group photo at finish", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0323",
+    "activity": "Cycling (Road/Mountain Bike)",
+    "name": "Team Relay",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Teams of 4", "target": 4},
+      {"type": "tally", "description": "Laps each (times)", "target": 2},
+      {"type": "timer", "description": "Total team time (minutes)", "target": 60},
+      {"type": "photo", "description": "Team with bikes", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0324",
+    "activity": "Cycling (Road/Mountain Bike)",
+    "name": "Team Gran Fondo",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Register for event", "target": 1},
+      {"type": "tally", "description": "Ride together (km)", "target": 160},
+      {"type": "pula", "description": "Entry fee per person (Pula)", "target": 150},
+      {"type": "photo", "description": "Team at start line", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0325",
+    "activity": "Dance Sport",
+    "name": "Solo Latin Footwork",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Learn basic salsa step", "target": 1},
+      {"type": "tally", "description": "Practice (times)", "target": 20},
+      {"type": "timer", "description": "Continuous (minutes)", "target": 5},
+      {"type": "photo", "description": "Video of footwork", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0326",
+    "activity": "Dance Sport",
+    "name": "Solo Standard Frame",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice waltz frame", "target": 1},
+      {"type": "tally", "description": "Hold frame (times)", "target": 10},
+      {"type": "timer", "description": "Hold duration (seconds)", "target": 60},
+      {"type": "photo", "description": "Photo of posture", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0327",
+    "activity": "Dance Sport",
+    "name": "Solo Choreography",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Create 1‑min routine", "target": 1},
+      {"type": "tally", "description": "Rehearse (times)", "target": 5},
+      {"type": "handshake", "description": "Coach feedback", "target": 1},
+      {"type": "photo", "description": "Video of routine", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0328",
+    "activity": "Dance Sport",
+    "name": "Duo Lead/Follow",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Practice basic steps together", "target": 2},
+      {"type": "tally", "description": "Dance through song (times)", "target": 5},
+      {"type": "handshake", "description": "Rate connection", "target": 1},
+      {"type": "photo", "description": "Video of dancing", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0329",
+    "activity": "Dance Sport",
+    "name": "Duo Competition Routine",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Learn a competition routine", "target": 2},
+      {"type": "tally", "description": "Run‑throughs (times)", "target": 10},
+      {"type": "handshake", "description": "Coach judges", "target": 1},
+      {"type": "photo", "description": "Video of routine", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0330",
+    "activity": "Dance Sport",
+    "name": "Duo Spotting",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Practice turns", "target": 2},
+      {"type": "tally", "description": "Spotting reps (times)", "target": 15},
+      {"type": "handshake", "description": "Partner feedback", "target": 1},
+      {"type": "photo", "description": "Video of turns", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0331",
+    "activity": "Dance Sport",
+    "name": "Team Formation",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Learn a group routine", "target": 4},
+      {"type": "tally", "description": "Rehearse together (times)", "target": 6},
+      {"type": "handshake", "description": "Choreographer feedback", "target": 1},
+      {"type": "photo", "description": "Group formation photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0332",
+    "activity": "Dance Sport",
+    "name": "Team Showcase",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Prepare for performance", "target": 1},
+      {"type": "tally", "description": "Perform at event (times)", "target": 1},
+      {"type": "handshake", "description": "Audience applause", "target": 1},
+      {"type": "photo", "description": "Stage photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0333",
+    "activity": "Dance Sport",
+    "name": "Team Dance Camp",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Attend a dance camp", "target": 4},
+      {"type": "tally", "description": "Workshops attended", "target": 5},
+      {"type": "pula", "description": "Camp fee per person (Pula)", "target": 300},
+      {"type": "photo", "description": "Group camp photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0334",
+    "activity": "Darts",
+    "name": "Solo Doubles Practice",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Focus on double 20", "target": 1},
+      {"type": "tally", "description": "Hits on double (times)", "target": 20},
+      {"type": "timer", "description": "Practice session (minutes)", "target": 30},
+      {"type": "photo", "description": "Board photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0335",
+    "activity": "Darts",
+    "name": "Solo 501",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Play a game of 501", "target": 1},
+      {"type": "tally", "description": "Games (times)", "target": 5},
+      {"type": "tally", "description": "Average score per dart", "target": 60},
+      {"type": "photo", "description": "Scoreboard photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0336",
+    "activity": "Darts",
+    "name": "Solo Bullseyes",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Aim for bull", "target": 1},
+      {"type": "tally", "description": "Bullseyes (times)", "target": 10},
+      {"type": "handshake", "description": "Film and review", "target": 1},
+      {"type": "photo", "description": "Photo of bull", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0337",
+    "activity": "Darts",
+    "name": "Duo 501 Match",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Play best of 5 legs", "target": 2},
+      {"type": "tally", "description": "Legs played", "target": 5},
+      {"type": "handshake", "description": "Winner buys drink", "target": 1},
+      {"type": "photo", "description": "Action shot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0338",
+    "activity": "Darts",
+    "name": "Duo Doubles",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Play as a team", "target": 2},
+      {"type": "tally", "description": "Games (times)", "target": 3},
+      {"type": "handshake", "description": "Team score", "target": 1},
+      {"type": "photo", "description": "Team photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0339",
+    "activity": "Darts",
+    "name": "Duo Cricket",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Play darts cricket", "target": 2},
+      {"type": "tally", "description": "Rounds played", "target": 5},
+      {"type": "handshake", "description": "Discuss strategy", "target": 1},
+      {"type": "photo", "description": "Board photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0340",
+    "activity": "Darts",
+    "name": "Team Round Robin",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Organise 4‑player tournament", "target": 4},
+      {"type": "tally", "description": "Matches each (times)", "target": 3},
+      {"type": "pula", "description": "Entry fee (Pula)", "target": 20},
+      {"type": "photo", "description": "Winner photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0341",
+    "activity": "Darts",
+    "name": "Team League Night",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Join a darts league", "target": 1},
+      {"type": "tally", "description": "Matches played", "target": 3},
+      {"type": "handshake", "description": "League secretary signs", "target": 1},
+      {"type": "photo", "description": "Team at pub", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0342",
+    "activity": "Darts",
+    "name": "Team Blind Draw",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Random partner draw", "target": 6},
+      {"type": "tally", "description": "Matches played", "target": 3},
+      {"type": "handshake", "description": "Tournament director", "target": 1},
+      {"type": "photo", "description": "Group photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0343",
+    "activity": "Diving",
+    "name": "Solo Dry Land",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice on trampoline", "target": 1},
+      {"type": "tally", "description": "Jumps (times)", "target": 20},
+      {"type": "handshake", "description": "Coach checks form", "target": 1},
+      {"type": "photo", "description": "Video of jumps", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0344",
+    "activity": "Diving",
+    "name": "Solo Platform",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Start from 1m", "target": 1},
+      {"type": "tally", "description": "Dives (times)", "target": 10},
+      {"type": "handshake", "description": "Coach scores", "target": 1},
+      {"type": "photo", "description": "Video of dive", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0345",
+    "activity": "Diving",
+    "name": "Solo Flexibility",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Stretching routine", "target": 1},
+      {"type": "tally", "description": "Stretches (times)", "target": 8},
+      {"type": "timer", "description": "Hold pike (seconds)", "target": 20},
+      {"type": "photo", "description": "Photo of stretch", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0346",
+    "activity": "Diving",
+    "name": "Duo Synchronized",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Practice count", "target": 2},
+      {"type": "tally", "description": "Synchronized dives (times)", "target": 6},
+      {"type": "handshake", "description": "Judge synchronicity", "target": 1},
+      {"type": "photo", "description": "Video of both", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0347",
+    "activity": "Diving",
+    "name": "Duo Spotting",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Spot for each other", "target": 2},
+      {"type": "tally", "description": "Spots (times)", "target": 8},
+      {"type": "handshake", "description": "Rate safety", "target": 1},
+      {"type": "photo", "description": "Spotting photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0348",
+    "activity": "Diving",
+    "name": "Duo Competition",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Enter a synchro event", "target": 2},
+      {"type": "tally", "description": "Rounds (times)", "target": 3},
+      {"type": "handshake", "description": "Official scores", "target": 1},
+      {"type": "photo", "description": "Medal photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0349",
+    "activity": "Diving",
+    "name": "Team Clinic",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Attend a diving clinic", "target": 4},
+      {"type": "tally", "description": "Sessions (hours)", "target": 4},
+      {"type": "handshake", "description": "Instructor feedback", "target": 1},
+      {"type": "photo", "description": "Group photo at pool", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0350",
+    "activity": "Diving",
+    "name": "Team Training",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Practice together", "target": 3},
+      {"type": "tally", "description": "Dives each (times)", "target": 5},
+      {"type": "handshake", "description": "Coach team feedback", "target": 1},
+      {"type": "photo", "description": "Team huddle", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0351",
+    "activity": "Diving",
+    "name": "Team Exhibition",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Perform a team dive show", "target": 4},
+      {"type": "tally", "description": "Routines (times)", "target": 2},
+      {"type": "pula", "description": "Donation to charity (Pula)", "target": 200},
+      {"type": "photo", "description": "Team bow", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0352",
+    "activity": "Donkey Racing",
+    "name": "Solo Donkey Handling",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Learn to lead donkey", "target": 1},
+      {"type": "tally", "description": "Grooming sessions (times)", "target": 3},
+      {"type": "handshake", "description": "Handler sign‑off", "target": 1},
+      {"type": "photo", "description": "Photo with donkey", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0353",
+    "activity": "Donkey Racing",
+    "name": "Solo Tethering",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice tying knots", "target": 1},
+      {"type": "tally", "description": "Secure tether (times)", "target": 5},
+      {"type": "timer", "description": "Time to tie (seconds)", "target": 30},
+      {"type": "photo", "description": "Photo of donkey", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0354",
+    "activity": "Donkey Racing",
+    "name": "Solo Obstacle Course",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Set up simple course", "target": 1},
+      {"type": "tally", "description": "Complete course (times)", "target": 4},
+      {"type": "timer", "description": "Fastest time (seconds)", "target": 60},
+      {"type": "photo", "description": "Action photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0355",
+    "activity": "Donkey Racing",
+    "name": "Duo Donkey Care",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Feed and water together", "target": 2},
+      {"type": "tally", "description": "Care sessions (times)", "target": 5},
+      {"type": "handshake", "description": "Vet check", "target": 1},
+      {"type": "photo", "description": "Duo with donkey", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0356",
+    "activity": "Donkey Racing",
+    "name": "Duo Training Run",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Lead donkeys together", "target": 2},
+      {"type": "tally", "description": "Training runs (times)", "target": 4},
+      {"type": "handshake", "description": "Compare speeds", "target": 1},
+      {"type": "photo", "description": "Racing photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0357",
+    "activity": "Donkey Racing",
+    "name": "Duo Obstacle Relay",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Set up relay course", "target": 2},
+      {"type": "tally", "description": "Relay legs (times)", "target": 4},
+      {"type": "timer", "description": "Total team time (seconds)", "target": 90},
+      {"type": "photo", "description": "Relay handoff", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0358",
+    "activity": "Donkey Racing",
+    "name": "Team Race Day",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Organise a small race", "target": 4},
+      {"type": "tally", "description": "Races run", "target": 3},
+      {"type": "pula", "description": "Entry fee (Pula)", "target": 10},
+      {"type": "photo", "description": "Winning donkey", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0359",
+    "activity": "Donkey Racing",
+    "name": "Team Festival",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Participate in cultural festival", "target": 1},
+      {"type": "tally", "description": "Races entered", "target": 2},
+      {"type": "handshake", "description": "Festival organizer", "target": 1},
+      {"type": "photo", "description": "Festival group photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0360",
+    "activity": "Donkey Racing",
+    "name": "Team Donkey Parade",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Decorate donkeys", "target": 3},
+      {"type": "tally", "description": "Parade together (times)", "target": 1},
+      {"type": "handshake", "description": "Crowd favorite vote", "target": 1},
+      {"type": "photo", "description": "Parade photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0361",
+    "activity": "Equestrian",
+    "name": "Solo Flatwork",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Tack up horse", "target": 1},
+      {"type": "tally", "description": "Circles and transitions (times)", "target": 10},
+      {"type": "handshake", "description": "Trainer feedback", "target": 1},
+      {"type": "photo", "description": "Video of work", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0362",
+    "activity": "Equestrian",
+    "name": "Solo Jumping",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Set small jumps", "target": 1},
+      {"type": "tally", "description": "Jumps cleared (times)", "target": 8},
+      {"type": "timer", "description": "Course time (seconds)", "target": 45},
+      {"type": "photo", "description": "Jump photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0363",
+    "activity": "Equestrian",
+    "name": "Solo Trail Ride",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Check trail conditions", "target": 1},
+      {"type": "tally", "description": "Distance (km)", "target": 10},
+      {"type": "timer", "description": "Ride time (minutes)", "target": 60},
+      {"type": "photo", "description": "Trail scenery", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0364",
+    "activity": "Equestrian",
+    "name": "Duo Dressage",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Ride a pas de deux", "target": 2},
+      {"type": "tally", "description": "Movements together (times)", "target": 6},
+      {"type": "handshake", "description": "Judge synchronicity", "target": 1},
+      {"type": "photo", "description": "Video of pair", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0365",
+    "activity": "Equestrian",
+    "name": "Duo Jumping Relay",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Set up relay course", "target": 2},
+      {"type": "tally", "description": "Jump each (times)", "target": 4},
+      {"type": "timer", "description": "Team time (seconds)", "target": 60},
+      {"type": "photo", "description": "Action shot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0366",
+    "activity": "Equestrian",
+    "name": "Duo Grooming",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Groom horses together", "target": 2},
+      {"type": "tally", "description": "Grooming sessions (times)", "target": 5},
+      {"type": "handshake", "description": "Horse happy", "target": 1},
+      {"type": "photo", "description": "Horses together", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0367",
+    "activity": "Equestrian",
+    "name": "Team Drill Team",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Learn a drill routine", "target": 4},
+      {"type": "tally", "description": "Rehearse together (times)", "target": 6},
+      {"type": "handshake", "description": "Coach rates", "target": 1},
+      {"type": "photo", "description": "Drill formation", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0368",
+    "activity": "Equestrian",
+    "name": "Team Show Jumping",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter a team competition", "target": 4},
+      {"type": "tally", "description": "Rounds each", "target": 2},
+      {"type": "handshake", "description": "Official scores", "target": 1},
+      {"type": "photo", "description": "Team with ribbons", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0369",
+    "activity": "Equestrian",
+    "name": "Team Trail Ride",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Plan group trail", "target": 3},
+      {"type": "tally", "description": "Ride together (km)", "target": 15},
+      {"type": "gps_verify", "description": "Follow route", "target": 1},
+      {"type": "photo", "description": "Group trail photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0370",
+    "activity": "Esports",
+    "name": "Solo Aim Training",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Use aim trainer", "target": 1},
+      {"type": "tally", "description": "Training sessions (times)", "target": 5},
+      {"type": "timer", "description": "Session length (minutes)", "target": 30},
+      {"type": "photo", "description": "Screenshot of score", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0371",
+    "activity": "Esports",
+    "name": "Solo Ladder Climb",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Play ranked matches", "target": 1},
+      {"type": "tally", "description": "Matches won (times)", "target": 5},
+      {"type": "handshake", "description": "Achieve next rank", "target": 1},
+      {"type": "photo", "description": "Rank screenshot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0372",
+    "activity": "Esports",
+    "name": "Solo Strategy Study",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Watch pro VODs", "target": 1},
+      {"type": "tally", "description": "Hours watched", "target": 3},
+      {"type": "handshake", "description": "Take notes", "target": 1},
+      {"type": "photo", "description": "Notes photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0373",
+    "activity": "Esports",
+    "name": "Duo Scrims",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Queue together", "target": 2},
+      {"type": "tally", "description": "Games played", "target": 5},
+      {"type": "handshake", "description": "Review together", "target": 1},
+      {"type": "photo", "description": "Post‑game stats", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0374",
+    "activity": "Esports",
+    "name": "Duo Comms Practice",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Practice callouts", "target": 2},
+      {"type": "tally", "description": "Games with comms (times)", "target": 4},
+      {"type": "handshake", "description": "Rate communication", "target": 1},
+      {"type": "photo", "description": "Voice chat screenshot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0375",
+    "activity": "Esports",
+    "name": "Duo 2v2 Tournament",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Enter online tournament", "target": 2},
+      {"type": "tally", "description": "Matches played", "target": 4},
+      {"type": "handshake", "description": "Tournament bracket", "target": 1},
+      {"type": "photo", "description": "Bracket screenshot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0376",
+    "activity": "Esports",
+    "name": "Team Practice",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Form a team", "target": 5},
+      {"type": "tally", "description": "Practice sessions (times)", "target": 3},
+      {"type": "handshake", "description": "Coach feedback", "target": 1},
+      {"type": "photo", "description": "Team screenshot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0377",
+    "activity": "Esports",
+    "name": "Team Scrims",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Schedule vs another team", "target": 5},
+      {"type": "tally", "description": "Scrims (times)", "target": 2},
+      {"type": "handshake", "description": "VOD review", "target": 1},
+      {"type": "photo", "description": "Scoreboard", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0378",
+    "activity": "Esports",
+    "name": "Team LAN Party",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Set up LAN", "target": 5},
+      {"type": "tally", "description": "Play together (hours)", "target": 4},
+      {"type": "pula", "description": "Snacks per person (Pula)", "target": 50},
+      {"type": "photo", "description": "Group LAN photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0379",
+    "activity": "Fencing",
+    "name": "Solo Footwork",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice advances/retreats", "target": 1},
+      {"type": "tally", "description": "Reps (times)", "target": 30},
+      {"type": "timer", "description": "Continuous (seconds)", "target": 60},
+      {"type": "photo", "description": "Video of footwork", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0380",
+    "activity": "Fencing",
+    "name": "Solo Blade Work",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice disengages", "target": 1},
+      {"type": "tally", "description": "Moves (times)", "target": 20},
+      {"type": "handshake", "description": "Coach feedback", "target": 1},
+      {"type": "photo", "description": "Video of blade", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0381",
+    "activity": "Fencing",
+    "name": "Solo Lunges",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Lunge at target", "target": 1},
+      {"type": "tally", "description": "Lunges (times)", "target": 25},
+      {"type": "timer", "description": "Recovery time (seconds)", "target": 1},
+      {"type": "photo", "description": "Video of lunge", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0382",
+    "activity": "Fencing",
+    "name": "Duo Drills",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Practice attacks and parries", "target": 2},
+      {"type": "tally", "description": "Reps each (times)", "target": 15},
+      {"type": "handshake", "description": "Give feedback", "target": 1},
+      {"type": "photo", "description": "Video of drills", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0383",
+    "activity": "Fencing",
+    "name": "Duo Bouting",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Fence 5 touches", "target": 2},
+      {"type": "tally", "description": "Bouts (times)", "target": 5},
+      {"type": "handshake", "description": "Referee calls", "target": 1},
+      {"type": "photo", "description": "Bout photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0384",
+    "activity": "Fencing",
+    "name": "Duo Electric Scoring",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Use electric equipment", "target": 2},
+      {"type": "tally", "description": "Touches registered", "target": 15},
+      {"type": "handshake", "description": "Check lights", "target": 1},
+      {"type": "photo", "description": "Scorebox photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0385",
+    "activity": "Fencing",
+    "name": "Team Lesson",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Group lesson with coach", "target": 4},
+      {"type": "tally", "description": "Drills each (times)", "target": 10},
+      {"type": "handshake", "description": "Coach feedback", "target": 1},
+      {"type": "photo", "description": "Group lesson photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0386",
+    "activity": "Fencing",
+    "name": "Team Tournament",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter team event", "target": 3},
+      {"type": "tally", "description": "Matches fenced", "target": 3},
+      {"type": "handshake", "description": "Tournament director", "target": 1},
+      {"type": "photo", "description": "Team with medals", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0387",
+    "activity": "Fencing",
+    "name": "Team Practice Bouts",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Rotate partners", "target": 4},
+      {"type": "tally", "description": "Bouts each", "target": 3},
+      {"type": "handshake", "description": "Everyone rates", "target": 1},
+      {"type": "photo", "description": "Fencing line", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0388",
+    "activity": "Figure Skating",
+    "name": "Solo Spins",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice upright spin", "target": 1},
+      {"type": "tally", "description": "Spins (times)", "target": 10},
+      {"type": "timer", "description": "Spin duration (seconds)", "target": 5},
+      {"type": "photo", "description": "Video of spin", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0389",
+    "activity": "Figure Skating",
+    "name": "Solo Jumps",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice single salchow", "target": 1},
+      {"type": "tally", "description": "Jump attempts (times)", "target": 12},
+      {"type": "handshake", "description": "Coach checks landing", "target": 1},
+      {"type": "photo", "description": "Video of jump", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0390",
+    "activity": "Figure Skating",
+    "name": "Solo Footwork",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Learn a step sequence", "target": 1},
+      {"type": "tally", "description": "Run‑throughs (times)", "target": 5},
+      {"type": "timer", "description": "Sequence time (seconds)", "target": 30},
+      {"type": "photo", "description": "Video of steps", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0391",
+    "activity": "Figure Skating",
+    "name": "Duo Pair Elements",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Practice side‑by‑side jumps", "target": 2},
+      {"type": "tally", "description": "Attempts (times)", "target": 8},
+      {"type": "handshake", "description": "Rate synchronicity", "target": 1},
+      {"type": "photo", "description": "Video of pair", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0392",
+    "activity": "Figure Skating",
+    "name": "Duo Lifts",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Learn a simple lift", "target": 2},
+      {"type": "tally", "description": "Lift attempts (times)", "target": 5},
+      {"type": "handshake", "description": "Coach safety check", "target": 1},
+      {"type": "photo", "description": "Photo of lift", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0393",
+    "activity": "Figure Skating",
+    "name": "Duo Death Spiral",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Practice death spiral", "target": 2},
+      {"type": "tally", "description": "Revolutions (times)", "target": 4},
+      {"type": "handshake", "description": "Coach rates form", "target": 1},
+      {"type": "photo", "description": "Video of spiral", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0394",
+    "activity": "Figure Skating",
+    "name": "Team Ice Show",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Choreograph group number", "target": 4},
+      {"type": "tally", "description": "Rehearsals (times)", "target": 5},
+      {"type": "handshake", "description": "Director approval", "target": 1},
+      {"type": "photo", "description": "Group bow", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0395",
+    "activity": "Figure Skating",
+    "name": "Team Synchronized",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Learn synchro elements", "target": 8},
+      {"type": "tally", "description": "Run‑throughs (times)", "target": 3},
+      {"type": "handshake", "description": "Coach rates", "target": 1},
+      {"type": "photo", "description": "Formation photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0396",
+    "activity": "Figure Skating",
+    "name": "Team Competition",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter synchro competition", "target": 8},
+      {"type": "tally", "description": "Programs skated", "target": 2},
+      {"type": "handshake", "description": "Official scores", "target": 1},
+      {"type": "photo", "description": "Team with trophy", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0397",
+    "activity": "Flag Football",
+    "name": "Solo Route Running",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Set cones for routes", "target": 1},
+      {"type": "tally", "description": "Run routes (times)", "target": 15},
+      {"type": "timer", "description": "40‑yard dash (seconds)", "target": 5},
+      {"type": "photo", "description": "Video of route", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0398",
+    "activity": "Flag Football",
+    "name": "Solo Flag Pulling",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice on dummy", "target": 1},
+      {"type": "tally", "description": "Pulls (times)", "target": 20},
+      {"type": "timer", "description": "Reaction drill (seconds)", "target": 30},
+      {"type": "photo", "description": "Video of pull", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0399",
+    "activity": "Flag Football",
+    "name": "Solo QB Throwing",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Throw at target", "target": 1},
+      {"type": "tally", "description": "Passes (times)", "target": 30},
+      {"type": "handshake", "description": "Accuracy check", "target": 1},
+      {"type": "photo", "description": "Video of throw", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0400",
+    "activity": "Flag Football",
+    "name": "Duo QB‑WR",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Run routes together", "target": 2},
+      {"type": "tally", "description": "Completed passes (times)", "target": 20},
+      {"type": "handshake", "description": "Rate timing", "target": 1},
+      {"type": "photo", "description": "Video of catch", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0401",
+    "activity": "Flag Football",
+    "name": "Duo 2v1",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Two offense vs one defense", "target": 3},
+      {"type": "tally", "description": "Plays (times)", "target": 8},
+      {"type": "handshake", "description": "Defender rates", "target": 1},
+      {"type": "photo", "description": "Video of play", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0402",
+    "activity": "Flag Football",
+    "name": "Duo Blitz Pickup",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "QB and RB pick up blitz", "target": 2},
+      {"type": "tally", "description": "Successful pickups (times)", "target": 6},
+      {"type": "handshake", "description": "Coach feedback", "target": 1},
+      {"type": "photo", "description": "Video of drill", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0403",
+    "activity": "Flag Football",
+    "name": "Team 5v5",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Play a game", "target": 10},
+      {"type": "tally", "description": "Plays (times)", "target": 20},
+      {"type": "handshake", "description": "Referee score", "target": 1},
+      {"type": "photo", "description": "Team huddle", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0404",
+    "activity": "Flag Football",
+    "name": "Team Tournament",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter local tournament", "target": 7},
+      {"type": "tally", "description": "Games played", "target": 3},
+      {"type": "pula", "description": "Entry fee per team (Pula)", "target": 100},
+      {"type": "photo", "description": "Team with trophy", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0405",
+    "activity": "Flag Football",
+    "name": "Team Scrimmage",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Full 5v5 scrimmage", "target": 10},
+      {"type": "tally", "description": "Series (times)", "target": 4},
+      {"type": "handshake", "description": "Coach feedback", "target": 1},
+      {"type": "photo", "description": "Action shot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0406",
+    "activity": "Floorball",
+    "name": "Solo Stickhandling",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Set up obstacles", "target": 1},
+      {"type": "tally", "description": "Dribble through (times)", "target": 15},
+      {"type": "timer", "description": "Slalom time (seconds)", "target": 20},
+      {"type": "photo", "description": "Video of dribble", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0407",
+    "activity": "Floorball",
+    "name": "Solo Shooting",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Shoot at goal", "target": 1},
+      {"type": "tally", "description": "Shots on target (times)", "target": 20},
+      {"type": "handshake", "description": "Self‑review", "target": 1},
+      {"type": "photo", "description": "Video of shot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0408",
+    "activity": "Floorball",
+    "name": "Solo Passing vs Wall",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Pass against wall", "target": 1},
+      {"type": "tally", "description": "Passes (times)", "target": 50},
+      {"type": "timer", "description": "Continuous (seconds)", "target": 60},
+      {"type": "photo", "description": "Video of passing", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0409",
+    "activity": "Floorball",
+    "name": "Duo Passing",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Pass back and forth", "target": 2},
+      {"type": "tally", "description": "Completed passes (times)", "target": 30},
+      {"type": "handshake", "description": "Rate accuracy", "target": 1},
+      {"type": "photo", "description": "Video of passing", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0410",
+    "activity": "Floorball",
+    "name": "Duo 1v1",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Play 1v1 to 3 goals", "target": 2},
+      {"type": "tally", "description": "Games (times)", "target": 4},
+      {"type": "handshake", "description": "Loser buys drink", "target": 1},
+      {"type": "photo", "description": "Action shot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0411",
+    "activity": "Floorball",
+    "name": "Duo Give and Go",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Practice 1‑2 passes", "target": 2},
+      {"type": "tally", "description": "Successful 1‑2s (times)", "target": 10},
+      {"type": "handshake", "description": "Rate timing", "target": 1},
+      {"type": "photo", "description": "Video of move", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0412",
+    "activity": "Floorball",
+    "name": "Team Scrimmage",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Form teams of 5", "target": 10},
+      {"type": "tally", "description": "Periods played", "target": 3},
+      {"type": "handshake", "description": "Referee final", "target": 1},
+      {"type": "photo", "description": "Team photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0413",
+    "activity": "Floorball",
+    "name": "Team Power Play",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Practice 5v4", "target": 5},
+      {"type": "tally", "description": "Power play goals (times)", "target": 4},
+      {"type": "handshake", "description": "Coach feedback", "target": 1},
+      {"type": "photo", "description": "Video of PP", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0414",
+    "activity": "Floorball",
+    "name": "Team Tournament",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter tournament", "target": 1},
+      {"type": "tally", "description": "Matches played", "target": 4},
+      {"type": "pula", "description": "Entry fee (Pula)", "target": 150},
+      {"type": "photo", "description": "Team with medals", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0415",
+    "activity": "Freestyle Skiing",
+    "name": "Solo Moguls",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Find mogul field", "target": 1},
+      {"type": "tally", "description": "Runs (times)", "target": 5},
+      {"type": "timer", "description": "Run time (seconds)", "target": 30},
+      {"type": "photo", "description": "Video of run", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0416",
+    "activity": "Freestyle Skiing",
+    "name": "Solo Aerials",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice on air bag", "target": 1},
+      {"type": "tally", "description": "Jumps (times)", "target": 8},
+      {"type": "handshake", "description": "Coach checks form", "target": 1},
+      {"type": "photo", "description": "Video of jump", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0417",
+    "activity": "Freestyle Skiing",
+    "name": "Solo Halfpipe",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Hit the pipe", "target": 1},
+      {"type": "tally", "description": "Runs (times)", "target": 4},
+      {"type": "handshake", "description": "Self‑video analysis", "target": 1},
+      {"type": "photo", "description": "Pipe photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0418",
+    "activity": "Freestyle Skiing",
+    "name": "Duo Slopestyle",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Hit features together", "target": 2},
+      {"type": "tally", "description": "Runs (times)", "target": 3},
+      {"type": "handshake", "description": "Rate each other's style", "target": 1},
+      {"type": "photo", "description": "Action shot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0419",
+    "activity": "Freestyle Skiing",
+    "name": "Duo Synchronized",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Plan synchro jumps", "target": 2},
+      {"type": "tally", "description": "Synchronized attempts (times)", "target": 5},
+      {"type": "handshake", "description": "Judge synchro", "target": 1},
+      {"type": "photo", "description": "Video of synchro", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0420",
+    "activity": "Freestyle Skiing",
+    "name": "Duo Coaching",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "One films, one skis", "target": 2},
+      {"type": "tally", "description": "Runs filmed (times)", "target": 4},
+      {"type": "handshake", "description": "Give feedback", "target": 1},
+      {"type": "photo", "description": "Video review", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0421",
+    "activity": "Freestyle Skiing",
+    "name": "Team Park Session",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Hit terrain park together", "target": 3},
+      {"type": "tally", "description": "Runs each (times)", "target": 5},
+      {"type": "handshake", "description": "Group photo", "target": 1},
+      {"type": "photo", "description": "Park action", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0422",
+    "activity": "Freestyle Skiing",
+    "name": "Team Rail Jam",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Organize a rail jam", "target": 4},
+      {"type": "tally", "description": "Attempts each (times)", "target": 3},
+      {"type": "handshake", "description": "Crowd vote", "target": 1},
+      {"type": "photo", "description": "Winner photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0423",
+    "activity": "Freestyle Skiing",
+    "name": "Team Training Camp",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Attend freestyle camp", "target": 4},
+      {"type": "tally", "description": "Days (times)", "target": 3},
+      {"type": "pula", "description": "Camp fee (Pula)", "target": 500},
+      {"type": "photo", "description": "Camp group", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0424",
+    "activity": "Futsal",
+    "name": "Solo Ball Control",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Juggle futsal ball", "target": 1},
+      {"type": "tally", "description": "Juggles (times)", "target": 100},
+      {"type": "timer", "description": "Keep up (seconds)", "target": 60},
+      {"type": "photo", "description": "Video of juggling", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0425",
+    "activity": "Futsal",
+    "name": "Solo Shooting",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Shoot at goal", "target": 1},
+      {"type": "tally", "description": "Shots on target (times)", "target": 25},
+      {"type": "handshake", "description": "Self‑analysis", "target": 1},
+      {"type": "photo", "description": "Video of shot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0426",
+    "activity": "Futsal",
+    "name": "Solo Dribbling",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Set up cones", "target": 1},
+      {"type": "tally", "description": "Dribble through (times)", "target": 15},
+      {"type": "timer", "description": "Slalom time (seconds)", "target": 15},
+      {"type": "photo", "description": "Video of dribble", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0427",
+    "activity": "Futsal",
+    "name": "Duo Passing",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Pass under pressure", "target": 2},
+      {"type": "tally", "description": "Passes (times)", "target": 40},
+      {"type": "handshake", "description": "Rate accuracy", "target": 1},
+      {"type": "photo", "description": "Video of passing", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0428",
+    "activity": "Futsal",
+    "name": "Duo 1v1",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Play 1v1 to 3 goals", "target": 2},
+      {"type": "tally", "description": "Games (times)", "target": 5},
+      {"type": "handshake", "description": "Loser push‑ups", "target": 10},
+      {"type": "photo", "description": "Action shot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0429",
+    "activity": "Futsal",
+    "name": "Duo Give and Go",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Practice wall passes", "target": 2},
+      {"type": "tally", "description": "Successful 1‑2s (times)", "target": 12},
+      {"type": "handshake", "description": "Rate timing", "target": 1},
+      {"type": "photo", "description": "Video of move", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0430",
+    "activity": "Futsal",
+    "name": "Team 5v5",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Play a full match", "target": 10},
+      {"type": "tally", "description": "Halves (times)", "target": 2},
+      {"type": "handshake", "description": "Referee final", "target": 1},
+      {"type": "photo", "description": "Team huddle", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0431",
+    "activity": "Futsal",
+    "name": "Team Power Play",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Practice 5v4", "target": 5},
+      {"type": "tally", "description": "Goals from PP (times)", "target": 4},
+      {"type": "handshake", "description": "Coach feedback", "target": 1},
+      {"type": "photo", "description": "Video of PP", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0432",
+    "activity": "Futsal",
+    "name": "Team Tournament",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter futsal tournament", "target": 1},
+      {"type": "tally", "description": "Matches played", "target": 4},
+      {"type": "pula", "description": "Entry fee (Pula)", "target": 120},
+      {"type": "photo", "description": "Team with trophy", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0433",
+    "activity": "Gaelic Football",
+    "name": "Solo Solo Run",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice bouncing ball", "target": 1},
+      {"type": "tally", "description": "Solo runs (times)", "target": 20},
+      {"type": "timer", "description": "Continuous solo (seconds)", "target": 30},
+      {"type": "photo", "description": "Video of solo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0434",
+    "activity": "Gaelic Football",
+    "name": "Solo Shooting",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Kick at goal", "target": 1},
+      {"type": "tally", "description": "Points scored (times)", "target": 15},
+      {"type": "tally", "description": "Goals scored", "target": 5},
+      {"type": "photo", "description": "Video of kick", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0435",
+    "activity": "Gaelic Football",
+    "name": "Solo Catching",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice high catch", "target": 1},
+      {"type": "tally", "description": "Catches (times)", "target": 20},
+      {"type": "handshake", "description": "Self‑review", "target": 1},
+      {"type": "photo", "description": "Video of catch", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0436",
+    "activity": "Gaelic Football",
+    "name": "Duo Handpass",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Pass back and forth", "target": 2},
+      {"type": "tally", "description": "Handpasses (times)", "target": 30},
+      {"type": "handshake", "description": "Rate accuracy", "target": 1},
+      {"type": "photo", "description": "Video of handpass", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0437",
+    "activity": "Gaelic Football",
+    "name": "Duo Kick Pass",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Kick to each other", "target": 2},
+      {"type": "tally", "description": "Kick passes (times)", "target": 20},
+      {"type": "handshake", "description": "Rate distance", "target": 1},
+      {"type": "photo", "description": "Video of kick pass", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0438",
+    "activity": "Gaelic Football",
+    "name": "Duo Tackle",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Practice side tackle", "target": 2},
+      {"type": "tally", "description": "Tackles (times)", "target": 10},
+      {"type": "handshake", "description": "Coach feedback", "target": 1},
+      {"type": "photo", "description": "Video of tackle", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0439",
+    "activity": "Gaelic Football",
+    "name": "Team 15v15",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Play a full match", "target": 15},
+      {"type": "tally", "description": "Halves (times)", "target": 2},
+      {"type": "handshake", "description": "Referee final", "target": 1},
+      {"type": "photo", "description": "Team photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0440",
+    "activity": "Gaelic Football",
+    "name": "Team Drills",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Run team plays", "target": 15},
+      {"type": "tally", "description": "Drills (times)", "target": 6},
+      {"type": "handshake", "description": "Coach rates", "target": 1},
+      {"type": "photo", "description": "Team huddle", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0441",
+    "activity": "Gaelic Football",
+    "name": "Team Tournament",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter tournament", "target": 15},
+      {"type": "tally", "description": "Matches played", "target": 3},
+      {"type": "pula", "description": "Entry fee (Pula)", "target": 200},
+      {"type": "photo", "description": "Team with cup", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0442",
+    "activity": "Go (Mind Sport)",
+    "name": "Solo Tsumego",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Solve life and death problems", "target": 1},
+      {"type": "tally", "description": "Problems solved (times)", "target": 15},
+      {"type": "handshake", "description": "Check with teacher", "target": 1},
+      {"type": "photo", "description": "Screenshot of problem", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0443",
+    "activity": "Go (Mind Sport)",
+    "name": "Solo Opening Study",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Study joseki", "target": 1},
+      {"type": "tally", "description": "Joseki patterns memorized", "target": 5},
+      {"type": "handshake", "description": "Test with mentor", "target": 1},
+      {"type": "photo", "description": "Notes photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0444",
+    "activity": "Go (Mind Sport)",
+    "name": "Solo Review",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Review your game", "target": 1},
+      {"type": "tally", "description": "Mistakes identified", "target": 5},
+      {"type": "handshake", "description": "Write down lessons", "target": 1},
+      {"type": "photo", "description": "SGF file screenshot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0445",
+    "activity": "Go (Mind Sport)",
+    "name": "Duo Teaching Game",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Play with handicap", "target": 2},
+      {"type": "tally", "description": "Moves (times)", "target": 100},
+      {"type": "handshake", "description": "Post‑game review", "target": 1},
+      {"type": "photo", "description": "Board photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0446",
+    "activity": "Go (Mind Sport)",
+    "name": "Duo Even Game",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Play a serious game", "target": 2},
+      {"type": "tally", "description": "Moves (times)", "target": 200},
+      {"type": "handshake", "description": "Record result", "target": 1},
+      {"type": "photo", "description": "Final position", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0447",
+    "activity": "Go (Mind Sport)",
+    "name": "Duo Blitz",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Set 10‑min clock", "target": 2},
+      {"type": "tally", "description": "Games (times)", "target": 3},
+      {"type": "handshake", "description": "Quick review", "target": 1},
+      {"type": "photo", "description": "Clock photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0448",
+    "activity": "Go (Mind Sport)",
+    "name": "Team Tournament",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter a team tournament", "target": 3},
+      {"type": "tally", "description": "Rounds played", "target": 4},
+      {"type": "handshake", "description": "Tournament director", "target": 1},
+      {"type": "photo", "description": "Team photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0449",
+    "activity": "Go (Mind Sport)",
+    "name": "Team Study Group",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Meet to study", "target": 3},
+      {"type": "tally", "description": "Hours (times)", "target": 2},
+      {"type": "handshake", "description": "Discuss pro games", "target": 1},
+      {"type": "photo", "description": "Study group", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0450",
+    "activity": "Go (Mind Sport)",
+    "name": "Team League",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Join local league", "target": 3},
+      {"type": "tally", "description": "Matches played", "target": 5},
+      {"type": "handshake", "description": "League table", "target": 1},
+      {"type": "photo", "description": "Team standing", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0451",
+    "activity": "Go Karting",
+    "name": "Solo Lap Times",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Get karted up", "target": 1},
+      {"type": "tally", "description": "Laps (times)", "target": 10},
+      {"type": "timer", "description": "Best lap (seconds)", "target": 45},
+      {"type": "photo", "description": "Screenshot of time", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0452",
+    "activity": "Go Karting",
+    "name": "Solo Cornering",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice a specific corner", "target": 1},
+      {"type": "tally", "description": "Laps focusing on corner (times)", "target": 8},
+      {"type": "handshake", "description": "Instructor feedback", "target": 1},
+      {"type": "photo", "description": "Video of corner", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0453",
+    "activity": "Go Karting",
+    "name": "Solo Qualifying Sim",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Simulate qualifying", "target": 1},
+      {"type": "tally", "description": "Flyer laps (times)", "target": 3},
+      {"type": "timer", "description": "Average of best 2 (seconds)", "target": 46},
+      {"type": "photo", "description": "Data printout", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0454",
+    "activity": "Go Karting",
+    "name": "Duo Race",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Line up together", "target": 2},
+      {"type": "tally", "description": "Laps raced", "target": 10},
+      {"type": "handshake", "description": "Winner buys drink", "target": 1},
+      {"type": "photo", "description": "Finish line photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0455",
+    "activity": "Go Karting",
+    "name": "Duo Team Endurance",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Plan driver swaps", "target": 2},
+      {"type": "tally", "description": "Total laps (times)", "target": 30},
+      {"type": "timer", "description": "Race duration (minutes)", "target": 20},
+      {"type": "photo", "description": "Team photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0456",
+    "activity": "Go Karting",
+    "name": "Duo Setup Help",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Adjust kart together", "target": 2},
+      {"type": "tally", "description": "Setup changes (times)", "target": 3},
+      {"type": "handshake", "description": "Test and feedback", "target": 1},
+      {"type": "photo", "description": "Kart in garage", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0457",
+    "activity": "Go Karting",
+    "name": "Team Enduro",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Form a team", "target": 3},
+      {"type": "tally", "description": "Total laps (times)", "target": 50},
+      {"type": "handshake", "description": "Race officials", "target": 1},
+      {"type": "photo", "description": "Team on podium", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0458",
+    "activity": "Go Karting",
+    "name": "Team Championship",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter a series", "target": 1},
+      {"type": "tally", "description": "Races (times)", "target": 4},
+      {"type": "pula", "description": "Entry fee per race (Pula)", "target": 300},
+      {"type": "photo", "description": "Team with trophy", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0459",
+    "activity": "Go Karting",
+    "name": "Team Practice Day",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Book track together", "target": 3},
+      {"type": "tally", "description": "Hours on track", "target": 4},
+      {"type": "pula", "description": "Cost per person (Pula)", "target": 150},
+      {"type": "photo", "description": "Team on grid", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0460",
+    "activity": "Goalball",
+    "name": "Solo Rolling",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Use sound ball", "target": 1},
+      {"type": "tally", "description": "Rolls (times)", "target": 20},
+      {"type": "handshake", "description": "Coach checks", "target": 1},
+      {"type": "photo", "description": "Video of roll", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0461",
+    "activity": "Goalball",
+    "name": "Solo Listening",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Eyeshades on", "target": 1},
+      {"type": "tally", "description": "Track ball by sound (times)", "target": 10},
+      {"type": "timer", "description": "Reaction time (seconds)", "target": 1},
+      {"type": "photo", "description": "Video of listening", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0462",
+    "activity": "Goalball",
+    "name": "Solo Diving",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice on mats", "target": 1},
+      {"type": "tally", "description": "Dives (times)", "target": 12},
+      {"type": "handshake", "description": "Coach feedback", "target": 1},
+      {"type": "photo", "description": "Video of dive", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0463",
+    "activity": "Goalball",
+    "name": "Duo Passing",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Roll to each other", "target": 2},
+      {"type": "tally", "description": "Passes (times)", "target": 20},
+      {"type": "handshake", "description": "Rate accuracy", "target": 1},
+      {"type": "photo", "description": "Video of passing", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0464",
+    "activity": "Goalball",
+    "name": "Duo Defense",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Take turns throwing", "target": 2},
+      {"type": "tally", "description": "Defensive stops (times)", "target": 8},
+      {"type": "handshake", "description": "Rate positioning", "target": 1},
+      {"type": "photo", "description": "Video of defense", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0465",
+    "activity": "Goalball",
+    "name": "Duo Communication",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Call out positions", "target": 2},
+      {"type": "tally", "description": "Successful calls (times)", "target": 10},
+      {"type": "handshake", "description": "Rate communication", "target": 1},
+      {"type": "photo", "description": "Video of comms", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0466",
+    "activity": "Goalball",
+    "name": "Team Game",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Play 3v3", "target": 3},
+      {"type": "tally", "description": "Halves (times)", "target": 2},
+      {"type": "handshake", "description": "Referee final", "target": 1},
+      {"type": "photo", "description": "Team photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0467",
+    "activity": "Goalball",
+    "name": "Team Clinic",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Attend goalball clinic", "target": 3},
+      {"type": "tally", "description": "Hours (times)", "target": 3},
+      {"type": "handshake", "description": "Instructor feedback", "target": 1},
+      {"type": "photo", "description": "Clinic photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0468",
+    "activity": "Goalball",
+    "name": "Team Tournament",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter tournament", "target": 3},
+      {"type": "tally", "description": "Matches played", "target": 4},
+      {"type": "handshake", "description": "Official scores", "target": 1},
+      {"type": "photo", "description": "Team with medals", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0469",
+    "activity": "Golf",
+    "name": "Solo Driving Range",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Get a bucket of balls", "target": 1},
+      {"type": "tally", "description": "Balls hit", "target": 50},
+      {"type": "handshake", "description": "Video analysis", "target": 1},
+      {"type": "photo", "description": "Swing video", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0470",
+    "activity": "Golf",
+    "name": "Solo Putting",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Set up putting mat", "target": 1},
+      {"type": "tally", "description": "Putts made from 3ft (times)", "target": 30},
+      {"type": "timer", "description": "Putting practice (minutes)", "target": 20},
+      {"type": "photo", "description": "Putting photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0471",
+    "activity": "Golf",
+    "name": "Solo Chipping",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice chip shots", "target": 1},
+      {"type": "tally", "description": "Chips (times)", "target": 20},
+      {"type": "handshake", "description": "Check landing spots", "target": 1},
+      {"type": "photo", "description": "Video of chip", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0472",
+    "activity": "Golf",
+    "name": "Duo Match Play",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Play 9 holes", "target": 2},
+      {"type": "tally", "description": "Holes played", "target": 9},
+      {"type": "handshake", "description": "Winner buys lunch", "target": 1},
+      {"type": "photo", "description": "Scorecard photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0473",
+    "activity": "Golf",
+    "name": "Duo Scramble",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Play as a team", "target": 2},
+      {"type": "tally", "description": "Best ball score", "target": 72},
+      {"type": "handshake", "description": "Team effort", "target": 1},
+      {"type": "photo", "description": "Team photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0474",
+    "activity": "Golf",
+    "name": "Duo Putting Contest",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Set up putting challenge", "target": 2},
+      {"type": "tally", "description": "Putts made (times)", "target": 10},
+      {"type": "handshake", "description": "Loser buys drink", "target": 1},
+      {"type": "photo", "description": "Putting green", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0475",
+    "activity": "Golf",
+    "name": "Team Tournament",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter a team event", "target": 4},
+      {"type": "tally", "description": "Rounds played", "target": 2},
+      {"type": "pula", "description": "Entry fee (Pula)", "target": 400},
+      {"type": "photo", "description": "Team trophy", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0476",
+    "activity": "Golf",
+    "name": "Team Ryder Cup",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Team vs team matches", "target": 8},
+      {"type": "tally", "description": "Matches played", "target": 8},
+      {"type": "handshake", "description": "Cup presentation", "target": 1},
+      {"type": "photo", "description": "Winning team", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0477",
+    "activity": "Golf",
+    "name": "Team Golf Clinic",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Group lesson", "target": 4},
+      {"type": "tally", "description": "Hours with pro", "target": 2},
+      {"type": "handshake", "description": "Pro feedback", "target": 1},
+      {"type": "photo", "description": "Group lesson", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0478",
+    "activity": "Greco-Roman Wrestling",
+    "name": "Solo Throws",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice on dummy", "target": 1},
+      {"type": "tally", "description": "Throws (times)", "target": 15},
+      {"type": "handshake", "description": "Coach checks", "target": 1},
+      {"type": "photo", "description": "Video of throw", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0479",
+    "activity": "Greco-Roman Wrestling",
+    "name": "Solo Par Terre",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice gut wrenches", "target": 1},
+      {"type": "tally", "description": "Reps (times)", "target": 12},
+      {"type": "timer", "description": "Hold (seconds)", "target": 10},
+      {"type": "photo", "description": "Video of move", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0480",
+    "activity": "Greco-Roman Wrestling",
+    "name": "Solo Bridge",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice bridging", "target": 1},
+      {"type": "tally", "description": "Bridges (times)", "target": 10},
+      {"type": "timer", "description": "Hold bridge (seconds)", "target": 30},
+      {"type": "photo", "description": "Photo of bridge", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0481",
+    "activity": "Greco-Roman Wrestling",
+    "name": "Duo Drills",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Practice arm drags", "target": 2},
+      {"type": "tally", "description": "Reps each (times)", "target": 10},
+      {"type": "handshake", "description": "Give feedback", "target": 1},
+      {"type": "photo", "description": "Video of drill", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0482",
+    "activity": "Greco-Roman Wrestling",
+    "name": "Duo Sparring",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Wrestle live", "target": 2},
+      {"type": "tally", "description": "Periods (times)", "target": 3},
+      {"type": "handshake", "description": "Coach supervises", "target": 1},
+      {"type": "photo", "description": "Video of sparring", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0483",
+    "activity": "Greco-Roman Wrestling",
+    "name": "Duo Counter Drills",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Practice counters", "target": 2},
+      {"type": "tally", "description": "Successful counters (times)", "target": 8},
+      {"type": "handshake", "description": "Rate reaction", "target": 1},
+      {"type": "photo", "description": "Video of counter", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0484",
+    "activity": "Greco-Roman Wrestling",
+    "name": "Team Practice",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Wrestle round robin", "target": 4},
+      {"type": "tally", "description": "Bouts each", "target": 3},
+      {"type": "handshake", "description": "Coach feedback", "target": 1},
+      {"type": "photo", "description": "Team huddle", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0485",
+    "activity": "Greco-Roman Wrestling",
+    "name": "Team Tournament",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter competition", "target": 1},
+      {"type": "tally", "description": "Matches wrestled", "target": 4},
+      {"type": "handshake", "description": "Official results", "target": 1},
+      {"type": "photo", "description": "Team with medals", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0486",
+    "activity": "Greco-Roman Wrestling",
+    "name": "Team Clinic",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Guest coach visit", "target": 1},
+      {"type": "tally", "description": "Clinic hours", "target": 3},
+      {"type": "handshake", "description": "Coach sign‑off", "target": 1},
+      {"type": "photo", "description": "Group with coach", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0487",
+    "activity": "Handball",
+    "name": "Solo Throwing",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Throw against wall", "target": 1},
+      {"type": "tally", "description": "Throws (times)", "target": 40},
+      {"type": "timer", "description": "Speed drill (seconds)", "target": 60},
+      {"type": "photo", "description": "Video of throw", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0488",
+    "activity": "Handball",
+    "name": "Solo Jump Shot",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Practice jump shot", "target": 1},
+      {"type": "tally", "description": "Shots (times)", "target": 20},
+      {"type": "handshake", "description": "Coach feedback", "target": 1},
+      {"type": "photo", "description": "Video of jump shot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0489",
+    "activity": "Handball",
+    "name": "Solo Defence",
+    "type": "solo",
+    "steps": [
+      {"type": "checklist", "description": "Footwork drills", "target": 1},
+      {"type": "tally", "description": "Lateral shuffles (times)", "target": 20},
+      {"type": "timer", "description": "Reaction drill (seconds)", "target": 30},
+      {"type": "photo", "description": "Video of footwork", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0490",
+    "activity": "Handball",
+    "name": "Duo Passing",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Pass on the move", "target": 2},
+      {"type": "tally", "description": "Completed passes (times)", "target": 30},
+      {"type": "handshake", "description": "Rate accuracy", "target": 1},
+      {"type": "photo", "description": "Video of passing", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0491",
+    "activity": "Handball",
+    "name": "Duo 1v1",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Play 1v1 to 5 goals", "target": 2},
+      {"type": "tally", "description": "Games (times)", "target": 4},
+      {"type": "handshake", "description": "Loser does push‑ups", "target": 10},
+      {"type": "photo", "description": "Action shot", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0492",
+    "activity": "Handball",
+    "name": "Duo 2v2",
+    "type": "duo",
+    "steps": [
+      {"type": "checklist", "description": "Play small game", "target": 4},
+      {"type": "tally", "description": "Goals scored", "target": 10},
+      {"type": "handshake", "description": "Team with more goals", "target": 1},
+      {"type": "photo", "description": "Game photo", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0493",
+    "activity": "Handball",
+    "name": "Team 7v7",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Play a full match", "target": 14},
+      {"type": "tally", "description": "Halves (times)", "target": 2},
+      {"type": "handshake", "description": "Referee final", "target": 1},
+      {"type": "photo", "description": "Team huddle", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0494",
+    "activity": "Handball",
+    "name": "Team Set Plays",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Practice quick throws", "target": 7},
+      {"type": "tally", "description": "Plays executed (times)", "target": 6},
+      {"type": "handshake", "description": "Coach rates", "target": 1},
+      {"type": "photo", "description": "Video of play", "target": 1}
+    ]
+  },
+  {
+    "id": "GT-0495",
+    "activity": "Handball",
+    "name": "Team Tournament",
+    "type": "group",
+    "steps": [
+      {"type": "checklist", "description": "Enter tournament", "target": 7},
+      {"type": "tally", "description": "Matches played", "target": 4},
+      {"type": "pula", "description": "Entry fee (Pula)", "target": 200},
+      {"type": "photo", "description": "Team with trophy", "target": 1}
+    ]
+  }
+]

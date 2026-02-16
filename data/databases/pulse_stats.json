@@ -1,0 +1,1321 @@
+{
+    "version": "1.0",
+    "last_updated": "2026-02-15T05:00:00Z",
+    "sync_status": "synced",
+    "overall_score": 0,
+    "sectors": {
+        "national": {
+            "label": "National Associations",
+            "icon": "🏆",
+            "score": 0,
+            "target": 50,
+            "categories": {
+                "demographics": {
+                    "label": "National Demographics",
+                    "kpis": {
+                        "nat_gender_ga": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "%",
+                            "label": "Gender Parity - Gaborone",
+                            "desc": "Male/Female ratio in registered players"
+                        },
+                        "nat_gender_fr": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "%",
+                            "label": "Gender Parity - Francistown"
+                        },
+                        "nat_gender_mn": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "%",
+                            "label": "Gender Parity - Maun"
+                        },
+                        "nat_gender_ks": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "%",
+                            "label": "Gender Parity - Kasane"
+                        },
+                        "nat_gender_ot": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "%",
+                            "label": "Gender Parity - Other Districts"
+                        },
+                        "nat_age_grass": {
+                            "value": 0,
+                            "target": 5000,
+                            "unit": "players",
+                            "label": "Grassroots (6-12 years)"
+                        },
+                        "nat_age_jr": {
+                            "value": 0,
+                            "target": 3000,
+                            "unit": "players",
+                            "label": "Junior (13-17 years)"
+                        },
+                        "nat_age_elite": {
+                            "value": 0,
+                            "target": 1000,
+                            "unit": "players",
+                            "label": "Elite (18-25 years)"
+                        },
+                        "nat_age_sr": {
+                            "value": 0,
+                            "target": 2000,
+                            "unit": "players",
+                            "label": "Senior (26+ years)"
+                        },
+                        "nat_age_vet": {
+                            "value": 0,
+                            "target": 500,
+                            "unit": "players",
+                            "label": "Veterans (40+ years)"
+                        },
+                        "nat_geo_desert": {
+                            "value": 0,
+                            "target": 0,
+                            "unit": "villages",
+                            "label": "Activity Deserts (no clubs)"
+                        },
+                        "nat_geo_urban": {
+                            "value": 0,
+                            "target": 50,
+                            "unit": "clubs",
+                            "label": "Urban Club Density"
+                        },
+                        "nat_geo_rural": {
+                            "value": 0,
+                            "target": 30,
+                            "unit": "clubs",
+                            "label": "Rural Club Density"
+                        },
+                        "nat_geo_coverage": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "%",
+                            "label": "Geographic Coverage"
+                        },
+                        "nat_geo_clubs": {
+                            "value": 0,
+                            "target": 120,
+                            "unit": "clubs",
+                            "label": "Total Registered Clubs"
+                        }
+                    }
+                },
+                "elite_performance": {
+                    "label": "Elite Performance & Scouting",
+                    "kpis": {
+                        "nat_elite_top1": {
+                            "value": 0,
+                            "target": 50,
+                            "unit": "players",
+                            "label": "Top 1% Athletes"
+                        },
+                        "nat_elite_cv_avg": {
+                            "value": 0,
+                            "target": 85,
+                            "unit": "score",
+                            "label": "Avg Sports CV Score"
+                        },
+                        "nat_elite_growth": {
+                            "value": 0,
+                            "target": 20,
+                            "unit": "%",
+                            "label": "Elite Growth Rate (YoY)"
+                        },
+                        "nat_elite_intl": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "players",
+                            "label": "International Callups"
+                        },
+                        "nat_elite_pro": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "players",
+                            "label": "Pro Contract Signings"
+                        },
+                        "nat_scout_ratio": {
+                            "value": 0,
+                            "target": 50,
+                            "unit": "ratio",
+                            "label": "Scout-to-Player Ratio (1:X)"
+                        },
+                        "nat_scout_active": {
+                            "value": 0,
+                            "target": 20,
+                            "unit": "scouts",
+                            "label": "Active Scouts"
+                        },
+                        "nat_scout_leads": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "leads",
+                            "label": "Scouting Leads Generated"
+                        },
+                        "nat_scout_conv": {
+                            "value": 0,
+                            "target": 30,
+                            "unit": "%",
+                            "label": "Lead Conversion Rate"
+                        },
+                        "nat_scout_intl": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "scouts",
+                            "label": "International Scouts"
+                        },
+                        "nat_trans_am_sp": {
+                            "value": 0,
+                            "target": 50,
+                            "unit": "players",
+                            "label": "Amateur → Semi-Pro"
+                        },
+                        "nat_trans_sp_pro": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "players",
+                            "label": "Semi-Pro → Pro"
+                        },
+                        "nat_trans_time": {
+                            "value": 0,
+                            "target": 24,
+                            "unit": "months",
+                            "label": "Avg Transition Time"
+                        },
+                        "nat_trans_success": {
+                            "value": 0,
+                            "target": 70,
+                            "unit": "%",
+                            "label": "Transition Success Rate"
+                        },
+                        "nat_trans_dropout": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "%",
+                            "label": "Dropout Rate"
+                        }
+                    }
+                },
+                "coaching": {
+                    "label": "Coaching & Mentorship",
+                    "kpis": {
+                        "nat_coach_cert": {
+                            "value": 0,
+                            "target": 200,
+                            "unit": "coaches",
+                            "label": "Certified Coaches"
+                        },
+                        "nat_coach_ratio": {
+                            "value": 0,
+                            "target": 20,
+                            "unit": "ratio",
+                            "label": "Coach-to-Player Ratio (1:X)"
+                        },
+                        "nat_coach_village": {
+                            "value": 0,
+                            "target": 50,
+                            "unit": "villages",
+                            "label": "Villages with Coaches"
+                        },
+                        "nat_coach_active": {
+                            "value": 0,
+                            "target": 150,
+                            "unit": "coaches",
+                            "label": "Active Coaches (30 days)"
+                        },
+                        "nat_coach_growth": {
+                            "value": 0,
+                            "target": 15,
+                            "unit": "%",
+                            "label": "Coach Growth Rate (YoY)"
+                        },
+                        "nat_edu_l1": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "coaches",
+                            "label": "Level 1 Certified"
+                        },
+                        "nat_edu_l2": {
+                            "value": 0,
+                            "target": 50,
+                            "unit": "coaches",
+                            "label": "Level 2 Certified"
+                        },
+                        "nat_edu_l3": {
+                            "value": 0,
+                            "target": 20,
+                            "unit": "coaches",
+                            "label": "Level 3 Certified"
+                        },
+                        "nat_edu_upgrade": {
+                            "value": 0,
+                            "target": 30,
+                            "unit": "upgrades",
+                            "label": "Capability Upgrades (YTD)"
+                        },
+                        "nat_edu_complete": {
+                            "value": 0,
+                            "target": 80,
+                            "unit": "%",
+                            "label": "Course Completion Rate"
+                        }
+                    }
+                },
+                "compliance": {
+                    "label": "Compliance & Logistics",
+                    "kpis": {
+                        "nat_venue_util": {
+                            "value": 0,
+                            "target": 75,
+                            "unit": "%",
+                            "label": "Venue Utilization Rate"
+                        },
+                        "nat_venue_time": {
+                            "value": 0,
+                            "target": 40,
+                            "unit": "hrs/week",
+                            "label": "Avg Venue Usage Time"
+                        },
+                        "nat_venue_occ": {
+                            "value": 0,
+                            "target": 80,
+                            "unit": "%",
+                            "label": "Peak Occupancy Rate"
+                        },
+                        "nat_venue_peak": {
+                            "value": 0,
+                            "target": 20,
+                            "unit": "hours",
+                            "label": "Peak Hours Booked"
+                        },
+                        "nat_venue_idle": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "%",
+                            "label": "Idle Time Rate"
+                        },
+                        "nat_med_clear": {
+                            "value": 0,
+                            "target": 95,
+                            "unit": "%",
+                            "label": "Medical Clearance Rate"
+                        },
+                        "nat_med_pending": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "%",
+                            "label": "Pending Clearances"
+                        },
+                        "nat_med_expired": {
+                            "value": 0,
+                            "target": 2,
+                            "unit": "%",
+                            "label": "Expired Clearances"
+                        },
+                        "nat_med_roster": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "%",
+                            "label": "Tournament Roster Compliance"
+                        },
+                        "nat_med_incident": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "incidents",
+                            "label": "Medical Incidents (YTD)"
+                        }
+                    }
+                }
+            }
+        },
+        "schools": {
+            "label": "Schools & Education",
+            "icon": "🎓",
+            "score": 0,
+            "target": 50,
+            "categories": {
+                "competition": {
+                    "label": "Inter-House & Competition",
+                    "kpis": {
+                        "sch_comp_red": {
+                            "value": 0,
+                            "target": 250,
+                            "unit": "points",
+                            "label": "Red House Points"
+                        },
+                        "sch_comp_yellow": {
+                            "value": 0,
+                            "target": 250,
+                            "unit": "points",
+                            "label": "Yellow House Points"
+                        },
+                        "sch_comp_blue": {
+                            "value": 0,
+                            "target": 250,
+                            "unit": "points",
+                            "label": "Blue House Points"
+                        },
+                        "sch_comp_green": {
+                            "value": 0,
+                            "target": 250,
+                            "unit": "points",
+                            "label": "Green House Points"
+                        },
+                        "sch_comp_balance": {
+                            "value": 0,
+                            "target": 90,
+                            "unit": "%",
+                            "label": "House Point Balance"
+                        },
+                        "sch_attend_corr": {
+                            "value": 0,
+                            "target": 85,
+                            "unit": "%",
+                            "label": "Attendance Correlation"
+                        },
+                        "sch_attend_athlete": {
+                            "value": 0,
+                            "target": 95,
+                            "unit": "%",
+                            "label": "Student-Athlete Attendance"
+                        },
+                        "sch_attend_general": {
+                            "value": 0,
+                            "target": 90,
+                            "unit": "%",
+                            "label": "General Student Attendance"
+                        },
+                        "sch_attend_gap": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "%",
+                            "label": "Attendance Gap"
+                        },
+                        "sch_attend_improve": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "%",
+                            "label": "Attendance Improvement"
+                        },
+                        "sch_league_rank": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "rank",
+                            "label": "School League Ranking"
+                        },
+                        "sch_league_wins": {
+                            "value": 0,
+                            "target": 15,
+                            "unit": "wins",
+                            "label": "Inter-School Wins"
+                        },
+                        "sch_league_part": {
+                            "value": 0,
+                            "target": 80,
+                            "unit": "%",
+                            "label": "League Participation Rate"
+                        },
+                        "sch_league_sports": {
+                            "value": 0,
+                            "target": 8,
+                            "unit": "sports",
+                            "label": "Sports Offered"
+                        },
+                        "sch_league_teams": {
+                            "value": 0,
+                            "target": 20,
+                            "unit": "teams",
+                            "label": "Active School Teams"
+                        }
+                    }
+                },
+                "safety": {
+                    "label": "Safety & Guardian Handshakes",
+                    "kpis": {
+                        "sch_safe_handshake": {
+                            "value": 0,
+                            "target": 95,
+                            "unit": "%",
+                            "label": "3-Way Handshake Rate"
+                        },
+                        "sch_safe_verified": {
+                            "value": 0,
+                            "target": 90,
+                            "unit": "%",
+                            "label": "Verified Guardians"
+                        },
+                        "sch_safe_pending": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "%",
+                            "label": "Pending Verifications"
+                        },
+                        "sch_safe_waiver": {
+                            "value": 0,
+                            "target": 30,
+                            "unit": "%",
+                            "label": "Village Waiver Usage"
+                        },
+                        "sch_safe_rural": {
+                            "value": 0,
+                            "target": 40,
+                            "unit": "%",
+                            "label": "Rural Student Coverage"
+                        },
+                        "sch_incident_total": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "incidents",
+                            "label": "Total Incidents (YTD)"
+                        },
+                        "sch_incident_minor": {
+                            "value": 0,
+                            "target": 8,
+                            "unit": "incidents",
+                            "label": "Minor Incidents"
+                        },
+                        "sch_incident_major": {
+                            "value": 0,
+                            "target": 2,
+                            "unit": "incidents",
+                            "label": "Major Incidents"
+                        },
+                        "sch_incident_rate": {
+                            "value": 0,
+                            "target": 1,
+                            "unit": "per 1000",
+                            "label": "Incident Rate"
+                        },
+                        "sch_incident_time": {
+                            "value": 0,
+                            "target": 15,
+                            "unit": "minutes",
+                            "label": "Avg Response Time"
+                        },
+                        "sch_injury_report": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "%",
+                            "label": "Injury Reporting Rate"
+                        },
+                        "sch_injury_grade6": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "injuries",
+                            "label": "Grade 6 Injuries"
+                        },
+                        "sch_injury_grade9": {
+                            "value": 0,
+                            "target": 8,
+                            "unit": "injuries",
+                            "label": "Grade 9 Injuries"
+                        },
+                        "sch_injury_grade12": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "injuries",
+                            "label": "Grade 12 Injuries"
+                        },
+                        "sch_injury_prevent": {
+                            "value": 0,
+                            "target": 20,
+                            "unit": "%",
+                            "label": "Injury Prevention Rate"
+                        }
+                    }
+                },
+                "growth": {
+                    "label": "Holistic Growth",
+                    "kpis": {
+                        "sch_growth_diversity": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "activities",
+                            "label": "Avg Activities per Student"
+                        },
+                        "sch_growth_sports": {
+                            "value": 0,
+                            "target": 3,
+                            "unit": "sports",
+                            "label": "Avg Sports per Student"
+                        },
+                        "sch_growth_hobbies": {
+                            "value": 0,
+                            "target": 2,
+                            "unit": "hobbies",
+                            "label": "Avg Hobbies per Student"
+                        },
+                        "sch_growth_balance": {
+                            "value": 0,
+                            "target": 80,
+                            "unit": "%",
+                            "label": "Sport-Hobby Balance"
+                        },
+                        "sch_growth_explore": {
+                            "value": 0,
+                            "target": 60,
+                            "unit": "%",
+                            "label": "Students Exploring New Activities"
+                        },
+                        "sch_lesson_music": {
+                            "value": 0,
+                            "target": 75,
+                            "unit": "%",
+                            "label": "Music Lesson Completion"
+                        },
+                        "sch_lesson_art": {
+                            "value": 0,
+                            "target": 80,
+                            "unit": "%",
+                            "label": "Art Lesson Completion"
+                        },
+                        "sch_lesson_coding": {
+                            "value": 0,
+                            "target": 70,
+                            "unit": "%",
+                            "label": "Coding Lesson Completion"
+                        },
+                        "sch_lesson_avg": {
+                            "value": 0,
+                            "target": 75,
+                            "unit": "%",
+                            "label": "Avg Lesson Completion"
+                        },
+                        "sch_lesson_cert": {
+                            "value": 0,
+                            "target": 50,
+                            "unit": "certs",
+                            "label": "Certificates Earned"
+                        }
+                    }
+                },
+                "equipment": {
+                    "label": "Equipment & Resources",
+                    "kpis": {
+                        "sch_equip_borrowed": {
+                            "value": 0,
+                            "target": 200,
+                            "unit": "items",
+                            "label": "Equipment Borrowed"
+                        },
+                        "sch_equip_damaged": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "items",
+                            "label": "Damaged Equipment"
+                        },
+                        "sch_equip_ratio": {
+                            "value": 0,
+                            "target": 95,
+                            "unit": "%",
+                            "label": "Borrowed/Damaged Ratio"
+                        },
+                        "sch_equip_return": {
+                            "value": 0,
+                            "target": 90,
+                            "unit": "%",
+                            "label": "Return Rate"
+                        },
+                        "sch_equip_overdue": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "%",
+                            "label": "Overdue Rate"
+                        },
+                        "sch_uniform_avail": {
+                            "value": 0,
+                            "target": 95,
+                            "unit": "%",
+                            "label": "Uniform Availability"
+                        },
+                        "sch_uniform_kit": {
+                            "value": 0,
+                            "target": 90,
+                            "unit": "%",
+                            "label": "Kit Availability"
+                        },
+                        "sch_uniform_size": {
+                            "value": 0,
+                            "target": 85,
+                            "unit": "%",
+                            "label": "Correct Size Match"
+                        },
+                        "sch_uniform_replace": {
+                            "value": 0,
+                            "target": 15,
+                            "unit": "%",
+                            "label": "Replacement Rate"
+                        },
+                        "sch_uniform_cost": {
+                            "value": 0,
+                            "target": 5000,
+                            "unit": "Pula",
+                            "label": "Uniform Budget (YTD)"
+                        }
+                    }
+                }
+            }
+        },
+        "corporates": {
+            "label": "Corporates & Employers",
+            "icon": "🏢",
+            "score": 0,
+            "target": 50,
+            "categories": {
+                "wellness": {
+                    "label": "Employee Wellness",
+                    "kpis": {
+                        "corp_well_active": {
+                            "value": 0,
+                            "target": 500,
+                            "unit": "employees",
+                            "label": "Active Employees"
+                        },
+                        "corp_well_sedentary": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "employees",
+                            "label": "Sedentary Employees"
+                        },
+                        "corp_well_ratio": {
+                            "value": 0,
+                            "target": 80,
+                            "unit": "%",
+                            "label": "Active/Total Ratio"
+                        },
+                        "corp_well_growth": {
+                            "value": 0,
+                            "target": 15,
+                            "unit": "%",
+                            "label": "Wellness Growth (YoY)"
+                        },
+                        "corp_well_engage": {
+                            "value": 0,
+                            "target": 70,
+                            "unit": "%",
+                            "label": "Engagement Rate"
+                        },
+                        "corp_team_events": {
+                            "value": 0,
+                            "target": 12,
+                            "unit": "events",
+                            "label": "Team-Building Events"
+                        },
+                        "corp_team_part": {
+                            "value": 0,
+                            "target": 60,
+                            "unit": "%",
+                            "label": "Participation Rate"
+                        },
+                        "corp_team_avg": {
+                            "value": 0,
+                            "target": 25,
+                            "unit": "employees",
+                            "label": "Avg Event Attendance"
+                        },
+                        "corp_team_feedback": {
+                            "value": 0,
+                            "target": 4.5,
+                            "unit": "rating",
+                            "label": "Event Satisfaction"
+                        },
+                        "corp_team_repeat": {
+                            "value": 0,
+                            "target": 75,
+                            "unit": "%",
+                            "label": "Repeat Participation"
+                        },
+                        "corp_steps_avg": {
+                            "value": 0,
+                            "target": 8000,
+                            "unit": "steps",
+                            "label": "Avg Daily Steps"
+                        },
+                        "corp_steps_lead": {
+                            "value": 0,
+                            "target": 50,
+                            "unit": "employees",
+                            "label": "Leaderboard Participants"
+                        },
+                        "corp_steps_top": {
+                            "value": 0,
+                            "target": 15000,
+                            "unit": "steps",
+                            "label": "Top Performer Steps"
+                        },
+                        "corp_points_total": {
+                            "value": 0,
+                            "target": 50000,
+                            "unit": "points",
+                            "label": "Total Activity Points"
+                        },
+                        "corp_points_avg": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "points",
+                            "label": "Avg Points per Employee"
+                        }
+                    }
+                },
+                "sponsorship": {
+                    "label": "Sponsorship ROI",
+                    "kpis": {
+                        "corp_roi_games": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "games",
+                            "label": "Sponsored Games"
+                        },
+                        "corp_roi_views": {
+                            "value": 0,
+                            "target": 10000,
+                            "unit": "views",
+                            "label": "Brand Impressions"
+                        },
+                        "corp_roi_cpm": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "Pula",
+                            "label": "Cost per 1000 Impressions"
+                        },
+                        "corp_roi_engage": {
+                            "value": 0,
+                            "target": 15,
+                            "unit": "%",
+                            "label": "Engagement Rate"
+                        },
+                        "corp_roi_recall": {
+                            "value": 0,
+                            "target": 60,
+                            "unit": "%",
+                            "label": "Brand Recall"
+                        },
+                        "corp_stream_views": {
+                            "value": 0,
+                            "target": 5000,
+                            "unit": "views",
+                            "label": "Fan Stream Views"
+                        },
+                        "corp_stream_time": {
+                            "value": 0,
+                            "target": 30,
+                            "unit": "minutes",
+                            "label": "Avg Watch Time"
+                        },
+                        "corp_stream_peak": {
+                            "value": 0,
+                            "target": 500,
+                            "unit": "viewers",
+                            "label": "Peak Concurrent Viewers"
+                        },
+                        "corp_stream_share": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "%",
+                            "label": "Share Rate"
+                        },
+                        "corp_stream_sponsor": {
+                            "value": 0,
+                            "target": 8,
+                            "unit": "tournaments",
+                            "label": "Sponsored Tournaments"
+                        },
+                        "corp_click_profile": {
+                            "value": 0,
+                            "target": 500,
+                            "unit": "clicks",
+                            "label": "Profile Clicks"
+                        },
+                        "corp_click_website": {
+                            "value": 0,
+                            "target": 200,
+                            "unit": "clicks",
+                            "label": "Website Clicks"
+                        },
+                        "corp_click_conv": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "%",
+                            "label": "Click Conversion Rate"
+                        },
+                        "corp_click_ctr": {
+                            "value": 0,
+                            "target": 3,
+                            "unit": "%",
+                            "label": "Click-Through Rate"
+                        },
+                        "corp_click_bounce": {
+                            "value": 0,
+                            "target": 40,
+                            "unit": "%",
+                            "label": "Bounce Rate"
+                        }
+                    }
+                },
+                "csr": {
+                    "label": "CSR & Community Impact",
+                    "kpis": {
+                        "corp_csr_pula": {
+                            "value": 0,
+                            "target": 50000,
+                            "unit": "Pula",
+                            "label": "Total Pula Donated"
+                        },
+                        "corp_csr_grass": {
+                            "value": 0,
+                            "target": 30000,
+                            "unit": "Pula",
+                            "label": "Grassroots Funding"
+                        },
+                        "corp_csr_equip": {
+                            "value": 0,
+                            "target": 15000,
+                            "unit": "Pula",
+                            "label": "Equipment Donations"
+                        },
+                        "corp_csr_scholar": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "scholarships",
+                            "label": "Scholarships Funded"
+                        },
+                        "corp_csr_impact": {
+                            "value": 0,
+                            "target": 200,
+                            "unit": "beneficiaries",
+                            "label": "Direct Beneficiaries"
+                        },
+                        "corp_hours_total": {
+                            "value": 0,
+                            "target": 500,
+                            "unit": "hours",
+                            "label": "Community Hours Logged"
+                        },
+                        "corp_hours_avg": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "hours",
+                            "label": "Avg Hours per Employee"
+                        },
+                        "corp_hours_coach": {
+                            "value": 0,
+                            "target": 200,
+                            "unit": "hours",
+                            "label": "Coaching Hours"
+                        },
+                        "corp_hours_mentor": {
+                            "value": 0,
+                            "target": 150,
+                            "unit": "hours",
+                            "label": "Mentorship Hours"
+                        },
+                        "corp_hours_event": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "hours",
+                            "label": "Event Support Hours"
+                        }
+                    }
+                },
+                "brand": {
+                    "label": "Brand Sentiment",
+                    "kpis": {
+                        "corp_brand_score": {
+                            "value": 0,
+                            "target": 4.5,
+                            "unit": "rating",
+                            "label": "Brand Sentiment Score"
+                        },
+                        "corp_brand_positive": {
+                            "value": 0,
+                            "target": 80,
+                            "unit": "%",
+                            "label": "Positive Sentiment"
+                        },
+                        "corp_brand_neutral": {
+                            "value": 0,
+                            "target": 15,
+                            "unit": "%",
+                            "label": "Neutral Sentiment"
+                        },
+                        "corp_brand_negative": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "%",
+                            "label": "Negative Sentiment"
+                        },
+                        "corp_brand_nps": {
+                            "value": 0,
+                            "target": 50,
+                            "unit": "score",
+                            "label": "Net Promoter Score"
+                        },
+                        "corp_retention_total": {
+                            "value": 0,
+                            "target": 90,
+                            "unit": "%",
+                            "label": "Employee Retention Rate"
+                        },
+                        "corp_retention_active": {
+                            "value": 0,
+                            "target": 95,
+                            "unit": "%",
+                            "label": "Active Participant Retention"
+                        },
+                        "corp_retention_inactive": {
+                            "value": 0,
+                            "target": 80,
+                            "unit": "%",
+                            "label": "Inactive Participant Retention"
+                        },
+                        "corp_retention_diff": {
+                            "value": 0,
+                            "target": 15,
+                            "unit": "%",
+                            "label": "Retention Difference"
+                        },
+                        "corp_retention_tenure": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "years",
+                            "label": "Avg Tenure (Active)"
+                        }
+                    }
+                }
+            }
+        },
+        "businesses": {
+            "label": "Businesses & SMMEs",
+            "icon": "🏪",
+            "score": 0,
+            "target": 50,
+            "categories": {
+                "vendor": {
+                    "label": "Vendor Performance",
+                    "kpis": {
+                        "biz_vendor_clicks": {
+                            "value": 0,
+                            "target": 1000,
+                            "unit": "clicks",
+                            "label": "WhatsApp Deep-Link Clicks"
+                        },
+                        "biz_vendor_leads": {
+                            "value": 0,
+                            "target": 200,
+                            "unit": "leads",
+                            "label": "Trade Leads Generated"
+                        },
+                        "biz_vendor_conv": {
+                            "value": 0,
+                            "target": 15,
+                            "unit": "%",
+                            "label": "Lead Conversion Rate"
+                        },
+                        "biz_vendor_repeat": {
+                            "value": 0,
+                            "target": 40,
+                            "unit": "%",
+                            "label": "Repeat Customer Rate"
+                        },
+                        "biz_vendor_growth": {
+                            "value": 0,
+                            "target": 25,
+                            "unit": "%",
+                            "label": "Vendor Growth (YoY)"
+                        },
+                        "biz_search_equip": {
+                            "value": 0,
+                            "target": 500,
+                            "unit": "searches",
+                            "label": "Equipment Searches"
+                        },
+                        "biz_search_apparel": {
+                            "value": 0,
+                            "target": 300,
+                            "unit": "searches",
+                            "label": "Apparel Searches"
+                        },
+                        "biz_search_nutrition": {
+                            "value": 0,
+                            "target": 200,
+                            "unit": "searches",
+                            "label": "Nutrition Searches"
+                        },
+                        "biz_search_wellness": {
+                            "value": 0,
+                            "target": 150,
+                            "unit": "searches",
+                            "label": "Wellness Searches"
+                        },
+                        "biz_search_tech": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "searches",
+                            "label": "Tech Searches"
+                        },
+                        "biz_service_physio": {
+                            "value": 0,
+                            "target": 4.5,
+                            "unit": "rating",
+                            "label": "Physio Service Rating"
+                        },
+                        "biz_service_trainer": {
+                            "value": 0,
+                            "target": 4.5,
+                            "unit": "rating",
+                            "label": "Trainer Service Rating"
+                        },
+                        "biz_service_barber": {
+                            "value": 0,
+                            "target": 4.5,
+                            "unit": "rating",
+                            "label": "Barber Service Rating"
+                        },
+                        "biz_service_avg": {
+                            "value": 0,
+                            "target": 4.5,
+                            "unit": "rating",
+                            "label": "Avg Service Rating"
+                        },
+                        "biz_service_reviews": {
+                            "value": 0,
+                            "target": 500,
+                            "unit": "reviews",
+                            "label": "Total Reviews"
+                        }
+                    }
+                },
+                "economic": {
+                    "label": "Economic Flow",
+                    "kpis": {
+                        "biz_econ_coupon": {
+                            "value": 0,
+                            "target": 60,
+                            "unit": "%",
+                            "label": "Coupon Redemption Rate"
+                        },
+                        "biz_econ_discount": {
+                            "value": 0,
+                            "target": 5000,
+                            "unit": "Pula",
+                            "label": "Total Discount Value"
+                        },
+                        "biz_econ_savings": {
+                            "value": 0,
+                            "target": 50,
+                            "unit": "Pula",
+                            "label": "Avg Savings per User"
+                        },
+                        "biz_econ_active": {
+                            "value": 0,
+                            "target": 200,
+                            "unit": "users",
+                            "label": "Active Coupon Users"
+                        },
+                        "biz_econ_merchants": {
+                            "value": 0,
+                            "target": 30,
+                            "unit": "merchants",
+                            "label": "Participating Merchants"
+                        },
+                        "biz_econ_volume": {
+                            "value": 0,
+                            "target": 100000,
+                            "unit": "Pula",
+                            "label": "Total Transaction Volume"
+                        },
+                        "biz_econ_rental": {
+                            "value": 0,
+                            "target": 20000,
+                            "unit": "Pula",
+                            "label": "Equipment Rental Revenue"
+                        },
+                        "biz_econ_sales": {
+                            "value": 0,
+                            "target": 60000,
+                            "unit": "Pula",
+                            "label": "Equipment Sales Revenue"
+                        },
+                        "biz_econ_service": {
+                            "value": 0,
+                            "target": 15000,
+                            "unit": "Pula",
+                            "label": "Service Revenue"
+                        },
+                        "biz_econ_other": {
+                            "value": 0,
+                            "target": 5000,
+                            "unit": "Pula",
+                            "label": "Other Revenue"
+                        },
+                        "biz_peak_morning": {
+                            "value": 0,
+                            "target": 20,
+                            "unit": "%",
+                            "label": "Morning Shopping (6-12)"
+                        },
+                        "biz_peak_afternoon": {
+                            "value": 0,
+                            "target": 30,
+                            "unit": "%",
+                            "label": "Afternoon Shopping (12-18)"
+                        },
+                        "biz_peak_evening": {
+                            "value": 0,
+                            "target": 40,
+                            "unit": "%",
+                            "label": "Evening Shopping (18-22)"
+                        },
+                        "biz_peak_game": {
+                            "value": 0,
+                            "target": 50,
+                            "unit": "%",
+                            "label": "Pre/Post-Game Shopping"
+                        },
+                        "biz_peak_weekend": {
+                            "value": 0,
+                            "target": 60,
+                            "unit": "%",
+                            "label": "Weekend Shopping Rate"
+                        }
+                    }
+                },
+                "infrastructure": {
+                    "label": "Infrastructure Support",
+                    "kpis": {
+                        "biz_infra_kombi": {
+                            "value": 0,
+                            "target": 50,
+                            "unit": "bookings",
+                            "label": "Kombi/Bus Hire Bookings"
+                        },
+                        "biz_infra_distance": {
+                            "value": 0,
+                            "target": 5000,
+                            "unit": "km",
+                            "label": "Total Distance Traveled"
+                        },
+                        "biz_infra_teams": {
+                            "value": 0,
+                            "target": 30,
+                            "unit": "teams",
+                            "label": "Teams Using Transport"
+                        },
+                        "biz_infra_cost": {
+                            "value": 0,
+                            "target": 15000,
+                            "unit": "Pula",
+                            "label": "Transport Revenue"
+                        },
+                        "biz_infra_safety": {
+                            "value": 0,
+                            "target": 100,
+                            "unit": "%",
+                            "label": "Safety Compliance Rate"
+                        },
+                        "biz_supply_speed": {
+                            "value": 0,
+                            "target": 3,
+                            "unit": "days",
+                            "label": "Avg Delivery Time"
+                        },
+                        "biz_supply_ontime": {
+                            "value": 0,
+                            "target": 90,
+                            "unit": "%",
+                            "label": "On-Time Delivery Rate"
+                        },
+                        "biz_supply_damage": {
+                            "value": 0,
+                            "target": 2,
+                            "unit": "%",
+                            "label": "Damaged Goods Rate"
+                        },
+                        "biz_supply_return": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "%",
+                            "label": "Return Rate"
+                        },
+                        "biz_supply_sat": {
+                            "value": 0,
+                            "target": 4.5,
+                            "unit": "rating",
+                            "label": "Supply Chain Satisfaction"
+                        }
+                    }
+                },
+                "smme_growth": {
+                    "label": "SMME Growth",
+                    "kpis": {
+                        "biz_growth_new": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "vendors",
+                            "label": "New Vendor Registrations"
+                        },
+                        "biz_growth_village": {
+                            "value": 0,
+                            "target": 20,
+                            "unit": "villages",
+                            "label": "Villages with Vendors"
+                        },
+                        "biz_growth_density": {
+                            "value": 0,
+                            "target": 5,
+                            "unit": "vendors",
+                            "label": "Avg Vendors per Village"
+                        },
+                        "biz_growth_active": {
+                            "value": 0,
+                            "target": 80,
+                            "unit": "%",
+                            "label": "Active Vendor Rate"
+                        },
+                        "biz_growth_churn": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "%",
+                            "label": "Vendor Churn Rate"
+                        },
+                        "biz_vis_small": {
+                            "value": 0,
+                            "target": 5000,
+                            "unit": "impressions",
+                            "label": "Small Business Impressions"
+                        },
+                        "biz_vis_large": {
+                            "value": 0,
+                            "target": 8000,
+                            "unit": "impressions",
+                            "label": "Large Retail Impressions"
+                        },
+                        "biz_vis_ratio": {
+                            "value": 0,
+                            "target": 60,
+                            "unit": "%",
+                            "label": "Small/Large Visibility Ratio"
+                        },
+                        "biz_vis_clicks": {
+                            "value": 0,
+                            "target": 500,
+                            "unit": "clicks",
+                            "label": "Small Business Clicks"
+                        },
+                        "biz_vis_conv": {
+                            "value": 0,
+                            "target": 10,
+                            "unit": "%",
+                            "label": "Small Business Conversion"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+{
+  "org_id": "ASSOC-BW-BMF-001",
+  "org_type": "National Association",
+  "org_name": "Botswana Motorsport Federation",
+  "sport": "motorsport",
+  "founded": 1980,
+  "location": {
+    "headquarters": "Phakalane Raceway",
+    "street_address": "Plot 1, Phakalane",
+    "area": "Phakalane",
+    "city": "Gaborone",
+    "country": "Botswana",
+    "gps": "-24.5723, 25.9634"
+  },
+  "contact": {
+    "phone": "+2673928899",
+    "whatsapp": "+2673928899",
+    "email": "info@motorsportbw.org",
+    "website": "www.motorsportbw.org",
+    "facebook": "BotswanaMotorsport",
+    "twitter": "@BMotorsportFed"
+  },
+  "staff": [
+    {
+      "role": "President",
+      "name": "Phempheretlhe Ntshebe",
+      "age": 58,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "president@motorsportbw.org",
+      "phone": "+26771234231"
+    },
+    {
+      "role": "Secretary General",
+      "name": "Keitumetse Moilwa",
+      "age": 44,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "sg@motorsportbw.org",
+      "phone": "+26772345232"
+    },
+    {
+      "role": "Events Director",
+      "name": "Boitumelo Mothibi",
+      "age": 40,
+      "gender": "Female",
+      "nationality": "Motswana",
+      "email": "events@motorsportbw.org",
+      "phone": "+26773456233"
+    }
+  ],
+  "affiliated_clubs": 15,
+  "competitions_managed": ["National Rally Championship", "Phakalane Race Series", "Kalahari 1000"],
+  "sponsors": ["FNBB", "TotalEnergies", "Debswana"],
+  "notes": "FIA member. Organises off-road and circuit events."
+}

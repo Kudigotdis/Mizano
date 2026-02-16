@@ -1,0 +1,45 @@
+[
+  {
+    "local_id": 1001,
+    "cloud_id": "user_001",
+    "uid": "mizano_thabo_001",
+    "whatsapp_number": "+26771000001",
+    "display_name": "Thabo Mokwena",
+    "avatar_url": "./images/avatars/thabo.webp",
+    "profile_type": "creator",
+    "date_of_birth": "1990-05-15",
+    "village_town": "Gaborone · Block 3",
+    "sync_status": "synced",
+    "sync_attempts": 0,
+    "last_modified": 1707897600000,
+    "created_at": 1707897600000
+  },
+  {
+    "local_id": 1002,
+    "cloud_id": "user_002",
+    "uid": "mizano_lesedi_002",
+    "whatsapp_number": "+26772000002",
+    "display_name": "Lesedi Kgosi",
+    "profile_type": "player",
+    "date_of_birth": "2010-08-20",
+    "village_town": "Gaborone · Phase 2",
+    "guardian_id": "mizano_neo_003",
+    "sync_status": "synced",
+    "sync_attempts": 0,
+    "last_modified": 1707897600000,
+    "created_at": 1707897600000
+  },
+  {
+    "local_id": 1003,
+    "cloud_id": "user_003",
+    "uid": "mizano_neo_003",
+    "whatsapp_number": "+26773000003",
+    "display_name": "Neo Kgosi",
+    "profile_type": "guardian",
+    "village_town": "Gaborone · Phase 2",
+    "sync_status": "synced",
+    "sync_attempts": 0,
+    "last_modified": 1707897600000,
+    "created_at": 1707897600000
+  }
+]

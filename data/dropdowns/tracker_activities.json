@@ -1,0 +1,52 @@
+[
+    {
+        "value": "gym_strength",
+        "display": "Gym – Strength Training",
+        "group": "turn_cycle"
+    },
+    {
+        "value": "calisthenics",
+        "display": "Calisthenics",
+        "group": "turn_cycle"
+    },
+    {
+        "value": "running",
+        "display": "Running",
+        "group": "leaderboard"
+    },
+    {
+        "value": "cycling",
+        "display": "Cycling",
+        "group": "leaderboard"
+    },
+    {
+        "value": "weight_management",
+        "display": "Weight Management",
+        "group": "leaderboard"
+    },
+    {
+        "value": "water_intake",
+        "display": "Water Intake",
+        "group": "custom"
+    },
+    {
+        "value": "meals",
+        "display": "Meals",
+        "group": "custom"
+    },
+    {
+        "value": "mood",
+        "display": "Mood",
+        "group": "custom"
+    },
+    {
+        "value": "language_practice",
+        "display": "Language Practice",
+        "group": "timer_split"
+    },
+    {
+        "value": "music_practice",
+        "display": "Music Practice",
+        "group": "timer_split"
+    }
+]

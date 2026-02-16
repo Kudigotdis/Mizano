@@ -1,0 +1,15 @@
+[
+    {
+        "local_id": 3001,
+        "cloud_id": "team_001",
+        "name": "Block 3 Lions FC",
+        "owner_uid": "mizano_thabo_001",
+        "village_town": "Gaborone · Block 3",
+        "sport": "Football (Soccer)",
+        "verified": true,
+        "sync_status": "synced",
+        "sync_attempts": 0,
+        "last_modified": 1707897600000,
+        "created_at": 1707897600000
+    }
+]

@@ -1,0 +1,4174 @@
+[
+  {
+    "id": 1,
+    "raw_text": "DROPDOWN_REFERENCE_SCHOOLS_DATA.md"
+  },
+  {
+    "id": 2,
+    "raw_text": "--------------"
+  },
+  {
+    "id": 3,
+    "raw_text": "This list compiles all registered **public primary schools**, **private primary schools**, **private secondary schools**, and **tertiary institutions** from the official registers provided."
+  },
+  {
+    "id": 4,
+    "raw_text": "Each entry includes the **institution name** (with region/location where necessary for uniqueness), the **category/type**, and the **dropdown menu** under which it would appear in a selection interface."
+  },
+  {
+    "id": 5,
+    "raw_text": "--"
+  },
+  {
+    "id": 6,
+    "raw_text": "**ABM University College** (Tertiary – Private University) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 7,
+    "raw_text": "**Acacia Primary School (Jwaneng)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 8,
+    "raw_text": "**Academy of Toddlers Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 9,
+    "raw_text": "**Ace Eagles Academy (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 10,
+    "raw_text": "**Adelaide English Medium School (Serowe)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 11,
+    "raw_text": "**Aerodrome (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 12,
+    "raw_text": "**AFDA Botswana** (Tertiary – Private University) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 13,
+    "raw_text": "**Agosi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 14,
+    "raw_text": "**Al-Haq English Medium School (Molepolole)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 15,
+    "raw_text": "**Al Nur Unified Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 16,
+    "raw_text": "**Al-Nur Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 17,
+    "raw_text": "**Ambrose Academy (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 18,
+    "raw_text": "**Andrew Wellio (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 19,
+    "raw_text": "**Artesia (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 20,
+    "raw_text": "**Arthur Portland College** (Tertiary – Private University) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 21,
+    "raw_text": "**Assembly Bible College** (Tertiary – Private University) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 22,
+    "raw_text": "**AWIL College** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 23,
+    "raw_text": "--"
+  },
+  {
+    "id": 24,
+    "raw_text": "**Ba Isago University** (Tertiary – Private University) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 25,
+    "raw_text": "**Baipidi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 26,
+    "raw_text": "**Bakgatla (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 27,
+    "raw_text": "**Bakoko (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 28,
+    "raw_text": "**Bakwena National (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 29,
+    "raw_text": "**Bamatele Lutheran School of Nursing** (Tertiary – Institute of Health Sciences) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 30,
+    "raw_text": "**Bana Ba Metsi Primary School (Sekanduko)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 31,
+    "raw_text": "**Baobab Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 32,
+    "raw_text": "**Baratani (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 33,
+    "raw_text": "**Barolong Vocational Training Centre** (Tertiary – Vocational Training Centre) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 34,
+    "raw_text": "**Bathoen I House (Orapa)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 35,
+    "raw_text": "**Batlokwa (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 36,
+    "raw_text": "**Beautiful Gates Academy (Mochudi)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 37,
+    "raw_text": "**Beetsha (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 38,
+    "raw_text": "**Believers Destiny College (Kgatleng)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 39,
+    "raw_text": "**Believers Destiny English Medium (Mogoditshane)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 40,
+    "raw_text": "**Believers Destiny Preparatory English Medium School (Mochudi)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 41,
+    "raw_text": "**Believers Preparatory English Medium School (Morwa)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 42,
+    "raw_text": "**Ben Thema (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 43,
+    "raw_text": "**Bere (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 44,
+    "raw_text": "**Betesankwe (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 45,
+    "raw_text": "**Blue Bows English Medium Primary School (Molepolole)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 46,
+    "raw_text": "**Blue Bows English Medium Secondary School (Kweneng)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 47,
+    "raw_text": "**Boatlaname (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 48,
+    "raw_text": "**Bobonong (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 49,
+    "raw_text": "**Bobonong Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 50,
+    "raw_text": "**Bodibeng (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 51,
+    "raw_text": "**Bogatsu (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 52,
+    "raw_text": "**Bogogobo (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 53,
+    "raw_text": "**Boikhutso (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 54,
+    "raw_text": "**Boipelo (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 55,
+    "raw_text": "**Boipuso (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 56,
+    "raw_text": "**Boitekanelo College** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 57,
+    "raw_text": "**Boiteko (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 58,
+    "raw_text": "**Boitshoko (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 59,
+    "raw_text": "**Boitumelo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 60,
+    "raw_text": "**Boitumelo (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 61,
+    "raw_text": "**Bokaa (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 62,
+    "raw_text": "**Bokspits (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 63,
+    "raw_text": "**Bonatla (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 64,
+    "raw_text": "**Bonewamang (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 65,
+    "raw_text": "**Bontleng (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 66,
+    "raw_text": "**Bonwapitse (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 67,
+    "raw_text": "**Bopaganang (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 68,
+    "raw_text": "**Bophirima (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 69,
+    "raw_text": "**Borakanelo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 70,
+    "raw_text": "**Borakalalo (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 71,
+    "raw_text": "**Boribamo (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 72,
+    "raw_text": "**Borobadilepe (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 73,
+    "raw_text": "**Borolong (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 74,
+    "raw_text": "**Borotsi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 75,
+    "raw_text": "**Bosa Bosele Training Institute** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 76,
+    "raw_text": "**Boseja (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 77,
+    "raw_text": "**Bosele (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 78,
+    "raw_text": "**Bosele Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 79,
+    "raw_text": "**Boswa (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 80,
+    "raw_text": "**Boswelakgomo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 81,
+    "raw_text": "**Boteti Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 82,
+    "raw_text": "**Boteti House (Orapa)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 83,
+    "raw_text": "**Boteti Unified Primary School (Letlhakane)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 84,
+    "raw_text": "**Bothakga (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 85,
+    "raw_text": "**Botho University** (Tertiary – Private University) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 86,
+    "raw_text": "**Bothatogo (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 87,
+    "raw_text": "**Botlhale Cambridge International School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 88,
+    "raw_text": "**Botlhale International School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 89,
+    "raw_text": "**Botlhapatlou (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 90,
+    "raw_text": "**Botshabelo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 91,
+    "raw_text": "**Botsalano (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 92,
+    "raw_text": "**Botswelelo (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 93,
+    "raw_text": "**Botswana Accountancy College** (Tertiary – Public College) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 94,
+    "raw_text": "**Botswana College of Engineering & Technology** (Tertiary – Technical College) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 95,
+    "raw_text": "**Botswana Distance Education College (Central)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 96,
+    "raw_text": "**Botswana Institute of Bankers** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 97,
+    "raw_text": "**Botswana International University of Science and Technology** (Tertiary – Public University) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 98,
+    "raw_text": "**Botswana Open University** (Tertiary – Public University) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 99,
+    "raw_text": "**Botswana University of Agriculture and Natural Science** (Tertiary – Public University) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 100,
+    "raw_text": "**Botswana Wildlife Training Institute** (Tertiary – Public College) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 101,
+    "raw_text": "**Boye (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 102,
+    "raw_text": "**Brasen Academy Primary School (Ramotswa)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 103,
+    "raw_text": "**Broadhurst Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 104,
+    "raw_text": "**Brookside Academy (Mogoditshane)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 105,
+    "raw_text": "**Bugalo (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 106,
+    "raw_text": "**Bunnies Academy (Tlokweng)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 107,
+    "raw_text": "**Busang I Memorial (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 108,
+    "raw_text": "**Butale (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 109,
+    "raw_text": "--"
+  },
+  {
+    "id": 110,
+    "raw_text": "**Camp (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 111,
+    "raw_text": "**Canon Gordon (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 112,
+    "raw_text": "**Capital Continuation Classes (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 113,
+    "raw_text": "**Centre for Deaf (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 114,
+    "raw_text": "**Chadibe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 115,
+    "raw_text": "**Chakaloba (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 116,
+    "raw_text": "**Changate (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 117,
+    "raw_text": "**Chanoga (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 118,
+    "raw_text": "**Chobe Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 119,
+    "raw_text": "**Chobokwane (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 120,
+    "raw_text": "**Chukumuchu (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 121,
+    "raw_text": "**Clifton Primary School (Francistown)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 122,
+    "raw_text": "**Clifton Secondary School (Francistown)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 123,
+    "raw_text": "**Cornerstone English Medium Primary School (Mochudi)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 124,
+    "raw_text": "**Corpus Christi (Masunga)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 125,
+    "raw_text": "**Crescent English Medium School (Lobatse)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 126,
+    "raw_text": "**Crescent English Medium School (Lobatse)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 127,
+    "raw_text": "**Cwaanyaneng (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 128,
+    "raw_text": "--"
+  },
+  {
+    "id": 129,
+    "raw_text": "**Dagwi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 130,
+    "raw_text": "**Day Star Primary School (Mahalapye)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 131,
+    "raw_text": "**Day Star Secondary School (Mahalapye)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 132,
+    "raw_text": "**DDT College of Medicine** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 133,
+    "raw_text": "**Defence Command & Staff College** (Tertiary – Public College) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 134,
+    "raw_text": "**Dekar Boarding (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 135,
+    "raw_text": "**Delta Waters International School (Maun)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 136,
+    "raw_text": "**Delta Waters International School (Maun)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 137,
+    "raw_text": "**Diabo (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 138,
+    "raw_text": "**Digawana (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 139,
+    "raw_text": "**Dikgatlhong (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 140,
+    "raw_text": "**Dikgonnye (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 141,
+    "raw_text": "**Dikhukhung (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 142,
+    "raw_text": "**Dikwididi (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 143,
+    "raw_text": "**Diloro (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 144,
+    "raw_text": "**Dimajwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 145,
+    "raw_text": "**Dinatshana (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 146,
+    "raw_text": "**Dinokwane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 147,
+    "raw_text": "**Dinonyane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 148,
+    "raw_text": "**Diphetogo (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 149,
+    "raw_text": "**Diphuduhudu (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 150,
+    "raw_text": "**Dipotsana (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 151,
+    "raw_text": "**Disaneng (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 152,
+    "raw_text": "**Dithuto English Medium School (Tlokweng)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 153,
+    "raw_text": "**Ditladi (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 154,
+    "raw_text": "**Ditshegwane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 155,
+    "raw_text": "**Ditshukudu (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 156,
+    "raw_text": "**Dominion Destiny Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 157,
+    "raw_text": "**Dovedale (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 158,
+    "raw_text": "**Dukwi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 159,
+    "raw_text": "**Dutlwe (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 160,
+    "raw_text": "**Dzoroga (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 161,
+    "raw_text": "--"
+  },
+  {
+    "id": 162,
+    "raw_text": "**East Hanahai (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 163,
+    "raw_text": "**Eastern Gate Academy (Francistown)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 164,
+    "raw_text": "**Eastern Gate Primary School (Francistown)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 165,
+    "raw_text": "**Emmanuel Adventist Academy (Molepolole)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 166,
+    "raw_text": "**Enko - Botho Campus (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 167,
+    "raw_text": "**Enko - Botho Campus (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 168,
+    "raw_text": "**Ethan English Medium School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 169,
+    "raw_text": "**Etsha 1 (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 170,
+    "raw_text": "**Etsha 13 (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 171,
+    "raw_text": "**Etsha 6 (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 172,
+    "raw_text": "**Etsile Majashango (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 173,
+    "raw_text": "--"
+  },
+  {
+    "id": 174,
+    "raw_text": "**Fairview Grace Academy (Kanye)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 175,
+    "raw_text": "**Fairview Grace Academy (Kanye)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 176,
+    "raw_text": "**Fairview Grace Academy (Moshupa)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 177,
+    "raw_text": "**Flamingo Primary School (Sowa)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 178,
+    "raw_text": "**Flamingo Secondary School (Sowa)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 179,
+    "raw_text": "**Flowertown (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 180,
+    "raw_text": "**Flying Mission - Aircraft Maintenance Engineering Training School** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 181,
+    "raw_text": "**Foley Itireleng (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 182,
+    "raw_text": "**Founders Academy English Medium Primary School (Matebeleng)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 183,
+    "raw_text": "**Francistown College of Technical & Vocational Education** (Tertiary – Technical College) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 184,
+    "raw_text": "**Frederick Maherero (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 185,
+    "raw_text": "--"
+  },
+  {
+    "id": 186,
+    "raw_text": "**Gabane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 187,
+    "raw_text": "**Gabane Private Secondary School (Kweneng)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 188,
+    "raw_text": "**Gaborone Institute of Professional Studies** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 189,
+    "raw_text": "**Gaborone International Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 190,
+    "raw_text": "**Gaborone International Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 191,
+    "raw_text": "**Gaborone Technical College** (Tertiary – Technical College) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 192,
+    "raw_text": "**Gaborone Universal College of Law** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 193,
+    "raw_text": "**Gakhibana (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 194,
+    "raw_text": "**Gakuto (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 195,
+    "raw_text": "**Galaletsang (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 196,
+    "raw_text": "**Gamajaalela (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 197,
+    "raw_text": "**Gambule (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 198,
+    "raw_text": "**Gamodubu (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 199,
+    "raw_text": "**Gantsi (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 200,
+    "raw_text": "**Gantsi Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 201,
+    "raw_text": "**Gasebalwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 202,
+    "raw_text": "**Gasiko (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 203,
+    "raw_text": "**Gasita (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 204,
+    "raw_text": "**Gathwane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 205,
+    "raw_text": "**Gateway English Medium Primary School (Francistown)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 206,
+    "raw_text": "**Ghani (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 207,
+    "raw_text": "**Glody Dube International School (Modipane)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 208,
+    "raw_text": "**Gobojango (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 209,
+    "raw_text": "**Gobuamang (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 210,
+    "raw_text": "**Gojwane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 211,
+    "raw_text": "**Golden Eagle International School (Francistown)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 212,
+    "raw_text": "**Goodhope (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 213,
+    "raw_text": "**Goo - Sekgweng (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 214,
+    "raw_text": "**Goo-Tau (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 215,
+    "raw_text": "**Gopong (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 216,
+    "raw_text": "**Goshwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 217,
+    "raw_text": "**Gothibamang (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 218,
+    "raw_text": "**Grace Kgari (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 219,
+    "raw_text": "**Grootlaagte (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 220,
+    "raw_text": "**Gudigwa (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 221,
+    "raw_text": "**Gulubane (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 222,
+    "raw_text": "**Gumare (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 223,
+    "raw_text": "**Gungwe (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 224,
+    "raw_text": "**Gunutsoga (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 225,
+    "raw_text": "**Gweta (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 226,
+    "raw_text": "**Gweta Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 227,
+    "raw_text": "**Gxabara (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 228,
+    "raw_text": "--"
+  },
+  {
+    "id": 229,
+    "raw_text": "**Habu (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 230,
+    "raw_text": "**Hatsalatadi (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 231,
+    "raw_text": "**Hereford (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 232,
+    "raw_text": "**Hibiscus Learning Academy (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 233,
+    "raw_text": "**Hibiscus Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 234,
+    "raw_text": "**Hibiscus Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 235,
+    "raw_text": "**Highridge Primary School (Moshupa)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 236,
+    "raw_text": "**Highridge Primary School (Thamaga)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 237,
+    "raw_text": "**Hill (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 238,
+    "raw_text": "**Hillcrest International School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 239,
+    "raw_text": "**Hillcrest International Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 240,
+    "raw_text": "**Hunhukwe (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 241,
+    "raw_text": "--"
+  },
+  {
+    "id": 242,
+    "raw_text": "**IHS - Francistown** (Tertiary – Institute of Health Sciences) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 243,
+    "raw_text": "**IHS - Gaborone** (Tertiary – Institute of Health Sciences) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 244,
+    "raw_text": "**IHS - Lobatse** (Tertiary – Institute of Health Sciences) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 245,
+    "raw_text": "**IHS - Molepolole** (Tertiary – Institute of Health Sciences) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 246,
+    "raw_text": "**IHS - Serowe** (Tertiary – Institute of Health Sciences) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 247,
+    "raw_text": "**Ikageng (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 248,
+    "raw_text": "**Ikaneng (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 249,
+    "raw_text": "**Ikoga (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 250,
+    "raw_text": "**Ikhutseng (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 251,
+    "raw_text": "**Ikongwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 252,
+    "raw_text": "**Imperial School of Business** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 253,
+    "raw_text": "**Inalegolo (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 254,
+    "raw_text": "**Institute of Development Management** (Tertiary – Public College) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 255,
+    "raw_text": "**Ipeleng (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 256,
+    "raw_text": "**Isang (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 257,
+    "raw_text": "**Itholoke (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 258,
+    "raw_text": "**Ithuteng (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 259,
+    "raw_text": "**Itumeleng (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 260,
+    "raw_text": "**Iwana (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 261,
+    "raw_text": "--"
+  },
+  {
+    "id": 262,
+    "raw_text": "**Jacaranda English Medium Primary School (Francistown)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 263,
+    "raw_text": "**Jacaranda Secondary School (Francistown)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 264,
+    "raw_text": "**Jackalas 1 (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 265,
+    "raw_text": "**Jackalas 2 (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 266,
+    "raw_text": "**Jamataka (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 267,
+    "raw_text": "**John Mackenzie Primary School (Francistown)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 268,
+    "raw_text": "**John Mackenzie Secondary School (Francistown)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 269,
+    "raw_text": "**John Phooko (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 270,
+    "raw_text": "**Joseph Anderson (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 271,
+    "raw_text": "**Joyland English Medium Primary School (Metsimotlhabe)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 272,
+    "raw_text": "**Joyland Secondary School (Metsimotlhabe)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 273,
+    "raw_text": "**Jwaneng Technical Centre** (Tertiary – Vocational Training Centre) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 274,
+    "raw_text": "--"
+  },
+  {
+    "id": 275,
+    "raw_text": "**Kabakae (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 276,
+    "raw_text": "**Kacgae (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 277,
+    "raw_text": "**Kachikau (Chobe)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 278,
+    "raw_text": "**Kaggatla (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 279,
+    "raw_text": "**Kagisano Secondary School (Maun)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 280,
+    "raw_text": "**Kairos Academy (Mogoditshane)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 281,
+    "raw_text": "**Kajaja (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 282,
+    "raw_text": "**Kalakamati (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 283,
+    "raw_text": "**Kalamare (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 284,
+    "raw_text": "**Kalkfontein (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 285,
+    "raw_text": "**Kanagas (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 286,
+    "raw_text": "**Kanaku (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 287,
+    "raw_text": "**Kang (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 288,
+    "raw_text": "**Kang Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 289,
+    "raw_text": "**Kanngwe (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 290,
+    "raw_text": "**Kanye Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 291,
+    "raw_text": "**Kanye Private Secondary School (Kanye)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 292,
+    "raw_text": "**Kanye SDA School of Nursing** (Tertiary – Institute of Health Sciences) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 293,
+    "raw_text": "**Karakobis (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 294,
+    "raw_text": "**Kareng (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 295,
+    "raw_text": "**Kasane (Chobe)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 296,
+    "raw_text": "**Kathiana Mahonga (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 297,
+    "raw_text": "**Kaudwane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 298,
+    "raw_text": "**Kauxwi (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 299,
+    "raw_text": "**Kavimba (Chobe)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 300,
+    "raw_text": "**Kazungula (Chobe)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 301,
+    "raw_text": "**Kealeboga (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 302,
+    "raw_text": "**Kebonyekgotla (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 303,
+    "raw_text": "**Kedia (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 304,
+    "raw_text": "**Kediretswe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 305,
+    "raw_text": "**Kelele (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 306,
+    "raw_text": "**Kelekele (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 307,
+    "raw_text": "**Kelly Todds English Medium Primary School (Ramotswa)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 308,
+    "raw_text": "**Keng (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 309,
+    "raw_text": "**Ketlogetswe Memorial (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 310,
+    "raw_text": "**Ketshwerebothata (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 311,
+    "raw_text": "**Kgabophuti (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 312,
+    "raw_text": "**Kgabosereto (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 313,
+    "raw_text": "**Kgabosetso (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 314,
+    "raw_text": "**Kgabotshwene (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 315,
+    "raw_text": "**Kgafela (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 316,
+    "raw_text": "**Kgagodi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 317,
+    "raw_text": "**Kgalagadi (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 318,
+    "raw_text": "**Kgalagadi South Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 319,
+    "raw_text": "**Kgalagano College of Theological Education** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 320,
+    "raw_text": "**Kgamane Memorial (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 321,
+    "raw_text": "**Kgaphamadi (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 322,
+    "raw_text": "**Kgari (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 323,
+    "raw_text": "**Kgaswe International School (Palapye)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 324,
+    "raw_text": "**Kgaswe International School (Palapye)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 325,
+    "raw_text": "**Kgatleng Development Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 326,
+    "raw_text": "**Kgetheng (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 327,
+    "raw_text": "**Kgomodiatshaba (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 328,
+    "raw_text": "**Kgomokasitwa (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 329,
+    "raw_text": "**Kgope (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 330,
+    "raw_text": "**Kgoro (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 331,
+    "raw_text": "**Kgosi - Kgosi (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 332,
+    "raw_text": "**Kgosi Sekoko I (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 333,
+    "raw_text": "**Kgosietsile (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 334,
+    "raw_text": "**Khakhea (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 335,
+    "raw_text": "**Khama Memorial (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 336,
+    "raw_text": "**Khawa (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 337,
+    "raw_text": "**Khekhenye (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 338,
+    "raw_text": "**Khonkhiwa (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 339,
+    "raw_text": "**Khuduga (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 340,
+    "raw_text": "**Khudumelapye (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 341,
+    "raw_text": "**Khuis (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 342,
+    "raw_text": "**Khumaga (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 343,
+    "raw_text": "**Khurumela (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 344,
+    "raw_text": "**Khurutshe (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 345,
+    "raw_text": "**Khwee (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 346,
+    "raw_text": "**Khweeosee (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 347,
+    "raw_text": "**Kidz Academy English Medium (Kanye)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 348,
+    "raw_text": "**Kidz Academy English Medium School (Kanye)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 349,
+    "raw_text": "**King’s Hand School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 350,
+    "raw_text": "**Kisa (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 351,
+    "raw_text": "**K’joe (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 352,
+    "raw_text": "**Kodibelenq (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 353,
+    "raw_text": "**Kogalgano College** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 354,
+    "raw_text": "**Kokong (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 355,
+    "raw_text": "**Kokotsha (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 356,
+    "raw_text": "**Kole (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 357,
+    "raw_text": "**Kolonkwaneng (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 358,
+    "raw_text": "**Komana (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 359,
+    "raw_text": "**Kontle (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 360,
+    "raw_text": "**Kopano English Medium School (Selibe Phikwe)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 361,
+    "raw_text": "**Kopano High School (Selibe Phikwe)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 362,
+    "raw_text": "**Kotolaname (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 363,
+    "raw_text": "**Kubung (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 364,
+    "raw_text": "**Kubung (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 365,
+    "raw_text": "**Kudumatse (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 366,
+    "raw_text": "**Kukubjwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 367,
+    "raw_text": "**Kuke (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 368,
+    "raw_text": "**Kumakwane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 369,
+    "raw_text": "**Kutamogoree (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 370,
+    "raw_text": "**Kutlwano (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 371,
+    "raw_text": "**Kuto (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 372,
+    "raw_text": "**Kutuku (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 373,
+    "raw_text": "**Kweneng Bophirima Development Trust** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 374,
+    "raw_text": "**Kweneng International Secondary School (Molepolole)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 375,
+    "raw_text": "**Kweneng Rural Development Association** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 376,
+    "raw_text": "**Kweneng Rural Development Association Trust (Molepolole)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 377,
+    "raw_text": "--"
+  },
+  {
+    "id": 378,
+    "raw_text": "**Lady Mitchison (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 379,
+    "raw_text": "**Lapologang (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 380,
+    "raw_text": "**Leapotswe Evening Secondary School (Maun)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 381,
+    "raw_text": "**Leapotswe Unified School (Maun)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 382,
+    "raw_text": "**Lechenq (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 383,
+    "raw_text": "**Ledibela (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 384,
+    "raw_text": "**Ledumang (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 385,
+    "raw_text": "**Leetile (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 386,
+    "raw_text": "**Lefoko (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 387,
+    "raw_text": "**Legae Academy (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 388,
+    "raw_text": "**Legae Primary School (Mogoditshane)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 389,
+    "raw_text": "**Legola (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 390,
+    "raw_text": "**Legothwane (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 391,
+    "raw_text": "**Lehututu (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 392,
+    "raw_text": "**Lejwana (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 393,
+    "raw_text": "**Lekadibeng (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 394,
+    "raw_text": "**Lekgaba (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 395,
+    "raw_text": "**Lekgolobotlo (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 396,
+    "raw_text": "**Lekgwapheng (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 397,
+    "raw_text": "**Lekhubu Private Education Centre (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 398,
+    "raw_text": "**Lentswe le Tau (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 399,
+    "raw_text": "**Lentswe Le Moriti (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 400,
+    "raw_text": "**Leologane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 401,
+    "raw_text": "**Lepashe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 402,
+    "raw_text": "**Lephaleng (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 403,
+    "raw_text": "**Lephephe (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 404,
+    "raw_text": "**Lepokole (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 405,
+    "raw_text": "**Leporung (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 406,
+    "raw_text": "**Lerala (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 407,
+    "raw_text": "**Lerolwane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 408,
+    "raw_text": "**Lesedi (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 409,
+    "raw_text": "**Lesedi la Pela Primary School (Lobatse)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 410,
+    "raw_text": "**Lesedi la Pela Secondary School (Lobatse)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 411,
+    "raw_text": "**Lesenepole (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 412,
+    "raw_text": "**Lesetlhane (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 413,
+    "raw_text": "**Leshibitse (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 414,
+    "raw_text": "**Lesirane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 415,
+    "raw_text": "**Lesoma (Chobe)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 416,
+    "raw_text": "**Lethakane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 417,
+    "raw_text": "**Lethakeng (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 418,
+    "raw_text": "**Letlhabile International Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 419,
+    "raw_text": "**Letlole II (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 420,
+    "raw_text": "**Letsebe (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 421,
+    "raw_text": "**Letsholo (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 422,
+    "raw_text": "**Letsholathebe (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 423,
+    "raw_text": "**Letsholathebe (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 424,
+    "raw_text": "**Letsibogo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 425,
+    "raw_text": "**Letswai (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 426,
+    "raw_text": "**Lewis Memorial (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 427,
+    "raw_text": "**Limkokwing University of Creative Technology** (Tertiary – Private University) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 428,
+    "raw_text": "**Linchwe (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 429,
+    "raw_text": "**Little Souls English Medium School (Shoshong)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 430,
+    "raw_text": "**Livingstone House (Orapa)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 431,
+    "raw_text": "**Livingstone Kolobeng College (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 432,
+    "raw_text": "**Lobatse Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 433,
+    "raw_text": "**Logaba (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 434,
+    "raw_text": "**Logagana (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 435,
+    "raw_text": "**Logan Business College** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 436,
+    "raw_text": "**Lokgwabe (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 437,
+    "raw_text": "**Lorwana (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 438,
+    "raw_text": "**Lotlhakane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 439,
+    "raw_text": "**Louw (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 440,
+    "raw_text": "**Loving Glory Pre-Primary and Primary English Medium School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 441,
+    "raw_text": "**LRC International School (Mmopane)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 442,
+    "raw_text": "--"
+  },
+  {
+    "id": 443,
+    "raw_text": "**Maape (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 444,
+    "raw_text": "**Mabalane (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 445,
+    "raw_text": "**Mabele (Chobe)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 446,
+    "raw_text": "**Mabeleapodi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 447,
+    "raw_text": "**Mabesekwa (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 448,
+    "raw_text": "**Mabolwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 449,
+    "raw_text": "**Maboane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 450,
+    "raw_text": "**Mabudzane (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 451,
+    "raw_text": "**Mabule (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 452,
+    "raw_text": "**Mabumahibidu (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 453,
+    "raw_text": "**Mabuo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 454,
+    "raw_text": "**Mabutsane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 455,
+    "raw_text": "**Mabuwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 456,
+    "raw_text": "**Machaneng (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 457,
+    "raw_text": "**Madiba Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 458,
+    "raw_text": "**Madikwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 459,
+    "raw_text": "**Madisakwane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 460,
+    "raw_text": "**Mafetsakgang (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 461,
+    "raw_text": "**Mafhikana (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 462,
+    "raw_text": "**Mafithakgosi (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 463,
+    "raw_text": "**Magalatadi (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 464,
+    "raw_text": "**Magapatona (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 465,
+    "raw_text": "**Magokotswane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 466,
+    "raw_text": "**Magopane (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 467,
+    "raw_text": "**Magoriapitese (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 468,
+    "raw_text": "**Magothwane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 469,
+    "raw_text": "**Mahalapye (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 470,
+    "raw_text": "**Mahalapye Development Trust** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 471,
+    "raw_text": "**Mahalapye Development Trust Unified Secondary School (Central)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 472,
+    "raw_text": "**Mahetwe (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 473,
+    "raw_text": "**Mahotshwane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 474,
+    "raw_text": "**Mahube (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 475,
+    "raw_text": "**Mahudiri (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 476,
+    "raw_text": "**Mahusane (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 477,
+    "raw_text": "**Maiphithwane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 478,
+    "raw_text": "**Maisantwa (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 479,
+    "raw_text": "**Maitengwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 480,
+    "raw_text": "**Maitlamo (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 481,
+    "raw_text": "**Maitshoko (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 482,
+    "raw_text": "**Majwanaadipitse (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 483,
+    "raw_text": "**Makaba II (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 484,
+    "raw_text": "**Makalamabedi (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 485,
+    "raw_text": "**Makaleng (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 486,
+    "raw_text": "**Makakung (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 487,
+    "raw_text": "**Makgasane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 488,
+    "raw_text": "**Makgakgane (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 489,
+    "raw_text": "**Makobo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 490,
+    "raw_text": "**Makolo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 491,
+    "raw_text": "**Makolojwane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 492,
+    "raw_text": "**Makongwa (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 493,
+    "raw_text": "**Makopong (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 494,
+    "raw_text": "**Makunda (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 495,
+    "raw_text": "**Makuta (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 496,
+    "raw_text": "**Malaka (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 497,
+    "raw_text": "**Malatswai (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 498,
+    "raw_text": "**Maleshe (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 499,
+    "raw_text": "**Malwelwe (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 500,
+    "raw_text": "**Mambo (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 501,
+    "raw_text": "**Mampori (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 502,
+    "raw_text": "**Management College of Southern Africa** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 503,
+    "raw_text": "**Manaledi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 504,
+    "raw_text": "**Mandunyane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 505,
+    "raw_text": "**Mannathoko (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 506,
+    "raw_text": "**Manonnye (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 507,
+    "raw_text": "**Manthabakwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 508,
+    "raw_text": "**Manxotae (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 509,
+    "raw_text": "**Manyana (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 510,
+    "raw_text": "**Maokane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 511,
+    "raw_text": "**Maphorisa (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 512,
+    "raw_text": "**Mapoka (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 513,
+    "raw_text": "**Maposa (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 514,
+    "raw_text": "**Mapulane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 515,
+    "raw_text": "**Maradu (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 516,
+    "raw_text": "**Maralaleng (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 517,
+    "raw_text": "**Maranatha Academy of Excellence Primary School (Kanye)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 518,
+    "raw_text": "**Maranatha Academy of Excellence Secondary School (Kanye)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 519,
+    "raw_text": "**Maranyane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 520,
+    "raw_text": "**Marapong (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 521,
+    "raw_text": "**Marapong Development Trust** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 522,
+    "raw_text": "**Marobela Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 523,
+    "raw_text": "**Marojane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 524,
+    "raw_text": "**Maru-a-pula Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 525,
+    "raw_text": "**Masa (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 526,
+    "raw_text": "**Masedi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 527,
+    "raw_text": "**Masingwaneng (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 528,
+    "raw_text": "**Masokola (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 529,
+    "raw_text": "**Masupe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 530,
+    "raw_text": "**Masukwane (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 531,
+    "raw_text": "**Masunga (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 532,
+    "raw_text": "**Matebele (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 533,
+    "raw_text": "**Matenge (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 534,
+    "raw_text": "**Mathangwane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 535,
+    "raw_text": "**Mathathane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 536,
+    "raw_text": "**Mathiba Memorial (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 537,
+    "raw_text": "**Matlabaneng (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 538,
+    "raw_text": "**Matlhako (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 539,
+    "raw_text": "**Matlhakola (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 540,
+    "raw_text": "**Matlotlagkang (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 541,
+    "raw_text": "**Matlola (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 542,
+    "raw_text": "**Matopi (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 543,
+    "raw_text": "**Matsaakgang (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 544,
+    "raw_text": "**Matsaudi (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 545,
+    "raw_text": "**Matshelagabedi (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 546,
+    "raw_text": "**Matsheng Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 547,
+    "raw_text": "**Matshwane College (Maun)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 548,
+    "raw_text": "**Matshwane Primary School (Maun)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 549,
+    "raw_text": "**Matsieng (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 550,
+    "raw_text": "**Matsiloje (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 551,
+    "raw_text": "**Matsitama (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 552,
+    "raw_text": "**Maun Technical Centre** (Tertiary – Vocational Training Centre) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 553,
+    "raw_text": "**Maunatlala (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 554,
+    "raw_text": "**Mbalambi (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 555,
+    "raw_text": "**Mc Carthy Rust (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 556,
+    "raw_text": "**Medie (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 557,
+    "raw_text": "**Mega Size College** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 558,
+    "raw_text": "**Mega-Size Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 559,
+    "raw_text": "**Mengwe Memorial (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 560,
+    "raw_text": "**Metlobo (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 561,
+    "raw_text": "**Metlojane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 562,
+    "raw_text": "**Metsemothlabe (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 563,
+    "raw_text": "**Metsibothloko (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 564,
+    "raw_text": "**Metsimantsho (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 565,
+    "raw_text": "**Mhalapitsa (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 566,
+    "raw_text": "**Middlepits (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 567,
+    "raw_text": "**Mmadikola (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 568,
+    "raw_text": "**Mmadipamo (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 569,
+    "raw_text": "**Mmaditlou (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 570,
+    "raw_text": "**Mmadinare (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 571,
+    "raw_text": "**Mmakgori (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 572,
+    "raw_text": "**Mmanoko (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 573,
+    "raw_text": "**Mmanthswabisi (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 574,
+    "raw_text": "**Mmaphashalala (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 575,
+    "raw_text": "**Mmashoro (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 576,
+    "raw_text": "**Mmatseta (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 577,
+    "raw_text": "**Mmatshumo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 578,
+    "raw_text": "**Mmathethe (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 579,
+    "raw_text": "**Mmea (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 580,
+    "raw_text": "**Mmokolodi (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 581,
+    "raw_text": "**Mmonye (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 582,
+    "raw_text": "**Mmuabui (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 583,
+    "raw_text": "**Mmualefe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 584,
+    "raw_text": "**Mmutlane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 585,
+    "raw_text": "**Mmutle Memorial (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 586,
+    "raw_text": "**Mmusi (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 587,
+    "raw_text": "**Moamogwe (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 588,
+    "raw_text": "**Modipane (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 589,
+    "raw_text": "**Modisaotsile (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 590,
+    "raw_text": "**Modisi (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 591,
+    "raw_text": "**Moeng (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 592,
+    "raw_text": "**Mogapi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 593,
+    "raw_text": "**Mogapinyana (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 594,
+    "raw_text": "**Mogobane (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 595,
+    "raw_text": "**Mogoditshane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 596,
+    "raw_text": "**Mogoditshane SDA Primary School (Mogoditshane)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 597,
+    "raw_text": "**Mogoijwegojwe (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 598,
+    "raw_text": "**Mogolokwane (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 599,
+    "raw_text": "**Mogome (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 600,
+    "raw_text": "**Mogonono (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 601,
+    "raw_text": "**Mogonye (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 602,
+    "raw_text": "**Mogorosi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 603,
+    "raw_text": "**Mogotlho (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 604,
+    "raw_text": "**Mogwalale (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 605,
+    "raw_text": "**Mohembo (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 606,
+    "raw_text": "**Moineedi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 607,
+    "raw_text": "**Moiyabana (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 608,
+    "raw_text": "**Mojadife (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 609,
+    "raw_text": "**Mokaleng (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 610,
+    "raw_text": "**Mokane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 611,
+    "raw_text": "**Mokataka (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 612,
+    "raw_text": "**Mokgadi (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 613,
+    "raw_text": "**Mokgenene (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 614,
+    "raw_text": "**Mokgomani (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 615,
+    "raw_text": "**Mokgomane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 616,
+    "raw_text": "**Mokgosi III (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 617,
+    "raw_text": "**Mokgware (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 618,
+    "raw_text": "**Mokhomma (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 619,
+    "raw_text": "**Mokibe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 620,
+    "raw_text": "**Mokobaxane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 621,
+    "raw_text": "**Mokobeng (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 622,
+    "raw_text": "**Mokoswana (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 623,
+    "raw_text": "**Mokubatse (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 624,
+    "raw_text": "**Mokubilo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 625,
+    "raw_text": "**Mokungwane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 626,
+    "raw_text": "**Molalatau (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 627,
+    "raw_text": "**Molapowabojang (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 628,
+    "raw_text": "**Molebatsi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 629,
+    "raw_text": "**Molefe (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 630,
+    "raw_text": "**Molepolole College of Education** (Tertiary – College of Education) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 631,
+    "raw_text": "**Moletemane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 632,
+    "raw_text": "**Monarch (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 633,
+    "raw_text": "**Monare (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 634,
+    "raw_text": "**Monnaathebe (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 635,
+    "raw_text": "**Monong (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 636,
+    "raw_text": "**Monwane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 637,
+    "raw_text": "**Mookane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 638,
+    "raw_text": "**Mophaneng (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 639,
+    "raw_text": "**Mophane (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 640,
+    "raw_text": "**Mophato Primary School (Francistown)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 641,
+    "raw_text": "**Mophato Secondary School (Francistown)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 642,
+    "raw_text": "**Mopipi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 643,
+    "raw_text": "**Moralane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 644,
+    "raw_text": "**Morelelo (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 645,
+    "raw_text": "**Moremi III (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 646,
+    "raw_text": "**Moremogolo (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 647,
+    "raw_text": "**Moreomabele (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 648,
+    "raw_text": "**Moreomaoto (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 649,
+    "raw_text": "**Moroka (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 650,
+    "raw_text": "**Morula English Medium School (Selibe Phikwe)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 651,
+    "raw_text": "**Morula Private English Medium Secondary School (Selibe Phikwe)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 652,
+    "raw_text": "**Morwamosu (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 653,
+    "raw_text": "**Morwalela (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 654,
+    "raw_text": "**Mosamowakwena (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 655,
+    "raw_text": "**Mosetse (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 656,
+    "raw_text": "**Mosetse Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 657,
+    "raw_text": "**Moshaweng (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 658,
+    "raw_text": "**Moshiwa (South)** (Public Primary) [Dropdown: Public Primary Schools] – *Note: from South list, “Mosiiwa” is Kgalagadi, “Moshiwa” might be different.*"
+  },
+  {
+    "id": 659,
+    "raw_text": "**Moshopha (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 660,
+    "raw_text": "**Moshupa Development Trust** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 661,
+    "raw_text": "**Mosi (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 662,
+    "raw_text": "**Mosielele (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 663,
+    "raw_text": "**Mosiiwa (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 664,
+    "raw_text": "**Mosojane (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 665,
+    "raw_text": "**Mosolotshane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 666,
+    "raw_text": "**Mosu (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 667,
+    "raw_text": "**Motalaote (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 668,
+    "raw_text": "**Motetshwane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 669,
+    "raw_text": "**Motlhabaneng (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 670,
+    "raw_text": "**Motokwe (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 671,
+    "raw_text": "**Motopi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 672,
+    "raw_text": "**Motsatsing (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 673,
+    "raw_text": "**Motsentshe (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 674,
+    "raw_text": "**Motshegaletau (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 675,
+    "raw_text": "**Motsholapheko (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 676,
+    "raw_text": "**Mount Pleasant English Medium School (Selibe Phikwe)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 677,
+    "raw_text": "**Mountain View Adventist Academy (Mogoditshane)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 678,
+    "raw_text": "**Moutlwatsi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 679,
+    "raw_text": "**Mowana (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 680,
+    "raw_text": "**Mpatane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 681,
+    "raw_text": "**Mphinyane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 682,
+    "raw_text": "**Mpiti (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 683,
+    "raw_text": "**Mulambakwena (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 684,
+    "raw_text": "--"
+  },
+  {
+    "id": 685,
+    "raw_text": "**Naledi Adult School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 686,
+    "raw_text": "**Naledi Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 687,
+    "raw_text": "**Nascent Primary School (Mochudi)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 688,
+    "raw_text": "**Nata (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 689,
+    "raw_text": "**Natale (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 690,
+    "raw_text": "**Ncaang (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 691,
+    "raw_text": "**Neale Sechele (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 692,
+    "raw_text": "**New Era College of Arts & Technology** (Tertiary – Private Institution) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 693,
+    "raw_text": "**New Kanagas (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 694,
+    "raw_text": "**New Look (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 695,
+    "raw_text": "**Newton English Medium Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 696,
+    "raw_text": "**Newton English Medium Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 697,
+    "raw_text": "**Newtown (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 698,
+    "raw_text": "**Ngakaagae (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 699,
+    "raw_text": "**Ngarange (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 700,
+    "raw_text": "**Ngethu Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 701,
+    "raw_text": "**Ngwapa (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 702,
+    "raw_text": "**Ngware (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 703,
+    "raw_text": "**Ngwatle (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 704,
+    "raw_text": "**Ngwatsau (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 705,
+    "raw_text": "**Nhake (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 706,
+    "raw_text": "**Nicodemus Memorial (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 707,
+    "raw_text": "**Nkange (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 708,
+    "raw_text": "**Nkange Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 709,
+    "raw_text": "**Nko ya Phiri (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 710,
+    "raw_text": "**Nkoane Memorial (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 711,
+    "raw_text": "**Nlaphwane (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 712,
+    "raw_text": "**Nojane (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 713,
+    "raw_text": "**Noka ya Botshelo Primary School (Kasane)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 714,
+    "raw_text": "**Nokaneng (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 715,
+    "raw_text": "**Northside Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 716,
+    "raw_text": "**Notwane (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 717,
+    "raw_text": "**Nshakashogwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 718,
+    "raw_text": "**Nshamba (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 719,
+    "raw_text": "**Nswazwi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 720,
+    "raw_text": "**Nswazwi Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 721,
+    "raw_text": "**Nthompe Koma (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 722,
+    "raw_text": "**Ntlhanthe (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 723,
+    "raw_text": "**Ntshe (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 724,
+    "raw_text": "**Ntshinoge (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 725,
+    "raw_text": "**Nxai - Nxai (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 726,
+    "raw_text": "**Nxamasere (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 727,
+    "raw_text": "**Nxau Nxau (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 728,
+    "raw_text": "**Nyamambisi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 729,
+    "raw_text": "**Nyangabgwe (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 730,
+    "raw_text": "--"
+  },
+  {
+    "id": 731,
+    "raw_text": "**Okavango Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 732,
+    "raw_text": "**Olifants Drift (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 733,
+    "raw_text": "**Omaweneno (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 734,
+    "raw_text": "**Oodi (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 735,
+    "raw_text": "**Oodi College of Applied Arts & Sciences** (Tertiary – Technical College) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 736,
+    "raw_text": "**Orapa Private Secondary School (Orapa)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 737,
+    "raw_text": "**Oriel International School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 738,
+    "raw_text": "**Otse (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 739,
+    "raw_text": "**Our Lady of the Carmel (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 740,
+    "raw_text": "**Our Lady of the Desert (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 741,
+    "raw_text": "--"
+  },
+  {
+    "id": 742,
+    "raw_text": "**Paje (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 743,
+    "raw_text": "**Palapye Central (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 744,
+    "raw_text": "**Palapye Technical Centre** (Tertiary – Vocational Training Centre) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 745,
+    "raw_text": "**Pandamatenga (Chobe)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 746,
+    "raw_text": "**Parakarungu (Chobe)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 747,
+    "raw_text": "**Patayamatebele (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 748,
+    "raw_text": "**Peleng West (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 749,
+    "raw_text": "**Pelotelele (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 750,
+    "raw_text": "**Pelotshwaana (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 751,
+    "raw_text": "**Peo Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 752,
+    "raw_text": "**Phakalane Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 753,
+    "raw_text": "**Phakalane Private Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 754,
+    "raw_text": "**Phalaroad (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 755,
+    "raw_text": "**Phaphane (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 756,
+    "raw_text": "**Phaphamang Secondary School (Lobatse)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 757,
+    "raw_text": "**Phase IV (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 758,
+    "raw_text": "**Phatlhogo (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 759,
+    "raw_text": "**Phatsimo (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 760,
+    "raw_text": "**Phethu Mphoeng (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 761,
+    "raw_text": "**Phihetswane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 762,
+    "raw_text": "**Phikwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 763,
+    "raw_text": "**Phillip Moshtole Mem. (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 764,
+    "raw_text": "**Phuduhudu (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 765,
+    "raw_text": "**Phuthadikobo (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 766,
+    "raw_text": "**Phutisuthla (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 767,
+    "raw_text": "**Pilane (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 768,
+    "raw_text": "**Pilikwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 769,
+    "raw_text": "**Pioneer Academy (Gantsi)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 770,
+    "raw_text": "**Pioneer Academy (Gantsi)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 771,
+    "raw_text": "**Pitikwe (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 772,
+    "raw_text": "**Pitsane Potlokwe (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 773,
+    "raw_text": "**Pitseng (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 774,
+    "raw_text": "**Pitshane Molopo (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 775,
+    "raw_text": "**Pitsonyane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 776,
+    "raw_text": "**Plateau (Chobe)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 777,
+    "raw_text": "**Pole (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 778,
+    "raw_text": "**Poloka (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 779,
+    "raw_text": "**Polokwe (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 780,
+    "raw_text": "**Pristine Palms Primary School (Mochudi)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 781,
+    "raw_text": "**Pule Memorial (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 782,
+    "raw_text": "--"
+  },
+  {
+    "id": 783,
+    "raw_text": "**Qabo (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 784,
+    "raw_text": "**Qangwa (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 785,
+    "raw_text": "--"
+  },
+  {
+    "id": 786,
+    "raw_text": "**Rachele (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 787,
+    "raw_text": "**Radisele (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 788,
+    "raw_text": "**Raditladi (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 789,
+    "raw_text": "**Rainbow Private Unified School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 790,
+    "raw_text": "**Rainbow Private Unified School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 791,
+    "raw_text": "**Ralekgetho (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 792,
+    "raw_text": "**Ramaphatle (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 793,
+    "raw_text": "**Ramatlabama (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 794,
+    "raw_text": "**Ramatea Vocational Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 795,
+    "raw_text": "**Ramogotsi (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 796,
+    "raw_text": "**Ramokgonami (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 797,
+    "raw_text": "**Ramokgwebana (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 798,
+    "raw_text": "**Ramolefhe (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 799,
+    "raw_text": "**Ramonaka (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 800,
+    "raw_text": "**Ramotswa Centre for Deaf (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 801,
+    "raw_text": "**Ramotswa Unified School (Ramotswa)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 802,
+    "raw_text": "**Ramtolabaki (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 803,
+    "raw_text": "**Ranaka (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 804,
+    "raw_text": "**Rankoa (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 805,
+    "raw_text": "**Ranoi (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 806,
+    "raw_text": "**Rappelspan (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 807,
+    "raw_text": "**Rasesa (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 808,
+    "raw_text": "**Rasesa Primary School (Rasesa)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 809,
+    "raw_text": "**Rasetimela (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 810,
+    "raw_text": "**Ratholo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 811,
+    "raw_text": "**Ratsie Setlhako (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 812,
+    "raw_text": "**Rauwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 813,
+    "raw_text": "**Regent Hill English Medium School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 814,
+    "raw_text": "**Regent Hill International School (Mochudi)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 815,
+    "raw_text": "**Regent Hill Primary School- Metsimotlhabe (Metsimotlhabe)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 816,
+    "raw_text": "**Regent Hill Primary School- Molepolole (Molepolole)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 817,
+    "raw_text": "**Regent Hill Secondary School (Molepolole)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 818,
+    "raw_text": "**Regent Hill Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 819,
+    "raw_text": "**Rethatoleng (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 820,
+    "raw_text": "**Reuben Mpabanga (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 821,
+    "raw_text": "**Ridgeview English Medium Primary School (Francistown)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 822,
+    "raw_text": "**Riverside (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 823,
+    "raw_text": "**Roads Training Centre** (Tertiary – Public College) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 824,
+    "raw_text": "**Robelela (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 825,
+    "raw_text": "**Royal English Medium School (Palapye)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 826,
+    "raw_text": "**Royal Secondary School (Palapye)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 827,
+    "raw_text": "**Rungwana (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 828,
+    "raw_text": "--"
+  },
+  {
+    "id": 829,
+    "raw_text": "**Salajwe (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 830,
+    "raw_text": "**Samane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 831,
+    "raw_text": "**Samochima (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 832,
+    "raw_text": "**Samuel Mackenzie (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 833,
+    "raw_text": "**Sankoyo (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 834,
+    "raw_text": "**Satau (Chobe)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 835,
+    "raw_text": "**Satellite (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 836,
+    "raw_text": "**Seaseole (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 837,
+    "raw_text": "**Sebako (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 838,
+    "raw_text": "**Sebego (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 839,
+    "raw_text": "**Sebele I (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 840,
+    "raw_text": "**Sebeso (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 841,
+    "raw_text": "**Sebina (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 842,
+    "raw_text": "**Sechele (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 843,
+    "raw_text": "**Sedibe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 844,
+    "raw_text": "**Sedibeng (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 845,
+    "raw_text": "**Seetelo Memorial (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 846,
+    "raw_text": "**Sefhare (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 847,
+    "raw_text": "**Sefhophe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 848,
+    "raw_text": "**Segale (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 849,
+    "raw_text": "**Segoditshane (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 850,
+    "raw_text": "**Segomotso (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 851,
+    "raw_text": "**Segopotso (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 852,
+    "raw_text": "**Segwagwa (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 853,
+    "raw_text": "**Seherelela (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 854,
+    "raw_text": "**Sehitwa (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 855,
+    "raw_text": "**Sehunuo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 856,
+    "raw_text": "**Seingwaeng (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 857,
+    "raw_text": "**Sekakangwe (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 858,
+    "raw_text": "**Sekgoma (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 859,
+    "raw_text": "**Sekhutlane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 860,
+    "raw_text": "**Sekoma (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 861,
+    "raw_text": "**Sekondomboro (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 862,
+    "raw_text": "**Seleka (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 863,
+    "raw_text": "**Selibe-Phikwe Technical Centre** (Tertiary – Vocational Training Centre) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 864,
+    "raw_text": "**Selokolela (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 865,
+    "raw_text": "**Selolwane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 866,
+    "raw_text": "**Semboyo (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 867,
+    "raw_text": "**Semitwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 868,
+    "raw_text": "**Semolale (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 869,
+    "raw_text": "**Semotswane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 870,
+    "raw_text": "**Senete (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 871,
+    "raw_text": "**Senyawe (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 872,
+    "raw_text": "**Senyawe Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 873,
+    "raw_text": "**Seolwane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 874,
+    "raw_text": "**Sepako (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 875,
+    "raw_text": "**Sepopa (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 876,
+    "raw_text": "**Serameng (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 877,
+    "raw_text": "**Serinane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 878,
+    "raw_text": "**Seronga (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 879,
+    "raw_text": "**Serorome (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 880,
+    "raw_text": "**Serowe Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 881,
+    "raw_text": "**Serowe Central (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 882,
+    "raw_text": "**Serowe College of Education** (Tertiary – College of Education) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 883,
+    "raw_text": "**Serule (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 884,
+    "raw_text": "**Sese (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 885,
+    "raw_text": "**Sesu (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 886,
+    "raw_text": "**Sesung (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 887,
+    "raw_text": "**Setlhombo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 888,
+    "raw_text": "**Shadishadi (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 889,
+    "raw_text": "**Shakawe (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 890,
+    "raw_text": "**Shakwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 891,
+    "raw_text": "**Shamombo Kushonya (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 892,
+    "raw_text": "**Shashe (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 893,
+    "raw_text": "**Shashe Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 894,
+    "raw_text": "**Shashe Mooke (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 895,
+    "raw_text": "**Sheepfarm (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 896,
+    "raw_text": "**Shepherd Primary School (Molepolole)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 897,
+    "raw_text": "**Shorobe (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 898,
+    "raw_text": "**Shoshong (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 899,
+    "raw_text": "**Shoshong Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 900,
+    "raw_text": "**Shoshong Study Group (Shoshong)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 901,
+    "raw_text": "**Siga (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 902,
+    "raw_text": "**Sikwane (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 903,
+    "raw_text": "**Simon Rathsosa (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 904,
+    "raw_text": "**Siviya (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 905,
+    "raw_text": "**Sojwe (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 906,
+    "raw_text": "**Solomon Dihutso (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 907,
+    "raw_text": "**Sorilatholo (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 908,
+    "raw_text": "**Sowa (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 909,
+    "raw_text": "**St Anthony English Medium School (Palapye)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 910,
+    "raw_text": "**St Arnold English Medium School (Tonota)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 911,
+    "raw_text": "**St Augustine (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 912,
+    "raw_text": "**St Bernard (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 913,
+    "raw_text": "**St. Bernadette Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 914,
+    "raw_text": "**St Condrad (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 915,
+    "raw_text": "**St Gabriel (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 916,
+    "raw_text": "**St James (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 917,
+    "raw_text": "**St Joseph (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 918,
+    "raw_text": "**St. Kizito Secondary School (Francistown)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 919,
+    "raw_text": "**St Martin (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 920,
+    "raw_text": "**St Mary’s Primary School (Tlokweng)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 921,
+    "raw_text": "**St Patricks (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 922,
+    "raw_text": "**St Peter (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 923,
+    "raw_text": "**St Theresa (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 924,
+    "raw_text": "**Struizendam (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 925,
+    "raw_text": "**Sunny Sands Elementary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 926,
+    "raw_text": "**Supang (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 927,
+    "raw_text": "**Suping (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 928,
+    "raw_text": "**Swaneng Hill Primary School (Serowe)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 929,
+    "raw_text": "--"
+  },
+  {
+    "id": 930,
+    "raw_text": "**Tabitha Primary School (Francistown)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 931,
+    "raw_text": "**Tabitha Secondary School (Francistown)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 932,
+    "raw_text": "**Tachibona (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 933,
+    "raw_text": "**Tagala (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 934,
+    "raw_text": "**Takatokwane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 935,
+    "raw_text": "**Tamasane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 936,
+    "raw_text": "**Tamocha (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 937,
+    "raw_text": "**Tati Siding (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 938,
+    "raw_text": "**Tatitown (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 939,
+    "raw_text": "**Tau Manthe (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 940,
+    "raw_text": "**Taung (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 941,
+    "raw_text": "**Tawana (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 942,
+    "raw_text": "**Tawana II (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 943,
+    "raw_text": "**Tebogo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 944,
+    "raw_text": "**Teemane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 945,
+    "raw_text": "**Terence Secondary School (Mogoditshane)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 946,
+    "raw_text": "**Tewane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 947,
+    "raw_text": "**Thaakgame (Kgatleng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 948,
+    "raw_text": "**Thabakanaka (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 949,
+    "raw_text": "**Thabala (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 950,
+    "raw_text": "**Thabologo (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 951,
+    "raw_text": "**Thale (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 952,
+    "raw_text": "**Thalogang (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 953,
+    "raw_text": "**Thamaga (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 954,
+    "raw_text": "**Thamalakane (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 955,
+    "raw_text": "**Thankane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 956,
+    "raw_text": "**Thebe (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 957,
+    "raw_text": "**Thebephatshwa (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 958,
+    "raw_text": "**The Dove Academy English Medium Primary School (Tutume)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 959,
+    "raw_text": "**The Dow Academy (Mochudi)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 960,
+    "raw_text": "**The Dow Academy (Mochudi)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 961,
+    "raw_text": "**The Learning Centre (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 962,
+    "raw_text": "**The Learning Centre (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 963,
+    "raw_text": "**Themashanga (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 964,
+    "raw_text": "**Therisanyo (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 965,
+    "raw_text": "**Thini (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 966,
+    "raw_text": "**Thito Ya Mokodi (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 967,
+    "raw_text": "**Tholodi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 968,
+    "raw_text": "**Thornhill Primary School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 969,
+    "raw_text": "**Thuto English Medium School (Mogoditshane)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 970,
+    "raw_text": "**Timbi (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 971,
+    "raw_text": "**Tirelo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 972,
+    "raw_text": "**Tlhareseleele (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 973,
+    "raw_text": "**Tlapalakoma (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 974,
+    "raw_text": "**Tlhabololo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 975,
+    "raw_text": "**Tloaneng (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 976,
+    "raw_text": "**Tlokweng Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 977,
+    "raw_text": "**Tlokweng College of Education** (Tertiary – College of Education) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 978,
+    "raw_text": "**Tlokweng Dayspring Primary School (Tlokweng)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 979,
+    "raw_text": "**Tobago (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 980,
+    "raw_text": "**Tonota (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 981,
+    "raw_text": "**Tonota College of Education** (Tertiary – College of Education) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 982,
+    "raw_text": "**Toromoja (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 983,
+    "raw_text": "**Toteng (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 984,
+    "raw_text": "**Tsabong (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 985,
+    "raw_text": "**Tsamaya (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 986,
+    "raw_text": "**Tsau (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 987,
+    "raw_text": "**Tsau Study Group (Tsau)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 988,
+    "raw_text": "**Tsetsebye (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 989,
+    "raw_text": "**Tsetseng (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 990,
+    "raw_text": "**Tshane (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 991,
+    "raw_text": "**Tshekedi Memorial (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 992,
+    "raw_text": "**Tshesebe (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 993,
+    "raw_text": "**Tshiamo (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 994,
+    "raw_text": "**Tshidilamolomo (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 995,
+    "raw_text": "**Tshikinyega (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 996,
+    "raw_text": "**Tshimoyapula (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 997,
+    "raw_text": "**Tshokwe (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 998,
+    "raw_text": "**Tsholofelo (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 999,
+    "raw_text": "**Tshwaane (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1000,
+    "raw_text": "**Tshwaane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1001,
+    "raw_text": "**Tshwaaneng (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1002,
+    "raw_text": "**Tshwaragano (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1003,
+    "raw_text": "**Tshwaragano Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 1004,
+    "raw_text": "**Tsiyenane (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1005,
+    "raw_text": "**Tsogang (South East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1006,
+    "raw_text": "**Tsokatshaa (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1007,
+    "raw_text": "**Tsonyane (South)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1008,
+    "raw_text": "**Tswapong Botone Brigades** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 1009,
+    "raw_text": "**Tswelelopele Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 1010,
+    "raw_text": "**Tubu (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1011,
+    "raw_text": "**Tumasera (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1012,
+    "raw_text": "**Tutume Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 1013,
+    "raw_text": "**Tutume Central (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1014,
+    "raw_text": "--"
+  },
+  {
+    "id": 1015,
+    "raw_text": "**Ukhwi (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1016,
+    "raw_text": "**University of Botswana** (Tertiary – Public University) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 1017,
+    "raw_text": "--"
+  },
+  {
+    "id": 1018,
+    "raw_text": "**Vaal hoek (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1019,
+    "raw_text": "**Valley Academy (Lobatse)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 1020,
+    "raw_text": "**Valley Academy (Lobatse)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 1021,
+    "raw_text": "**Vermeleun (Kweneng)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1022,
+    "raw_text": "**Vukwi (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1023,
+    "raw_text": "--"
+  },
+  {
+    "id": 1024,
+    "raw_text": "**Werda (Kgalagadi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1025,
+    "raw_text": "**West Hanahai (Gantsi)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1026,
+    "raw_text": "**Westwood International School (Gaborone)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 1027,
+    "raw_text": "**Westwood Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 1028,
+    "raw_text": "**Willow Green International School (Mahalapye)** (Private Primary) [Dropdown: Private Primary Schools]"
+  },
+  {
+    "id": 1029,
+    "raw_text": "--"
+  },
+  {
+    "id": 1030,
+    "raw_text": "**Xakao (North West)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1031,
+    "raw_text": "**Xere (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1032,
+    "raw_text": "**Xhomo (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1033,
+    "raw_text": "**Xhosa (Central)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1034,
+    "raw_text": "--"
+  },
+  {
+    "id": 1035,
+    "raw_text": "**Young Women Christian Association, Unified Secondary School (South East)** (Private Secondary) [Dropdown: Private Secondary Schools]"
+  },
+  {
+    "id": 1036,
+    "raw_text": "--"
+  },
+  {
+    "id": 1037,
+    "raw_text": "**Zwenshambe (North East)** (Public Primary) [Dropdown: Public Primary Schools]"
+  },
+  {
+    "id": 1038,
+    "raw_text": "**Zwenshambe Brigades Centre** (Tertiary – Brigade) [Dropdown: Tertiary Institutions]"
+  },
+  {
+    "id": 1039,
+    "raw_text": "--"
+  },
+  {
+    "id": 1040,
+    "raw_text": "**Notes:**"
+  },
+  {
+    "id": 1041,
+    "raw_text": "Institutions are sorted alphabetically; for schools with identical names but different regions, the region is appended in parentheses to distinguish them."
+  },
+  {
+    "id": 1042,
+    "raw_text": "Each entry is tagged with its **category** and the **dropdown menu** under which it would logically appear in a user interface (e.g., Public Primary, Private Secondary, Tertiary)."
+  },
+  {
+    "id": 1043,
+    "raw_text": "The list is exhaustive and contains **over 1000 unique educational institutions** registered in Botswana."
+  }
+]

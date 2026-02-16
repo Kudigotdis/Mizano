@@ -1,0 +1,56 @@
+{
+  "org_id": "ASSOC-BW-BOBA-001",
+  "org_type": "National Association",
+  "org_name": "Botswana Boxing Association",
+  "sport": "boxing",
+  "founded": 1982,
+  "location": {
+    "headquarters": "National Stadium Boxing Gym",
+    "street_address": "Notwane Road",
+    "area": "Gaborone West",
+    "city": "Gaborone",
+    "country": "Botswana",
+    "gps": "-24.6586, 25.9123"
+  },
+  "contact": {
+    "phone": "+2673953344",
+    "whatsapp": "+2673953344",
+    "email": "info@botswanaboxing.org",
+    "website": "www.botswanaboxing.org",
+    "facebook": "BotswanaBoxing",
+    "twitter": "@BBoxingAssoc"
+  },
+  "staff": [
+    {
+      "role": "President",
+      "name": "Taolo Tautona",
+      "age": 57,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "president@boba.bw",
+      "phone": "+26771234081"
+    },
+    {
+      "role": "Secretary General",
+      "name": "Keneilwe Kgosiemang",
+      "age": 40,
+      "gender": "Female",
+      "nationality": "Motswana",
+      "email": "sg@boba.bw",
+      "phone": "+26772345082"
+    },
+    {
+      "role": "National Coach",
+      "name": "Lechedzani Master",
+      "age": 45,
+      "gender": "Male",
+      "nationality": "Motswana",
+      "email": "coach@boba.bw",
+      "phone": "+26773456083"
+    }
+  ],
+  "affiliated_clubs": 24,
+  "competitions_managed": ["National Championships", "Presidents Cup", "Development Tournaments"],
+  "sponsors": ["Debswana", "FNBB"],
+  "notes": "AIBA member. Produced Commonwealth medallists."
+}

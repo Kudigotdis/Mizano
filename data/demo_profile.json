@@ -1,0 +1,58 @@
+{
+    "profile_id": "USR-BW-GAB-DEMO-001",
+    "profile_picture": "kao.webp",
+    "profile_type": "User",
+    "capabilities": [
+        "Player",
+        "Mentor",
+        "Creator"
+    ],
+    "first_name": "Kao",
+    "surname": "Mjekejeke",
+    "dob": "1990-05-15",
+    "age": 35,
+    "gender": "Male",
+    "nationality": "Motswana",
+    "location": {
+        "home_type": "House",
+        "area": "Block 3",
+        "city": "Gaborone",
+        "country": "Botswana"
+    },
+    "contact": {
+        "whatsapp_number": "+26771234567",
+        "email": "kao.mjekejeke@example.com"
+    },
+    "player_data": {
+        "primary_sport": "soccer",
+        "skill_level": "Pro",
+        "position": "Midfielder",
+        "fitness_level": "Advanced",
+        "health_notes": "None"
+    },
+    "mentor_data": {
+        "mentorship_areas": [
+            "soccer",
+            "fitness"
+        ],
+        "experience_level": "Expert",
+        "certifications": [
+            "CAF C License",
+            "First Aid"
+        ],
+        "session_preference": "Volunteer",
+        "discoverable": true
+    },
+    "creator_data": {
+        "events_created": 12,
+        "preferred_event_types": [
+            "tournaments",
+            "clinics"
+        ]
+    },
+    "borrow_score": 4.8,
+    "preferences": {
+        "gambling_awareness": false,
+        "research_opt_in": true
+    }
+}

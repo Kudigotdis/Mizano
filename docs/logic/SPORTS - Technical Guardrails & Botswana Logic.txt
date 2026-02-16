@@ -1,0 +1,88 @@
+SPORTS - Technical Guardrails & Botswana Logic:
+
+----------------------------------
+
+Soccer / Football:
+Tactical Heatmapping: When a player selects a position like rb (Right Back), their Sports CV automatically starts prioritizing specific metrics like "Cross Accuracy" and "Recovery Sprints" from the Fitness Metric Type (B2) logs.
+
+The "GK" Safety Protocol: If gk is selected, the Injury Prevention dashboard adds specific "Hand/Wrist" and "Reaction Time" health checks. It also ensures the Referee is alerted on the Match Roster for specialized protection during set pieces.
+
+Search Efficiency: During the 15-minute sync pulse, these short values (e.g., cb) allow scouts to pull data for 100+ players in Gaborone without exceeding 500KB, ensuring the platform remains lightning-fast on 2G/3G networks.
+
+UI Performance: This dropdown uses the white-border bottom-left menu. Using the 3-Level Rising Search, a user can type "Back" and instantly see all defensive positions (CB, LB, RB), maintaining a 60 FPS experience.
+
+Offline Roster: Coaches can build their starting XI using these roles entirely offline. The positions are linked to the local SQLite database, allowing tactical changes in the dugout even without a signal.
+
+------------------------------
+
+Volleyball:
+
+Rotational Awareness: When a coach builds an offline roster, the app checks the Position values to ensure they have at least one setter and libero flagged. This helps amateur teams in the districts maintain professional tactical standards.
+
+The "Libero" Rule: If libero is selected, the Referee dashboard automatically highlights the player for easy identification during rotations. This ensures compliance with international FIVB standards used in Botswana.
+
+National Talent Pipeline: Scouts from the National Team can filter the database for "Middle Blockers" over a certain height. This makes the talent search 10x faster than manual scouting at school games.
+
+UI Performance: This dropdown uses the white-border bottom-left menu. Using short string values (e.g., setter) keeps the 15-minute sync pulse under 500KB, ensuring even rural athletes with poor signals stay updated.
+
+Offline Ready: Tactical role definitions and "Skill Drill" videos for each position are stored in the 100MB internal storage, so a kid in Maun can learn how to be a better setter even without an active data bundle.
+
+-----------------------------
+
+Netball:
+
+Court Restriction Logic: The app’s tactical board uses these values to "lock" players into their legal thirds. If a coach tries to move a gs into the defensive third on the digital board, the UI gives a gentle haptic buzz to maintain standard Netball rules.
+
+Talent Scouting Filters: Scouts from BONA or school sports directors (BISA) can filter by "Goal Shooter" + "Height > 180cm." This identifies elite prospects in seconds, even if they are playing in the most remote districts.
+
+UI Performance: This dropdown uses the white-border bottom-left menu. Because we use short 1-2 letter keys (e.g., wa), the 15-minute sync pulse remains extremely light, keeping data costs low for student-athletes.
+
+The "Utility" Flag: For players who play multiple positions (common in JSS/Primary schools), we recommend selecting their primary role but using the Social Prompt to mention their secondary roles in their Sports CV bio.
+
+Offline Knowledge: Rule summaries for each position and "Area of Play" diagrams are stored in the 100MB internal storage, so players can learn the technicalities of their role without needing a 4G connection.
+
+-----------------------------
+
+Basketball:
+
+Metric Synchronization: When a player selects pg, the Sports CV automatically highlights "Assists" and "Steals." If they select c, it prioritizes "Blocks" and "Field Goal %." This ensures the data actually matches the athlete's job on the court.
+
+Scout Search Pulse: During the 15-minute sync pulse, a scout can filter by stretch_four across the entire South-East District. This narrow-cast search is only possible because we use standardized string values in the SQLite database.
+
+UI Performance: This dropdown uses the white-border bottom-left menu. By using 1-2 letter codes (like pf or sf) as the database keys, we keep the sync packet under 500KB, saving data for users in rural areas.
+
+Verification Badge: Elite "Pro" or "National Team" status for these positions can only be verified by a registered Coach or a representative from the BBA (Botswana Basketball Association).
+
+Offline Coaching Tools: Tactical diagrams for each position and "Motion Offense" guides are stored in the 100MB internal assets, so a team can run a "1-4 High" set even if there's no internet at the court.
+
+---------------------------
+
+
+Cricket:
+
+Workload Monitoring: If a player is tagged as bowler_fast, the Mizano engine monitors the "Balls Bowled" per session. In the hot Botswana sun, this triggers a Safety Alert if the volume exceeds professional limits, helping coaches manage recovery.
+
+Scout Search Pulse: During the 15-minute sync pulse, a regional scout can filter for wicketkeeper across the South-East District. This ensures that specialist talent—often hard to find—is surfaced instantly to the National Talent Pipeline.
+
+UI Performance: This dropdown uses the white-border bottom-left menu. By using short string values (e.g., batsman), we keep the database sync packet under 500KB, ensuring the app remains lightning-fast on 2G/3G networks.
+
+The "All-Rounder" Weighting: Players tagged as all_rounder get a balanced view on their Sports CV, showing both their batting average and bowling economy side-by-side for a holistic performance view.
+
+Offline Coaching: Standard fielding position diagrams (Slip, Gully, Point, etc.) are stored in the 100MB internal assets, allowing captains to set their field even in remote district grounds with no signal.
+
+----------------------------
+
+Chess:
+
+Talent Matching: The 3-Level Rising Search allows club captains to filter for an "Endgame Specialist" if their team consistently struggles in late-game scenarios. This turns the app into a genuine recruitment tool.
+
+Mentorship Pulse: A "Coach" can search for "Learners" within a 5km radius in the Social Prompt feed, facilitating local training sessions that are visible on our offline-first map.
+
+UI Performance: This dropdown uses the white-border bottom-left menu. By using short keys (e.g., tactical), the database sync stays lightning-fast at 60 FPS, which is essential for our target of 2GB RAM devices.
+
+Verification Badge: Elite statuses (e.g., FIDE or BCF titles) can be linked to these roles, giving the player a verified checkmark on their Sports CV.
+
+Offline Resources: Fundamental guides for each role (e.g., "The 10 Essential Endgames") are stored in the 100MB internal storage, so players can study even without a data bundle.
+
+-------------------------------
+

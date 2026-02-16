@@ -1,0 +1,290 @@
+# Mizano Technical Guardrails & Botswana Logic
+
+## Overview
+Mizano is built on a foundation of **performance, offline-first architecture, safety, and a deep integration with Botswana’s sports ecosystem**. This document consolidates the technical guardrails and localised logic that define the app’s behaviour, ensuring consistency, efficiency, and respect for Botswana’s unique social and regulatory environment.
+
+---
+
+## 1. Core System Principles
+
+### 1.1 UI Performance & Consistency (60 FPS)
+- **White-border bottom-left menu** – persistent navigation (Menu, Search, +) with a crisp white border, Back arrow on the right.
+- **60 FPS target** – achieved through:
+  - Short string values (e.g., `rest`, `foam`, `daily`, `competitive`) – minimal data overhead.
+  - Vanilla CSS3 transitions and local asset rendering; no blocking network calls.
+  - Emojis and text‑based icons (🌾, ⚡, ⚽) for visual richness without image downloads.
+  - Lightweight thumbnails for fan streams – full video only on tap.
+  - Dynamic rem/sp units for instant text scaling without layout breaks.
+- **Dropdowns** always follow the white-border style, load instantly, and are used across:
+  - Activity logging, health & accessibility, sensitive settings, contact addition, etc.
+- **UI Theme Override** – accessibility selections (e.g., `deuteranopia`) apply a global CSS class for high‑contrast/patterned icons instantly, without reload.
+- **Side Swipe Homepage** – fast horizontal navigation; pinned elements stay accessible.
+
+### 1.2 Offline‑First Architecture
+- **100MB internal storage** – all critical data is cached locally:
+  - Recovery/how‑to guides (foam rolling, RICER, hydration charts).
+  - Dietary definitions, sleep type descriptions, self‑help resources.
+  - Facility maps, district boundaries, venue types, age‑bracket guidelines.
+  - BNSC Act summary, Children’s Act, regulatory manuals.
+  - User preferences, sync status, and pending offline actions.
+- **Local SQLite database** – stores profiles, rosters, equipment ledgers, and transaction logs.
+- **15‑minute sync pulse** – lightweight background sync:
+  - Packet **≤ 500KB** per sync – achieved by sending short keys/slugs instead of full strings.
+  - Prioritises high‑priority data (emergency contacts, injury alerts, guardian approvals).
+  - Conflict detection and resolution handled offline with staff override tools.
+- **Offline state preservation** – last known status (event card, roster, verification badge) is displayed until next successful sync.
+
+### 1.3 3‑Level Rising Search
+A progressive filtering system used throughout Mizano for fast, data‑efficient discovery.
+
+| Level | Purpose | Example |
+|-------|---------|---------|
+| 1 | Broad category | “Sport”, “Cardio”, “Language” |
+| 2 | Specific type | “VO2 Max”, “Soccer”, “Proficiency” |
+| 3 | Action / result | “Add to CV”, “Filter mentors”, “View facility” |
+
+- **Performance**: Only renders the relevant level at a time → 60 FPS even on low‑RAM devices.
+- **Scout integration**: Filter by commitment level, nationality, age group, injury status, etc.
+- **Offline**: Frequent filter combinations are cached; search works entirely offline for local data.
+
+### 1.4 Data Efficiency & Sync Optimisation
+- **Short string keys** – e.g., `baha` (hearing aid), `episodic`, `ankle_r`, `sponsorship_5` – keep packets tiny.
+- **Integer IDs** for static lists (phone network, contact type) – minimises payload.
+- **Low‑data icons** – emojis and vector‑like text icons; no custom image assets.
+- **Network awareness** – Lite Mode when Data Saver is active; heavy writes postponed.
+- **Controlled vocabulary** – ethnicity, nationality, injury location – sync codes, not text.
+- **Hard‑coded country list** – downloaded once, stored in IndexedDB, works 100% offline.
+
+---
+
+## 2. Safety & Health
+
+### 2.1 Hydration & Heat Management
+- **“Gaborone Heat” Hydration Alert** – when nutrition is logged, system checks for recent water intake; hydration is framed as recovery.
+- **Botswana Climate Context** – for `High` intensity sessions, Notes section recommends logging hydration (Social Prompt).
+- **Heat‑Safety Triggers**:
+  - Afternoon outdoor activity (Nov–Mar) → prompts hydration & sunscreen.
+  - UV Index extreme → suggests indoor or evening training.
+- **Hydration Pulse** – logs are prioritised in sync; coach sees poor hydration instantly on Match Roster.
+- **Offline Education** – urine colour chart and “Hydration for Performance” guide stored locally.
+
+### 2.2 Injury Prevention & Management
+- **R.I.C.E. Protocol Alignment** – selection of `ice` or `compression` assumes recovery state; adjusts training intensity in search results.
+- **Injury Logging**:
+  - Body map or dropdown (`back_lower`, `knee_r`) with short keys.
+  - Severity 1–5 → auto‑sets Injury Status to `active`, predicts recovery date.
+  - Concussion (`head`) → locks competitive registration; provides digital SCAT5 checklist.
+- **Injury Clusters** – repeated injuries to same part over 12 months flagged as “Chronic Trend” to coach.
+- **Offline Med‑Kit** – first‑aid guides for each body part stored in 100MB internal storage.
+- **RICER** (Rest, Ice, Compression, Elevation, Referral) – basic protocols always accessible offline.
+
+### 2.3 Health Monitoring & Flagging
+- **Safety Trigger** – `High`/`Max Effort` session + Resting Heart Rate (B2) 10% above baseline → ⚠️ Health Alert to coach (heat stroke / overtraining prevention).
+- **Health Flagging** – BP Systolic >140 or Resting HR >100 → Social Prompt with clinic referral.
+- **VO2 Max (Bleep Test)** – converts “Level and Shuttle” into VO2 Max automatically for clean scout data.
+- **Readiness Score** – combines sleep pattern + session duration; `irregular` sleep adds 15% fatigue weight; `high_stress` suggests 20% intensity reduction.
+
+### 2.4 Mental Health & Wellbeing
+- **Duty of Care Alert** – `high_stress` or `depression` selections trigger BOMHA / school counsellor contacts.
+- **Encrypted Sync** – mental health data visible only to user, guardian, verified medical pro; coach sees “Readiness: Low”.
+- **Offline Self‑Help** – breathing exercises, self‑help guides stored in 100MB internal storage.
+- **Sleep Hygiene** – after a week of interrupted sleep, offline‑cached tip on cooling room, screen‑free time.
+
+### 2.5 Accessibility & Inclusive Design
+- **Referee Alert (Category 5.1)** – players with implant/both ears aided → 📢 icon on Match Roster; referee prompted to use visual cues.
+- **Equipment Protection** – cochlear implants flagged; prompts guardian/coach for protective headgear.
+- **Educational Integration** – `fm_system` data helps teachers sync receivers before sports theory.
+- **Accessibility Mode** – `visual_total` triggers screen‑reader compatibility, high‑contrast text icons.
+- **UI Theme Override** – colour blindness selections (`deuteranopia`, `protanopia`) apply high‑contrast blue/patterned icons; referee with red‑green blindness gets high‑visibility flag suggestions.
+- **Para‑Athlete Pipeline** – `Permanent` status auto‑offers Para‑Athlete Filter for IPC scouting; `Temporary` keeps ambulatory stats active with 6‑month verification prompts.
+
+### 2.6 Emergency Features
+- **Emergency Contact Card** – cached locally on Creator’s device; displays blood type (🅰️, 🅱️, 🅾️ emojis) and emergency number – available offline.
+- **Blood Type Verification** – green shield icon for clinic‑verified types; mandatory for high‑contact sports.
+- **Allergy Alert** – “Other” input for severe allergy (e.g., peanuts) → ⚠️ icon on Emergency Card.
+- **Donor Status** – “Universal Donor” flagged on Emergency Card; private unless opted into Community Hero directory.
+- **Duty of Care** – high‑risk players: blood type + donor status linked for rapid response.
+
+---
+
+## 3. Scouting & Talent Pipeline
+
+### 3.1 Sports CV & Benchmarking
+- **Recovery Discipline** – consistent foam rolling, stretching → “professional mindset” marker for scouts.
+- **Workhorse Rating** – consistently manages `High` intensity with low recovery times.
+- **Power Rating** – high grip strength (based on Botswana PE studies 2022/2025).
+- **Verified Competitor** – BNSC/National Association badge for athletes in National Talent Pipeline with consistent high performance in competitive events.
+- **Scholarship Holder** – badge after verification of sponsorship letter (DTEF, BNSC).
+- **Borrow Score** – high rating visible to scouts as discipline indicator.
+
+### 3.2 Scout Filters & Visibility
+- **3‑Level Rising Search** – scouts filter by:
+  - Commitment level (`4-6_week frequency`) → only active players.
+  - Country – local talent first; COSAFA radius for international scouts.
+  - Injury severity (3‑5) → filtered out to avoid wasted travel.
+  - Para‑Athlete Filter – discoverable by IPC scouts.
+  - Team Player preference (`medium`/`large`) – higher comfort in collective tactics.
+- **Scout Insights** – “Stealth Notification” to guardian when profile viewed for scouting/recruitment.
+- **Scouting vs Recruitment** – logged differently on CV:
+  - **Scouting** – long‑term potential (2‑3 years).
+  - **Recruitment** – immediate vacancy.
+- **Anti‑Stalking Logic** – excessive views on minor profile triggers Safety Lock and manual review.
+
+### 3.3 Para‑Athlete & Adaptive Sports
+- **Digital Footprint** – para‑athletes’ profiles discoverable by IPC scouts.
+- **Match Roster** – highlights players with albinism, mobility impairments, etc., prompting shade or safety protocols.
+- **Paralympic Committee Alignment** – data collection meets IPC scouting standards.
+
+### 3.4 Scholarships & Sponsorships
+- **Scholarship Mapping** – mandatory ethnicity field linked to institutional scholarship requirements.
+- **Recipient Badge** – `recipient` status prompts upload of sponsorship letter; badge added after verification.
+- **CSR Pulse** – sponsorship details compiled into CSR Impact Report for corporate partners.
+- **Affordability Matching** – filter activities by `Free`, `Pay Per Session`, `Trial`.
+
+---
+
+## 4. Player & Guardian Management
+
+### 4.1 Profile Fields & Verification
+- **Ethnicity** – mandatory (no “Prefer not to say”) for school/league reports; “Other” opens manual text field for review; disabled for minors without health/safety override; encrypted at rest.
+- **Nationality** – mandatory for talent pipeline; ISO short codes; minors require guardian handshake on change; Botswana pre‑selected for local users.
+- **Language** – 5‑level proficiency; `5 – Native` may prompt educational institution to vouch; stored as short keys (`4`, `5`, `slang`).
+- **Marital Status** – includes Customary Marriage for legal/social distinction in Botswana; used in Guardian‑Minor Handshake for household linking.
+- **Gender & Nationality** – locked for minors after guardian verification to ensure CV integrity.
+- **Omang Verification** – formal roles (`legal`, `social_worker`) allow upload of certified Omang/appointment letter; sync during 15‑minute pulse.
+
+### 4.2 Guardian‑Minor Handshake
+- **Age Verification** – under‑13 profiles hidden from public search; only verified scouts and linked guardian can view.
+- **Guardian Types** – `parent`, `sibling_adult`, `grandparent`, `social_worker`; short keys, cached offline.
+- **Consent Bridge** – minor joins activity → mandatory “Consent Required” notification to guardian; digital handshake must complete.
+- **Guardian Approval Status** – `pending`, `approved`, `rejected`; cached offline; `pending` prevents name appearing on downloadable match sheet.
+- **Safety‑First Override** – if minor selects “Coach” as primary emergency contact and coach is not verified, handshake auto‑sent to secondary parent number.
+- **Academic Alerts** – failing grade triggers coach notification (BISA “Play only if you pass”); offline roster check available.
+
+### 4.3 Privacy Controls
+- **Scout Consent** – `no` redacts performance data from public search; compliance pulse cross‑references consent every sync.
+- **Profile Visibility** – `hidden` prevents metadata sync; “Discoverable” off suppresses profile in Rising Search.
+- **Data Masking** – privacy settings baked into local SQLite; device‑to‑device transfers respect flag.
+- **Betting Opt‑In** – `off` by default for minors; `on` requires 18+; `other_custom` (Self‑Exclusion) disables all financial transactions.
+- **Stealth Notifications** – guardian notified when profile viewed for scouting.
+
+---
+
+## 5. Institutional & Facility Management
+
+### 5.1 Schools & Educational Institutions
+- **Attendance Validation** – custom timestamp acts as clock‑in/out; coaches verify times via Creator Dashboard.
+- **School Types** – `primary`, `junior_secondary`, `senior_secondary`, `vocational`, `tertiary`; mapped to governing bodies (BOPSSA, BISA, BOTESSA).
+- **Age‑Grade Verification** – mismatch (e.g., 17 in Standard 3) triggers manual audit.
+- **Graduation Sync** – academic calendar (Jan–Dec); Standard 7 auto‑promoted to Junior Secondary search pool.
+- **Waiver Pulse** – government/community school → “Zero‑Rated” access to core scouting features.
+- **Mission School Audit** – asks if “MoE Aided” to determine fee bracket.
+
+### 5.2 Clubs & Associations
+- **BNSC Triple‑Check** – club selects `bfa` → backend checks BNSC registration; verified → Blue Badge (safe, regulated environment).
+- **Verification Authority** – `bnsc`, `bfa`, `bvf`, `self`; manual document audit (CIPA, federation certificates); Blue Badge on success.
+- **Sanctioned Events** – only BNSC/affiliate verified associations can host events that count toward Scouting CV.
+- **Affiliation Level** – `local`, `regional`, `national`; creates accountability chain required by BNSC Act.
+- **Chain of Command Sync** – local association linked to regional/national parent; verified during 15‑minute pulse.
+
+### 5.3 Facilities & Venues (Game Cubes)
+- **Venue Types** – `football_pitch`, `netball_court`, `indoor_hall`, `athletics_track`, `open_space`; short keys.
+- **Amenities** – `toilets`, `first_aid`, `changing`, `lights`, `wifi`, `parking`; verified for premium venues.
+- **Booking Models** – `free`, `standard`, `instant`, `village_waiver`; `instant` boosts search ranking.
+- **Safety & Maintenance** – maintenance log templates (e.g., `swimming_pool` requires chemical checks); expired first‑aid kit triggers High‑Priority Social Prompt.
+- **Offline Facility Map** – all venue types and GPS cached; filter by sport, amenity, indoor/outdoor; works without 4G.
+- **Climate‑Control Pulse** – Oct–Feb: indoor venues and night‑play venues get search boost.
+
+### 5.4 Equipment Management
+- **Equipment Categories** – `ball_soccer`, `cones`, `first_aid_kit`; lifecycle pulse tracks depreciation (gravel pitch → 50% faster wear).
+- **Condition Status** – `new`, `good`, `fair`, `poor`, `damaged`; damaged items trigger immediate alert; condition history cached.
+- **Borrow Score** – 1‑5 rating; average <2.5 restricts borrowing sanctioned equipment; high score visible to scouts.
+- **Dual‑Rating Pulse** – borrower rates equipment, lender rates user; conflict triggers dispute prompt.
+- **Wishlist Integration** – out‑of‑stock items auto‑create sponsor wishlist card.
+
+---
+
+## 6. Community & Social Features
+
+### 6.1 Bulletin Board
+- **Post Categories** – `lost`, `found`, `wanted`, `announcement`, `job`, `funeral`; short keys.
+- **Geo‑Fence Pulse** – lost/found posts pushed to users within 10km of tag location.
+- **Kgotla Sync** – funeral notice receives “Respect Boost” – top of feed for 48 hours without paid promotion.
+- **Offline Bulletin Cache** – all active posts stored in 100MB; users in remote areas can browse latest announcements.
+
+### 6.2 Sponsorships & Fundraising
+- **Sponsorship Types** – `monetary`, `services`, `equipment`, `venue`; logged sponsorship updates event budget status.
+- **CSR Impact Report** – compiled for corporate users; helps meet BNSC/Government partnership goals.
+- **Village Waiver** – `zero_village` rate geo‑locked to verified non‑urban areas; 0% commission.
+- **Commission Rates** – `venue_standard_5`, `sponsorship_5`; tax‑compliant receipts auto‑generated.
+- **Offline Transaction Ledger** – payout calculations cached; managers see estimated earnings without 4G.
+
+### 6.3 Mentorship & Networking
+- **Mentorship Handshake** – pairs Learners/Beginners with Coaches/Advanced players within 10km (offline map).
+- **Skill Levels** – `beginner`, `intermediate`, `advanced`, `pro`; short keys; “How to Level Up” guides stored offline.
+- **Safeguarding Sync** – mentor matched with `under_12` or `teens` → Guardian Approval required before private messaging.
+
+---
+
+## 7. Payments & Monetisation
+
+### 7.1 Payment Methods
+- **Mobile Money** – `orange_money`, `myzaka`, `btc_smega`; USSD push confirmation required; 4‑digit PIN for eWallet.
+- **Cash** – digital receipt generated offline, synced when online.
+- **Offline Receipting** – coach can generate digital receipt for cash transactions; stored in 100MB.
+
+### 7.2 Subscriptions & Membership
+- **Payment Models** – `free`, `trial`, `monthly`, `yearly`; cross‑referenced with active payment status.
+- **Wallet Pulse** – expired subscription → player becomes “Inactive” on match roster.
+- **Village Waiver Geo‑Fence** – `village_waiver` rate only for venues outside Gaborone/Francistown hubs.
+
+### 7.3 Commission & Payouts
+- **Net‑Pay Sync** – calculates net payout based on model; tax‑compliant receipts for sponsorship_5.
+- **Search Ranking Pulse** – `instant` booking venues get slight search boost.
+- **Offline Billing State** – subscription metadata cached; merchants manage events during outage, changes sync later.
+
+---
+
+## 8. Admin & Moderation
+
+### 8.1 Staff Roles & Permissions
+- **Role Levels** – `verification_officer`, `safety_officer`, `regional_supervisor`, `super_admin`, `finance_admin`; short keys.
+- **Permissions** – role‑based access cached offline; changes sync within 15 minutes.
+- **Jurisdiction Sync** – staff actions geo‑fenced (e.g., `gaborone_south` staff cannot edit Francistown events); security flag on violation.
+- **Safety‑Override Pulse** – safety admin can freeze any venue globally if audit fails; immediate push alert.
+
+### 8.2 Content Moderation
+- **Action Types** – `warn`, `suspend`, `ban`, `remove`, `reject`; short keys.
+- **Verdict Sync** – ban/suspend action triggers instant logout of all active sessions.
+- **Safety‑First Pulse** – flagged content involving minors auto‑hidden from public feed until L2 review.
+- **Offline Enforcement Queue** – moderation decisions made offline stored and synced when signal returns.
+
+### 8.3 Data Integrity & Conflict Resolution
+- **Conflict Detection** – last_write timestamp (Botswana Standard Time) used to identify conflicts.
+- **Resolution Strategies** – `manual`, `staff_override`, `discard`; staff override tool prioritised.
+- **Offline Conflict Ledger** – conflicting versions stored locally; resolution “Winner” synced later.
+- **Integrity Pulse** – critical fields (DoB, Injury Status) default to manual/staff_override to prevent automated errors.
+
+### 8.4 Storage Management
+- **Priority Levels** – `critical`, `high`, `low`; critical data mirrored in fail‑safe partition.
+- **Eviction Sync** – 100MB limit approaching → auto‑eviction of low‑priority historical data.
+- **Offline Asset Cache** – critical & high priority data pre‑fetched for offline scout access.
+
+---
+
+## Appendix: Botswana‑Specific Localisations
+
+| Element | Description |
+|--------|-------------|
+| **Organisations** | BNSC, BFA, BVF, BNOC, BISA, BOPSSA, BOTESSA, BAA, BOKA, CIPA, BPC, DTEF, BOMHA |
+| **Geographic** | Gaborone, Broadhurst, Francistown, Maun, Kgalagadi, Kasane, Ghanzi, Molepolole; 17 districts, 4 zones (North, North Central, South Central, South) |
+| **Cultural** | Customary Marriage, Kgotla (funeral notice Respect Boost), Omang, VDC, Village Waiver |
+| **Climate** | Gaborone Heat, Oct–Feb summer, UV index, afternoon activity restrictions, indoor venue boost |
+| **Education** | Primary, JSS, BGCSE, Standard 7, Form 1–5, MoE Aided, Mission Schools |
+| **Legal** | BNSC Act, Children’s Act, Botswana minimum wage (P9.06/hr 2026), CIPA registration, CSR reporting |
+| **Economy** | BTC, Mascom, Orange (mobile networks); Orange Money, MyZaka; Pula currency |
+| **Sport** | BISA zones, BOPSSA, BOTESSA, Inter‑House (Red/Blue), Bleep Test, Football, Netball, Volleyball, Athletics, Rugby, Swimming, etc. |
+
+---
+
+*This document is a living specification of Mizano’s technical guardrails and Botswana‑centric logic. All features adhere to the principles of performance, offline resilience, safety, and respect for local context.*

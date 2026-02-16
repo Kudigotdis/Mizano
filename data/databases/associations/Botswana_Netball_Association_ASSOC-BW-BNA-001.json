@@ -1,0 +1,39 @@
+[
+  {
+    "business_id": "BUS-BW-GAB-1001",
+    "name": "Choppies Supermarket – Main Mall",
+    "category_path": ["Retail & Groceries", "Supermarkets", "Choppies"],
+    "location": {
+      "area": "Main Mall",
+      "city": "Gaborone",
+      "country": "Botswana",
+      "gps": "-24.6541,25.9087"
+    },
+    "contact": {
+      "phone": "+2673950001",
+      "whatsapp": "+2673950001",
+      "facebook": "https://facebook.com/choppiesmainmall"
+    },
+    "verified": true,
+    "hours": "Mon-Sat 08:00-20:00, Sun 09:00-17:00"
+  },
+  {
+    "business_id": "BUS-BW-GAB-1002",
+    "name": "Choppies Supermarket – Riverwalk",
+    "category_path": ["Retail & Groceries", "Supermarkets", "Choppies"],
+    "location": {
+      "area": "Riverwalk",
+      "city": "Gaborone",
+      "country": "Botswana",
+      "gps": "-24.6502,25.9223"
+    },
+    "contact": {
+      "phone": "+2673951002",
+      "whatsapp": "+2673951002",
+      "facebook": "https://facebook.com/choppiesriverwalk"
+    },
+    "verified": true,
+    "hours": "Mon-Sat 08:00-20:00, Sun 09:00-17:00"
+  },
+  ... (38 more)
+]
