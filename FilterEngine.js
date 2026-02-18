@@ -14,7 +14,7 @@ class FilterEngine {
             category: 'all',
             sport: 'all',
             status: 'all',
-            location: 'Gaborone', // Default to Gaborone (GC)
+            location: 'all', // Changed to 'all' by default to ensure maximum visibility
             timeFrame: 'all',
             date: null
         };
@@ -88,6 +88,10 @@ class FilterEngine {
      * Applies the current criteria to a data set.
      */
     filterData(dataList) {
+        if (!Array.isArray(dataList)) {
+            console.warn('FilterEngine: dataList is not an array:', dataList);
+            return [];
+        }
         return dataList.filter(item => {
             // 1. Search Filter (Case Insensitive)
             if (this.criteria.search) {

@@ -31,18 +31,34 @@ body {
     height: 100vh;
 }
 
-.top-bar {
+/* SPLASH SCREEN */
+#splash-screen {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: var(--top-bar-height);
+    width: 100vw;
+    height: 100vh;
     background-color: var(--white);
-    border-bottom: 1px solid var(--border-grey);
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 0 8px;
-    z-index: 1000;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+#splash-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.05);
+}
+
+#splash-screen .splash-logo {
+    width: 80px;
+    height: 80px;
+    background: url('./assets/images/logo.webp') no-repeat center;
+    background-size: contain;
+    margin-bottom: 20px;
 }
 
 /* APEX HORIZON: SUB-HEADER (Location & Counter) */
@@ -202,6 +218,7 @@ body {
     box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* LEVEL-BASED DECK SYSTEM */
 .apex-deck {
     position: fixed;
     bottom: 0;
@@ -209,23 +226,49 @@ body {
     width: 100%;
     z-index: 2000;
     display: flex;
-    flex-direction: column;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-direction: column-reverse;
+    /* Stack Level 1 at bottom, levels build up */
 }
 
-.apex-deck.hidden {
-    transform: translateY(calc(100% - 4px));
+/* LEVEL 1: Bottom Menu (#242424) */
+.bottom-menu-mizano {
+    background-color: #242424;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.deck-level {
-    width: 100%;
+.mizano-menu-btn {
+    background: none;
+    border: none;
+    width: 16%;
+    height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 16px;
-    transition: all 0.3s ease;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.mizano-menu-btn img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+/* LEVEL 2-3 General (#808080) */
+.deck-level {
+    background-color: #808080;
+    width: 100%;
     overflow: hidden;
     height: 0;
     opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .deck-level.active {
@@ -233,109 +276,86 @@ body {
     opacity: 1;
 }
 
-/* LEVEL A: MAIN NAVIGATION */
-.bottom-menu.level-a {
-    position: relative;
-    background-color: var(--apex-grey);
-    height: var(--bottom-bar-height);
+/* LEVEL 2: Activity Field */
+.activity-field-bar {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
-.menu-btn {
+/* LEVEL 3: Time Periods */
+.level-time-period {
+    gap: 15px;
+}
+
+.time-carousel-minimal {
+    flex: 1;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 5px 0;
+}
+
+.time-pill {
+    background: #444;
+    color: #bbb;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.time-pill.active {
+    background: white;
+    color: #242424;
+}
+
+/* LEVEL 4: Date Picker */
+.level-datepicker {
+    background-color: #dcdcdc !important;
+    height: 0;
+    flex-direction: column;
+}
+
+.level-datepicker.active {
+    height: 110px;
+}
+
+.calendar-header-minimal {
+    width: 100%;
+    padding: 8px 16px;
+    background: white;
+    display: flex;
+    justify-content: center;
+}
+
+.month-label {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #242424;
+}
+
+.icon-btn-minimal {
     background: none;
     border: none;
-    color: var(--white);
-    font-size: 24px;
+    padding: 5px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.1s;
 }
 
-/* NOTIFICATION WIDGET */
-.notif-widget {
-    background-color: var(--apex-mid);
-    color: var(--white);
-    padding: 4px 12px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-}
-
-/* LEVEL B: ACTIVITY BAR */
-.level-b {
-    background-color: var(--apex-grey);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    justify-content: space-between;
-}
-
-.filter-status {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    flex: 1;
-    margin-right: 15px;
-}
-
-.filter-text {
-    color: var(--white);
-    font-weight: bold;
-}
-
-.filter-tag {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.7rem;
-    text-transform: uppercase;
-}
-
-.add-filter-btn {
-    background-color: var(--apex-faded);
-    color: var(--white);
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-}
-
-/* LEVEL C: TEMPORAL */
-.time-period-bar {
-    background-color: var(--apex-grey);
-}
-
-.time-carousel {
-    flex: 1;
-    display: flex;
-    overflow-x: auto;
-    gap: 8px;
-    padding: 8px 0;
-}
-
-.time-btn {
-    background-color: var(--apex-dark);
-    color: #888;
-    border: none;
-    padding: 6px 16px;
-    border-radius: 20px;
-    white-space: nowrap;
-    font-size: 0.8rem;
-}
-
-.time-btn.active {
-    color: var(--white);
-}
-
-.date-picker-bar {
-    background-color: var(--apex-light-bar);
-    flex-direction: column;
-    height: auto !important;
-    padding: 0;
+.icon-btn-minimal img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
 
 .calendar-header {

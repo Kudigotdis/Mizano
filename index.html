@@ -27,21 +27,26 @@
     </div>
 
     <!-- AUTH REDIRECTION LOGIC -->
-    <script src="./assets/js/storage.js"></script>
+    <script src="./StorageManager.js"></script>
     <script src="./assets/js/auth.js"></script>
     <script>
         (async () => {
             const splash = document.getElementById('splash-screen');
+
+            // Wait for auth to initialize (or use a small delay)
+            await new Promise(r => setTimeout(r, 500));
             const loggedIn = await window.MizanoAuth.isLoggedIn();
 
-            // Always show splash for 2 seconds as requested for branding
-            setTimeout(() => {
-                if (loggedIn) {
-                    splash.style.display = 'none';
-                } else {
-                    window.location.href = 'login.html';
-                }
-            }, 2000);
+            if (loggedIn) {
+                console.log('index.html: Session detected. Fading splash...');
+                setTimeout(() => {
+                    splash.classList.add('fade-out');
+                    setTimeout(() => splash.style.display = 'none', 500);
+                }, 1000);
+            } else {
+                console.log('index.html: No session. Redirecting to login...');
+                window.location.href = 'login.html';
+            }
         })();
     </script>
 
@@ -229,48 +234,60 @@
     <!-- APEX UI NAVIGATION DECK -->
     <div id="apex-deck" class="apex-deck">
 
-        <!-- LEVEL C: Temporal Controls (Folds Upward) -->
-        <div id="level-c-calendar" class="deck-level level-c date-picker-bar">
-            <div class="calendar-header">
-                <span class="month-year-btn">Month / Year</span>
-                <button class="calendar-toggle-btn">📅</button>
+        <!-- LEVEL 4: Date Picker (Triggered by Calendar Icon) -->
+        <div id="level-4-datepicker" class="deck-level level-datepicker">
+            <div class="calendar-header-minimal">
+                <span class="month-label">February 2026</span>
             </div>
             <div class="day-tiles-scroll" id="day-tiles">
                 <!-- Generated Day Tiles -->
             </div>
         </div>
 
-        <div id="level-c-time" class="deck-level level-c time-period-bar">
-            <div class="time-carousel" id="time-carousel">
-                <button class="time-btn active" data-time="all">All</button>
-                <button class="time-btn" data-time="past">Past</button>
-                <button class="time-btn" data-time="yesterday">Yesterday</button>
-                <button class="time-btn" data-time="today">Today</button>
-                <button class="time-btn" data-time="upcoming">Upcoming</button>
+        <!-- LEVEL 3: Time Period (Triggered by Clock Icon) -->
+        <div id="level-3-time" class="deck-level level-time-period">
+            <button class="icon-btn-minimal" id="calendar-trigger">
+                <img src="./assets/images/icons/Calender Icon.webp" alt="Calendar">
+            </button>
+            <div class="time-carousel-minimal" id="time-carousel">
+                <button class="time-pill active" data-time="all">All</button>
+                <button class="time-pill" data-time="past">Past</button>
+                <button class="time-pill" data-time="yesterday">Yesterday</button>
+                <button class="time-pill" data-time="today">Today</button>
+                <button class="time-pill" data-time="upcoming">Upcoming</button>
             </div>
-            <button class="clock-icon-btn">🕒</button>
         </div>
 
-        <!-- LEVEL B: Activity Filter Bar (#808080) -->
-        <div id="level-b-activity" class="deck-level level-b">
-            <div class="filter-status">
-                <span id="filter-label" class="filter-text">All</span>
-                <span class="filter-tag">Activity Field</span>
+        <!-- LEVEL 2: Activity Filter (Triggered by Activities Icon) -->
+        <div id="level-2-activity" class="deck-level level-activity-field">
+            <div class="activity-field-bar">
+                <span id="current-activity-label">Activity Field</span>
+                <button class="icon-btn-minimal" id="clock-trigger">
+                    <img src="./assets/images/icons/Clock Icon.webp" alt="Clock">
+                </button>
             </div>
-            <button id="btn-add-filter" class="add-filter-btn">+Add</button>
         </div>
 
-        <!-- LEVEL A: Main Navigation (#808080) -->
-        <footer class="bottom-menu level-a">
-            <button class="menu-btn" id="btn-activity-plus" title="Activity Field Plus">👤</button>
-            <button class="menu-btn" id="btn-location" title="Location Filter">📍</button>
-            <button class="menu-btn" id="btn-panels" title="Panels">☰</button>
-            <button class="menu-btn" id="btn-search" title="Search">🔍</button>
-            <button class="menu-btn" id="btn-add" title="Add">+</button>
-            <div class="notif-widget" id="btn-notif">
-                <span id="notif-count">888</span>
-            </div>
-            <button class="menu-btn" id="btn-hamburger" title="Menu">≡</button>
+        <!-- LEVEL 1: Bottom Menu Bar (#242424) -->
+        <footer class="bottom-menu-mizano">
+            <button class="mizano-menu-btn" id="btn-activities-level" title="Activities">
+                <img src="./assets/images/icons/Activities Icon.webp" alt="Activities">
+            </button>
+            <button class="mizano-menu-btn" id="btn-location-filter" title="Location">
+                <img src="./assets/images/icons/Location Icon.webp" alt="Location">
+            </button>
+            <button class="mizano-menu-btn" id="btn-panels-menu" title="Panels">
+                <img src="./assets/images/icons/Panels Icon.webp" alt="Panels">
+            </button>
+            <button class="mizano-menu-btn" id="btn-search-mizano" title="Search">
+                <img src="./assets/images/icons/Search Icon.webp" alt="Search">
+            </button>
+            <button class="mizano-menu-btn" id="btn-add-content" title="Add">
+                <img src="./assets/images/icons/Add Icon.webp" alt="Add">
+            </button>
+            <button class="mizano-menu-btn" id="btn-hamburger-mizano" title="Menu">
+                <img src="./assets/images/icons/Menu Hamburger Icon.webp" alt="Menu">
+            </button>
         </footer>
     </div>
 
@@ -407,7 +424,6 @@
     </div>
 
 
-    <script src="./StorageManager.js"></script>
     <script src="./ImageManager.js"></script>
     <!-- Data Source Scripts (Auto-Generated) -->
     <script src="./data/databases/teams.js"></script>

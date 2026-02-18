@@ -1,0 +1,115 @@
+/* Blue Highlight for Selected Interests */
+.option-chip.active {
+    background-color: #1E88E5 !important;
+    color: white !important;
+    border-color: #1E88E5 !important;
+}
+
+.option-chip input:checked+span {
+    color: white;
+}
+
+/* Network Selector */
+.network-selector {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    /* Equidistant */
+    margin-bottom: 15px;
+}
+
+.network-btn {
+    background: none;
+    border: 1px solid transparent;
+    /* Prevent jump */
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.network-btn img {
+    height: 45px;
+    /* Adjust as needed */
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* Icon Swapping Logic */
+.network-btn .icon-color {
+    display: none;
+}
+
+.network-btn .icon-grey {
+    display: block;
+}
+
+.network-btn.selected .icon-color {
+    display: block;
+}
+
+.network-btn.selected .icon-grey {
+    display: none;
+}
+
+/* Optional: Add a subtle background to selected network */
+.network-btn.selected {
+    background-color: #f0f8ff;
+    border-color: #1E88E5;
+}
+
+/* Custom "Other" Input Styling */
+#other-interests-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.custom-interest-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.custom-interest-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.btn-remove-interest {
+    background: #ffcccc;
+    color: #cc0000;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.btn-add-interest {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    align-self: flex-start;
+}
+
+.btn-add-interest:hover {
+    background: #e0e0e0;
+}

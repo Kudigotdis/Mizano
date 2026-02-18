@@ -52,7 +52,7 @@ class DataManager {
             }
 
             await Promise.all([
-                // (Existing entities load...)
+                this.loadAnchorProfiles(),
                 this.loadEntity('activities'),
                 this.loadEntity('teams'),
                 this.loadEntity('businesses'),
@@ -68,21 +68,36 @@ class DataManager {
         }
     }
 
+    async loadAnchorProfiles() {
+        try {
+            console.log('DataManager: Loading anchor profiles (Kao & Friends)...');
+            const response = await fetch('./data/mizano_profiles_anchor.json');
+            if (response.ok) {
+                const anchors = await response.json();
+                this.cache.users = [...(this.cache.users || []), ...anchors];
+                console.log(`DataManager: Merged ${anchors.length} anchor profiles.`);
+            }
+        } catch (e) {
+            console.warn('DataManager: No anchor profiles found or failed to load.');
+        }
+    }
+
     async seedDeepRDPs() {
         try {
             // Load RDPs from generated file (Relative to index.html)
             const profileResponse = await fetch('./data/mizano_1000_profiles.json');
-            const profiles = await profileResponse.json();
+            if (profileResponse.ok) {
+                const profiles = await profileResponse.json();
+                const schoolResponse = await fetch('./data/mizano_schools_fixtures.json');
+                const schools = schoolResponse.ok ? await schoolResponse.json() : [];
 
-            const schoolResponse = await fetch('./data/mizano_schools_fixtures.json');
-            const schools = await schoolResponse.json();
-
-            if (window.mizanoStorage) {
-                await window.mizanoStorage.bulkSaveUsers(profiles);
-                await window.mizanoStorage.saveSchools(schools);
-                this.cache.users = profiles;
-                this.cache.schools = schools;
-                console.log(`DataManager: Successfully seeded ${profiles.length} RDPs and ${schools.length} Schools.`);
+                if (window.mizanoStorage) {
+                    await window.mizanoStorage.bulkSaveUsers(profiles);
+                    if (schools.length) await window.mizanoStorage.saveSchools(schools);
+                    this.cache.users = [...(this.cache.users || []), ...profiles];
+                    this.cache.schools = schools;
+                    console.log(`DataManager: Successfully seeded ${profiles.length} RDPs.`);
+                }
             }
         } catch (e) {
             console.error('DataManager: Seeding failed.', e);
@@ -110,17 +125,18 @@ class DataManager {
         // 1. Try to load from persistent cache first (delegated)
         if (storage) {
             const cachedData = storage.getCachedDatabase(entity);
-            if (cachedData) {
+            // ONLY use cache if it has data. If it's an empty array, it might be a failed state.
+            if (cachedData && cachedData.length > 0) {
                 this.cache[entity] = cachedData;
-                console.log(`DataManager: Loaded ${entity} from persistent cache.`);
+                console.log(`DataManager: Loaded ${entity} (${cachedData.length} records) from persistent cache.`);
                 return cachedData;
             }
         }
 
         // 2. Check Global Data Object (File:// Protocol Support)
         if (window.MIZANO_DATA && window.MIZANO_DATA[entity]) {
-            console.log(`DataManager: Loaded ${entity} from window.MIZANO_DATA (Script Injection).`);
             const data = window.MIZANO_DATA[entity];
+            console.log(`DataManager: Loaded ${entity} (${data.length} records) from window.MIZANO_DATA (Script Injection).`);
             this.cache[entity] = data;
             if (storage) storage.cacheDatabase(entity, data);
             return data;
@@ -132,6 +148,7 @@ class DataManager {
             if (!response.ok) throw new Error(`Failed to load ${entity}.json`);
             const data = await response.json();
             this.cache[entity] = data;
+            console.log(`DataManager: Loaded ${entity} (${data.length} records) from Fetch.`);
 
             // 4. Save to persistent cache for next time (delegated)
             if (storage) {
@@ -147,21 +164,17 @@ class DataManager {
 
     // Market / Shopping retrieval
     getShoppingDeals() {
-        // Mock Data for Shopping Panel
-        return [
-            { id: 'deal_001', title: 'Puma Soccer Boots', price: 'P1,200', image: './images/deals/boots.webp', category: 'Shopping' },
-            { id: 'deal_002', title: 'Mizano Official Jersey', price: 'P450', image: './images/deals/jersey.webp', category: 'Shopping' },
-            { id: 'deal_003', title: 'Training Cones (Set)', price: 'P150', image: './images/deals/cones.webp', category: 'Shopping' }
-        ];
+        return this.cache.shopping || [];
     }
 
     // Community / Social retrieval
     getCommunityPosts() {
-        // Mock Data for Community Panel
+        if (!this.cache.community) return [];
         return [
-            { id: 'post_001', title: 'Victory for Block 3!', subtitle: 'Community Cup Results', image: './images/posts/cup_win.webp', category: 'Community' },
-            { id: 'post_002', title: 'New Pitch Opening', subtitle: 'Gaborone North', image: './images/posts/pitch.webp', category: 'Community' },
-            { id: 'post_003', title: 'Volunteer Coach Needed', subtitle: 'Phase 2 Primary', image: './images/posts/coach.webp', category: 'Community' }
+            ...(this.cache.community.bulletin || []),
+            ...(this.cache.community.jobs || []),
+            ...(this.cache.community.lost_found || []),
+            ...(this.cache.community.news || [])
         ];
     }
 
@@ -213,7 +226,10 @@ class DataManager {
             if (user) return user;
         }
 
-        // Default / Fallback User (Karo Mjekejeke if demo loaded, else Lesedi)
+        // Default / Fallback User (Kao Modise as primary demo)
+        const kaoProfile = this.getById('users', 'BW-GAB-1001');
+        if (kaoProfile) return kaoProfile;
+
         const demoUser = this.getById('users', 'USR-BW-GAB-DEMO-001');
         if (demoUser) return demoUser;
 
@@ -643,43 +659,22 @@ class DataManager {
     getHomeFeed() {
         const activities = this.cache.activities || [];
 
-        // 1. Generate Dynamic Cards
-        const suggestions = [
-            {
-                card_type: 'Suggestion Card',
-                title: 'Try Padel Tennis',
-                description: 'The fastest growing sport in Gaborone. Book a court at Set & Smash.',
-                action_label: "I'll try it"
-            }
-        ];
+        // 1. Generate Dynamic Cards (Fallback to samples if available)
+        const suggestions = window.MIZANO_DATA && window.MIZANO_DATA.sample_activity_suggestions ?
+            window.MIZANO_DATA.sample_activity_suggestions : [
+                {
+                    card_type: 'Suggestion Card',
+                    title: 'Try Padel Tennis',
+                    description: 'The fastest growing sport in Gaborone. Book a court at Set & Smash.',
+                    action_label: "I'll try it"
+                }
+            ];
 
-        const challenges = [
-            {
-                card_type: 'Challenge Card',
-                challenge_id: 'ch_001',
-                title: 'Block 3 Runners Week',
-                participants: 124,
-                goal: 'Run 10km this week',
-                reward: 'Earn "Local Hero" Badge'
-            }
-        ];
-
-        const surveys = [
-            {
-                card_type: 'Survey Card',
-                survey_id: 'srv_001',
-                question: 'Which sports facility does Block 8 need most?',
-                options: ['Skate Park', 'Basketball Court', 'Swimming Pool']
-            }
-        ];
-
-        // 2. Mix them into the feed (Simple Interleave)
-        // [Suggestion, Activity, Activity, Challenge, Activity, Activity, Survey, ...]
+        // Mixing them into the feed
         const feed = [...activities];
 
-        if (feed.length > 0) feed.splice(0, 0, suggestions[0]);
-        if (feed.length > 2) feed.splice(3, 0, challenges[0]);
-        if (feed.length > 5) feed.splice(6, 0, surveys[0]);
+        if (feed.length > 0 && suggestions.length > 0) feed.splice(0, 0, suggestions[0]);
+        // Add more dynamic mixing logic if real challenges/surveys exist in MIZANO_DATA
 
         return feed;
     }

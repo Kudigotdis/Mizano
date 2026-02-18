@@ -1,4 +1,4 @@
-{
+window.MIZANO_DEMO_PROFILE = {
     "profile_id": "BW-GAB-1001",
     "full_name": "Kao Modise",
     "first_name": "Kao",
@@ -73,4 +73,4 @@
         "gripStrength": 52,
         "bodyFat": 18
     }
-}
+};

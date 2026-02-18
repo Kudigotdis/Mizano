@@ -78,29 +78,45 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
     generatePanelsMenu();
 
-    // 5. APEX UI: INTERACTION HANDLERS
-    const btnActivityPlus = document.getElementById('btn-activity-plus');
-    const btnLocation = document.getElementById('btn-location');
-    const btnPanels = document.getElementById('btn-panels');
-    const btnSearchIcon = document.getElementById('btn-search');
-    const btnAddIcon = document.getElementById('btn-add');
-    const btnHamburgerIcon = document.getElementById('btn-hamburger');
+    // 5. APEX UI: INTERACTION HANDLERS (Level 1-4 Hierarchy)
+    const btnActivities = document.getElementById('btn-activities-level');
+    const btnLocation = document.getElementById('btn-location-filter');
+    const btnPanels = document.getElementById('btn-panels-menu');
+    const btnSearch = document.getElementById('btn-search-mizano');
+    const btnAdd = document.getElementById('btn-add-content');
+    const btnHamburger = document.getElementById('btn-hamburger-mizano');
 
-    const levelB = document.getElementById('level-b-activity');
-    const levelCTime = document.getElementById('level-c-time');
-    const levelCCalendar = document.getElementById('level-c-calendar');
+    const level2 = document.getElementById('level-2-activity');
+    const level3 = document.getElementById('level-3-time');
+    const level4 = document.getElementById('level-4-datepicker');
 
-    if (btnActivityPlus) btnActivityPlus.addEventListener('click', () => levelB.classList.toggle('active'));
+    // Level 1: Main Bar Actions
+    if (btnActivities) btnActivities.addEventListener('click', () => {
+        level2.classList.toggle('active');
+        level3.classList.remove('active');
+        level4.classList.remove('active');
+    });
+
     if (btnLocation) btnLocation.addEventListener('click', () => window.MizanoFilters.open('places'));
     if (btnPanels) btnPanels.addEventListener('click', () => nav.openOverlay('panels-menu'));
-    if (btnSearchIcon) btnSearchIcon.addEventListener('click', () => nav.openOverlay('search'));
-    if (btnAddIcon) btnAddIcon.addEventListener('click', () => nav.openOverlay('builder-choice'));
-    if (btnHamburgerIcon) btnHamburgerIcon.addEventListener('click', () => nav.openOverlay('hamburger'));
+    if (btnSearch) btnSearch.addEventListener('click', () => nav.openOverlay('search'));
+    if (btnAdd) btnAdd.addEventListener('click', () => nav.openOverlay('builder-choice'));
+    if (btnHamburger) btnHamburger.addEventListener('click', () => nav.openOverlay('hamburger'));
 
-    const clockIconBtn = document.querySelector('.clock-icon-btn');
-    const calendarToggleBtn = document.querySelector('.calendar-toggle-btn');
-    if (clockIconBtn) clockIconBtn.addEventListener('click', () => levelCTime.classList.toggle('active'));
-    if (calendarToggleBtn) calendarToggleBtn.addEventListener('click', () => levelCCalendar.classList.toggle('active'));
+    // Level 2 & 3 Interaction
+    const clockTrigger = document.getElementById('clock-trigger');
+    const calendarTrigger = document.getElementById('calendar-trigger');
+
+    if (clockTrigger) clockTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        level3.classList.toggle('active');
+        level4.classList.remove('active');
+    });
+
+    if (calendarTrigger) calendarTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        level4.classList.toggle('active');
+    });
 
     // 6. DATE PICKER GENERATION
     const dayTilesContainer = document.getElementById('day-tiles');
@@ -129,23 +145,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 7. MAPPING & POPULATION ENGINE
     const mapToCardData = (entity, items) => {
+        if (!Array.isArray(items)) return [];
         return items.map(item => {
-            if (entity === 'activities') {
+            if (entity === 'activities' || entity === 'homeFeed') {
                 const check = safety.checkAction('COMPETITIVE_JOIN', { activity_id: item.activity_id });
                 return {
+                    ...item,
                     card_type: item.activity_type === 'lesson' ? 'Registration-State Card' : (item.activity_type === 'competition' ? 'Competition Card' : 'Standard Match Card'),
                     state: item.status === 'published' ? 'Active Soon' : 'Active Now',
                     left_team: { name: item.left_team_name || 'Team A' },
                     right_team: { name: item.right_team_name || 'Team B' },
                     center_top: item.start_time ? new Date(item.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'LIVE',
-                    venue: item.location_name,
+                    venue: item.location_name || 'TBA',
+                    location_name: item.location_name || 'TBA',
                     activity_id: item.activity_id,
-                    event_name: item.title,
-                    activity_type: item.sport,
-                    safety_status: check.allowed ? null : check.code
+                    event_name: item.title || item.event_name || 'Unnamed Activity',
+                    title: item.title || item.event_name || 'Unnamed Activity',
+                    activity_type: item.sport || item.activity_type || 'General',
                 };
             }
-            if (entity === 'homeFeed') return item.card_type ? item : mapToCardData('activities', [item])[0];
             if (entity === 'marathons') return { ...item, card_type: 'Registration-State Card', activity_id: item.event_id, emergency_badge: { text: 'Open', color: 'green' } };
             if (entity === 'teams') return { ...item, card_type: 'Team Explorer Card' };
             if (entity === 'businesses') return { ...item, card_type: 'Institution Card' };
@@ -161,36 +179,46 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const updatePanel = (rendererKey, dataKey, filterFn = null) => {
         const renderer = renderers[rendererKey];
-        if (!renderer || !dataManager.cache[dataKey]) return;
-        renderer.renderLoading();
-        let data = dataManager.cache[dataKey];
-        if (filterFn) data = data.filter(filterFn);
-        const filtered = filterEngine.filterData(data);
+        const data = dataManager.cache[dataKey];
+        if (!renderer || !data) return 0;
+
+        let processedData = data;
+        if (filterFn) processedData = processedData.filter(filterFn);
+
+        const filtered = filterEngine.filterData(processedData);
         const cardData = mapToCardData(dataKey, filtered);
-        if (cardData.length > 0) renderer.render(cardData);
-        else renderer.renderEmpty();
+
+        if (cardData.length > 0) {
+            renderer.render(cardData);
+        } else {
+            renderer.renderEmpty();
+        }
         return filtered.length;
     };
 
     const updateUIWithFilters = () => {
-        if (!dataManager.cache.activities) return;
+        // Individual panels now update if their specific data exists
         dataManager.cache.homeFeed = dataManager.getHomeFeed();
         const totalHome = updatePanel('home', 'homeFeed');
+
         updatePanel('search', 'activities');
         updatePanel('sports', 'activities', a => a.activity_type === 'match');
         updatePanel('lessons', 'activities', a => a.activity_type === 'lesson');
-        updatePanel('leisure', 'activities', a => ['Hobbies', 'Leisure', 'leisure', 'hobby'].includes(a.activity_type));
+        updatePanel('leisure', 'activities', a => ['Hobbies', 'Leisure', 'leisure', 'hobby'].includes(a.activity_type) || a.category === 'leisure' || a.category === 'hobby');
         updatePanel('groups', 'teams');
         updatePanel('schools', 'schools');
         updatePanel('businesses', 'businesses', b => !['school', 'university', 'venue', 'stadium', 'gym'].includes(b.category));
         updatePanel('shops', 'businesses', b => b.category === 'shop' || b.category === 'retail');
         updatePanel('venues', 'businesses', b => ['venue', 'stadium', 'gym', 'court', 'sports_facility'].includes(b.category));
+        updatePanel('leaderboard', 'leaderboards');
 
         if (dataManager.cache.events) renderers.events.render(mapToCardData('events', filterEngine.filterData(dataManager.cache.events)));
+
         if (dataManager.cache.community) {
-            const allCommunity = [...(dataManager.cache.community.bulletin || []), ...(dataManager.cache.community.lost_found || []), ...(dataManager.cache.community.jobs || []), ...(dataManager.cache.community.news || [])];
-            renderers.community.render(mapToCardData('community', filterEngine.filterData(allCommunity)));
+            const commPosts = dataManager.getCommunityPosts();
+            renderers.community.render(mapToCardData('community', filterEngine.filterData(commPosts)));
         }
+
         if (dataManager.cache.competitions) renderers.discover.render(mapToCardData('competitions', filterEngine.filterData(dataManager.cache.competitions)));
         if (dataManager.cache.shopping) renderers.shopping.render(mapToCardData('shopping', filterEngine.filterData(dataManager.cache.shopping)));
         if (dataManager.cache.marathons) renderers.marathons.render(mapToCardData('marathons', filterEngine.filterData(dataManager.cache.marathons)));
@@ -201,9 +229,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (locTrigger) {
             const loc = filterEngine.criteria.location;
-            const iso = (loc === 'Gaborone' || loc === 'all') ? 'GC' :
-                (loc === 'Francistown' ? 'FT' :
-                    (loc === 'Maun' ? 'MN' : '??'));
+            const isoMap = {
+                'Gaborone': 'GC',
+                'Francistown': 'FT',
+                'Maun': 'MN',
+                'Kasane': 'KS',
+                'Palapye': 'PL',
+                'Selebi Phikwe': 'SP',
+                'Mahalapye': 'MH',
+                'Mochudi': 'MC',
+                'Molepolole': 'MP',
+                'Kanye': 'KY',
+                'all': 'ALL',
+                'G-West': 'GW',
+                'Broadhurst': 'BH',
+                'Phase 2': 'P2'
+            };
+            const iso = isoMap[loc] || '??';
             locTrigger.querySelector('.location-text').innerText = `${iso} · ${loc === 'all' ? 'All' : loc}`;
         }
     };
@@ -215,7 +257,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             case 'panel-switch':
                 if (index === 14 && window.MizanoProfile) window.MizanoProfile.render();
                 if (index === 16 && window.MizanoTrackerRenderer) window.MizanoTrackerRenderer.render();
-                const panel = document.getElementById(`panel${index}`);
+                const panel = document.getElementById(`panel-${index}`);
                 if (panel && window.mizanoStorage) panel.scrollTop = window.mizanoStorage.loadScroll(index);
                 break;
             case 'overlay-open':
@@ -324,7 +366,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             await dataManager.init();
             safety.setUser(dataManager.getCurrentUser());
             filterEngine.setListener(() => updateUIWithFilters());
+
+            // Critical: Ensure the UI reflects the initial filter state
             updateUIWithFilters();
+
+            console.log(`Mizano Shell: Initialization complete. ${dataManager.cache.activities?.length || 0} activities available.`);
 
             const searchInput = document.getElementById('mizano-search-input');
             if (searchInput) {

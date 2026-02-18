@@ -1,156 +1,342 @@
 <!DOCTYPE html>
+<!-- 
+    DESIGN LOCKED: 2026-02-18
+    DO NOT MODIFY UI/UX WITHOUT EXPLICIT USER APPROVAL.
+    The current layout, colors, and button order are FINAL.
+-->
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login - Mizano</title>
-    <link rel="stylesheet" href="./assets/css/forms.css">
+    <!-- Atomic Spacing Grid & Variable Setup -->
     <style>
-        body {
-            font-family: 'Inter', 'Roboto', sans-serif;
-            background: #F5F5F5;
+        :root {
+            /* 8px Base Grid (Otter Pipeline) */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-xxl: 48px;
+            --space-xxxl: 60px;
+
+            /* Colors */
+            --bg-white: #FFFFFF;
+            --text-dark: #212121;
+            --text-grey: #757575;
+            --btn-browser: #1e88e5;
+            --btn-signup: #5ba8ec;
+            --btn-login: #9ac9f3;
+
+            /* Radius & Safe Area */
+            --radius-md: 8px;
+            --hit-target: 44px;
+        }
+
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background: var(--bg-white);
+            color: var(--text-dark);
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            padding: var(--space-md);
+            /* Margin of Safety (12px equiv for small screens) */
+            overflow: hidden;
         }
 
-        .auth-container {
+        .auth-canvas {
+            width: 100%;
             max-width: 400px;
-            width: 90%;
-            padding: 30px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            /* Max-Width Constraint */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
+            /* Dynamic Centering */
+            transition: transform 200ms ease-out;
+            will-change: transform;
         }
 
-        .auth-logo {
-            width: 60px;
-            height: 60px;
-            background: #1E88E5;
-            border-radius: 50%;
-            margin: 0 auto 20px;
+        /* Keyboard Slide Simulation */
+        body.keyboard-up .auth-canvas {
+            transform: translateY(-20vh);
+        }
+
+        /* Branding Segment (30% vertical viewport rule) */
+        .branding-segment {
+            margin-top: calc(var(--space-xxxl) + 2vh);
+            margin-bottom: var(--space-xxl);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-box {
+            width: 80px;
+            height: 80px;
+            margin-bottom: var(--space-sm);
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .app-name {
+            font-size: 28px;
+            /* 1.75rem */
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        /* CTA Hierarchy Segment */
+        .cta-segment {
+            width: 90%;
+            /* 90% container width rule */
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            /* Vertical Stack Ratio */
+            margin-bottom: var(--space-xl);
+        }
+
+        .btn-mizano {
+            width: 100%;
+            height: 48px;
+            /* Min-Height Standard & 4:1 Ratio target */
+            border-radius: var(--radius-md);
+            border: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: #FFFFFF;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 2rem;
-            font-weight: bold;
+            font-family: inherit;
+            position: relative;
+            transform: translate3d(0, 0, 0);
+            /* Hardware Acceleration */
+            transition: opacity 150ms, transform 100ms;
         }
 
-        .btn-auth {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            border: none;
-            transition: opacity 0.2s;
+        /* 44px Touch Target Buffer */
+        .btn-mizano::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            min-height: var(--hit-target);
         }
 
-        .btn-primary {
-            background: #1E88E5;
-            color: white;
+        .btn-mizano:active {
+            transform: scale(0.98) translateY(1px);
+            /* Active Tap Compression */
         }
 
-        .btn-secondary {
-            background: #607D8B;
-            color: white;
+        /* Updated Button Colors */
+        .btn-browser {
+            background: var(--btn-browser);
+            color: #FFFFFF;
         }
 
-        .btn-outline {
+        .btn-signup {
+            background: var(--btn-signup);
+            color: #FFFFFF;
+        }
+
+        .btn-login {
+            background: var(--btn-browser);
+            color: #FFFFFF;
+        }
+
+        .btn-help {
             background: transparent;
-            border: 2px solid #1E88E5;
-            color: #1E88E5;
+            color: #7d7d7d;
+            font-size: 14px;
+            font-weight: 400;
+            margin-top: 4px;
+            /* Slight separation */
+            height: auto;
+            /* Allow auto height for text button */
+            min-height: 44px;
+            /* Touch target */
         }
 
+        .btn-help:active {
+            transform: scale(0.98);
+        }
+
+        .cta-segment {
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            /* Slim equal spacing */
+            margin-bottom: var(--space-xl);
+            /* Positioning for lower 40% handled by flex alignment in main-canvas if needed, 
+               but default vertical centering + margin-top on branding pushes it down. 
+               We can ensure it's bottom-weighted by adding margin-top: auto to cta-segment if main-canvas has height. 
+               Current auth-canvas has min-height 100vh indirectly via body centering. 
+               Let's keep it simple for now, the user said "best position for the thumb" which is usually lower half. 
+            */
+        }
+
+        /* Hidden States */
         .hidden {
-            display: none;
+            display: none !important;
         }
 
-        .form-group {
-            text-align: left;
-            margin-bottom: 15px;
+        /* Login Form Expansion */
+        .login-form-box {
+            width: 100%;
+            display: none;
+            padding-top: var(--space-md);
+        }
+
+        .login-form-box.active {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
         }
 
         .form-control {
             width: 100%;
-            padding: 10px;
+            height: 48px;
+            padding: 0 var(--space-md);
             border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: 2px solid var(--btn-browser);
+            outline-offset: 2px;
+        }
+
+        .btn-back {
+            background: #e0e0e0;
+            color: #424242;
         }
     </style>
 </head>
 
 <body>
-    <div class="auth-container">
-        <div class="auth-logo">M</div>
-        <h1 style="margin-bottom: 30px;">Mizano</h1>
-
-        <!-- CHOICE MENU -->
-        <div id="choice-menu">
-            <button onclick="quickLogin()" class="btn-auth btn-primary">Browser (Kao Mjekejeke)</button>
-            <button onclick="location.href='signup.html'" class="btn-auth btn-outline">Sign-Up</button>
-            <button onclick="showLoginForm()" class="btn-auth btn-secondary">Login</button>
+    <div class="auth-canvas" id="main-canvas">
+        <!-- Branding Segment -->
+        <div class="branding-segment">
+            <div class="logo-box">
+                <img src="./assets/images/logo.webp" alt="Mizano Logo">
+            </div>
+            <h1 class="app-name">Mizano</h1>
         </div>
 
-        <!-- LOGIN FORM -->
-        <div id="login-form" class="hidden">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" id="login-user" class="form-control" placeholder="Enter username">
-            </div>
-            <div class="form-group">
-                <label>WhatsApp Number</label>
-                <input type="text" id="login-whatsapp" class="form-control" placeholder="+267XXXXXXXX">
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="login-pass" class="form-control" placeholder="••••••••">
-            </div>
-            <button onclick="finalLogin()" class="btn-auth btn-primary">Sign In</button>
-            <button onclick="hideLoginForm()" class="btn-auth btn-secondary">Back</button>
+        <!-- CTA Hierarchy Segment -->
+        <div class="cta-segment" id="cta-cluster">
+            <!-- 1. Browser Button -->
+            <button class="btn-mizano btn-browser" id="btn-browser">Browse</button>
+
+            <!-- 2. Signup Button -->
+            <button class="btn-mizano btn-signup" onclick="location.href='signup.html'">Signup</button>
+
+            <!-- 3. Login Button -->
+            <button class="btn-mizano btn-login" style="background: #9ac9f3;" id="btn-show-login">Login</button>
+
+            <!-- 4. Help Text Button -->
+            <button class="btn-mizano btn-help" onclick="alert('Help & Support coming soon!')">Need Help?</button>
+        </div>
+
+        <!-- Hidden Login Form -->
+        <div class="login-form-box" id="login-form-container">
+            <input type="text" id="login-user" class="form-control" placeholder="Username">
+            <input type="tel" id="login-whatsapp" class="form-control" placeholder="+267 WhatsApp Number">
+            <input type="password" id="login-pass" class="form-control" placeholder="Password">
+            <button class="btn-mizano" style="background: var(--btn-browser); margin-top: 8px;"
+                id="btn-final-signin">Sign In</button>
+            <button class="btn-mizano btn-back" id="btn-login-back">Back</button>
         </div>
     </div>
 
-    <script src="./assets/js/storage.js"></script>
-    <script src="./assets/js/validation.js"></script>
+    <script src="./StorageManager.js"></script>
+    <script src="./data/demo_profile.js"></script>
     <script src="./assets/js/auth.js"></script>
     <script>
-        function showLoginForm() {
-            document.getElementById('choice-menu').classList.add('hidden');
-            document.getElementById('login-form').classList.remove('hidden');
-        }
+        const btnShowLogin = document.getElementById('btn-show-login');
+        const btnLoginBack = document.getElementById('btn-login-back');
+        const btnFinalSignin = document.getElementById('btn-final-signin');
+        const btnBrowser = document.getElementById('btn-browser');
+        const ctaCluster = document.getElementById('cta-cluster');
+        const formContainer = document.getElementById('login-form-container');
 
-        function hideLoginForm() {
-            document.getElementById('login-form').classList.add('hidden');
-            document.getElementById('choice-menu').classList.remove('hidden');
-        }
+        // Toggle Form
+        btnShowLogin.onclick = () => {
+            ctaCluster.classList.add('hidden');
+            formContainer.classList.add('active');
+        };
 
-        async function quickLogin() {
-            const success = await window.MizanoAuth.loadDemoProfile();
-            if (success) location.href = 'index.html';
-        }
+        btnLoginBack.onclick = () => {
+            ctaCluster.classList.remove('hidden');
+            formContainer.classList.remove('active');
+        };
 
-        async function finalLogin() {
+        // Redirection Logic
+        btnBrowser.onclick = async (e) => {
+            e.preventDefault();
+            console.log('Login: Browse button clicked. Loading demo profile...');
+
+            try {
+                const success = await window.MizanoAuth.loadDemoProfile();
+
+                if (success) {
+                    console.log('Login: Demo profile loaded successfully. Redirecting to index.html...');
+                    window.location.href = './index.html';
+                } else {
+                    throw new Error('MizanoAuth.loadDemoProfile returned false');
+                }
+            } catch (err) {
+                console.error('Login: Failed to load demo profile', err);
+                alert('System Error: Could not load demo profile. Please try again or check console.');
+            }
+        };
+
+        btnFinalSignin.onclick = async () => {
             const user = document.getElementById('login-user').value;
             const wa = document.getElementById('login-whatsapp').value;
             const pass = document.getElementById('login-pass').value;
 
             if (!user || !wa || !pass) {
-                alert('Please fill all fields');
+                alert('Pleaase fill all fields');
                 return;
             }
 
-            // Simulated login: any valid-looking data works for the demo
+            // Success Expansion Scale - per Otter spec
+            btnFinalSignin.style.width = '100vw';
+
             await window.MizanoAuth.loadDemoProfile();
-            location.href = 'index.html';
-        }
+            setTimeout(() => location.href = 'index.html', 150);
+        };
+
+        // Keyboard Simulation Helper
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.onfocus = () => document.body.classList.add('keyboard-up');
+            input.onblur = () => document.body.classList.remove('keyboard-up');
+        });
     </script>
 </body>
 

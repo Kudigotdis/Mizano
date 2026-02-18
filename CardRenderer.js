@@ -288,10 +288,11 @@ class CardRenderer {
      * TEMPLATE: COMPETITION CARD
      */
     templateCompetition(data) {
+        const titleText = (data.title || data.event_name || 'Tournament').toUpperCase();
         return `
             <div class="card-comp-layout">
                 <div class="comp-banner">
-                    <div class="comp-title">${data.title || data.event_name}</div>
+                    <div class="comp-title">${titleText}</div>
                     <div class="comp-prize">${data.prize_pool ? `P${data.prize_pool} Prize Pool` : 'Tournament'}</div>
                 </div>
                 <div class="comp-footer">
@@ -311,7 +312,9 @@ class CardRenderer {
     templateMatch(data) {
         const left = data.left_team || { name: 'Team A' };
         const right = data.right_team || { name: 'Team B' };
-        const centerTop = data.center_top || (data.state === 'Active Now' ? '0 - 0' : data.start_time);
+
+        let centerTop = data.center_top || (data.state === 'Active Now' ? '0 - 0' : (data.start_time || 'LIVE'));
+        if (centerTop === 'Invalid Date' || centerTop === 'undefined') centerTop = data.start_time || 'LIVE';
 
         let footerHtml = '';
         if (data.safety_status === 'MINOR_RESTRICTION') {

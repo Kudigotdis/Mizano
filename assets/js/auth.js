@@ -5,10 +5,22 @@
 const MizanoAuth = {
     async loadDemoProfile() {
         try {
-            const response = await fetch('./data/demo_profile.json');
-            const kao = await response.json();
+            // Use global variable if available (avoiding fetch/CORS issues)
+            let kao = window.MIZANO_DEMO_PROFILE;
+
+            if (!kao) {
+                // Fallback for server environments
+                const response = await fetch('./data/demo_profile.json');
+                if (!response.ok) throw new Error('Demo profile not found');
+                kao = await response.json();
+            }
+
+            // Ensure storage is initialized
+            if (window.mizanoStorage.init) await window.mizanoStorage.init();
+
             await window.mizanoStorage.saveUser(kao);
             window.mizanoStorage.setCurrentUser(kao.profile_id);
+            console.log('MizanoAuth: Demo profile (Kao Modise) loaded.');
             return true;
         } catch (e) {
             console.error('Failed to load demo profile', e);
@@ -29,10 +41,17 @@ const MizanoAuth = {
     },
 
     async isLoggedIn() {
-        const id = window.mizanoStorage.getCurrentUserId();
-        if (!id) return false;
-        const user = await window.mizanoStorage.getUser(id);
-        return !!user;
+        try {
+            const id = window.mizanoStorage.getCurrentUserId();
+            if (!id) return false;
+
+            // Validate user existence in DB
+            const user = await window.mizanoStorage.getUser(id);
+            return !!user;
+        } catch (e) {
+            console.error('MizanoAuth: isLoggedIn check failed', e);
+            return false;
+        }
     }
 };
 

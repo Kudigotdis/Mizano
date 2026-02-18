@@ -6,173 +6,499 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign Up - Mizano</title>
     <link rel="stylesheet" href="./assets/css/forms.css">
+    <link rel="stylesheet" href="./assets/css/signup_extensions.css">
     <style>
+        :root {
+            --mizano-blue: #1E88E5;
+            --dark-grey: #242424;
+            --mid-grey: #808080;
+            --light-grey: #dcdcdc;
+            --radius-md: 8px;
+        }
+
         body {
-            font-family: 'Inter', 'Roboto', sans-serif;
-            background: #F5F5F5;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #FFFFFF;
             padding: 20px;
+            color: var(--dark-grey);
         }
 
-        .page-header {
-            max-width: 600px;
-            margin: 0 auto 20px;
-            text-align: center;
-        }
-
-        #signup-form {
-            max-width: 600px;
+        .signup-container {
+            max-width: 500px;
             margin: 0 auto;
+        }
+
+        .header-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header-logo img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        /* Profile Pic Upload */
+        .profile-pic-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-pic-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--light-grey);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid var(--mizano-blue);
+            margin-bottom: 10px;
+        }
+
+        .profile-pic-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .upload-btn {
+            font-size: 0.8rem;
+            color: var(--mizano-blue);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* Collapsible Styling */
+        .collapsible-section {
+            border: 1px solid var(--light-grey);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: #fdfdfd;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: none;
+            transition: background 0.2s;
+        }
+
+        .section-header:hover {
+            background: #f5f5f5;
+        }
+
+        .section-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--mid-grey);
+        }
+
+        .section-content {
+            padding: 20px;
+            display: block;
+            /* Default for Identity */
+        }
+
+        .section-content.collapsed {
+            display: none;
+        }
+
+        /* Interests List */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .interest-category {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .category-label {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--mid-grey);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .options-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .option-chip {
+            padding: 6px 12px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-chip.selected {
+            background: var(--mizano-blue);
+            color: #fff;
+        }
+
+        .option-chip input {
+            display: none;
+        }
+
+        .btn-save {
+            width: 100%;
+            padding: 16px;
+            background: var(--mizano-blue);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--mid-grey);
+        }
+
+        .auth-footer a {
+            color: var(--mizano-blue);
+            text-decoration: none;
+            font-weight: 600;
         }
     </style>
 </head>
 
 <body>
-    <div class="page-header">
-        <h1>Create Your Profile</h1>
-        <p>Join the Mizano community and start your flow.</p>
+    <div class="signup-container">
+        <div class="header-logo">
+            <img src="./assets/images/logo.webp" alt="Mizano Logo">
+            <h1 style="font-size: 1.5rem; margin-top: 10px;">Mizano</h1>
+        </div>
+
+        <form id="signup-form">
+            <!-- 1. IDENTITY [-] -->
+            <div class="collapsible-section">
+                <div class="section-header" id="header-identity">
+                    <h3>Identity</h3>
+                    <span class="toggle-icon">–</span>
+                </div>
+                <div class="section-content" id="content-identity">
+                    <!-- Profile Picture -->
+                    <div class="profile-pic-container">
+                        <div class="profile-pic-preview" id="pic-preview">
+                            <span style="font-size: 30px; color: #aaa;">👤</span>
+                        </div>
+                        <label class="upload-btn">
+                            Upload Photo
+                            <input type="file" id="pic-upload" accept="image/*" style="display:none">
+                        </label>
+                    </div>
+
+                    <div class="field-group">
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control" placeholder="e.g. kao_modise" required>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <div class="field-group" style="flex:1">
+                            <label>First Name</label>
+                            <input type="text" name="firstName" class="form-control" required>
+                        </div>
+                        <div class="field-group" style="flex:1">
+                            <label>Other Names</label>
+                            <input type="text" name="middleNames" class="form-control">
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <label>Surname</label>
+                        <input type="text" name="surname" class="form-control" required>
+                    </div>
+                    <div class="field-group">
+                        <label>Date of Birth</label>
+                        <input type="date" name="dob" class="form-control" required>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <div class="field-group" style="flex:1">
+                            <label>Gender</label>
+                            <select name="gender" class="form-control">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="field-group" style="flex:1">
+                            <label>Nationality</label>
+                            <input type="text" name="nationality" class="form-control" placeholder="Motswana">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. CONTACT [+] -->
+            <div class="collapsible-section">
+                <div class="section-header">
+                    <h3>Contact</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="section-content collapsed">
+                    <!-- 1. Mobile Network (Icons) -->
+                    <div class="field-group">
+                        <label>Mobile Network</label>
+                        <div class="network-selector" id="network-selector">
+                            <button type="button" class="network-btn" data-network="BTC">
+                                <img src="./assets/img/icons/BTC-Grey%20Icon.webp" alt="BTC" class="icon-grey">
+                                <img src="./assets/img/icons/BTC%20Icon.webp" alt="BTC" class="icon-color">
+                            </button>
+                            <button type="button" class="network-btn" data-network="Mascom">
+                                <img src="./assets/img/icons/Mascom-Grey%20Icon.webp" alt="Mascom" class="icon-grey">
+                                <img src="./assets/img/icons/Mascom%20Icon.webp" alt="Mascom" class="icon-color">
+                            </button>
+                            <button type="button" class="network-btn" data-network="Orange">
+                                <img src="./assets/img/icons/Orange-Grey%20Icon.webp" alt="Orange" class="icon-grey">
+                                <img src="./assets/img/icons/Orange%20Icon.webp" alt="Orange" class="icon-color">
+                            </button>
+                        </div>
+                        <input type="hidden" name="mobileNetwork" id="mobileNetworkInput">
+                    </div>
+
+                    <!-- 2. Mobile Number -->
+                    <div class="field-group">
+                        <label>Mobile Number</label>
+                        <input type="tel" name="mobileNumber" class="form-control" placeholder="71XXXXXX">
+                    </div>
+
+                    <!-- 3. WhatsApp Number -->
+                    <div class="field-group">
+                        <label>WhatsApp Number</label>
+                        <input type="tel" name="whatsapp" class="form-control" placeholder="+267 XXXXXXXX">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. LOCALE [+] -->
+            <div class="collapsible-section">
+                <div class="section-header">
+                    <h3>Locale</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="section-content collapsed">
+                    <div class="field-group">
+                        <label>Village / Town / City</label>
+                        <input type="text" name="city" class="form-control" placeholder="Gaborone">
+                    </div>
+                    <div class="field-group">
+                        <label>Area / Neighbourhood</label>
+                        <input type="text" name="area" class="form-control" placeholder="Block 3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. INTERESTS [+] -->
+            <div class="collapsible-section">
+                <div class="section-header">
+                    <h3>Interests <span id="interests-count"
+                            style="font-weight:normal; font-size:0.9em; color:#666;">(0)</span></h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="section-content collapsed">
+                    <div class="interests-grid" id="interests-grid">
+                        <!-- Categorized Interests -->
+                        <!-- Dynamic Interests will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. SECURITY [+] -->
+            <div class="collapsible-section">
+                <div class="section-header">
+                    <h3>Security</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="section-content collapsed">
+                    <div class="field-group">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <div class="field-group">
+                        <label>Confirm Password</label>
+                        <input type="password" name="confirm_password" class="form-control" placeholder="••••••••"
+                            required>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-save">Save & Continue</button>
+
+            <div class="auth-footer">
+                Already have an account? <a href="login.html">Log In</a><br>
+                <div style="margin-top: 10px;">
+                    <a href="index.html" style="font-weight: 400; color: #888;">Or just Browse on through</a>
+                </div>
+            </div>
+        </form>
     </div>
 
-    <form id="signup-form">
-        <!-- 1. CORE IDENTITY -->
-        <div class="collapsible-section" id="section-identity">
-            <div class="section-header">
-                <h3>Core Identity</h3>
-                <span class="toggle-icon">–</span>
-            </div>
-            <div class="section-content">
-                <div class="field-group">
-                    <label>Full Name</label>
-                    <input type="text" name="full_name" class="form-control" required>
-                </div>
-                <div class="field-group">
-                    <label>Date of Birth</label>
-                    <input type="date" name="dob" id="dob-input" class="form-control" required>
-                </div>
-                <div class="field-group">
-                    <label>Gender</label>
-                    <select name="gender" class="form-control">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="non-binary">Non-binary</option>
-                    </select>
-                </div>
-                <div class="field-group">
-                    <label>Nationality</label>
-                    <input type="text" name="nationality" class="form-control" placeholder="e.g. Motswana">
-                </div>
-            </div>
-        </div>
-
-        <!-- 2. CONTACT & LOCATION -->
-        <div class="collapsible-section" id="section-contact">
-            <div class="section-header">
-                <h3>Contact & Location</h3>
-                <span class="toggle-icon">–</span>
-            </div>
-            <div class="section-content">
-                <div class="field-group">
-                    <label>WhatsApp Number</label>
-                    <input type="text" name="whatsapp_number" class="form-control" placeholder="+267XXXXXXXX" required>
-                </div>
-                <div class="field-group">
-                    <label>Email (Optional)</label>
-                    <input type="email" name="email" class="form-control">
-                </div>
-                <div class="field-group">
-                    <label>Village / Town / City</label>
-                    <input type="text" name="city" class="form-control" placeholder="Gaborone">
-                </div>
-                <div class="field-group">
-                    <label>Area / Neighborhood</label>
-                    <input type="text" name="area" class="form-control" placeholder="Block 3">
-                </div>
-            </div>
-        </div>
-
-        <!-- 3. CAPABILITIES -->
-        <div class="collapsible-section" id="section-capabilities">
-            <div class="section-header">
-                <h3>Profile Capabilities</h3>
-                <span class="toggle-icon">–</span>
-            </div>
-            <div class="section-content">
-                <label>I want to be a:</label>
-                <div style="margin-top:10px;">
-                    <label><input type="checkbox" name="capabilities" value="Player"> Player</label><br>
-                    <label><input type="checkbox" name="capabilities" value="Mentor"> Mentor</label><br>
-                    <label><input type="checkbox" name="capabilities" value="Creator"> Creator</label><br>
-                    <label><input type="checkbox" name="capabilities" value="Guardian"> Guardian</label>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4. ACCOUNT SECURITY -->
-        <div class="collapsible-section" id="section-security">
-            <div class="section-header">
-                <h3>Account Security</h3>
-                <span class="toggle-icon">–</span>
-            </div>
-            <div class="section-content">
-                <div class="field-group">
-                    <label>Password</label>
-                    <input type="password" name="password" class="form-control" minlength="8" required>
-                </div>
-                <div class="field-group">
-                    <label>Confirm Password</label>
-                    <input type="password" name="confirm_password" class="form-control" required>
-                </div>
-            </div>
-        </div>
-
-        <button type="submit" class="btn-auth btn-primary" style="margin-top:20px;">Create Account</button>
-        <div class="auth-footer" style="margin-bottom:40px;">
-            Already have an account? <a href="login.html">Log In</a>
-        </div>
-    </form>
-
     <script src="./assets/js/storage.js"></script>
-    <script src="./assets/js/validation.js"></script>
+    <script src="./data/interests_data.js"></script>
     <script src="./assets/js/auth.js"></script>
     <script>
-        // Toggle logic
+        // Collapsible Logic
         document.querySelectorAll('.section-header').forEach(header => {
             header.onclick = () => {
                 const content = header.nextElementSibling;
                 const icon = header.querySelector('.toggle-icon');
-                content.classList.toggle('collapsed');
-                icon.innerText = content.classList.contains('collapsed') ? '+' : '–';
+                const isCollapsed = content.classList.toggle('collapsed');
+                icon.innerText = isCollapsed ? '+' : '–';
             };
         });
 
+        // Profile Pic Preview
+        const picUpload = document.getElementById('pic-upload');
+        const picPreview = document.getElementById('pic-preview');
+
+        picUpload.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    picPreview.innerHTML = `<img src="${e.target.result}">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Interest Selection (Chips)
+        document.querySelectorAll('.option-chip input').forEach(input => {
+            input.onchange = () => {
+                const chip = input.parentElement;
+                if (input.checked) {
+                    chip.classList.add('selected');
+                } else {
+                    chip.classList.remove('selected');
+                }
+            };
+        });
+
+        // Form Submit
         document.getElementById('signup-form').onsubmit = async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
             const data = Object.fromEntries(formData.entries());
 
-            // Collect multi-select checkboxes
-            data.capabilities = Array.from(formData.getAll('capabilities'));
+            // Handle interests specifically
+            data.interests = [...new Set(formData.getAll('interests'))];
 
             if (data.password !== data.confirm_password) {
                 alert('Passwords do not match');
                 return;
             }
 
-            if (!window.MizanoValidation.isValidWhatsApp(data.whatsapp_number)) {
-                alert('Invalid WhatsApp number format');
+            // Demo Login
+            await window.MizanoAuth.loadDemoProfile();
+            location.href = 'index.html';
+        };
+
+        // Dynamic Interests Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('interests-grid');
+            const counterEl = document.getElementById('interests-count');
+            const data = []; // DISABLED INLINE - Using assets/js/signup_interests.js instead because replace_file_content failed
+            // const data = window.MIZANO_INTERESTS_DATA || [];
+
+
+            if (data.length === 0) {
+                console.warn('No interests data found.');
+                grid.innerHTML = '<p>No interests available.</p>';
                 return;
             }
 
-            const age = window.MizanoValidation.calculateAge(data.dob);
-            if (age < 16) {
-                alert('As you are under 16, a Guardian must oversee this account.');
-                // Simplified for now - in real app would trigger Guardian section
-            }
+            // Group by Category
+            const categories = {};
+            data.forEach(item => {
+                const cat = item.category || 'Other';
+                if (!categories[cat]) categories[cat] = [];
+                categories[cat].push(item);
+            });
 
-            const user = await window.MizanoAuth.signup(data);
-            alert('Account created: ' + user.profile_id);
-            location.href = 'index.html';
-        };
+            // Sort Categories Alphabetically
+            const sortedCategories = Object.keys(categories).sort();
+
+            // Clear Loading/Static Content
+            grid.innerHTML = '';
+
+            // Render
+            sortedCategories.forEach(cat => {
+                const catDiv = document.createElement('div');
+                catDiv.className = 'interest-category';
+
+                const catLabel = document.createElement('span');
+                catLabel.className = 'category-label';
+                catLabel.textContent = cat;
+                catDiv.appendChild(catLabel);
+
+                const optionsList = document.createElement('div');
+                optionsList.className = 'options-list';
+
+                // Sort items within category
+                categories[cat].sort((a, b) => a.label.localeCompare(b.label));
+
+                categories[cat].forEach(item => {
+                    const label = document.createElement('label');
+                    label.className = 'option-chip';
+
+                    const input = document.createElement('input');
+                    input.type = 'checkbox';
+                    input.name = 'interests';
+                    input.value = item.value;
+
+                    // Add change listener for counter
+                    input.addEventListener('change', updateCounter);
+
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(item.label));
+                    optionsList.appendChild(label);
+                });
+
+                catDiv.appendChild(optionsList);
+                grid.appendChild(catDiv);
+            });
+
+            function updateCounter() {
+                const count = document.querySelectorAll('input[name="interests"]:checked').length;
+                counterEl.textContent = `(${count})`;
+
+                // Toggle active class on chips
+                document.querySelectorAll('input[name="interests"]').forEach(inp => {
+                    if (inp.checked) inp.parentElement.classList.add('active');
+                    else inp.parentElement.classList.remove('active');
+                });
+            }
+        });
     </script>
+    <script src="assets/js/signup_interests.js"></script>
+    <script src="assets/js/signup_contact.js"></script>
 </body>
 
 </html>
