@@ -6,33 +6,57 @@
 class CardRenderer {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
+        this.fullData = [];
+        this.currentIndex = 0;
+        this.batchSize = 20;
+
         this.scroller = new InfiniteScroll({
             onLoadMore: () => {
-                if (this.onLoadMore) this.onLoadMore();
+                this.renderBatch();
             }
         });
     }
 
     /**
-     * Renders a list of cards from generic data.
+     * Renders a list of cards from generic data in batches.
      */
     render(dataList, append = false) {
         if (!this.container) return;
 
         if (!append) {
             this.clear();
+            this.fullData = dataList || [];
+            this.currentIndex = 0;
+        } else {
+            this.fullData = [...this.fullData, ...(dataList || [])];
         }
 
-        dataList.forEach((data, index) => {
+        this.renderBatch();
+    }
+
+    /**
+     * Internal batch rendering logic.
+     */
+    renderBatch() {
+        if (this.currentIndex >= this.fullData.length) return;
+
+        const nextBatch = this.fullData.slice(this.currentIndex, this.currentIndex + this.batchSize);
+
+        nextBatch.forEach((data, index) => {
             const cardEl = this.createCard(data);
             if (cardEl) {
-                // If this is the last item, observe it via InfiniteScroll
-                if (index === dataList.length - 1) {
+                // If this is the last item in the current batch AND there's more data overall, observe it
+                const isLastInBatch = index === nextBatch.length - 1;
+                const hasMoreOverall = (this.currentIndex + index + 1) < this.fullData.length;
+
+                if (isLastInBatch && hasMoreOverall) {
                     this.scroller.observe(cardEl);
                 }
                 this.container.appendChild(cardEl);
             }
         });
+
+        this.currentIndex += nextBatch.length;
     }
 
     /**
