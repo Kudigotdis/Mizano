@@ -210,16 +210,4 @@ class AssociationsOverlay {
 // Global instance
 window.associationsOverlay = new AssociationsOverlay();
 
-// Add to hamburger menu (if it exists)
-document.addEventListener('DOMContentLoaded', () => {
-    // Find hamburger menu or create menu button
-    const menuContainer = document.querySelector('.menu-container') || document.querySelector('header');
-
-    if (menuContainer) {
-        const btn = document.createElement('button');
-        btn.textContent = '🏆 Associations';
-        btn.className = 'menu-btn associations-btn';
-        btn.onclick = () => window.associationsOverlay.open();
-        menuContainer.appendChild(btn);
-    }
-});
+// Associations button auto-append removed as per user request

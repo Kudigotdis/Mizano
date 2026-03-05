@@ -1,5 +1,10 @@
 /* MIZANO CORE SHELL STYLES */
 /* Based on MIZANO_DESIGN_GUIDE.md - 2D Minimal Design */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 :root {
     --primary-blue: #1E88E5;
@@ -29,6 +34,27 @@ body {
     overflow: hidden;
     width: 100vw;
     height: 100vh;
+    padding-top: calc(var(--top-bar-height) + 48px);
+    /* Top Bar + Filter Bar */
+}
+
+/* TOP BAR (Level 1) */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--top-bar-height);
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    padding: 0;
+    /* Removed padding to allow perfect left alignment */
+    z-index: 1100;
+    border-bottom: 2px solid var(--white);
+    /* Pinned white border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* Subtle shadow for depth */
 }
 
 /* SPLASH SCREEN */
@@ -61,20 +87,13 @@ body {
     margin-bottom: 20px;
 }
 
-/* APEX HORIZON: SUB-HEADER (Location & Counter) */
-.places-filter-bar {
-    position: fixed;
-    top: var(--top-bar-height);
-    left: 0;
-    width: 100%;
-    height: 48px;
-    background-color: var(--white);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    z-index: 999;
+.top-carousel-container {
+    padding-left: 40px;
+    /* Push the whole scrolling container inward by 40px */
 }
+
+/* APEX HORIZON: SUB-HEADER (Location & Counter) 
+   Moved to bottom of file */
 
 .location-selector {
     display: flex;
@@ -83,9 +102,9 @@ body {
 }
 
 .location-text {
-    background: #f0f0f0;
-    padding: 6px 16px;
-    border-radius: 20px;
+    /* Removed pill grey background as requested */
+    background: transparent;
+    padding: 6px 0;
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--charcoal);
@@ -94,13 +113,9 @@ body {
 }
 
 .location-text::before {
-    content: "";
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: var(--primary-blue);
-    border-radius: 50%;
-    margin-right: 8px;
+    /* icon removed per user request */
+    content: none;
+    display: none;
 }
 
 .card-tally {
@@ -112,10 +127,6 @@ body {
     font-size: 0.9rem;
     color: #bfbfbf;
     font-weight: 500;
-}
-
-.tally-count::before {
-    content: "+";
 }
 
 /* APEX DECK CONTAINER */
@@ -227,7 +238,6 @@ body {
     z-index: 2000;
     display: flex;
     flex-direction: column-reverse;
-    /* Stack Level 1 at bottom, levels build up */
 }
 
 /* LEVEL 1: Bottom Menu (#242424) */
@@ -267,7 +277,8 @@ body {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 30px;
+    /* Aligned with centers of first/last bottom menu buttons */
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -289,37 +300,56 @@ body {
 
 /* LEVEL 3: Time Periods */
 .level-time-period {
-    gap: 15px;
+    background-color: #dcdcdc !important;
+    justify-content: space-between;
+    padding: 0 30px;
 }
 
 .time-carousel-minimal {
     flex: 1;
     display: flex;
-    gap: 10px;
+    gap: 15px;
+    justify-content: flex-end;
     overflow-x: auto;
-    padding: 5px 0;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+.time-carousel-minimal::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+#calendar-trigger {
+    padding-left: 0;
+}
+
+/* Hide time pills when date picker is open */
+#level-3-time.calendar-open .time-carousel-minimal {
+    display: none;
 }
 
 .time-pill {
-    background: #444;
-    color: #bbb;
+    background: none;
+    color: #757575;
     border: none;
-    padding: 6px 15px;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    padding: 0;
+    font-size: 0.85rem;
     white-space: nowrap;
     cursor: pointer;
     font-weight: 600;
+    transition: color 0.2s;
 }
 
 .time-pill.active {
-    background: white;
     color: #242424;
 }
 
 /* LEVEL 4: Date Picker */
 .level-datepicker {
-    background-color: #dcdcdc !important;
+    background-color: white !important;
     height: 0;
     flex-direction: column;
 }
@@ -334,12 +364,36 @@ body {
     background: white;
     display: flex;
     justify-content: center;
+    border-bottom: 1px solid #eee;
 }
 
 .month-label {
     font-weight: 700;
     font-size: 0.85rem;
     color: #242424;
+    cursor: pointer;
+}
+
+.month-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+}
+
+.month-item {
+    padding: 15px;
+    text-align: center;
+    background: #f5f5f5;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #242424;
+}
+
+.month-item:active {
+    background: var(--primary-blue);
+    color: white;
 }
 
 .icon-btn-minimal {
@@ -371,33 +425,82 @@ body {
     color: black;
 }
 
+.day-tiles-container-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    background: var(--white);
+}
+
+.day-scroll-btn {
+    flex: 0 0 36px;
+    width: 36px;
+    min-width: 36px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    /* Completely invisible but clickable */
+    color: transparent;
+    user-select: none;
+}
+
+.day-scroll-btn.prev {
+    cursor: w-resize;
+}
+
+.day-scroll-btn.next {
+    cursor: e-resize;
+}
+
 .day-tiles-scroll {
     display: flex;
     overflow-x: auto;
     background: var(--white);
-    padding: 10px;
-    gap: 10px;
-    width: 100%;
+    padding: 8px 4px;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+
+.day-tiles-scroll::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
 }
 
 .day-block {
     background: var(--apex-day-block);
-    min-width: 60px;
-    padding: 8px;
+    /* Exactly 5 tiles visible: calc((100% - 4*6px gap) / 5) */
+    min-width: calc(20% - 5px);
+    flex: 0 0 calc(20% - 5px);
+    padding: 8px 4px;
     text-align: center;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: background 0.2s;
 }
 
 .day-name {
     color: var(--apex-grey);
-    font-size: 0.7rem;
+    font-size: 0.55rem;
 }
 
 .day-status {
     color: var(--apex-grey);
     font-weight: bold;
+    font-size: 0.65rem;
 }
 
 .day-block.active {
@@ -461,7 +564,10 @@ body {
     white-space: nowrap;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    margin-left: 8px;
+    margin: 0;
+    /* User specifically requested to REMOVE the fade effect */
+    /* Scroll Snapping for full words to the far left */
+    scroll-snap-type: x mandatory;
 }
 
 .top-carousel-container::-webkit-scrollbar {
@@ -476,45 +582,68 @@ body {
 .nav-btn {
     background: none;
     border: none;
-    padding: 0 16px;
+    padding: 0 20px 0 66px;
+    /* 66px = 26px original + 40px as requested */
+    /* Increased first padding specifically if possible, otherwise apply to all */
     font-size: 14px;
     font-weight: 500;
-    color: var(--inactive-grey);
+    color: var(--charcoal);
+    opacity: 0.5;
     cursor: pointer;
     height: var(--top-bar-height);
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    /* Ensure word fits left */
     position: relative;
+    transition: opacity 0.2s, font-weight 0.2s, visibility 0.2s;
+    /* Snapping to FAR LEFT */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
+/* Added active state explicit opacity 1 */
 .nav-btn.active {
-    color: var(--charcoal);
-    font-weight: 700;
+    opacity: 1;
+    font-weight: 600;
 }
 
-.nav-btn.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 10%;
-    width: 80%;
-    height: 3px;
-    background-color: var(--primary-blue);
+/* Class for JS to hide partially visible words to enforce "whole words only" */
+.nav-btn.partial-visible {
+    opacity: 0 !important;
+    pointer-events: none;
 }
 
-/* PLACES FILTER BAR */
+/* Ensure active is always visible even if partial */
+.nav-btn.active.partial-visible {
+    opacity: 1 !important;
+}
+
+/* During a scroll swipe, temporarily reveal partial words so they slide normally instead of popping */
+.top-carousel-container.is-scrolling .nav-btn.partial-visible {
+    opacity: 0.5 !important;
+}
+
+.top-carousel-container.is-scrolling .nav-btn.active.partial-visible {
+    opacity: 1 !important;
+}
+
+/* Active indicator bar removed as per user request */
+
+/* PLACES FILTER BAR - Flex layout naturally stacked */
 .places-filter-bar {
-    position: fixed;
-    top: var(--top-bar-height);
-    left: 0;
+    position: relative;
     width: 100%;
     height: 48px;
-    background-color: var(--light-grey);
+    background-color: #FFFFFF;
+    /* Pure white as strictly requested */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
-    z-index: 900;
+    padding: 0 20px;
+    border-top: 1px solid #E0E0E0;
+    z-index: 2100;
+    /* Ensure it floats above the carousel panels and deck overlays */
 }
 
 .location-text {
@@ -523,16 +652,12 @@ body {
 }
 
 .tally-count {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--primary-blue);
+    display: none;
 }
 
 .panel-carousel-container {
-    padding-top: calc(var(--top-bar-height) + 48px);
-    padding-bottom: var(--bottom-bar-height);
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;

@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         home: new window.MizanoCards('drop-field-home'),
         search: new window.MizanoCards('search-results'),
         sports: new window.MizanoCards('drop-field-sports'),
+        hobbies: new window.MizanoCards('drop-field-hobbies'),
         leisure: new window.MizanoCards('drop-field-leisure'),
         lessons: new window.MizanoCards('drop-field-lessons'),
         events: new window.MizanoCards('drop-field-events'),
@@ -66,8 +67,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const panelsList = document.getElementById('panels-list');
     const generatePanelsMenu = () => {
         if (!panelsList) return;
-        const panelNames = ["Home", "Search", "Sports", "Leisure", "Lessons", "Events", "Teams & Groups", "Discover", "My Hub", "Community", "Leaderboards", "Deals", "Retailers", "Business Directory", "Schools", "Venues", "Marathons"];
-        const icons = ["🏠", "🔍", "⚽", "🏖️", "🎓", "🎉", "👥", "🌍", "👤", "🤝", "🏆", "🛍️", "🔖", "🏢", "🏫", "🏟️", "🏃"];
+        const panelNames = ["Home", "Sports", "Hobbies", "Leisure", "Lessons", "Events", "Groups", "Discover", "Mine", "Community", "Leaderboard", "Shopping", "Shops", "Businesses", "Schools", "Venues", "Marathons"];
+        const icons = ["🏠", "⚽", "🎨", "🏖️", "🎓", "🎉", "👥", "🌍", "👤", "🤝", "📈", "🛍️", "🔖", "🏢", "🏫", "🏟️", "🏃"];
 
         panelsList.innerHTML = panelNames.map((name, i) => `
             <div class="mizano-card" onclick="window.MizanoNav.switchPanel(${i}); window.MizanoNav.back()" style="padding:15px; text-align:center; cursor:pointer;">
@@ -79,12 +80,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     generatePanelsMenu();
 
     // 5. APEX UI: INTERACTION HANDLERS (Level 1-4 Hierarchy)
-    const btnActivities = document.getElementById('btn-activities-level');
     const btnLocation = document.getElementById('btn-location-filter');
-    const btnPanels = document.getElementById('btn-panels-menu');
-    const btnSearch = document.getElementById('btn-search-mizano');
-    const btnAdd = document.getElementById('btn-add-content');
-    const btnHamburger = document.getElementById('btn-hamburger-mizano');
+    const btnActivities = document.getElementById('btn-activities-level'); // From bottom menu
+    const btnPanels = document.getElementById('btn-panels-menu'); // From bottom menu
+    const btnSearch = document.getElementById('btn-search-mizano'); // From bottom menu
+    const btnAdd = document.getElementById('btn-add-content'); // From bottom menu
+    const btnHamburger = document.getElementById('btn-hamburger-mizano'); // From bottom menu
 
     const level2 = document.getElementById('level-2-activity');
     const level3 = document.getElementById('level-3-time');
@@ -93,54 +94,250 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Level 1: Main Bar Actions
     if (btnActivities) btnActivities.addEventListener('click', () => {
         level2.classList.toggle('active');
-        level3.classList.remove('active');
-        level4.classList.remove('active');
+        // If we close activity, close children too
+        if (!level2.classList.contains('active')) {
+            level3.classList.remove('active');
+            level3.classList.remove('calendar-open');
+            level4.classList.remove('active');
+        }
     });
 
-    if (btnLocation) btnLocation.addEventListener('click', () => window.MizanoFilters.open('places'));
+    const clockTrigger = document.getElementById('clock-trigger');
+    const calendarTrigger = document.getElementById('calendar-trigger');
+
+    if (clockTrigger) clockTrigger.addEventListener('click', () => {
+        level3.classList.toggle('active');
+        level4.classList.remove('active');
+        level3.classList.remove('calendar-open'); // Pills reappear when time row re-opens
+    });
+
+    if (calendarTrigger) calendarTrigger.addEventListener('click', () => {
+        level4.classList.toggle('active');
+        // Toggle calendar-open on Level 3 to hide/show time pills
+        level3.classList.toggle('calendar-open');
+    });
+
+    if (btnLocation) btnLocation.addEventListener('click', () => openLocationOverlay('village'));
     if (btnPanels) btnPanels.addEventListener('click', () => nav.openOverlay('panels-menu'));
     if (btnSearch) btnSearch.addEventListener('click', () => nav.openOverlay('search'));
     if (btnAdd) btnAdd.addEventListener('click', () => nav.openOverlay('builder-choice'));
     if (btnHamburger) btnHamburger.addEventListener('click', () => nav.openOverlay('hamburger'));
 
-    // Level 2 & 3 Interaction
-    const clockTrigger = document.getElementById('clock-trigger');
-    const calendarTrigger = document.getElementById('calendar-trigger');
+    // NEW LOCATION FILTER LOGIC
+    const villageTrigger = document.getElementById('village-trigger');
+    const areaTrigger = document.getElementById('area-trigger');
+    const locationOverlay = document.getElementById('location-overlay');
+    const locationCloseBtn = document.getElementById('location-close-btn');
+    const locationTitle = document.getElementById('location-overlay-title');
+    const locationContainer = document.getElementById('location-list-container');
 
-    if (clockTrigger) clockTrigger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        level3.classList.toggle('active');
-        level4.classList.remove('active');
-    });
+    const villages = ['Gaborone', 'Francistown', 'Maun', 'Kasane', 'Palapye', 'Selebi-Phikwe', 'Lobatse', 'Mahalapye', 'Mochudi', 'Molepolole', 'Kanye', 'Serowe', 'Jwaneng', 'Orapa', 'Mogoditshane', 'Tlokweng', 'all'];
+    const areas = {
+        'Gaborone': ['all', 'Block 3', 'Block 6', 'Block 8', 'Broadhurst', 'Extension 4', 'Extension 9', 'Extension 10', 'Phase 2', 'Phase 4', 'Gaborone West', 'Mogoditshane', 'Tlokweng', 'Phakalane', 'CBD', 'Acacia Park', 'Babusi Extension 14', 'Badiri Extension 5', 'Block 5', 'Block 7', 'Block 9', 'Block 10', 'Boitshoko Extension 10', 'Bontleng', 'Bontleng Extension 8', 'Botswelelo Extension 5', 'Central Business District', 'Dilalelo Extension 4', 'Dumadumana', 'Extension 8', 'Extension 11', 'Extension 12', 'Extension 15', 'Extension 16', 'Extension 17', 'Extension 18', 'Extension 19', 'Extension 20', 'Extension 21', 'Extension 22', 'Extension 23', 'Extension 24', 'Extension 25', 'Extension 26', 'Extension 27', 'Extension 28', 'Extension 29', 'Extension 30', 'Extension 31', 'Extension 32', 'Extension 33', 'Extension 34', 'Extension 35', 'Extension 36', 'Extension 37', 'Extension 38', 'Extension 39', 'Extension 40', 'Extension 41', 'Extension 42', 'Extension 43', 'Extension 44', 'Extension 45', 'Extension 46', 'Extension 47', 'Extension 48', 'Extension 51', 'Extension 52', 'Extension 54', 'Gabone West Extension 3', 'Gaborone International Commerce Park', 'Gaborone North', 'Gaborone West Block V', 'Gaborone West Extension 2', 'Gaborone West Extension 4', 'Gaborone West Extension 5', 'Gaborone West Extension 6', 'Gaborone West Extension 7', 'Gaborone West Phase 4 Industrial Extension 14', 'Game City', 'Glen Valley', 'Government Enclave', 'Kgale View', 'Madibeng Extension 11', 'Madirelo', 'Madirelo Extension 6', 'Mephato Extension 12', 'Millennium Office Park', 'Mmaraka Extension 1', 'Moshawa Estate', 'Mowana Park', 'New Naledi', 'Old Naledi', 'Phakalane Estate', 'Phologolo Extension 9', 'Sebele Valley', 'Segodi Park', 'Sekgwa Extension 7', 'Selemelo Extension 2', 'Talana Park', 'The Village', 'Village Extension 15'],
+        'Francistown': ['all', 'Minestone', 'Monarch', 'Gerald Estates', 'Somerset', 'Block 1', 'Aerodrome', 'Area S', 'Bluetown', 'CBD', 'Kanana', 'Kgaphamadi', 'Maipafela', 'Molapo Estates', 'Moselewapula', 'Nyangabgwe', 'Selepa', 'Tati River'],
+        'Maun': ['all', 'Boseja', 'Disaneng', 'Matlapana', 'Sedie', 'Sennonori', 'Mathiba', 'Sedia'],
+        'Selebi-Phikwe': ['all', 'Botshabelo', 'Government Housing Zone', 'Mine Compound Area'],
+        'Lobatse': ['all', 'BHC Estates', 'CBD', 'Colonial Residential Area'],
+        'Jwaneng': ['all', 'Debswana Residential Compound', 'Government Housing Area'],
+        'Molepolole': ['all', 'BHC Housing Extensions', 'Traditional Kgotla Wards'],
+        'Palapye': ['all', 'Extension 1', 'Lotsane', 'Morupule', 'BIUST Area', 'Old Railway-Era Neighbourhoods', 'New Commercial Extensions'],
+        'Mochudi': ['all', 'Kgotla Ward Areas', 'New BHC Extensions'],
+        'Mogoditshane': ['all', 'Main Village Area', 'New Residential Extensions'],
+        'Tlokweng': ['all', 'Old Village Area', 'New Residential Extensions'],
+    };
 
-    if (calendarTrigger) calendarTrigger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        level4.classList.toggle('active');
-    });
+    const openLocationOverlay = (mode) => {
+        if (!locationOverlay) return;
+        locationContainer.innerHTML = '';
+        locationTitle.innerText = mode === 'village' ? 'Select Village/Town' : 'Select Area';
+
+        const dataList = mode === 'village' ? villages : (areas[filterEngine.criteria.location] || ['all']);
+
+        const grid = document.createElement('div');
+        grid.className = 'location-grid';
+
+        dataList.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'location-item';
+
+            // Highlight active selection
+            if (mode === 'village' && item === filterEngine.criteria.location) div.classList.add('active');
+
+            div.innerText = item === 'all' ? 'All' : item;
+            div.onclick = () => {
+                if (mode === 'village') {
+                    // When village changes, reset area to 'all'
+                    filterEngine.criteria.area = 'all';
+                    filterEngine.update('location', item);
+                } else {
+                    // Force an update to refresh the text by updating the dedicated 'area' field
+                    filterEngine.update('area', item);
+                }
+                nav.back();
+            };
+            grid.appendChild(div);
+        });
+
+        locationContainer.appendChild(grid);
+        nav.openOverlay('location'); // Fixed: openOverlay appends "-overlay" automatically
+    };
+
+    if (villageTrigger) villageTrigger.addEventListener('click', () => openLocationOverlay('village'));
+    if (areaTrigger) areaTrigger.addEventListener('click', () => openLocationOverlay('area'));
+    if (locationCloseBtn) locationCloseBtn.addEventListener('click', () => nav.back());
+
+
+
+
+
 
     // 6. DATE PICKER GENERATION
     const dayTilesContainer = document.getElementById('day-tiles');
-    const generateDayTiles = () => {
+    const monthLabel = document.getElementById('month-selection-trigger');
+    const yearLabel = document.getElementById('year-selection-trigger'); // NEW
+    const monthOverlay = document.getElementById('month-overlay');
+    const monthGrid = document.getElementById('month-grid-container');
+    const yearGrid = document.getElementById('year-grid-container'); // NEW
+
+    let currentSelectedYear = new Date().getFullYear(); // NEW STATE
+
+    const generateDayTiles = (baseDate = new Date()) => {
         if (!dayTilesContainer) return;
         dayTilesContainer.innerHTML = '';
-        const today = new Date();
-        for (let i = 0; i < 14; i++) {
-            const date = new Date();
-            date.setDate(today.getDate() + i);
+
+        // If baseDate is passed, use it as the "start point" instead of literally "today"
+        // But we still want to keep the label accurate to the baseDate.
+        const base = new Date(baseDate);
+        base.setHours(0, 0, 0, 0);
+
+        // Update the labels natively
+        if (monthLabel) monthLabel.innerText = base.toLocaleDateString('en-US', { month: 'long' });
+        if (yearLabel) yearLabel.innerText = base.getFullYear().toString();
+
+        currentSelectedYear = base.getFullYear(); // Sync state
+
+        // Start 7 days before the base date
+        const startDate = new Date(base);
+        startDate.setDate(base.getDate() - 7);
+
+        let activeTileEl = null;
+
+        for (let i = 0; i < 30; i++) {
+            const date = new Date(startDate);
+            date.setDate(startDate.getDate() + i);
+
             const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
             const dayNum = date.getDate();
-            const month = date.toLocaleDateString('en-US', { month: 'short' });
+            const monthText = date.toLocaleDateString('en-US', { month: 'short' });
+
+            // Highlight the tile if it's the baseDate (which might be today, or the 1st of a selected month)
+            const isActive = date.getTime() === base.getTime();
+            // Just for the text, check if it's literally today in the real world
+            const isLiterallyToday = date.toDateString() === new Date().toDateString();
+
             const tile = document.createElement('div');
-            tile.className = `day-block ${i === 0 ? 'active' : ''}`;
-            tile.innerHTML = `<span class="day-name">${dayName}</span><span class="day-status">${i === 0 ? 'Today' : (dayNum + ' ' + month)}</span>`;
+            tile.className = `day-block ${isActive ? 'active' : ''}`;
+            tile.innerHTML = `<span class="day-name">${dayName}</span><span class="day-status">${isLiterallyToday ? 'Today' : (dayNum + ' ' + monthText)}</span>`;
+
             tile.onclick = () => {
                 document.querySelectorAll('.day-block').forEach(t => t.classList.remove('active'));
                 tile.classList.add('active');
                 filterEngine.update('date', date);
             };
             dayTilesContainer.appendChild(tile);
+
+            if (isActive) activeTileEl = tile;
+        }
+
+        // Auto-scroll to show the active date as the first visible tile
+        if (activeTileEl) {
+            requestAnimationFrame(() => {
+                activeTileEl.scrollIntoView({ behavior: 'instant', inline: 'start', block: 'nearest' });
+            });
         }
     };
+
+    // Scroll Logic for Day Tiles — moves one tile width at a time
+    const scrollPrev = document.getElementById('day-scroll-prev');
+    const scrollNext = document.getElementById('day-scroll-next');
+
+    if (scrollPrev && dayTilesContainer) {
+        scrollPrev.onclick = (e) => {
+            e.stopPropagation();
+            const tileWidth = dayTilesContainer.querySelector('.day-block')?.offsetWidth || 80;
+            dayTilesContainer.scrollBy({ left: -(tileWidth + 6), behavior: 'smooth' });
+        };
+    }
+    if (scrollNext && dayTilesContainer) {
+        scrollNext.onclick = (e) => {
+            e.stopPropagation();
+            const tileWidth = dayTilesContainer.querySelector('.day-block')?.offsetWidth || 80;
+            dayTilesContainer.scrollBy({ left: tileWidth + 6, behavior: 'smooth' });
+        };
+    }
+
+    // Month Selection Logic
+    const renderMonthPicker = () => {
+        if (!monthGrid) return;
+        monthGrid.innerHTML = '';
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        months.forEach((month, index) => {
+            const btn = document.createElement('div');
+            btn.className = 'mizano-card month-item';
+            btn.style.cssText = 'padding:10px; text-align:center; cursor:pointer; font-weight:600; margin-bottom: 2px; font-size: 2rem;';
+            btn.innerText = month;
+            btn.onclick = () => {
+                const targetDate = new Date(currentSelectedYear, index, 1);
+                generateDayTiles(targetDate);
+                nav.back();
+            };
+            monthGrid.appendChild(btn);
+        });
+    };
+
+    if (monthLabel) {
+        monthLabel.onclick = () => {
+            renderMonthPicker();
+            nav.openOverlay('month');
+        };
+    }
+
+    // Year Selection Logic
+    const renderYearPicker = () => {
+        if (!yearGrid) return;
+        yearGrid.innerHTML = '';
+
+        const currentRealYear = new Date().getFullYear();
+        const years = [];
+        for (let i = currentRealYear - 2; i <= currentRealYear + 5; i++) {
+            years.push(i);
+        }
+
+        years.forEach(year => {
+            const btn = document.createElement('div');
+            btn.className = 'mizano-card month-item'; // Reusing class for styles
+            btn.style.cssText = 'padding:10px; text-align:center; cursor:pointer; font-weight:600; margin-bottom: 2px; font-size: 2rem;';
+            btn.innerText = year;
+            btn.onclick = () => {
+                // Keep the current month (based on what we seeded into baseDate earlier, or grab from Date object if needed)
+                // Actually, let's just make it jump to Jan 1st of that year to keep it simple and clean
+                const targetDate = new Date(year, 0, 1);
+                currentSelectedYear = year;
+                generateDayTiles(targetDate);
+                nav.back();
+            };
+            yearGrid.appendChild(btn);
+        });
+    };
+
+    if (yearLabel) {
+        yearLabel.onclick = () => {
+            renderYearPicker();
+            nav.openOverlay('year');
+        };
+    }
+
     generateDayTiles();
 
     // 7. MAPPING & POPULATION ENGINE
@@ -203,8 +400,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         updatePanel('search', 'activities');
         updatePanel('sports', 'activities', a => a.activity_type === 'match');
+        updatePanel('hobbies', 'activities', a => ['Hobbies', 'hobby'].includes(a.activity_type) || a.category === 'hobby');
         updatePanel('lessons', 'activities', a => a.activity_type === 'lesson');
-        updatePanel('leisure', 'activities', a => ['Hobbies', 'Leisure', 'leisure', 'hobby'].includes(a.activity_type) || a.category === 'leisure' || a.category === 'hobby');
+        updatePanel('leisure', 'activities', a => ['Leisure', 'leisure'].includes(a.activity_type) || a.category === 'leisure');
         updatePanel('groups', 'teams');
         updatePanel('schools', 'schools');
         updatePanel('businesses', 'businesses', b => !['school', 'university', 'venue', 'stadium', 'gym'].includes(b.category));
@@ -224,30 +422,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (dataManager.cache.marathons) renderers.marathons.render(mapToCardData('marathons', filterEngine.filterData(dataManager.cache.marathons)));
 
         const cardTally = document.getElementById('card-count');
-        const locTrigger = document.getElementById('location-trigger');
+        const villageTrigger = document.getElementById('village-trigger');
+        const areaTrigger = document.getElementById('area-trigger');
+
         if (cardTally) cardTally.innerText = totalHome > 888 ? '888' : totalHome;
 
-        if (locTrigger) {
-            const loc = filterEngine.criteria.location;
-            const isoMap = {
-                'Gaborone': 'GC',
-                'Francistown': 'FT',
-                'Maun': 'MN',
-                'Kasane': 'KS',
-                'Palapye': 'PL',
-                'Selebi Phikwe': 'SP',
-                'Mahalapye': 'MH',
-                'Mochudi': 'MC',
-                'Molepolole': 'MP',
-                'Kanye': 'KY',
-                'all': 'ALL',
-                'G-West': 'GW',
-                'Broadhurst': 'BH',
-                'Phase 2': 'P2'
-            };
-            const iso = isoMap[loc] || '??';
-            locTrigger.querySelector('.location-text').innerText = `${iso} · ${loc === 'all' ? 'All' : loc}`;
-        }
+        let loc = filterEngine.criteria.location;
+        if (loc === 'Gaborone') loc = 'Gaborone (Default)';
+        else if (!loc || loc === 'all') loc = 'All Locations';
+
+        // Grab area from criteria if we saved it there, otherwise 'All'
+        const areaText = filterEngine.criteria.area && filterEngine.criteria.area !== 'all' ? filterEngine.criteria.area : 'All';
+
+        if (villageTrigger) villageTrigger.innerText = loc;
+        if (areaTrigger) areaTrigger.innerText = areaText;
     };
 
     // 8. NAV CONTROLLER SYNC

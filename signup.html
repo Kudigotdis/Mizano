@@ -306,11 +306,15 @@
                 <div class="section-content collapsed">
                     <div class="field-group">
                         <label>Village / Town / City</label>
-                        <input type="text" name="city" class="form-control" placeholder="Gaborone">
+                        <select name="city" id="citySelect" class="form-control" required>
+                            <option value="" disabled selected>Select City/Town</option>
+                        </select>
                     </div>
                     <div class="field-group">
                         <label>Area / Neighbourhood</label>
-                        <input type="text" name="area" class="form-control" placeholder="Block 3">
+                        <select name="area" id="areaSelect" class="form-control" disabled required>
+                            <option value="" disabled selected>Select City First</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -499,6 +503,8 @@
     </script>
     <script src="assets/js/signup_interests.js"></script>
     <script src="assets/js/signup_contact.js"></script>
+    <script src="data/locations_data.js"></script>
+    <script src="assets/js/signup_locations.js"></script>
 </body>
 
 </html>

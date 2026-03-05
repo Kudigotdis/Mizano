@@ -39,6 +39,9 @@ class NavigationController {
         // 2. Auto-Hook Triggers
         this.hookTriggers();
 
+        // 2.5 Setup Nav Word Visibility Observer
+        this.setupNavObserver();
+
         // 3. Gesture Initialization
         const carousel = document.getElementById('main-carousel');
         if (carousel) this.setupSwipe(carousel);
@@ -64,6 +67,49 @@ class NavigationController {
                 }
             }, { passive: true });
         });
+
+        // Top Nav Scroll Debounce (for smooth partial word hiding)
+        const topCarouselContainer = document.querySelector('.top-carousel-container');
+        if (topCarouselContainer) {
+            let scrollTimeout;
+            topCarouselContainer.addEventListener('scroll', () => {
+                topCarouselContainer.classList.add('is-scrolling');
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    topCarouselContainer.classList.remove('is-scrolling');
+                }, 150); // Hide partials 150ms after scroll stops
+            }, { passive: true });
+        }
+    }
+
+    /**
+     * Set up Intersection Observer to hide partially visible nav buttons.
+     * Ensures ONLY 100% visible full words are shown in the header.
+     */
+    setupNavObserver() {
+        const carouselContainer = document.querySelector('.top-carousel-container');
+        if (!carouselContainer) return;
+
+        const observerOptions = {
+            root: carouselContainer,
+            rootMargin: '0px',
+            threshold: 1.0 // 100% visibility required! 
+        };
+
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Fully visible
+                    entry.target.classList.remove('partial-visible');
+                } else {
+                    // Not 100% visible (cut off)
+                    entry.target.classList.add('partial-visible');
+                }
+            });
+        }, observerOptions);
+
+        const navButtons = document.querySelectorAll('.nav-btn');
+        navButtons.forEach(btn => navObserver.observe(btn));
     }
 
     /**
@@ -141,18 +187,16 @@ class NavigationController {
      * Navigate to the next panel if possible.
      */
     nextPanel() {
-        if (this.state.panelIndex < this.totalPanels - 1) {
-            this.switchPanel(this.state.panelIndex + 1);
-        }
+        const nextIndex = (this.state.panelIndex + 1) % this.totalPanels;
+        this.switchPanel(nextIndex);
     }
 
     /**
      * Navigate to the previous panel if possible.
      */
     prevPanel() {
-        if (this.state.panelIndex > 0) {
-            this.switchPanel(this.state.panelIndex - 1);
-        }
+        const prevIndex = (this.state.panelIndex - 1 + this.totalPanels) % this.totalPanels;
+        this.switchPanel(prevIndex);
     }
 
     /**
@@ -194,7 +238,7 @@ class NavigationController {
         const activeBtn = document.querySelector(`.nav-btn[data-panel="${index}"]`);
         if (activeBtn) {
             activeBtn.classList.add('active');
-            activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
         }
     }
 
@@ -460,7 +504,7 @@ class NavigationController {
 
             case 'Stats Card':
                 // navigate to profile stats tab
-                this.switchPanel(14); // Mine Panel
+                this.switchPanel(8); // Mine Panel
                 break;
 
             default:

@@ -14,11 +14,15 @@ class FilterEngine {
             category: 'all',
             sport: 'all',
             status: 'all',
-            location: 'all', // Changed to 'all' by default to ensure maximum visibility
+            location: 'Gaborone',
+            area: 'all', // Added area tracking
             timeFrame: 'all',
             date: null
         };
         this.onFilterChange = null;
+
+        // Force Gaborone every time, regardless of cache
+        this.criteria.location = 'Gaborone';
 
         // Trigger initial apply if we loaded saved filters
         if (savedCriteria) {
@@ -135,6 +139,22 @@ class FilterEngine {
                     // Specific location match
                     if (!itemLoc.includes(target)) return false;
                 }
+            }
+
+            // 4.5. Area Filter (Neighborhoods)
+            if (this.criteria.area !== 'all') {
+                const targetArea = this.criteria.area.toLowerCase();
+                let itemLoc = '';
+                if (typeof item.location === 'string') {
+                    itemLoc = item.location;
+                } else if (item.location && item.location.city) {
+                    itemLoc = item.location.city;
+                } else {
+                    itemLoc = item.location_name || item.village_town || item.village || item.venue_name || '';
+                }
+                itemLoc = itemLoc.toLowerCase();
+
+                if (!itemLoc.includes(targetArea)) return false;
             }
 
             // 5. Time Filter
