@@ -428,8 +428,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (cardTally) cardTally.innerText = totalHome > 888 ? '888' : totalHome;
 
         let loc = filterEngine.criteria.location;
-        if (loc === 'Gaborone') loc = 'Gaborone (Default)';
-        else if (!loc || loc === 'all') loc = 'All Locations';
+        if (!loc || loc === 'all') loc = 'All Locations';
 
         // Grab area from criteria if we saved it there, otherwise 'All'
         const areaText = filterEngine.criteria.area && filterEngine.criteria.area !== 'all' ? filterEngine.criteria.area : 'All';
