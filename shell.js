@@ -415,6 +415,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         dataManager.cache.homeFeed = dataManager.getHomeFeed();
         const totalHome = updatePanel('home', 'homeFeed');
 
+        // Synchronize the seamless swipe clone of Home
+        const homeClone = document.getElementById('drop-field-home-clone');
+        const homeActual = document.getElementById('drop-field-home');
+        if (homeClone && homeActual) {
+            homeClone.innerHTML = homeActual.innerHTML;
+        }
+
         updatePanel('search', 'activities');
         updatePanel('sports', 'activities', a => a.activity_type === 'match');
         updatePanel('hobbies', 'activities', a => ['Hobbies', 'hobby'].includes(a.activity_type) || a.category === 'hobby');

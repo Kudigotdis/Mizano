@@ -76,7 +76,20 @@ class NavigationController {
                 clearTimeout(syncTimeout);
                 syncTimeout = setTimeout(() => {
                     const newIndex = Math.round(panelCarousel.scrollLeft / window.innerWidth);
-                    if (newIndex !== this.state.panelIndex && newIndex >= 0 && newIndex < this.totalPanels) {
+
+                    if (newIndex === 16) {
+                        // We physically swiped right into the Home Clone! (Seamless Loop)
+                        // Snap back to real Home instantly without user noticing
+                        panelCarousel.style.scrollBehavior = 'auto';
+                        panelCarousel.scrollTo({ left: 0, behavior: 'auto' });
+
+                        this.state.panelIndex = 0;
+
+                        // Visually slide Top Nav to duplicate Home smoothly, then snap to real
+                        const dupHome = document.querySelectorAll('.nav-btn[data-panel="0"]')[1];
+                        this.syncNavUI(0, dupHome);
+
+                    } else if (newIndex !== this.state.panelIndex && newIndex >= 0 && newIndex < this.totalPanels) {
                         this.state.panelIndex = newIndex;
                         this.syncNavUI(newIndex);
                     }
@@ -105,7 +118,35 @@ class NavigationController {
         navButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 const index = parseInt(btn.getAttribute('data-panel'));
-                this.switchPanel(index);
+                const isDuplicate = Array.from(navButtons).indexOf(btn) > 15;
+
+                if (isDuplicate) {
+                    // Update state to real index
+                    this.state.panelIndex = index;
+
+                    const container = document.querySelector('.panel-carousel-container');
+                    if (container) {
+                        if (index === 0) {
+                            // Smoothly scroll to the physical Clone (index 16) for a seamless slide
+                            // The scroll listener will seamlessly snap it back to 0 when it lands
+                            container.scrollTo({
+                                left: 16 * window.innerWidth,
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            // Instantly snap main carousel strictly to that index to avoid backward rewind
+                            container.scrollTo({
+                                left: index * window.innerWidth,
+                                behavior: 'auto' // Instant cut
+                            });
+                        }
+                    }
+
+                    // Visually slide the Top Nav to the duplicate button smoothly, then snap to real
+                    this.syncNavUI(index, btn);
+                } else {
+                    this.switchPanel(index);
+                }
             });
         });
 
@@ -209,29 +250,59 @@ class NavigationController {
 
     /**
      * Synchronizes the top nav bar with the current active panel index.
-     * Uses CSS transform to slide the inner flex strip so the active button
-     * always appears at the left edge — no scroll snapping, no sticky items.
+     * Includes logic to slide smoothly to a duplicate button (if clicked or reached via swipe loop),
+     * and then instantly jump back to the origin without flashing.
      */
-    syncNavUI(index) {
+    syncNavUI(index, clickedBtn = null) {
         const navButtons = document.querySelectorAll('.nav-btn');
         navButtons.forEach(btn => btn.classList.remove('active'));
-        const activeBtn = document.querySelector(`.nav-btn[data-panel="${index}"]`);
+
+        let activeBtn = clickedBtn || document.querySelector(`.nav-btn[data-panel="${index}"]`);
         if (!activeBtn) return;
         activeBtn.classList.add('active');
-        this.slideNavToActive(activeBtn);
+
+        const isDuplicate = Array.from(navButtons).indexOf(activeBtn) > 15;
+
+        if (isDuplicate) {
+            // Slide to duplicate smoothly
+            this.slideNavToActive(activeBtn, false);
+            // After slide completes, instantly snap back to the exact real button
+            setTimeout(() => {
+                const realBtn = document.querySelector(`.nav-btn[data-panel="${index}"]`);
+                if (realBtn) {
+                    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                    realBtn.classList.add('active');
+                    this.slideNavToActive(realBtn, true); // Instant cut
+                }
+            }, 300);
+        } else {
+            this.slideNavToActive(activeBtn, false);
+        }
     }
 
     /**
      * Shifts the .top-carousel strip via transform so the active button
      * sits at the left edge of the container unconditionally.
-     * Empty space at the end of the list is visually filled by duplicate buttons in index.html.
      */
-    slideNavToActive(activeBtn) {
+    slideNavToActive(activeBtn, instant = false) {
         const carousel = document.querySelector('.top-carousel');
         if (!carousel || !activeBtn) return;
         const btnOffsetLeft = activeBtn.offsetLeft;
-        const shift = Math.max(btnOffsetLeft, 0); // Always slide to precisely this button
+        const shift = Math.max(btnOffsetLeft, 0);
+
+        if (instant) {
+            carousel.style.transition = 'none';
+        } else {
+            carousel.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        }
+
         carousel.style.transform = `translateX(-${shift}px)`;
+
+        if (instant) {
+            // Force hardware reflow so transition:none applies immediately
+            carousel.offsetHeight;
+            carousel.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        }
     }
 
     /**
