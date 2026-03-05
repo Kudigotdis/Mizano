@@ -162,24 +162,41 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Highlight active selection
             if (mode === 'village' && item === filterEngine.criteria.location) div.classList.add('active');
+            if (mode === 'area' && item === filterEngine.criteria.area) div.classList.add('active');
 
             div.innerText = item === 'all' ? 'All' : item;
             div.onclick = () => {
+                // STEP 1: Close overlay immediately for instant feedback — no freeze
+                locationOverlay.classList.remove('active');
+                nav.state.overlayStack = nav.state.overlayStack.filter(id => id !== 'location');
+
+                // STEP 2: Update filter criteria directly without triggering re-render yet
                 if (mode === 'village') {
-                    // When village changes, reset area to 'all'
                     filterEngine.criteria.area = 'all';
-                    filterEngine.update('location', item);
+                    filterEngine.criteria.location = item;
                 } else {
-                    // Force an update to refresh the text by updating the dedicated 'area' field
-                    filterEngine.update('area', item);
+                    filterEngine.criteria.area = item;
                 }
-                nav.back();
+
+                // STEP 3: Immediately update the location row labels
+                const vt = document.getElementById('village-trigger');
+                const at = document.getElementById('area-trigger');
+                let locLabel = filterEngine.criteria.location;
+                if (!locLabel || locLabel === 'all') locLabel = 'All Locations';
+                const areaLabel = filterEngine.criteria.area && filterEngine.criteria.area !== 'all' ? filterEngine.criteria.area : 'All';
+                if (vt) vt.innerText = locLabel;
+                if (at) at.innerText = areaLabel;
+
+                // STEP 4: Defer the expensive panel re-render until after overlay is visually closed
+                setTimeout(() => {
+                    filterEngine.apply();
+                }, 50);
             };
             grid.appendChild(div);
         });
 
         locationContainer.appendChild(grid);
-        nav.openOverlay('location'); // Fixed: openOverlay appends "-overlay" automatically
+        nav.openOverlay('location');
     };
 
     if (villageTrigger) villageTrigger.addEventListener('click', () => openLocationOverlay('village'));
@@ -552,7 +569,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (dataManager) {
             await dataManager.init();
             safety.setUser(dataManager.getCurrentUser());
-            filterEngine.setListener(() => updateUIWithFilters());
+            filterEngine.setListener(() => setTimeout(() => updateUIWithFilters(), 0));
 
             // Critical: Ensure the UI reflects the initial filter state
             updateUIWithFilters();
