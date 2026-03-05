@@ -223,17 +223,14 @@ class NavigationController {
 
     /**
      * Shifts the .top-carousel strip via transform so the active button
-     * sits at the left edge of the container. Partial words to the right
-     * are naturally clipped by overflow:hidden on the container.
+     * sits at the left edge of the container unconditionally.
+     * Empty space at the end of the list is visually filled by duplicate buttons in index.html.
      */
     slideNavToActive(activeBtn) {
         const carousel = document.querySelector('.top-carousel');
         if (!carousel || !activeBtn) return;
-        const containerWidth = carousel.parentElement.offsetWidth;
         const btnOffsetLeft = activeBtn.offsetLeft;
-        // Clamp: don't go past the end of the strip
-        const maxShift = carousel.scrollWidth - containerWidth;
-        const shift = Math.min(Math.max(btnOffsetLeft, 0), maxShift);
+        const shift = Math.max(btnOffsetLeft, 0); // Always slide to precisely this button
         carousel.style.transform = `translateX(-${shift}px)`;
     }
 
