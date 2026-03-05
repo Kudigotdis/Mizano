@@ -87,10 +87,7 @@ body {
     margin-bottom: 20px;
 }
 
-.top-carousel-container {
-    padding-left: 40px;
-    /* Push the whole scrolling container inward by 40px */
-}
+
 
 /* APEX HORIZON: SUB-HEADER (Location & Counter) 
    Moved to bottom of file */
@@ -559,15 +556,12 @@ body {
 
 .top-carousel-container {
     flex: 1;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: hidden;
+    /* Clip partial words cleanly — no scroll on the container itself */
     white-space: nowrap;
     -ms-overflow-style: none;
     scrollbar-width: none;
     margin: 0;
-    /* User specifically requested to REMOVE the fade effect */
-    /* Scroll Snapping for full words to the far left */
-    scroll-snap-type: x mandatory;
 }
 
 .top-carousel-container::-webkit-scrollbar {
@@ -577,29 +571,28 @@ body {
 .top-carousel {
     display: inline-flex;
     height: 100%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
 .nav-btn {
     background: none;
     border: none;
-    padding: 0 20px 0 66px;
-    /* 66px = 26px original + 40px as requested */
-    /* Increased first padding specifically if possible, otherwise apply to all */
+    padding: 0 20px;
+    /* Equidistant on both sides — no sticky left offset */
     font-size: 14px;
     font-weight: 500;
     color: var(--charcoal);
     opacity: 0.5;
     cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
     height: var(--top-bar-height);
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    /* Ensure word fits left */
+    justify-content: center;
     position: relative;
-    transition: opacity 0.2s, font-weight 0.2s, visibility 0.2s;
-    /* Snapping to FAR LEFT */
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
+    transition: opacity 0.2s, font-weight 0.2s;
 }
 
 /* Added active state explicit opacity 1 */
@@ -608,24 +601,16 @@ body {
     font-weight: 600;
 }
 
-/* Class for JS to hide partially visible words to enforce "whole words only" */
+/* Partial words are clipped by the container overflow:hidden — no opacity tricks needed */
+/* The IntersectionObserver hides buttons that are cut off at the container edge */
 .nav-btn.partial-visible {
-    opacity: 0 !important;
+    visibility: hidden;
     pointer-events: none;
 }
 
-/* Ensure active is always visible even if partial */
+/* Active button is always visible even if at the edge */
 .nav-btn.active.partial-visible {
-    opacity: 1 !important;
-}
-
-/* During a scroll swipe, temporarily reveal partial words so they slide normally instead of popping */
-.top-carousel-container.is-scrolling .nav-btn.partial-visible {
-    opacity: 0.5 !important;
-}
-
-.top-carousel-container.is-scrolling .nav-btn.active.partial-visible {
-    opacity: 1 !important;
+    visibility: visible;
 }
 
 /* Active indicator bar removed as per user request */

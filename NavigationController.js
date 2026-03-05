@@ -68,48 +68,31 @@ class NavigationController {
             }, { passive: true });
         });
 
-        // Top Nav Scroll Debounce (for smooth partial word hiding)
-        const topCarouselContainer = document.querySelector('.top-carousel-container');
-        if (topCarouselContainer) {
-            let scrollTimeout;
-            topCarouselContainer.addEventListener('scroll', () => {
-                topCarouselContainer.classList.add('is-scrolling');
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    topCarouselContainer.classList.remove('is-scrolling');
-                }, 150); // Hide partials 150ms after scroll stops
+        // Main carousel scroll — sync nav when user finger-swipes naturally
+        const panelCarousel = document.querySelector('.panel-carousel-container');
+        if (panelCarousel) {
+            let syncTimeout;
+            panelCarousel.addEventListener('scroll', () => {
+                clearTimeout(syncTimeout);
+                syncTimeout = setTimeout(() => {
+                    const newIndex = Math.round(panelCarousel.scrollLeft / window.innerWidth);
+                    if (newIndex !== this.state.panelIndex && newIndex >= 0 && newIndex < this.totalPanels) {
+                        this.state.panelIndex = newIndex;
+                        this.syncNavUI(newIndex);
+                    }
+                }, 80); // Wait for scroll to settle
             }, { passive: true });
         }
     }
 
     /**
-     * Set up Intersection Observer to hide partially visible nav buttons.
-     * Ensures ONLY 100% visible full words are shown in the header.
+     * Slides the top-carousel so the active button is the first fully visible item.
+     * Uses CSS transform to shift the inner flex strip — no scroll snapping, no sticky items.
+     * Partial words at the right edge are clipped by container overflow:hidden.
      */
     setupNavObserver() {
-        const carouselContainer = document.querySelector('.top-carousel-container');
-        if (!carouselContainer) return;
-
-        const observerOptions = {
-            root: carouselContainer,
-            rootMargin: '0px',
-            threshold: 1.0 // 100% visibility required! 
-        };
-
-        const navObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Fully visible
-                    entry.target.classList.remove('partial-visible');
-                } else {
-                    // Not 100% visible (cut off)
-                    entry.target.classList.add('partial-visible');
-                }
-            });
-        }, observerOptions);
-
-        const navButtons = document.querySelectorAll('.nav-btn');
-        navButtons.forEach(btn => navObserver.observe(btn));
+        // Observer is no longer used — clipping is handled by overflow:hidden on the container
+        // and positioning is controlled by slideNavToActive()
     }
 
     /**
@@ -126,12 +109,7 @@ class NavigationController {
             });
         });
 
-        // Directional Arrows
-        const prevBtn = document.getElementById('nav-prev');
-        if (prevBtn) prevBtn.addEventListener('click', () => this.prevPanel());
-
-        const nextBtn = document.getElementById('nav-next');
-        if (nextBtn) nextBtn.addEventListener('click', () => this.nextPanel());
+        // No arrow buttons in the top nav by design
 
         // Bottom Menu (Delegated)
         const bottomMenu = document.querySelector('.bottom-menu');
@@ -230,16 +208,33 @@ class NavigationController {
     }
 
     /**
-     * Synchronizes the UI elements (Top Bar, etc.) with the current internal state.
+     * Synchronizes the top nav bar with the current active panel index.
+     * Uses CSS transform to slide the inner flex strip so the active button
+     * always appears at the left edge — no scroll snapping, no sticky items.
      */
     syncNavUI(index) {
         const navButtons = document.querySelectorAll('.nav-btn');
         navButtons.forEach(btn => btn.classList.remove('active'));
         const activeBtn = document.querySelector(`.nav-btn[data-panel="${index}"]`);
-        if (activeBtn) {
-            activeBtn.classList.add('active');
-            activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-        }
+        if (!activeBtn) return;
+        activeBtn.classList.add('active');
+        this.slideNavToActive(activeBtn);
+    }
+
+    /**
+     * Shifts the .top-carousel strip via transform so the active button
+     * sits at the left edge of the container. Partial words to the right
+     * are naturally clipped by overflow:hidden on the container.
+     */
+    slideNavToActive(activeBtn) {
+        const carousel = document.querySelector('.top-carousel');
+        if (!carousel || !activeBtn) return;
+        const containerWidth = carousel.parentElement.offsetWidth;
+        const btnOffsetLeft = activeBtn.offsetLeft;
+        // Clamp: don't go past the end of the strip
+        const maxShift = carousel.scrollWidth - containerWidth;
+        const shift = Math.min(Math.max(btnOffsetLeft, 0), maxShift);
+        carousel.style.transform = `translateX(-${shift}px)`;
     }
 
     /**
