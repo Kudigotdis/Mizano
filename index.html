@@ -370,9 +370,19 @@
             </div>
         </div>
     </div>
+    <!-- PANELS MENU OVERLAY -->
+    <div id="panels-menu-overlay" class="overlay">
+        <div class="overlay-header">
+            <h2 style="flex:1; text-align:center; font-size:1.1rem; margin:0;">Select Panel</h2>
+        </div>
+        <div class="overlay-content" id="panels-list" style="overflow-y:auto; flex:1;">
+            <!-- Populated by generatePanelsMenu() in shell.js -->
+        </div>
+    </div>
     <!-- Data source scripts -->
     <script src="./ImageManager.js"></script>
     <script src="./data/databases/teams.js"></script>
+    <script src="./data/databases/sports_activities_dropdown.js"></script>
     <script src="./data/databases/activities.js"></script>
     <script src="./data/databases/schools.js"></script>
     <script src="./data/databases/users_generated.js"></script>
@@ -426,6 +436,20 @@
     <script src="./VenueDetail.js"></script>
     <script src="./VenueBooking.js"></script>
     <script src="./ReservationsView.js"></script>
+
+    <!-- ACTIVITY FILTER OVERLAY -->
+    <div id="activity-overlay" class="overlay" style="z-index:9999; flex-direction:column;">
+        <div class="overlay-header">
+            <button class="back-btn" id="activity-overlay-close">‹</button>
+            <h2 style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">Select Activity</h2>
+        </div>
+        <div class="overlay-content" id="activity-list-container" style="padding:16px; overflow-y:auto; flex:1;">
+        </div>
+        <div style="padding:8px 16px; border-top:1px solid #eee; background:#fff;">
+            <input type="text" id="activity-search-input" placeholder="Search activities..."
+                style="width:100%; padding:10px; border:2px solid #000; font-size:1rem; box-sizing:border-box;" />
+        </div>
+    </div>
     <script src="shell.js"></script>
 </body>
 

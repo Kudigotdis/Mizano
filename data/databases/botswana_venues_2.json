@@ -447,7 +447,7 @@
     "category": "sports_retail",
     "location": "Blue Jacket Street, Francistown",
     "description": "Serving the North with quality sports equipment.",
-    "coordinates": { "lat": -24.6712, "lng": 25.8990 }, // approximate
+    "coordinates": { "lat": -24.6712, "lng": 25.8990 },
     "rating": 4.3,
     "image": "images/shops/pro_sports_ftown.webp",
     "owner_id": "USR-BW-FRA-253",
@@ -574,7 +574,7 @@
     "coordinates": { "lat": -25.2150, "lng": 25.6764 },
     "rating": 4.2,
     "image": "images/venues/lobatse_stadium.webp",
-    "owner_id": "USR-BW-LOB-001", // need to generate
+    "owner_id": "USR-BW-LOB-001",
     "owner_name": "Kagiso Tau",
     "contact": { "whatsapp": "+26776123404" },
     "features": ["Floodlights", "Changing Rooms"],

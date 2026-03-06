@@ -13,6 +13,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const auth = window.MizanoAuth;
     const storage = window.mizanoStorage;
 
+    // STEP 1: STARTUP: Clear any persisted date filter to prevent stale filters from previous sessions
+    localStorage.removeItem('mizano_selected_date');
+    localStorage.removeItem('mizano_active_day_tile');
+    if (filterEngine) {
+        filterEngine.criteria.date = null;
+        filterEngine.criteria.timeFrame = 'all';
+    }
+
     // 2. PANEL RENDERERS
     const renderers = {
         home: new window.MizanoCards('drop-field-home'),
@@ -63,21 +71,41 @@ document.addEventListener('DOMContentLoaded', async () => {
         panel.addEventListener('scroll', handlePanelScroll);
     });
 
-    // 4. APEX UI: PANEL MENU GENERATOR
-    const panelsList = document.getElementById('panels-list');
-    const generatePanelsMenu = () => {
-        if (!panelsList) return;
-        const panelNames = ["Home", "Sports", "Hobbies", "Leisure", "Lessons", "Events", "Groups", "Discover", "Mine", "Community", "Leaderboard", "Shopping", "Shops", "Businesses", "Schools", "Venues", "Marathons"];
-        const icons = ["🏠", "⚽", "🎨", "🏖️", "🎓", "🎉", "👥", "🌍", "👤", "🤝", "📈", "🛍️", "🔖", "🏢", "🏫", "🏟️", "🏃"];
+    function generatePanelsMenu() {
+        const container = document.getElementById('panels-list');
+        if (!container) return;
 
-        panelsList.innerHTML = panelNames.map((name, i) => `
-            <div class="mizano-card" onclick="window.MizanoNav.switchPanel(${i}); window.MizanoNav.back()" style="padding:15px; text-align:center; cursor:pointer;">
-                <span style="font-size:1.5rem">${icons[i]}</span>
-                <h4 style="margin:5px 0 0; font-size:0.8rem">${name}</h4>
-            </div>
-        `).join('');
-    };
-    generatePanelsMenu();
+        const panelNames = [
+            'Home', 'Sports', 'Hobbies', 'Leisure', 'Lessons',
+            'Events', 'Groups', 'Discover', 'Mine', 'Community',
+            'Leaderboard', 'Shopping', 'Shops', 'Businesses',
+            'Schools', 'Venues', 'Tracker'
+        ];
+
+        container.innerHTML = '';
+        panelNames.forEach((name, idx) => {
+            // Determine target index: Skip 16 (Home Clone) for Tracker (17)
+            const targetIdx = (idx === 16) ? 17 : idx;
+
+            const btn = document.createElement('button');
+            btn.textContent = name;
+            btn.style.cssText = 'display:block; width:100%; padding:16px; text-align:center; font-size:1.1rem; border:none; background:#fff; cursor:pointer; font-weight:500;';
+            btn.addEventListener('click', () => {
+                window.MizanoNav.back();
+                setTimeout(() => {
+                    window.MizanoNav.switchPanel(targetIdx);
+                }, 100);
+            });
+            container.appendChild(btn);
+        });
+    }
+
+    // Safe initialization
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', generatePanelsMenu);
+    } else {
+        generatePanelsMenu();
+    }
 
     // 5. APEX UI: INTERACTION HANDLERS (Level 1-4 Hierarchy)
     const btnLocation = document.getElementById('btn-location-filter');
@@ -118,10 +146,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     if (btnLocation) btnLocation.addEventListener('click', () => openLocationOverlay('village'));
-    if (btnPanels) btnPanels.addEventListener('click', () => nav.openOverlay('panels-menu'));
+    document.getElementById('btn-panels-menu').addEventListener('click', () => {
+        window.MizanoNav.openOverlay('panels-menu');
+    });
     if (btnSearch) btnSearch.addEventListener('click', () => nav.openOverlay('search'));
     if (btnAdd) btnAdd.addEventListener('click', () => nav.openOverlay('builder-choice'));
     if (btnHamburger) btnHamburger.addEventListener('click', () => nav.openOverlay('hamburger'));
+
+    // NEW TIME PILL LOGIC
+    document.querySelectorAll('.time-pill').forEach(pill => {
+        pill.addEventListener('click', function () {
+            document.querySelectorAll('.time-pill').forEach(p => p.classList.remove('active'));
+            this.classList.add('active');
+
+            document.querySelectorAll('.day-block').forEach(t => t.classList.remove('active'));
+            if (filterEngine.criteria.date !== null) {
+                filterEngine.criteria.date = null;
+                if (window.mizanoStorage) window.mizanoStorage.saveFilters(filterEngine.criteria);
+            }
+
+            const timePeriod = this.dataset.time || this.getAttribute('data-time') || 'all';
+            filterEngine.update('timeFrame', timePeriod);
+        });
+    });
 
     // NEW LOCATION FILTER LOGIC
     const villageTrigger = document.getElementById('village-trigger');
@@ -218,13 +265,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let currentSelectedYear = new Date().getFullYear(); // NEW STATE
 
-    const generateDayTiles = (baseDate = new Date()) => {
+    const generateDayTiles = (baseDate = null) => {
         if (!dayTilesContainer) return;
         dayTilesContainer.innerHTML = '';
 
-        // If baseDate is passed, use it as the "start point" instead of literally "today"
-        // But we still want to keep the label accurate to the baseDate.
-        const base = new Date(baseDate);
+        // Prioritize actively filtered date if no base date was manually supplied by navigation
+        const actualDateToShow = baseDate || (filterEngine.criteria.date ? new Date(filterEngine.criteria.date) : new Date());
+
+        // Use it as the "start point"
+        // But we still want to keep the label accurate to the actualDateToShow.
+        const base = new Date(actualDateToShow);
         base.setHours(0, 0, 0, 0);
 
         // Update the labels natively
@@ -247,23 +297,44 @@ document.addEventListener('DOMContentLoaded', async () => {
             const dayNum = date.getDate();
             const monthText = date.toLocaleDateString('en-US', { month: 'short' });
 
-            // Highlight the tile if it's the baseDate (which might be today, or the 1st of a selected month)
-            const isActive = date.getTime() === base.getTime();
+            // Highlight the tile if it exactly matches the user's currently active Filter Engine date
+            const isCurrentlySelectedFilter = filterEngine.criteria.date && date.toDateString() === new Date(filterEngine.criteria.date).toDateString();
+
             // Just for the text, check if it's literally today in the real world
             const isLiterallyToday = date.toDateString() === new Date().toDateString();
 
             const tile = document.createElement('div');
-            tile.className = `day-block ${isActive ? 'active' : ''}`;
+            tile.className = `day-block ${isCurrentlySelectedFilter ? 'active' : ''}`;
             tile.innerHTML = `<span class="day-name">${dayName}</span><span class="day-status">${isLiterallyToday ? 'Today' : (dayNum + ' ' + monthText)}</span>`;
 
             tile.onclick = () => {
+                const wasActive = tile.classList.contains('active');
+
+                // Deselect all tiles first
                 document.querySelectorAll('.day-block').forEach(t => t.classList.remove('active'));
-                tile.classList.add('active');
-                filterEngine.update('date', date);
+
+                if (wasActive) {
+                    // TOGGLE OFF — user tapped the already-selected tile
+                    filterEngine.clearDateFilter();
+                    localStorage.removeItem('mizano_selected_date');
+                } else {
+                    // TOGGLE ON — user tapped a new date
+                    tile.classList.add('active');
+
+                    // Clear time pills visually when specific date is selected
+                    document.querySelectorAll('.time-pill').forEach(p => p.classList.remove('active'));
+                    const allTimePill = document.querySelector('.time-pill[data-time="all"]');
+                    if (allTimePill) allTimePill.classList.add('active');
+                    filterEngine.criteria.timeFrame = 'all';
+
+                    const isoDate = date.toISOString().split('T')[0];
+                    filterEngine.setDateFilter(isoDate);
+                    localStorage.setItem('mizano_selected_date', isoDate);
+                }
             };
             dayTilesContainer.appendChild(tile);
 
-            if (isActive) activeTileEl = tile;
+            if (isCurrentlySelectedFilter) activeTileEl = tile;
         }
 
         // Auto-scroll to show the active date as the first visible tile
@@ -362,6 +433,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!Array.isArray(items)) return [];
         return items.map(item => {
             if (entity === 'activities' || entity === 'homeFeed') {
+                // Route actual events to the Event Card template
+                if (item.eventID || item.event_id) {
+                    return {
+                        ...item,
+                        card_type: 'Event Card'
+                    };
+                }
+
                 const check = safety.checkAction('COMPETITIVE_JOIN', { activity_id: item.activity_id });
                 return {
                     ...item,
@@ -470,9 +549,31 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (index === 16 && window.MizanoTrackerRenderer) window.MizanoTrackerRenderer.render();
                 const panel = document.getElementById(`panel-${index}`);
                 if (panel && window.mizanoStorage) panel.scrollTop = window.mizanoStorage.loadScroll(index);
+
+                // FIX BUG 3: Clear date filter when switching panels
+                document.querySelectorAll('.day-block').forEach(t => t.classList.remove('active'));
+
+                // Clear time pills UI
+                document.querySelectorAll('.time-pill').forEach(p => p.classList.remove('active'));
+                const defaultPill = document.querySelector('.time-pill[data-time="all"]');
+                if (defaultPill) defaultPill.classList.add('active');
+
+                filterEngine.criteria.date = null;
+                filterEngine.criteria.timeFrame = 'all';
+                filterEngine.criteria.activeActivity = null; // Reset activity filter
+                localStorage.removeItem('mizano_selected_date');
+
+                // Reset activity label
+                const activityLabel = document.getElementById('current-activity-label');
+                if (activityLabel) activityLabel.textContent = 'Activity Field';
+
+                filterEngine.apply();
+                filterEngine.updateUILabel();
+                if (window.mizanoStorage) window.mizanoStorage.saveFilters(filterEngine.criteria);
                 break;
             case 'overlay-open':
-                const overlay = document.getElementById(`${overlayId}-overlay`);
+                const tid = e.detail.targetId || `${overlayId}-overlay`;
+                const overlay = document.getElementById(tid);
                 if (overlay) overlay.classList.add('active');
                 if (overlayId === 'builder-choice') window.MizanoShell.renderBuilderChoice();
                 if (overlayId === 'leaderboard' && window.MizanoLeaderboard) window.MizanoLeaderboard.open();
@@ -523,7 +624,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
                 break;
             case 'overlay-close':
-                const closedOverlay = document.getElementById(`${overlayId}-overlay`);
+                const ctid = e.detail.targetId || `${overlayId}-overlay`;
+                const closedOverlay = document.getElementById(ctid);
                 if (closedOverlay) closedOverlay.classList.remove('active');
                 break;
             case 'page-push':
@@ -571,6 +673,86 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
+    function initActivityOverlay() {
+        const label = document.getElementById('current-activity-label');
+        const overlay = document.getElementById('activity-overlay');
+        const closeBtn = document.getElementById('activity-overlay-close');
+        const searchInput = document.getElementById('activity-search-input');
+        const listContainer = document.getElementById('activity-list-container');
+
+        if (!label || !overlay || !closeBtn || !searchInput || !listContainer) return;
+
+        function getAllActivityTypes() {
+            const list = window.SPORTS_AND_ACTIVITIES || [];
+            return ['All Activities & Interests', ...list];
+        }
+
+        function renderActivityList(filter = '') {
+            const all = getAllActivityTypes();
+            const filtered = filter
+                ? all.filter(a => a.toLowerCase().includes(filter.toLowerCase()))
+                : all;
+
+            listContainer.innerHTML = filtered.length === 0
+                ? '<p style="color:#999; text-align:center; font-size:1.4rem;">No activities found.</p>'
+                : filtered.map(a => `
+          <div class="mizano-card" data-activity="${a}"
+            style="cursor:pointer; padding:4px 16px; margin-bottom:1px; font-size:2rem; font-weight:500; text-align:center;">
+            ${a}
+          </div>
+        `).join('');
+
+            listContainer.querySelectorAll('[data-activity]').forEach(card => {
+                card.addEventListener('click', () => {
+                    const selected = card.dataset.activity;
+
+                    if (selected === 'All Activities & Interests') {
+                        label.textContent = 'Activity Field';
+                        if (window.MizanoFilter) {
+                            window.MizanoFilter.criteria.activeActivity = null;
+                            window.MizanoFilter.apply();
+                        }
+                    } else {
+                        label.textContent = selected;
+                        if (window.MizanoFilter) {
+                            window.MizanoFilter.criteria.activeActivity = selected;
+                            window.MizanoFilter.apply();
+                        }
+                    }
+
+                    overlay.style.display = 'none';
+                    document.body.style.overflow = '';
+
+                    // Trigger filter application and panel refresh
+                    if (window.MizanoFilter) window.MizanoFilter.apply();
+
+                    if (typeof renderCurrentPanel === 'function') renderCurrentPanel();
+                    else if (typeof window.MizanoShell?.refresh === 'function') window.MizanoShell.refresh();
+                });
+            });
+        }
+
+        // Tap "Activity Field" label to open overlay
+        label.style.cursor = 'pointer';
+        label.addEventListener('click', () => {
+            searchInput.value = '';
+            renderActivityList('');
+            overlay.style.display = 'flex';
+            overlay.style.flexDirection = 'column';
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => searchInput.focus(), 100);
+        });
+
+        // Live search
+        searchInput.addEventListener('input', () => renderActivityList(searchInput.value));
+
+        // Close button
+        closeBtn.addEventListener('click', () => {
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+        });
+    }
+
     // 10. INITIALIZATION
     setTimeout(async () => {
         if (dataManager) {
@@ -582,6 +764,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             updateUIWithFilters();
 
             console.log(`Mizano Shell: Initialization complete. ${dataManager.cache.activities?.length || 0} activities available.`);
+
+            initActivityOverlay();
 
             const searchInput = document.getElementById('mizano-search-input');
             if (searchInput) {

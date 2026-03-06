@@ -27,6 +27,7 @@ class CardRenderer {
             this.clear();
             this.fullData = dataList || [];
             this.currentIndex = 0;
+            this.scroller.disconnect(); // Reset scroller observation
         } else {
             this.fullData = [...this.fullData, ...(dataList || [])];
         }
@@ -74,21 +75,22 @@ class CardRenderer {
         // Dispatch Layout
         switch (data.card_type) {
             case 'Standard Match Card':
+                card.classList.add('card-match');
                 card.innerHTML = this.templateMatch(data);
                 break;
             case 'Registration-State Card':
-                card.innerHTML = this.templateRegistration(data);
+            case 'Event Card':
+            case 'Hobby Leisure Card':
+                card.classList.add('card-event');
+                card.innerHTML = this.templateEvent(data);
                 break;
             case 'Team Explorer Card':
                 card.innerHTML = this.templateTeam(data);
                 break;
             case 'Institution Card':
+            case 'venue':
                 card.innerHTML = this.templateInstitution(data);
                 break;
-            case 'Competition Card':
-                card.innerHTML = this.templateCompetition(data);
-                break;
-            // Phase 10: New Card Types
             case 'Community Post Card':
                 card.innerHTML = this.templateCommunityPost(data);
                 break;
@@ -98,16 +100,6 @@ class CardRenderer {
             case 'Lost Found Card':
                 card.innerHTML = this.templateLostFound(data);
                 break;
-            case 'News Flash Card':
-                card.innerHTML = this.templateNewsFlash(data);
-                break;
-            case 'Event Card':
-                card.innerHTML = this.templateEvent(data);
-                break;
-            case 'Hobby Leisure Card':
-                card.innerHTML = this.templateHobbyLeisure(data);
-                break;
-            // Feature Expansion Cards
             case 'Suggestion Card':
                 card.innerHTML = this.templateSuggestion(data);
                 break;
@@ -120,11 +112,11 @@ class CardRenderer {
             case 'Stats Card':
                 card.innerHTML = this.templateStats(data);
                 break;
-            case 'venue':
-                card.innerHTML = this.templateVenue(data);
+            case 'News Flash Card':
+                card.innerHTML = this.templateNewsFlash(data);
                 break;
             default:
-                card.innerHTML = `<div style="padding:10px">Unknown Card Type: ${data.card_type}</div>`;
+                card.innerHTML = `<div style="padding:16px">Unknown Type: ${data.card_type}</div>`;
         }
 
         // Tap Action (Deterministic Delegation) - Only if not swiping
@@ -235,177 +227,114 @@ class CardRenderer {
      * Maps data state to 7-color engine keys.
      */
     mapStatus(data) {
-        // Safety Override: Academic Alert (Pink)
-        if (data.safety_status === 'ACADEMIC_ALERT') return 'engagement';
+        // Strict v4.0 Mappings
+        if (data.card_type === 'Lost Found Card') {
+            const type = data.type || (data.status === 'lost' ? 'lost' : 'found');
+            return type === 'lost' ? 'official' : 'recruiting';
+        }
+        if (data.card_type === 'Survey Card' || data.card_type === 'Suggestion Card') return 'engagement';
+        if (data.card_type === 'Challenge Card' || data.card_type === 'Match-Making Card') return 'recruiting';
+        if (data.card_type === 'Job Listing Card' || data.card_type === 'Shopping Deal Card' || data.card_type === 'Institution Card' || data.card_type === 'venue') return 'official';
+        if (data.card_type === 'Registration-State Card') return 'upcoming';
 
+        // Match Live/Upcoming/Finished
         if (data.state === 'Active Now') return 'live';
         if (data.state === 'Active Soon') return 'upcoming';
         if (data.state === 'Passed') return 'finished';
-        if (data.card_type === 'Registration-State Card') return 'upcoming';
-        if (data.card_type === 'Match-Making Card') return 'recruiting';
 
-        // New Feature Mappings
-        if (data.card_type === 'Suggestion Card') return 'interest'; // Blue
-        if (data.card_type === 'Challenge Card') return 'recruiting'; // Green (using recruiting for now, or custom green)
-        if (data.card_type === 'Survey Card') return 'engagement'; // Pink (using engagement/academic alert color)
-        if (data.card_type === 'Stats Card') return 'finished'; // Charcoal/Grey
-
-        return 'interest';
+        return 'official';
     }
 
-    /**
-     * TEMPLATE: INSTITUTION CARD
-     */
     templateInstitution(data) {
-        const verifiedBadge = data.verified ? '<span class="verified-badge">✓</span>' : '';
-        const categoryLabel = data.category || data.type || 'Institution';
+        const logoHTML = data.logo_emblem || data.logo || '🏫';
+        const name = data.name || 'Institution';
+        const verifiedBadge = data.is_verified || data.verified ? '<span class="card-institution__verified">✓</span>' : '';
+        const category = data.category || 'Academic';
+        const location = data.location || 'Botswana';
 
-        // Smart Logo Logic: Explicit Logo -> Business ID -> School ID -> Default
-        const logoFile = data.logo ||
-            (data.business_id ? `${data.business_id}.png` : null) ||
-            (data.id ? `${data.id}.png` : null);
-
-        // Mock stats if not present (safeguard)
-        const studentCount = data.stats ? data.stats.students : Math.floor(Math.random() * 500) + 100;
-        const teamCount = data.teams ? data.teams.length : 0;
-
-        // Generate Details HTML
-        const teamTags = data.teams ? data.teams.map(t => `<span class="detail-tag">${t.sport}</span>`).join('') : '';
-        const classTags = ['Form 1', 'Form 2', 'Form 3', 'Form 4', 'Form 5'].map(c => `<span class="detail-tag">${c}</span>`).join('');
+        let stats = data.stats || [];
+        if (!Array.isArray(stats) && typeof stats === 'object') {
+            stats = Object.entries(stats).map(([label, value]) => ({ label: label.charAt(0).toUpperCase() + label.slice(1), value }));
+        }
+        const statsHTML = stats.map(s => `<div class="card-institution__stat">${s.value} <span>${s.label}</span></div>`).join('');
 
         return `
-            <div class="card-inst-layout">
-                <div class="inst-header">
-                    ${window.MizanoImages.render('logos', logoFile, 'inst-icon-box')}
-                    
-                    <!-- CENTER SWIPE ZONE -->
-                    <div class="card-center-zone inst-info">
-                        <div class="inst-name">${data.name} ${verifiedBadge}</div>
-                        <div class="inst-meta">${categoryLabel} • ${data.location || 'Botswana'}</div>
-                        <div class="inst-meta" style="margin-top:2px">${studentCount} Students • ${teamCount} Teams</div>
+            <div class="card-institution">
+                <div class="card-institution__logo">${logoHTML}</div>
+                <div class="card-institution__body">
+                    <div class="card-institution__name">
+                        ${name}
+                        ${verifiedBadge}
                     </div>
-
-                    <div class="inst-actions-col" style="display:flex; flex-direction:column; align-items:center; gap:8px;">
-                        <button class="inst-contact-btn">Msg</button>
-                        <!-- TOGGLE BUTTON -->
-                        <button class="toggle-details-btn">+</button>
+                    <div class="card-institution__sub">${category} · ${location}</div>
+                    <div class="card-institution__stats">
+                        ${statsHTML}
                     </div>
-                </div>
-
-                <!-- EXPANDABLE PANEL -->
-                <div class="school-details-panel">
-                    <div class="detail-section-title">Sports Teams</div>
-                    <div class="detail-tags">${teamTags || '<span class="detail-tag">None listed</span>'}</div>
-                    
-                    <div class="detail-section-title">Classes / Grades</div>
-                    <div class="detail-tags">${classTags}</div>
-
-                     <div class="detail-section-title">Academic Status</div>
-                     <div class="inst-meta">Term 1 Active • 98% Attendance</div>
                 </div>
             </div>
         `;
     }
 
 
-    /**
-     * TEMPLATE: COMPETITION CARD
-     */
-    templateCompetition(data) {
-        const titleText = (data.title || data.event_name || 'Tournament').toUpperCase();
-        return `
-            <div class="card-comp-layout">
-                <div class="comp-banner">
-                    <div class="comp-title">${titleText}</div>
-                    <div class="comp-prize">${data.prize_pool ? `P${data.prize_pool} Prize Pool` : 'Tournament'}</div>
-                </div>
-                <div class="comp-footer">
-                    <div class="comp-meta">
-                        <span>${data.sport}</span>
-                        <span>${data.location_name}</span>
-                    </div>
-                    <button class="comp-join-btn">Register</button>
-                </div>
-            </div>
-        `;
-    }
 
-    /**
-     * TEMPLATE: STANDARD MATCH CARD
-     */
     templateMatch(data) {
-        const left = data.left_team || { name: 'Team A' };
-        const right = data.right_team || { name: 'Team B' };
+        const isLiveOrFinished = data.state === 'Active Now' || data.state === 'Passed';
+        const teamA = data.left_team || data.team_a || { name: 'Team A' };
+        const teamB = data.right_team || data.team_b || { name: 'Team B' };
 
-        let centerTop = data.center_top || (data.state === 'Active Now' ? '0 - 0' : (data.start_time || 'LIVE'));
-        if (centerTop === 'Invalid Date' || centerTop === 'undefined') centerTop = data.start_time || 'LIVE';
+        const logoA = teamA.logo || data.team_a_logo ? `<img src="${teamA.logo || data.team_a_logo}" alt="${teamA.name}">` : '⚽';
+        const logoB = teamB.logo || data.team_b_logo ? `<img src="${teamB.logo || data.team_b_logo}" alt="${teamB.name}">` : '🏆';
 
-        let footerHtml = '';
-        if (data.safety_status === 'MINOR_RESTRICTION') {
-            footerHtml = `<div class="card-safety-footer">🔒 Guardian Approval Required</div>`;
-        } else if (data.safety_status === 'ACADEMIC_ALERT') {
-            footerHtml = `<div class="card-safety-footer orange">📚 Focus on Studies (Paused)</div>`;
+        const kickoffTime = data.start_time || data.match_time || 'TBA';
+        const venueName = data.venue || data.venue_name || 'TBA';
+        const locationName = data.location || data.venue_location || 'Botswana';
+
+        let scoreOrTimeHTML = `<div class="card-match__score-time">${kickoffTime}</div>`;
+        if (isLiveOrFinished) {
+            scoreOrTimeHTML = `
+                <div class="card-match__score-row">
+                    <span class="card-match__score-num">${data.left_score || 0}</span>
+                    <div class="card-match__score-sep"><span class="colon">:</span><span class="dots">···</span></div>
+                    <span class="card-match__score-num">${data.right_score || 0}</span>
+                </div>
+            `;
+        }
+
+        const htScoreHTML = data.match_period || data.ht_score ? `<div class="card-match__ht">${data.match_period || data.ht_score}</div>` : '';
+        const minuteHTML = data.state === 'Active Now' && data.match_minute ? `<div class="card-match__minute">${data.match_minute}'</div>` : '';
+
+        let safetyFooterHTML = '';
+        if (data.safety_status && data.safety_status !== 'NONE') {
+            safetyFooterHTML = `<div class="card-match__footer">🔒 ${data.safety_footer || 'Guardian Approval Required'}</div>`;
         }
 
         return `
-            <div class="card-match-layout">
-                <div class="team-info left">
-                    <span class="team-name">${left.name}</span>
-                    ${window.MizanoImages.render('logos', left.logo || null, 'team-logo')}
+            <div class="card-match__teams">
+                <div class="card-match__team">
+                    <div class="card-match__logo">${logoA}</div>
+                    <div class="card-match__team-name">${teamA.name}</div>
                 </div>
-                <div class="match-center">
-                    <span class="match-status">${centerTop}</span>
-                    <span class="match-meta">${data.venue || 'TBA'}</span>
+                <div class="card-match__center">
+                    ${scoreOrTimeHTML}
+                    ${htScoreHTML}
+                    ${minuteHTML}
                 </div>
-                <div class="team-info right">
-                    ${window.MizanoImages.render('logos', right.logo || null, 'team-logo')}
-                    <span class="team-name">${right.name}</span>
+                <div class="card-match__team">
+                    <div class="card-match__logo">${logoB}</div>
+                    <div class="card-match__team-name">${teamB.name}</div>
                 </div>
             </div>
-            ${footerHtml}
+            <div class="card-match__venue">${venueName}<span class="dot-sep"></span>${locationName}</div>
+            ${safetyFooterHTML}
         `;
     }
 
-    /**
-     * TEMPLATE: REGISTRATION-STATE CARD
-     */
     templateRegistration(data) {
-        const badge = data.urgency_badge || { text: 'Open', color: 'green' };
-        const meta = data.price_range ? `From ${data.price_range}` : (data.activity_type || 'Event');
-        const secondary = data.distances ? `<div class="reg-sub-meta">${data.distances.join(' • ')}</div>` : '';
-
-        return `
-            <div class="card-reg-layout">
-                <div>
-                    <div class="reg-title">${data.event_name}</div>
-                    <div class="reg-meta">${meta} • ${data.start_date || 'TBA'}</div>
-                    ${secondary}
-                </div>
-                <div class="urgency-badge ${badge.color || 'yellow'}">${badge.text}</div>
-            </div>
-        `;
+        return this.templateEvent(data);
     }
 
-    /**
-     * TEMPLATE: TEAM EXPLORER CARD
-     */
     templateTeam(data) {
-        const verifiedBadge = data.verified ? '<span class="verified-badge">✓</span>' : '';
-        return `
-            <div class="card-team-layout">
-                <div class="team-header">
-                    ${window.MizanoImages.render('logos', data.logo || null, 'team-logo-large')}
-                    <div class="team-id-block">
-                        <div class="team-name">${data.name} ${verifiedBadge}</div>
-                        <div class="team-location">${data.village_town}</div>
-                    </div>
-                </div>
-                <div class="team-footer">
-                    <span class="sport-tag">${data.sport}</span>
-                    <button class="join-team-btn">Connect</button>
-                </div>
-            </div>
-        `;
+        return this.templateInstitution(data);
     }
 
 
@@ -413,173 +342,105 @@ class CardRenderer {
      * PHASE 10 TEMPLATES
      */
 
-    /**
-     * TEMPLATE: COMMUNITY POST CARD
-     */
     templateCommunityPost(data) {
+        const title = data.post_title || data.title || 'Untitled Post';
+        const content = data.post_content || data.content || '';
         const author = data.author || { name: 'Anonymous', avatar: null };
-        const locationText = data.location || 'Botswana';
+        const avatar = author.profile_picture || author.avatar || data.author_avatar || '👤';
+        const village = data.author_village || author.village || 'Botswana';
+        const area = data.author_area || author.area || 'Central';
+        const timestamp = data.timestamp || this.formatDate(data.createdAt);
 
         return `
-            <div class="card-community-layout">
-                <div class="community-header">
-                    <div class="author-info">
-                        ${author.profile_picture ? `<img src="${author.profile_picture}" class="author-avatar" style="object-fit:cover;">` : (author.avatar ? `<img src="${author.avatar}" class="author-avatar" alt="${author.name}">` : '<div class="author-avatar-placeholder">👤</div>')}
-                        <div>
-                            <div class="author-name">${author.name}</div>
-                            <div class="post-meta">${locationText} • ${this.formatDate(data.createdAt)}</div>
-                        </div>
+            <div class="card-feed__title">${title}</div>
+            <div class="card-feed__body">${content}</div>
+            <div class="card-feed__author-row">
+                <div class="card-feed__avatar">${avatar}</div>
+                <div class="card-feed__author-info">
+                    <div class="card-feed__author-name">${author.name}</div>
+                    <div class="card-feed__author-location">
+                        ${village}<span class="dot-sep"></span>${area}<span class="dot-sep"></span>${timestamp}
                     </div>
                 </div>
-                <div class="community-body">
-                    <h3 class="post-title">${data.title}</h3>
-                    <p class="post-content">${data.content}</p>
-                </div>
-                ${data.whatsappLink ? `<div class="community-footer"><a href="${data.whatsappLink}" class="whatsapp-btn">Contact via WhatsApp</a></div>` : ''}
             </div>
         `;
     }
 
-    /**
-     * TEMPLATE: JOB LISTING CARD
-     */
     templateJobListing(data) {
-        const salary = data.salary || 'Negotiable';
-        const type = data.type || 'full_time';
-        const typeLabel = type.replace('_', ' ').toUpperCase();
+        const title = data.job_title || data.title || 'Job Opening';
+        const company = data.company_name || data.company || 'Organization';
+        const location = data.location || 'Botswana';
+        const salary = data.salary_range || data.salary || 'Negotiable';
+        const deadline = data.deadline_date || this.formatDate(data.deadline);
 
         return `
-            <div class="card-job-layout">
-                <div class="job-header">
-                    ${window.MizanoImages.render('logos', data.logo || null, 'job-logo-mini')}
-                    <div class="job-header-info">
-                        <h3 class="job-title">${data.title}</h3>
-                        <span class="job-type-badge ${type}">${typeLabel}</span>
-                    </div>
-                </div>
-                <div class="job-company">${data.company} • ${data.location}</div>
-                <div class="job-salary">${salary}</div>
-                ${data.description ? `<p class="job-description">${data.description.substring(0, 120)}...</p>` : ''}
-                <div class="job-footer">
-                    <span class="job-deadline">Apply by ${this.formatDate(data.deadline)}</span>
-                    ${data.contactWhatsApp ? `<a href="https://wa.me/${data.contactWhatsApp}" class="apply-btn">Apply</a>` : ''}
-                </div>
-            </div>
+            <div class="card-job__title">${title}</div>
+            <div class="card-job__company">${company} · ${location}</div>
+            <div class="card-job__salary">${salary}</div>
+            <div class="card-job__deadline">Deadline: ${deadline}</div>
         `;
     }
 
-    /**
-     * TEMPLATE: LOST & FOUND CARD
-     */
     templateLostFound(data) {
-        const isLost = data.type === 'lost';
-        const statusLabel = isLost ? 'LOST' : 'FOUND';
-        const statusClass = isLost ? 'lost' : 'found';
+        const type = data.type || (data.status === 'lost' ? 'lost' : 'found');
+        const statusLabel = data.status_label || (type === 'lost' ? 'Looking For' : 'Found');
+        const statusClass = type === 'lost' ? 'status-looking' : 'status-found';
+        const item = data.item_name || data.title || 'Item';
+        const location = data.location || 'Botswana';
+        const date = data.date || this.formatDate(data.createdAt);
 
         return `
-            <div class="card-lostfound-layout">
-                <div class="lf-header">
-                    <div class="lf-visual-col">
-                        ${window.MizanoImages.render('general', data.image || null, 'lf-image-mini')}
-                        <span class="lf-status-badge ${statusClass}">${statusLabel}</span>
-                    </div>
-                    ${data.boosted ? '<span class="boosted-badge">⭐ Boosted</span>' : ''}
-                </div>
-                <h3 class="lf-title">${data.title}</h3>
-                <p class="lf-description">${data.description}</p>
-                <div class="lf-meta">
-                    <span>📍 ${data.location}</span>
-                    <span>📅 ${this.formatDate(data.date)}</span>
-                </div>
-                ${data.poster?.whatsapp ? `<a href="https://wa.me/${data.poster.whatsapp}" class="contact-btn">Contact ${data.poster.name}</a>` : ''}
+            <div class="card-lostfound__top">
+                <span class="card-lostfound__status ${statusClass}">${statusLabel}</span>
+                <span class="card-lostfound__item">${item}</span>
             </div>
+            <div class="card-lostfound__location">${location}<span class="dot-sep"></span>${date}</div>
         `;
     }
 
-    /**
-     * TEMPLATE: NEWS FLASH CARD
-     */
     templateNewsFlash(data) {
+        const title = data.headline || data.title || 'News Update';
+        const body = data.summary || data.content || '';
+        const source = data.source || 'Mizano News';
+        const location = data.category || 'Local Update';
+        const date = this.formatDate(data.publishedAt || data.createdAt);
+
         return `
-            <div class="card-news-layout">
-                <div class="news-source">
-                    ${window.MizanoImages.render('logos', data.sourceLogo || null, 'source-logo')}
-                    <span class="source-name">${data.source}</span>
-                    <span class="news-category">${data.category}</span>
-                </div>
-                <h3 class="news-headline">${data.headline}</h3>
-                <p class="news-summary">${data.summary}</p>
-                ${data.thumbnail ? window.MizanoImages.render('general', data.thumbnail, 'news-thumbnail') : ''}
-                <div class="news-footer">
-                    <span class="news-date">${this.formatDate(data.publishedAt)}</span>
+            <div class="card-feed__title">${title}</div>
+            <div class="card-feed__body">${body}</div>
+            <div class="card-feed__author-row">
+                <div class="card-feed__avatar">🗞️</div>
+                <div class="card-feed__author-info">
+                    <div class="card-feed__author-name">${source}</div>
+                    <div class="card-feed__author-location">
+                        ${location}<span class="dot-sep"></span>${date}
+                    </div>
                 </div>
             </div>
         `;
     }
 
-    /**
-     * TEMPLATE: EVENT CARD (Enhanced with Experience Types)
-     */
     templateEvent(data) {
-        const experienceType = data.experienceType || 'event_lab_form';
-        const experienceIcons = {
-            'three_way_handshake': '🔒',
-            'monetization_waiver': '💰',
-            'sports_cv_sync': '📊',
-            'proposed_milestone': '🎯',
-            'direct_connect': '⚡',
-            'one_tap': '👆',
-            'event_lab_form': '📝'
-        };
+        const eventTitle = data.title || data.eventName || data.event_name || 'Event';
+        const formattedDate = this.formatDate(data.date || data.startDate || data.start_date);
+
+        const tags = data.tags || [];
+        if (tags.length === 0) {
+            if (data.category) tags.push(data.category);
+            if (data.distances && Array.isArray(data.distances)) tags.push(...data.distances);
+        }
+        const tagsHTML = tags.join('<span class="dot-sep"></span>');
+
+        const priceText = data.price_display || data.priceRange || data.price_range || 'Free Entry';
 
         return `
-            <div class="card-event-layout">
-                <div class="event-header">
-                    <h3 class="event-name">${data.eventName || data.event_name}</h3>
-                    <span class="experience-badge">${experienceIcons[experienceType] || '📝'}</span>
-                </div>
-                <div class="event-meta">
-                    <span>📅 ${this.formatDate(data.startDate || data.start_date)}</span>
-                    <span>📍 ${data.village || data.venue_name || 'TBA'}</span>
-                </div>
-                ${data.category ? `<span class="event-category">${data.category}</span>` : ''}
-                ${data.priceRange || data.price_range ? `<div class="event-price">${data.priceRange || data.price_range}</div>` : ''}
-                ${data.description ? `<p class="event-description">${data.description.substring(0, 100)}...</p>` : ''}
-                <div class="event-footer">
-                    ${data.guardianRequired ? '<span class="guardian-required">🔒 Guardian Approval Required</span>' : ''}
-                    ${data.whatsappLink ? `<a href="${data.whatsappLink}" class="register-btn">Register</a>` : ''}
-                </div>
-            </div>
+            <div class="card-event__title">${eventTitle}</div>
+            <div class="card-event__date">${formattedDate}</div>
+            <div class="card-event__tags">${tagsHTML}</div>
+            <div class="card-event__price-bar">${priceText}</div>
         `;
     }
 
-    /**
-     * TEMPLATE: HOBBY/LEISURE CARD
-     */
-    templateHobbyLeisure(data) {
-        const skillLevel = data.skill_level || data.skillLevel || 'All Levels';
-        const location = data.location?.village || data.village || 'Botswana';
-
-        return `
-            <div class="card-hobby-layout">
-                <div class="hobby-header">
-                    <h3 class="hobby-title">${data.title}</h3>
-                    <span class="skill-badge">${skillLevel}</span>
-                </div>
-                <div class="hobby-sport">${data.sport_display || data.specific_sport}</div>
-                <div class="hobby-meta">
-                    <span>📍 ${location}</span>
-                    <span>👥 ${data.enrollment_count || 0}/${data.capacity_max || '∞'}</span>
-                </div>
-                ${data.description ? `<p class="hobby-description">${data.description.substring(0, 100)}...</p>` : ''}
-                <div class="hobby-footer">
-                    <span class="hobby-date">${this.formatDate(data.start_datetime)}</span>
-                    ${data.entry_fee_pula > 0 ? `<span class="hobby-fee">P${data.entry_fee_pula}</span>` : '<span class="hobby-fee">FREE</span>'}
-                    ${data.whatsapp_link ? `<a href="${data.whatsapp_link}" class="join-btn">Join</a>` : ''}
-                </div>
-            </div>
-        `;
-    }
 
     /**
      * HELPER: Format Date
@@ -631,118 +492,88 @@ class CardRenderer {
         `;
     }
 
-    /**
-     * TEMPLATE: SHOPPING DEAL CARD
-     */
     templateShoppingDeal(data) {
-        const inStock = data.in_stock !== false;
-        const stockClass = inStock ? 'in-stock' : 'out-of-stock';
-        const stockLabel = inStock ? 'In Stock' : 'Out of Stock';
+        const image = data.product_image || (data.image_path ? `<img src="${data.image_path}" alt="${data.product_name || data.title}">` : '👟');
+        const name = data.product_name || data.title || 'Product';
+        const category = data.category || data.subcategory || 'General';
+        const price = data.price_display || (data.price_pula ? `P${data.price_pula.toFixed(2)}` : 'Free');
+        const seller = data.seller_name || data.seller || 'Mizano Seller';
+        const location = data.location || 'Botswana';
 
         return `
-            <div class="card-shopping-layout">
-                <div class="shopping-image-container">
-                    ${window.MizanoImages.render('shopping', data.image_path || null, 'shopping-image')}
-                    <span class="stock-badge ${stockClass}">${stockLabel}</span>
-                </div>
-                <div class="shopping-content">
-                    <h3 class="shopping-title">${data.title}</h3>
-                    <div class="shopping-category">${data.subcategory}</div>
-                    <div class="shopping-price">P${data.price_pula.toFixed(2)}</div>
-                    <div class="shopping-meta">
-                        <span class="seller">🏪 ${data.seller}</span>
-                        <span class="location">📍 ${data.location}</span>
-                    </div>
-                    ${data.rating ? `<div class="shopping-rating">⭐ ${data.rating}/5.0</div>` : ''}
-                </div>
+            <div class="card-product__image">
+                ${image}
+            </div>
+            <div class="card-product__name">${name}</div>
+            <div class="card-product__category">${category}</div>
+            <div class="card-product__footer">
+                <div class="card-product__price">${price}</div>
+                <div class="card-product__seller">${seller} · ${location}</div>
             </div>
         `;
     }
 
-    /**
-     * TEMPLATE: SUGGESTION CARD (Blue)
-     */
     templateSuggestion(data) {
         return `
-            <div class="card-suggestion-layout">
-                <div class="suggestion-header">
-                    <span class="suggestion-icon">💡</span>
-                    <span class="suggestion-title">Activity of the Week</span>
-                </div>
-                <h3 class="suggestion-activity">${data.title}</h3>
-                <p class="suggestion-desc">${data.description}</p>
-                <div class="suggestion-actions">
-                    <button class="suggestion-btn-primary">I'll try it</button>
-                    <button class="suggestion-btn-secondary">Remind me later</button>
-                </div>
-            </div>
+            <div class="card-feed__title">💡 Suggestion: ${data.title}</div>
+            <div class="card-feed__body">${data.description}</div>
         `;
     }
 
-    /**
-     * TEMPLATE: CHALLENGE CARD (Green)
-     */
     templateChallenge(data) {
-        const participants = data.participantsCount || 1;
-        const progress = data.progress || 0;
-        const goal = data.goalValue || 10;
-        const unit = data.goalUnit || 'km';
+        const challengeType = data.challenge_type || data.type || "Neighborhood Challenge";
+        const goalText = data.goal_text || data.title || "Activity Challenge";
+        const current = data.current_progress || data.progress || 0;
+        const target = data.target_goal || data.goalValue || 10;
+        const unit = data.unit || data.goalUnit || 'km';
+        const participantCount = data.participant_count || data.participants || 1;
+        const percent = data.progress_pct || Math.min(100, Math.round((current / target) * 100));
 
         return `
-            <div class="card-challenge-layout">
-                <div class="challenge-header">
-                    <span class="challenge-icon">🏆</span>
-                    <span class="challenge-title">Neighborhood Challenge</span>
-                </div>
-                <h3 class="challenge-name">${data.title}</h3>
-                <div class="challenge-stats">
-                    <span>Progress: ${progress}/${goal} ${unit}</span>
-                    <span>Participants: You + ${participants - 1} others</span>
-                </div>
-                <div class="challenge-actions">
-                    <button class="challenge-btn-join">Join</button>
-                    <button class="challenge-btn-view">View Progress</button>
-                </div>
+            <div class="card-challenge__type">${challengeType}</div>
+            <div class="card-challenge__goal">${goalText}</div>
+            <div class="card-challenge__progress-label">
+                <span>Progress</span><span>${current} / ${target} ${unit}</span>
             </div>
+            <div class="card-challenge__progress-bar">
+                <div class="card-challenge__progress-fill" style="width:${percent}%"></div>
+            </div>
+            <div class="card-challenge__participants">${participantCount} participants joined</div>
         `;
     }
 
-    /**
-     * TEMPLATE: SURVEY CARD (Pink)
-     */
     templateSurvey(data) {
+        const pollCategory = data.category || data.title || "Community Pulse";
+        const pollQuestion = data.question_text || data.question || 'Wait for more info...';
         const options = data.options || ['Yes', 'No'];
-        const buttonsHtml = options.map(opt => `<button class="survey-option-btn">${opt}</button>`).join('');
+        const voteCount = data.vote_count || 0;
+        const percent = data.progress_pct || 0;
+
+        const optionsHTML = options.map(opt => {
+            const optText = typeof opt === 'string' ? opt : opt.text;
+            return `<button class="card-poll__option">${optText}</button>`;
+        }).join('');
+
+        const progressHTML = voteCount > 0 ? `
+            <div class="card-poll__progress-label"><span>Responses</span><span>${voteCount} voted</span></div>
+            <div class="card-poll__progress-bar"><div class="card-poll__progress-fill" style="width:${percent}%"></div></div>
+        ` : '';
 
         return `
-            <div class="card-survey-layout">
-                <div class="survey-header">
-                    <span class="survey-icon">📊</span>
-                    <span class="survey-title">${data.title}</span>
-                </div>
-                <p class="survey-question">${data.question}</p>
-                <div class="survey-options-grid">
-                    ${buttonsHtml}
-                </div>
+            <div class="card-poll__category">${pollCategory}</div>
+            <div class="card-poll__question">${pollQuestion}</div>
+            <div class="card-poll__options">
+                ${optionsHTML}
             </div>
+            ${progressHTML}
         `;
     }
 
-    /**
-     * TEMPLATE: STATS CARD (Charcoal)
-     */
     templateStats(data) {
         return `
-            <div class="card-stats-layout">
-                <div class="stats-header">
-                    <span class="stats-icon">📊</span>
-                    <span class="stats-title">Community Activity</span>
-                </div>
-                <div class="stats-body">
-                    <div class="stats-highlight">This week in ${data.location_code || 'Your Area'}:</div>
-                    <div class="stats-count">${data.active_users_last_7days || 0} people logged activities</div>
-                </div>
-                <button class="stats-btn-expand">View region stats</button>
+            <div class="card-feed__title">📊 Community Stats</div>
+            <div class="card-feed__body">
+                In ${data.location_code || 'Your Area'}: ${data.active_users_last_7days || 0} people logged activities this week.
             </div>
         `;
     }
@@ -750,24 +581,6 @@ class CardRenderer {
     /**
      * TEMPLATE: VENUE CARD
      */
-    templateVenue(data) {
-        const spacesCount = data.spaces_count || 0;
-        return `
-            <div class="card-institution-layout">
-                <div class="inst-header">
-                    ${window.MizanoImages.render('venues', data.image || null, 'inst-icon-box')}
-                    <div class="inst-info">
-                        <div class="inst-name">${data.name}</div>
-                        <div class="inst-meta">📍 ${data.location}</div>
-                    </div>
-                </div>
-                <div class="inst-meta" style="margin-top:8px; display:flex; justify-content:space-between;">
-                    <span>⭐ ${data.rating}/5</span>
-                    <span>${spacesCount} space${spacesCount !== 1 ? 's' : ''}</span>
-                </div>
-            </div>
-        `;
-    }
 }
 
 // Global initialization logic if needed

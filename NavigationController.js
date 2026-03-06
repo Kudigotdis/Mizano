@@ -358,6 +358,13 @@ class NavigationController {
      * Open an overlay (Settings, Search, etc.)
      */
     openOverlay(overlayId) {
+        // Mapping string keys to element IDs
+        const overlayMap = {
+            'panels-menu': 'panels-menu-overlay'
+        };
+
+        const targetId = overlayMap[overlayId] || `${overlayId}-overlay`;
+
         this.state.overlayStack.push(overlayId);
         history.pushState({
             overlayId,
@@ -365,7 +372,7 @@ class NavigationController {
             stackIndex: this.state.overlayStack.length
         }, overlayId, `#overlay-${overlayId}`);
 
-        this.notifyUI('overlay-open', { overlayId });
+        this.notifyUI('overlay-open', { overlayId, targetId });
     }
 
     /**
@@ -625,9 +632,14 @@ class NavigationController {
     }
 
     closeTopOverlay() {
-        const id = this.state.overlayStack.pop();
-        if (id) {
-            this.notifyUI('overlay-close', { overlayId: id });
+        const overlayId = this.state.overlayStack.pop();
+        if (overlayId) {
+            // Mapping string keys to element IDs (Same as openOverlay)
+            const overlayMap = {
+                'panels-menu': 'panels-menu-overlay'
+            };
+            const targetId = overlayMap[overlayId] || `${overlayId}-overlay`;
+            this.notifyUI('overlay-close', { overlayId, targetId });
         }
     }
 

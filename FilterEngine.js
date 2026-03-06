@@ -23,6 +23,8 @@ class FilterEngine {
 
         // Force Gaborone every time, regardless of cache
         this.criteria.location = 'Gaborone';
+        this.criteria.date = null; // Fix Bug 1: Date filter persists across sessions
+        this.criteria.timeFrame = 'all';
 
         // Trigger initial apply if we loaded saved filters
         if (savedCriteria) {
@@ -43,6 +45,21 @@ class FilterEngine {
 
         this.apply();
         this.updateUILabel();
+    }
+
+    clearDateFilter() {
+        this.criteria.date = null;
+        this.apply();
+    }
+
+    setDateFilter(isoDateString) {
+        this.criteria.date = isoDateString;
+        this.apply();
+    }
+
+    setTimePeriod(timePeriod) {
+        this.criteria.timeFrame = timePeriod;
+        this.apply();
     }
 
     /**
@@ -90,60 +107,24 @@ class FilterEngine {
 
     /**
      * Applies the current criteria to a data set.
+     * Following strict Mizano Filter Hierarchy:
+     * 1. Location (Root)
+     * 2. Category / Panel
+     * 3. Time Period (If no specific date)
+     * 4. Date (Explicitly selected)
      */
     filterData(dataList) {
         if (!Array.isArray(dataList)) {
             console.warn('FilterEngine: dataList is not an array:', dataList);
             return [];
         }
-        return dataList.filter(item => {
-            // 1. Search Filter (Case Insensitive)
-            if (this.criteria.search) {
-                const query = this.criteria.search.toLowerCase();
-                const matchName = (item.title || item.event_name || item.eventName || '').toLowerCase().includes(query);
-                const matchSport = (item.sport || item.activity_type || item.specific_sport || item.sport_display || '').toLowerCase().includes(query);
-                const matchLoc = (item.location_name || item.village || item.location?.village || '').toLowerCase().includes(query);
-                const matchCompany = (item.company || '').toLowerCase().includes(query);
-                if (!matchName && !matchSport && !matchLoc && !matchCompany) return false;
-            }
 
-            // 2. Sport Archetype Filter
-            if (this.criteria.sport !== 'all') {
-                if (item.sport !== this.criteria.sport) return false;
-            }
+        let results = dataList;
 
-            // 3. Status Engine Filter
-            if (this.criteria.status !== 'all') {
-                if (item.status !== this.criteria.status && item.state !== this.criteria.status) return false;
-            }
-
-            // 4. Location Filter (Places)
-            if (this.criteria.location !== 'all') {
-                const target = this.criteria.location.toLowerCase();
-
-                // Unify Location Field Access
-                let itemLoc = '';
-                if (typeof item.location === 'string') {
-                    itemLoc = item.location; // Schools, Businesses
-                } else if (item.location && item.location.city) {
-                    itemLoc = item.location.city; // Associations
-                } else {
-                    itemLoc = item.location_name || item.village_town || item.village || item.venue_name || ''; // Activities, Events
-                }
-                itemLoc = itemLoc.toLowerCase();
-
-                // If filtering by "Gaborone", show everything in Gaborone (GC, G-West, Broadhurst implied)
-                if (target === 'gaborone') {
-                    if (!itemLoc.includes('gaborone') && !itemLoc.includes('gc') && !itemLoc.includes('broadhurst') && !itemLoc.includes('g-west') && !itemLoc.includes('phase 2') && !itemLoc.includes('block')) return false;
-                } else {
-                    // Specific location match
-                    if (!itemLoc.includes(target)) return false;
-                }
-            }
-
-            // 4.5. Area Filter (Neighborhoods)
-            if (this.criteria.area !== 'all') {
-                const targetArea = this.criteria.area.toLowerCase();
+        // 1. Root: Location Filter (Places)
+        if (this.criteria.location && this.criteria.location.toLowerCase() !== 'all' && this.criteria.location.toLowerCase() !== 'all locations') {
+            const target = this.criteria.location.toLowerCase();
+            results = results.filter(item => {
                 let itemLoc = '';
                 if (typeof item.location === 'string') {
                     itemLoc = item.location;
@@ -154,28 +135,108 @@ class FilterEngine {
                 }
                 itemLoc = itemLoc.toLowerCase();
 
-                if (!itemLoc.includes(targetArea)) return false;
-            }
-
-            // 5. Time Filter
-            if (this.criteria.timeFrame !== 'all' || this.criteria.date) {
-                const itemDate = new Date(item.start_time || item.start_date || item.startDate || item.start_datetime);
-                const now = new Date();
-
-                if (this.criteria.date) {
-                    const targetDate = new Date(this.criteria.date);
-                    if (itemDate.toDateString() !== targetDate.toDateString()) return false;
-                } else if (this.criteria.timeFrame === 'today') {
-                    if (itemDate.toDateString() !== now.toDateString()) return false;
-                } else if (this.criteria.timeFrame === 'weekend') {
-                    // Simple weekend check (Friday catch-all to Sunday)
-                    const day = itemDate.getDay();
-                    if (day !== 0 && day !== 5 && day !== 6) return false;
+                if (target === 'gaborone') {
+                    return itemLoc.includes('gaborone') || itemLoc.includes('gc') || itemLoc.includes('broadhurst') || itemLoc.includes('g-west') || itemLoc.includes('phase 2') || itemLoc.includes('block');
                 }
-            }
+                return itemLoc.includes(target);
+            });
+        }
 
-            return true;
-        });
+        // 1.5. Sub-Location: Area Filter (Neighborhoods)
+        if (this.criteria.area && this.criteria.area !== 'all') {
+            const targetArea = this.criteria.area.toLowerCase();
+            results = results.filter(item => {
+                let itemLoc = '';
+                if (typeof item.location === 'string') {
+                    itemLoc = item.location;
+                } else if (item.location && item.location.city) {
+                    itemLoc = item.location.city;
+                } else {
+                    itemLoc = item.location_name || item.village_town || item.village || item.venue_name || '';
+                }
+                return itemLoc.toLowerCase().includes(targetArea);
+            });
+        }
+
+        // 2. Category / Panel Filter
+        // Note: category is often mapped in the caller (shell.js updatePanel), 
+        // but we handle it here if it's set in criteria.
+        if (this.criteria.sport !== 'all' || this.criteria.category !== 'all') {
+            const sportTarget = this.criteria.sport;
+            const catTarget = this.criteria.category;
+            results = results.filter(item => {
+                if (sportTarget !== 'all' && item.sport !== sportTarget) return false;
+                if (catTarget !== 'all' && item.category !== catTarget && item.type !== catTarget) return false;
+                return true;
+            });
+        }
+
+        // 3. Search Filter (Additive)
+        if (this.criteria.search) {
+            const query = this.criteria.search.toLowerCase();
+            results = results.filter(item => {
+                const matchName = (item.title || item.event_name || item.eventName || '').toLowerCase().includes(query);
+                const matchSport = (item.sport || item.activity_type || item.specific_sport || item.sport_display || '').toLowerCase().includes(query);
+                const matchLoc = (item.location_name || item.village || item.location?.village || '').toLowerCase().includes(query);
+                const matchCompany = (item.company || '').toLowerCase().includes(query);
+                return matchName || matchSport || matchLoc || matchCompany;
+            });
+        }
+
+        // 4. Time Period Filter (Only if no specific date is selected)
+        if (!this.criteria.date && this.criteria.timeFrame && this.criteria.timeFrame !== 'all') {
+            const now = new Date();
+            results = results.filter(item => {
+                const itemDateStr = item.start_time || item.start_date || item.startDate || item.start_datetime;
+                if (!itemDateStr) return true; // Keep items with no date if not specifically filtering by time
+                const itemDate = new Date(itemDateStr);
+
+                if (this.criteria.timeFrame === 'today') {
+                    return itemDate.toDateString() === now.toDateString();
+                } else if (this.criteria.timeFrame === 'upcoming') {
+                    return itemDate > now;
+                } else if (this.criteria.timeFrame === 'past') {
+                    return itemDate < now;
+                } else if (this.criteria.timeFrame === 'weekend') {
+                    const day = itemDate.getDay();
+                    return day === 0 || day === 5 || day === 6;
+                }
+                return true;
+            });
+        }
+
+        // 5. Date Filter (Lowest Priority, Explicit)
+        if (this.criteria.date) {
+            const targetDateStr = typeof this.criteria.date === 'string' ? this.criteria.date : new Date(this.criteria.date).toISOString().split('T')[0];
+            results = results.filter(item => {
+                const itemDateStr = item.start_time || item.start_date || item.startDate || item.start_datetime;
+                if (!itemDateStr) return false;
+                const eventDate = new Date(itemDateStr).toISOString().split('T')[0];
+                return eventDate === targetDateStr;
+            });
+        }
+
+        // 6. Activity Filter (Additive)
+        if (this.criteria.activeActivity) {
+            const target = this.criteria.activeActivity;
+            results = results.filter(e =>
+                (e.activity && e.activity === target) ||
+                (e.activityType && e.activityType === target) ||
+                (e.activity_type && e.activity_type === target) ||
+                (e.sport && e.sport === target) ||
+                (e.category && e.category === target) ||
+                (e.type && e.type === target)
+            );
+        }
+
+        return results;
+    }
+
+    clearActivityFilter() {
+        this.activeActivity = null; // Also clear the instance property if used in task 3
+        this.criteria.activeActivity = null;
+        this.apply();
+        this.updateUILabel();
     }
 
     /**

@@ -56,9 +56,11 @@ class DataManager {
                 this.loadEntity('activities'),
                 this.loadEntity('teams'),
                 this.loadEntity('businesses'),
+                this.loadEntity('events'), // Load the 580+ events
                 this.loadEntity('matches'),
                 this.loadMarathons(),
                 this.seedLeaderboards(),
+                this.loadEntity('community'),
                 this.loadPhase10Data()
             ]);
 
@@ -658,6 +660,7 @@ class DataManager {
      */
     getHomeFeed() {
         const activities = this.cache.activities || [];
+        const events = this.cache.events || []; // Pull the 580+ events
 
         // 1. Generate Dynamic Cards (Fallback to samples if available)
         const suggestions = window.MIZANO_DATA && window.MIZANO_DATA.sample_activity_suggestions ?
@@ -671,7 +674,14 @@ class DataManager {
             ];
 
         // Mixing them into the feed
-        const feed = [...activities];
+        const feed = [...events, ...activities];
+
+        // Sort by dates to make it a true chronological feed
+        feed.sort((a, b) => {
+            const dateA = new Date(a.startDate || a.start_date || a.start_time || '2026-01-01');
+            const dateB = new Date(b.startDate || b.start_date || b.start_time || '2026-01-01');
+            return dateA - dateB;
+        });
 
         if (feed.length > 0 && suggestions.length > 0) feed.splice(0, 0, suggestions[0]);
         // Add more dynamic mixing logic if real challenges/surveys exist in MIZANO_DATA
