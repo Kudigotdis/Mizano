@@ -4,10 +4,10 @@
  */
 
 class GoalsDashboardRenderer {
-    constructor(containerId) {
+    constructor(containerId = 'drop-field-tracker') {
         this.containerId = containerId;
-        this.storage = window.MizanoGoalStorage || window.MizanoTrackerStorage;
-        this.cardRenderer = window.GoalCardRenderer; // Assumes GoalCardRenderer.js is loaded
+        this.storage = window.MizanoTrackerStorage; // Use the refactored singleton
+        this.cardRenderer = window.GoalCardRenderer;
     }
 
     async render() {
@@ -110,5 +110,4 @@ class GoalsDashboardRenderer {
 }
 
 // Global Singleton
-// We assign to window.MizanoTrackerRenderer to maintain compatibility with shell.js calls
-window.MizanoTrackerRenderer = new GoalsDashboardRenderer('panel-16'); 
+window.MizanoTrackerRenderer = new GoalsDashboardRenderer('drop-field-tracker');

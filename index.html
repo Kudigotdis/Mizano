@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="./teams.css">
     <link rel="stylesheet" href="./filters.css">
     <link rel="stylesheet" href="./mine.css">
+    <link rel="stylesheet" href="./tracker.css">
     <link rel="stylesheet" href="./assets/css/forms.css">
 </head>
 
@@ -126,7 +127,12 @@
             <!-- Panel 8: Mine -->
             <section class="panel" id="panel-8">
                 <!-- Mine Content handles its own layout -->
-                <div id="mine-panel-content"></div>
+                <div id="mine-panel-content">
+                    <!-- Phase 8 anchor containers — populated by MineRenderer_Phase8_patch.js -->
+                    <div id="mine-consistency-calendar" data-mine-section="consistency"></div>
+                    <div id="mine-habit-chains" data-mine-section="habits"></div>
+                    <div id="mine-injury-list" data-mine-section="injuries"></div>
+                </div>
             </section>
 
             <!-- Panel 9: Community -->
@@ -169,10 +175,15 @@
                 <div class="drop-field" id="drop-field-home-clone"></div>
             </section>
 
-            <!-- Panel 17: Tracker -->
+            <!-- Panel 17: Tracker (internal use only — not in Panel Menu) -->
             <section class="panel" id="panel-17">
                 <!-- Header hidden/handled by TrackerRenderer -->
                 <div class="drop-field" id="drop-field-tracker"></div>
+            </section>
+
+            <!-- Panel 18: User Profile (Dedicated Panel) -->
+            <section class="panel" id="panel-18">
+                <div class="drop-field" id="drop-field-profile-panel" style="padding: 0; min-height: 100vh;"></div>
             </section>
         </div>
     </main>
@@ -182,13 +193,10 @@
 
         <!-- LEVEL 1: Bottom Menu Bar (#242424) -->
         <footer class="bottom-menu-mizano">
-            <button class="mizano-menu-btn" id="btn-activities-level" title="Activities">
-                <img src="./assets/images/icons/Activities Icon.webp" alt="Activities">
+            <button class="mizano-menu-btn" id="btn-activities-level" title="Activity">
+                <img src="./assets/images/icons/Activities Icon.webp" alt="Activity">
             </button>
-            <button class="mizano-menu-btn" id="btn-location-filter" title="Location">
-                <img src="./assets/images/icons/Location Icon.webp" alt="Location">
-            </button>
-            <button class="mizano-menu-btn" id="btn-panels-menu" title="Panels">
+            <button class="mizano-menu-btn" id="btn-panels-mizano" title="Panels">
                 <img src="./assets/images/icons/Panels Icon.webp" alt="Panels">
             </button>
             <button class="mizano-menu-btn" id="btn-search-mizano" title="Search">
@@ -281,6 +289,17 @@
         </div>
     </div>
 
+    <!-- NOTIFICATIONS OVERLAY -->
+    <div id="notifications-overlay" class="overlay">
+        <div class="overlay-header">
+            <button class="back-btn" onclick="window.MizanoNav.back()">‹</button>
+            <h2 style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">Notifications</h2>
+        </div>
+        <div class="overlay-content" id="notifications-list" style="padding:16px;">
+            <p style="text-align:center; color:#666; margin-top:50px;">No new notifications</p>
+        </div>
+    </div>
+
     <!-- SEARCH OVERLAY -->
     <div id="search-overlay" class="overlay">
         <div class="overlay-header">
@@ -343,6 +362,44 @@
             <h2 style="margin-left: 10px;">Menu</h2>
         </div>
         <div class="overlay-content" style="padding: 16px;">
+            <div class="mizano-card" onclick="window.MizanoNav.switchPanel(0); window.MizanoNav.closeTopOverlay();"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <span style="font-size:1.5rem; margin-right:15px;">🏠</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">Home</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">Return to the main feed</p>
+                </div>
+                <span>›</span>
+            </div>
+            <div class="mizano-card" onclick="window.MizanoNav.switchPanel(18); window.MizanoNav.closeTopOverlay();"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px; border: 2px solid #1a73e8;">
+                <span style="font-size:1.5rem; margin-right:15px;">👤</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">My Profile</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">View your stats, family, and history</p>
+                </div>
+                <span>›</span>
+            </div>
+            <div class="mizano-card" onclick="window.MizanoNav.switchPanel(17); window.MizanoNav.closeTopOverlay();"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <img src="./assets/images/icons/Tracker Icon.png" style="width:24px; height:24px; margin-right:15px;">
+                <div style="flex:1;">
+                    <h3 style="margin:0;">MIZANO Tracker</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">Track goals, streaks, and health</p>
+                </div>
+                <span>›</span>
+            </div>
+            <div class="mizano-card" onclick="window.MizanoNav.openOverlay('notifications')"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <span style="font-size:1.5rem; margin-right:15px;">🔔</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">Notifications</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">View recent alerts and updates</p>
+                </div>
+                <span class="notif-badge" id="menu-notif-count"
+                    style="display:none; position:relative; top:0; right:0;">0</span>
+                <span>›</span>
+            </div>
             <div class="mizano-card" onclick="window.MizanoNav.pushPage('my-reservations')"
                 style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px; background: linear-gradient(135deg, #1b5e20, #2e7d32); color: white;">
                 <span style="font-size:1.5rem; margin-right:15px;">📅</span>
@@ -379,27 +436,79 @@
             <!-- Populated by generatePanelsMenu() in shell.js -->
         </div>
     </div>
+
+    <!-- BUILDER VIEW OVERLAY — All 7 Creation Forms inject here (Sessions 4–10) -->
+    <div id="builder-view" class="overlay" style="z-index:10001; flex-direction:column; overflow-y:auto;">
+        <!-- Content injected by AddActionRouter.openForm() -->
+    </div>
+
+    <!-- DETAIL VIEW OVERLAY — All entity detail pages inject here -->
+    <div id="detail-view" class="overlay" style="z-index:10000; flex-direction:column; overflow-y:auto;">
+        <!-- Content injected by NavigationController.renderPage() -->
+    </div>
+
+    <!-- ADD ACTION PANEL — The + bottom sheet -->
+    <div id="add-action-overlay" class="overlay"
+        style="z-index:10002; background:rgba(0,0,0,0.5); align-items:flex-end;">
+    </div>
+    <div id="add-action-panel" style="position:fixed; bottom:0; left:0; right:0; z-index:10003;
+               background:#fff; border-radius:20px 20px 0 0;
+               transform:translateY(100%); transition:transform 280ms ease-out;
+               padding:0 0 30px; max-height:85vh; overflow-y:auto; display:none;">
+        <div style="width:40px; height:4px; background:#ddd; border-radius:2px; margin:12px auto 8px;"></div>
+        <!-- Options injected by AddActionRouter.init() -->
+        <div id="add-action-options"></div>
+        <div style="padding:0 16px; margin-top:8px;">
+            <button onclick="window.AddActionRouter && window.AddActionRouter.close()" style="width:100%; padding:14px; background:#f1f3f4; border:none;
+                       border-radius:12px; font-size:0.95rem; color:#444; cursor:pointer;">
+                Cancel
+            </button>
+        </div>
+    </div>
+
     <!-- Data source scripts -->
     <script src="./ImageManager.js"></script>
-    <script src="./data/databases/teams.js"></script>
+    <!-- GROUP 1: Existing data files -->
     <script src="./data/databases/sports_activities_dropdown.js"></script>
+    <script src="./data/databases/teams.js"></script>
     <script src="./data/databases/activities.js"></script>
     <script src="./data/databases/schools.js"></script>
     <script src="./data/databases/users_generated.js"></script>
     <script src="./data/databases/users_personas.js"></script>
     <script src="./data/databases/generated_matches.js"></script>
     <script src="./data/databases/generated_leaderboards.js"></script>
-    <script src="./data/databases/events_complete.js"></script>
     <script src="./data/databases/community_generated.js"></script>
     <script src="./data/databases/competitions_generated.js"></script>
     <script src="./data/databases/corporate_teams_generated.js"></script>
-    <script src="./data/databases/hobbies_leisure_300.js"></script>
-    <script src="./data/databases/event_lab_archetype_mapper.js"></script>
     <script src="./data/databases/shopping_items.js"></script>
-    <script src="./data/databases/businesses.js"></script>
     <script src="./data/databases/activities_stress.js"></script>
+    <script src="./data/databases/hobbies_leisure_300.js"></script>
+    <script src="./data/databases/businesses.js"></script>
+    <script src="./data/databases/venues.js"></script>
+    <script src="./data/databases/spaces.js"></script>
+    <script src="./data/databases/time_slots.js"></script>
+
+    <!-- GROUP 2: New data files -->
+    <script src="./data/hobbies_data.js"></script>
+    <script src="./data/leisure_data.js"></script>
+    <script src="./data/lessons_tutors.js"></script>
+    <script src="./data/discover_spotlights.js"></script>
+    <script src="./data/businesses_full.js"></script>
+    <script src="./data/venues_full.js"></script>
+    <script src="./data/groups_clubs.js"></script>
+    <script src="./data/user_profiles_bw.js"></script>
+    <script src="./data/community_extended.js"></script>
+    <script src="./data/events_generated.js"></script>
+
+    <!-- GROUP 3: Patch files -->
+    <script src="./data/activities_fix.js"></script>
+    <script src="./data/matches_enrichment.js"></script>
+
+    <!-- GROUP 4: System -->
     <script src="./AuthManager.js"></script>
     <script src="./DataManager.js"></script>
+    <script src="./NotificationManager.js"></script>
+    <script src="./SuggestionEngine.js"></script>
     <script src="./NavigationController.js"></script>
     <script src="./InfiniteScroll.js"></script>
     <script src="./CardRenderer.js"></script>
@@ -423,19 +532,24 @@
     <script src="./BusinessBuilder.js"></script>
     <script src="./FilterEngine.js"></script>
     <script src="./MineRenderer.js"></script>
-    <script src="data/databases/athletics_records.js"></script>
-    <script src="LeaderboardEngine.js"></script>
-    <script src="ResultEntryForm.js"></script>
-    <script src="./scripts/TrackerStorage.js"></script>
-    <script src="./scripts/GoalBuilder.js"></script>
-    <script src="./scripts/TrackerRenderer.js"></script>
-    <script src="./data/databases/venues.js"></script>
-    <script src="./data/databases/spaces.js"></script>
-    <script src="./data/databases/time_slots.js"></script>
+    <!-- SESSION Phase 8: Engagement Features — must load after MineRenderer.js -->
+    <script src="./StreakCalculator.js"></script>
+    <script src="./HabitForm.js"></script>
+    <script src="./InjuryForm.js"></script>
+    <script src="./MineRenderer_Phase8_patch.js"></script>
+    <script src="./LeaderboardEngine.js"></script>
+    <script src="./ResultEntryForm.js"></script>
     <script src="./BookingManager.js"></script>
     <script src="./VenueDetail.js"></script>
     <script src="./VenueBooking.js"></script>
     <script src="./ReservationsView.js"></script>
+    <script src="./js/edit_system.js"></script>
+
+    <script src="./scripts/TrackerStorage.js"></script>
+    <script src="./scripts/GoalCardRenderer.js"></script>
+    <script src="./scripts/NoteCardRenderer.js"></script>
+    <script src="./scripts/GoalBuilder.js"></script>
+    <script src="./scripts/TrackerRenderer.js"></script>
 
     <!-- ACTIVITY FILTER OVERLAY -->
     <div id="activity-overlay" class="overlay" style="z-index:9999; flex-direction:column;">
@@ -451,6 +565,46 @@
         </div>
     </div>
     <script src="shell.js"></script>
+
+    <!-- ===== MIZANO MODULE SCRIPTS — SESSION ORDER ===== -->
+    <!-- SESSION 1: StorageManager.js already loaded above in data scripts -->
+    <!-- SESSION 2: Profile panel — depends on StorageManager -->
+    <script src='./ProfilePanel.js'></script>
+    <!-- SESSION 3: Add Action Router — depends on StorageManager -->
+    <script src='./AddActionRouter.js'></script>
+    <!-- SESSION 4: Minor Form — depends on AddActionRouter -->
+    <script src='./MinorForm.js'></script>
+    <!-- SESSION 5: Event Form — depends on AddActionRouter -->
+    <script src='./EventForm.js'></script>
+    <!-- SESSION 6: Group Form — depends on AddActionRouter -->
+    <script src='./GroupForm.js'></script>
+    <!-- SESSION 7: Association Form — depends on AddActionRouter -->
+    <script src='./AssociationForm.js'></script>
+    <!-- SESSION 8: Venue Form — depends on AddActionRouter -->
+    <script src='./VenueForm.js'></script>
+    <!-- SESSION 9: Business Form — depends on AddActionRouter -->
+    <script src='./BusinessForm.js'></script>
+    <!-- SESSION 10: Player File Form — depends on AddActionRouter -->
+    <script src='./PlayerFileForm.js'></script>
+    <!-- SESSION 11: Event Post Form — depends on AddActionRouter -->
+    <script src='./EventPostForm.js'></script>
+    <!-- SESSION 11B: Promo Builder -->
+    <script src='./PromoBuilder.js'></script>
+    <script src='./GroupPromoWizard.js'></script>
+    <!-- SESSION 12: My Groups Sub-Panel -->
+    <script src='./MyGroups.js'></script>
+    <!-- SESSION 13: My Events Sub-Panel -->
+    <script src='./MyEvents.js'></script>
+    <!-- SESSION 14: My Business Sub-Panel -->
+    <script src='./MyBusiness.js'></script>
+    <!-- SESSION 15: My Player Files Sub-Panel -->
+    <script src='./MyPlayerFiles.js'></script>
+    <!-- SESSION 16: My Associations Sub-Panel -->
+    <script src='./MyAssociations.js'></script>
+    <!-- SESSION 17: My Venues Sub-Panel -->
+    <script src='./MyVenues.js'></script>
+    <!-- SESSION 18: My Minors Sub-Panel -->
+    <script src='./MyMinors.js'></script>
 </body>
 
 </html>

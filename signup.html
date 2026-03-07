@@ -364,7 +364,8 @@
         </form>
     </div>
 
-    <script src="./assets/js/storage.js"></script>
+    <script src="./StorageManager.js"></script>
+    <script src="./AuthManager.js"></script>
     <script src="./data/interests_data.js"></script>
     <script src="./assets/js/auth.js"></script>
     <script>
@@ -419,9 +420,25 @@
                 return;
             }
 
-            // Demo Login
-            await window.MizanoAuth.loadDemoProfile();
-            location.href = 'index.html';
+            // Actually call the real signup method
+            try {
+                // Map a few fields to match our DB schema if needed
+                data.full_name = `${data.firstName} ${data.middleNames || ''} ${data.surname}`.trim().replace(/\s+/g, ' ');
+                data.villageTownCity = data.city;
+                data.areaNeighborhood = data.area;
+                data.preferredSports = data.interests;
+                // Add basic info
+                data.borrowScore = 5.0; // Starting score
+                data.totalActivitiesJoined = 0;
+
+                await window.MizanoAuth.signup(data);
+                location.href = 'index.html';
+            } catch (err) {
+                console.error("Signup failed", err);
+                alert("Failed to sign up properly. Let's try browsing for now.");
+                await window.MizanoAuth.loadDemoProfile();
+                location.href = 'index.html';
+            }
         };
 
         // Dynamic Interests Logic

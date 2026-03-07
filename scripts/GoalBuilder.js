@@ -5,9 +5,9 @@
  */
 
 class GoalBuilder {
-    constructor(containerId) {
+    constructor(containerId = 'drop-field-tracker') {
         this.containerId = containerId;
-        this.storage = window.MizanoGoalStorage || window.MizanoTrackerStorage;
+        this.storage = window.MizanoTrackerStorage;
         this.activities = [];
         this.state = {
             title: '',
@@ -303,4 +303,4 @@ class GoalBuilder {
 }
 
 // Global Singleton
-window.MizanoGoalBuilder = new GoalBuilder('goal-builder-container');
+window.MizanoGoalBuilder = new GoalBuilder('drop-field-tracker');

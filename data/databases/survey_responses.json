@@ -1,0 +1,30 @@
+[
+    {
+        "id": "survey_001",
+        "type": "survey",
+        "category": "Diet & Energy",
+        "question": "Did you drink water before your match today?",
+        "options": [
+            "Yes, fully hydrated",
+            "A little bit",
+            "Forgot"
+        ],
+        "vote_count": 45,
+        "progress_pct": 0,
+        "location_area": "Gaborone"
+    },
+    {
+        "id": "survey_002",
+        "type": "survey",
+        "category": "Community Pulse",
+        "question": "What sport facilities need improvement in your block?",
+        "options": [
+            "Tennis Courts",
+            "Football Pitches",
+            "Lighting"
+        ],
+        "vote_count": 112,
+        "progress_pct": 0,
+        "location_area": "Block 8"
+    }
+]

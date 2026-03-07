@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const filterEngine = window.MizanoFilter;
     const auth = window.MizanoAuth;
     const storage = window.mizanoStorage;
+    const notifications = window.MizanoNotifications;
 
     // STEP 1: STARTUP: Clear any persisted date filter to prevent stale filters from previous sessions
     localStorage.removeItem('mizano_selected_date');
@@ -75,17 +76,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         const container = document.getElementById('panels-list');
         if (!container) return;
 
+        // Golden-rule panel list — only change with explicit confirmation
         const panelNames = [
             'Home', 'Sports', 'Hobbies', 'Leisure', 'Lessons',
             'Events', 'Groups', 'Discover', 'Mine', 'Community',
             'Leaderboard', 'Shopping', 'Shops', 'Businesses',
-            'Schools', 'Venues', 'Tracker'
+            'Schools', 'Venues'
         ];
 
         container.innerHTML = '';
         panelNames.forEach((name, idx) => {
-            // Determine target index: Skip 16 (Home Clone) for Tracker (17)
-            const targetIdx = (idx === 16) ? 17 : idx;
+            // Direct 1-to-1 mapping: button position 0–15 = panel index 0–15
+            const targetIdx = idx;
 
             const btn = document.createElement('button');
             btn.textContent = name;
@@ -108,12 +110,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // 5. APEX UI: INTERACTION HANDLERS (Level 1-4 Hierarchy)
-    const btnLocation = document.getElementById('btn-location-filter');
-    const btnActivities = document.getElementById('btn-activities-level'); // From bottom menu
-    const btnPanels = document.getElementById('btn-panels-menu'); // From bottom menu
-    const btnSearch = document.getElementById('btn-search-mizano'); // From bottom menu
-    const btnAdd = document.getElementById('btn-add-content'); // From bottom menu
-    const btnHamburger = document.getElementById('btn-hamburger-mizano'); // From bottom menu
+    const btnPanels = document.getElementById('btn-panels-mizano');
+    const btnActivities = document.getElementById('btn-activities-level');
+    const btnSearch = document.getElementById('btn-search-mizano');
+    const btnAdd = document.getElementById('btn-add-content');
+    const btnHamburger = document.getElementById('btn-hamburger-mizano');
 
     const level2 = document.getElementById('level-2-activity');
     const level3 = document.getElementById('level-3-time');
@@ -145,12 +146,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         level3.classList.toggle('calendar-open');
     });
 
-    if (btnLocation) btnLocation.addEventListener('click', () => openLocationOverlay('village'));
-    document.getElementById('btn-panels-menu').addEventListener('click', () => {
-        window.MizanoNav.openOverlay('panels-menu');
-    });
+    if (btnPanels) btnPanels.addEventListener('click', () => window.MizanoNav.openOverlay('panels-menu'));
     if (btnSearch) btnSearch.addEventListener('click', () => nav.openOverlay('search'));
-    if (btnAdd) btnAdd.addEventListener('click', () => nav.openOverlay('builder-choice'));
+    if (btnAdd) btnAdd.addEventListener('click', () => {
+        if (window.AddActionRouter) window.AddActionRouter.openSheet();
+        else nav.openOverlay('builder-choice'); // Fallback
+    });
     if (btnHamburger) btnHamburger.addEventListener('click', () => nav.openOverlay('hamburger'));
 
     // NEW TIME PILL LOGIC
@@ -432,7 +433,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const mapToCardData = (entity, items) => {
         if (!Array.isArray(items)) return [];
         return items.map(item => {
-            if (entity === 'activities' || entity === 'homeFeed') {
+            let activeEntity = entity;
+            if (entity === 'mixed') {
+                activeEntity = item.mizano_entity_type || 'activities';
+            }
+
+            if (activeEntity === 'activities' || activeEntity === 'homeFeed') {
                 // Route actual events to the Event Card template
                 if (item.eventID || item.event_id) {
                     return {
@@ -457,15 +463,20 @@ document.addEventListener('DOMContentLoaded', async () => {
                     activity_type: item.sport || item.activity_type || 'General',
                 };
             }
-            if (entity === 'marathons') return { ...item, card_type: 'Registration-State Card', activity_id: item.event_id, emergency_badge: { text: 'Open', color: 'green' } };
-            if (entity === 'teams') return { ...item, card_type: 'Team Explorer Card' };
-            if (entity === 'businesses') return { ...item, card_type: 'Institution Card' };
-            if (entity === 'schools') return { ...item, card_type: 'Institution Card', verified: item.is_private };
-            if (entity === 'events') return { ...item, card_type: 'Event Card' };
-            if (entity === 'community') return { ...item, card_type: item.type === 'job' ? 'Job Listing Card' : (item.type === 'lost' || item.type === 'found' ? 'Lost Found Card' : (item.type === 'news' ? 'News Flash Card' : 'Community Post Card')) };
-            if (entity === 'competitions') return { ...item, card_type: 'Competition Card' };
-            if (entity === 'hobbies') return { ...item, card_type: 'Hobby Leisure Card' };
-            if (entity === 'shopping') return { ...item, card_type: 'Shopping Deal Card' };
+            if (activeEntity === 'marathons') return { ...item, card_type: 'Registration-State Card', activity_id: item.event_id, emergency_badge: { text: 'Open', color: 'green' } };
+            if (activeEntity === 'teams') return { ...item, card_type: 'Team Explorer Card' };
+            if (activeEntity === 'businesses') return { ...item, card_type: 'Institution Card' };
+            if (activeEntity === 'schools') return { ...item, card_type: 'Institution Card', verified: item.is_private };
+            if (activeEntity === 'events') return { ...item, card_type: 'Event Card' };
+            if (activeEntity === 'community') {
+                if (item.type === 'challenge' || item.challenge_type) return { ...item, card_type: 'Challenge Card' };
+                if (item.type === 'survey') return { ...item, card_type: 'Survey Card' };
+                if (item.type === 'stats') return { ...item, card_type: 'Stats Card' };
+                return { ...item, card_type: item.type === 'job' ? 'Job Listing Card' : (item.type === 'lost' || item.type === 'found' ? 'Lost Found Card' : (item.type === 'news' ? 'News Flash Card' : 'Community Post Card')) };
+            }
+            if (activeEntity === 'competitions') return { ...item, card_type: 'Competition Card' };
+            if (activeEntity === 'hobbies') return { ...item, card_type: 'Hobby Leisure Card' };
+            if (activeEntity === 'shopping') return { ...item, card_type: 'Shopping Deal Card' };
             return item;
         });
     };
@@ -516,7 +527,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (dataManager.cache.events) renderers.events.render(mapToCardData('events', filterEngine.filterData(dataManager.cache.events)));
 
         if (dataManager.cache.community) {
-            const commPosts = dataManager.getCommunityPosts();
+            let commPosts = dataManager.getCommunityPosts() || [];
+
+            // Phase 8: Inject engagement features
+            const challenges = dataManager.cache.challenges || [];
+            const surveys = dataManager.cache.survey_responses || [];
+            const stats = dataManager.cache.participation_stats || [];
+
+            // Normalize types for the pipeline
+            const mappedExtras = [...challenges, ...surveys, ...stats].map(t => ({
+                ...t,
+                // Assign type safely for mapping if not natively present
+                type: t.type || (t.survey_id ? 'survey' : (t.challenge_type ? 'challenge' : (t.location_code ? 'stats' : 'post')))
+            }));
+
+            commPosts = [...commPosts, ...mappedExtras];
+            // Render to community panel
             renderers.community.render(mapToCardData('community', filterEngine.filterData(commPosts)));
         }
 
@@ -545,8 +571,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const { type, index, overlayId, pageId, data } = e.detail;
         switch (type) {
             case 'panel-switch':
-                if (index === 14 && window.MizanoProfile) window.MizanoProfile.render();
-                if (index === 16 && window.MizanoTrackerRenderer) window.MizanoTrackerRenderer.render();
+                if (index === 8 && window.MizanoMine) window.MizanoMine.render();
+                if (index === 8 && window.ProfilePanel) window.ProfilePanel.init();
+                if (index === 17 && window.MizanoTrackerRenderer) window.MizanoTrackerRenderer.render();
+                if (index === 18 && window.MizanoProfileDetailPanel && window.authManager) {
+                    const u = window.authManager.getCurrentUser();
+                    if (u) window.MizanoProfileDetailPanel.render(u.uid || u.profile_id);
+                }
                 const panel = document.getElementById(`panel-${index}`);
                 if (panel && window.mizanoStorage) panel.scrollTop = window.mizanoStorage.loadScroll(index);
 
@@ -576,6 +607,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const overlay = document.getElementById(tid);
                 if (overlay) overlay.classList.add('active');
                 if (overlayId === 'builder-choice') window.MizanoShell.renderBuilderChoice();
+                if (overlayId === 'notifications') {
+                    if (notifications) {
+                        notifications.render('notifications-list');
+                        // Optional: mark as read when overlay opens?
+                        // notifications.markAllAsRead();
+                    }
+                }
                 if (overlayId === 'leaderboard' && window.MizanoLeaderboard) window.MizanoLeaderboard.open();
                 if (overlayId === 'search') {
                     const searchInput = document.getElementById('mizano-search-input');
@@ -634,6 +672,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (pageId === 'detail' && window.MizanoDetail) { detailOverlay.classList.add('active'); window.MizanoDetail.render(data.activityId); }
                 else if (pageId === 'builder' && window.MizanoBuilder) { builderOverlay.classList.add('active'); window.MizanoBuilder.render(); }
                 else if (pageId === 'team-detail' && window.MizanoTeamDetail) { detailOverlay.classList.add('active'); const team = dataManager.getById('teams', data.teamId); if (team) window.MizanoTeamDetail.render(team); }
+                else if (pageId === 'profile-view' && window.MizanoProfileDetail) { detailOverlay.classList.add('active'); window.MizanoProfileDetail.render(data.userId); }
                 break;
             case 'page-pop':
                 document.querySelectorAll('.overlay').forEach(p => p.classList.remove('active'));
@@ -644,7 +683,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // 9. SHELL UTILITIES
+    // 9. CARD ACTION DELEGATION
+    document.addEventListener('click', async (e) => {
+        const btn = e.target.closest('.mizano-action-btn');
+        if (!btn) return;
+
+        e.stopPropagation();
+        const id = btn.dataset.id;
+        const action = btn.dataset.action; // for community-help-btn
+
+        if (btn.classList.contains('job-apply-btn')) {
+            window.MizanoShell.showToast('Application sent successfully!', 'success');
+            // Logic to save application to StorageManager would go here
+        } else if (btn.classList.contains('community-boost-btn')) {
+            window.MizanoShell.showToast('Post boosted! Featured in Discover.', 'info');
+        } else if (btn.classList.contains('group-join-btn')) {
+            window.MizanoShell.showToast('Join request sent to admin.', 'info');
+        } else if (btn.classList.contains('community-help-btn')) {
+            window.MizanoShell.showToast(`Action: ${action} initiated.`, 'success');
+        }
+    });
+
+    // 10. SHELL UTILITIES
     window.MizanoShell = {
         showToast: (message, type = 'info') => {
             let toast = document.getElementById('mizano-toast');
@@ -769,7 +829,37 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const searchInput = document.getElementById('mizano-search-input');
             if (searchInput) {
-                searchInput.addEventListener('input', (e) => filterEngine.update('search', e.target.value));
+                searchInput.addEventListener('input', (e) => {
+                    const query = e.target.value;
+                    if (query.length < 2) {
+                        const resultsContainer = document.getElementById('search-results');
+                        if (resultsContainer) {
+                            resultsContainer.innerHTML = '<p style="text-align: center; color: #777; margin-top: 50px;">Start typing to search activities, places, and people.</p>';
+                        }
+                        return;
+                    }
+
+                    const rawResults = filterEngine.globalSearch(query);
+                    const mappedResults = mapToCardData('mixed', rawResults);
+
+                    if (renderers.search) {
+                        if (mappedResults.length > 0) {
+                            renderers.search.render(mappedResults);
+                        } else {
+                            renderers.search.renderEmpty('No results found for "' + query + '"');
+                        }
+                    }
+                });
+            }
+
+            // Initialize Notifications
+            if (notifications) {
+                await notifications.init();
+            }
+
+            // Initialize Suggestions
+            if (window.MizanoSuggestionEngine) {
+                await window.MizanoSuggestionEngine.init();
             }
         }
     }, 100);

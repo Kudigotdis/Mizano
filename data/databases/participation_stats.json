@@ -1,0 +1,16 @@
+[
+    {
+        "id": "stat_001",
+        "type": "stats",
+        "location_code": "Block 8",
+        "location_type": "Area",
+        "active_users_last_7days": 84
+    },
+    {
+        "id": "stat_002",
+        "type": "stats",
+        "location_code": "Gaborone West",
+        "location_type": "Area",
+        "active_users_last_7days": 210
+    }
+]

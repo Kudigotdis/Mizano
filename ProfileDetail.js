@@ -14,9 +14,11 @@ class ProfileDetail {
 
         // Find user by ID or Name (Fuzzy search for generated profiles)
         let user = this.dataManager.cache.users.find(u =>
-            u.profile_id === userIdOrName ||
-            `${u.first_name} ${u.surname}` === userIdOrName ||
-            u.display_name === userIdOrName
+            (u.profile_id && u.profile_id === userIdOrName) ||
+            (u.uid && u.uid === userIdOrName) ||
+            `${u.first_name || ''} ${u.surname || ''}`.trim() === userIdOrName ||
+            u.display_name === userIdOrName ||
+            u.name === userIdOrName
         );
 
         if (!user) {
@@ -62,7 +64,7 @@ class ProfileDetail {
                         <input type="file" id="profile-photo-input" style="display:none;" accept="image/*" onchange="window.MizanoProfileDetail.handlePhotoUpload(event, '${user.uid || user.profile_id}')">
                     </div>
 
-                    <h2>${user.first_name} ${user.surname}</h2>
+                    <h2>${user.first_name || ''} ${user.surname || user.name || 'Anonymous'}</h2>
                     <p>${user.profile_type} • ${user.gender} • ${user.age || 'Age N/A'}</p>
                     
                     <div style="max-width:240px; margin: 15px auto 0; display: flex; flex-direction: column; gap: 8px;">
@@ -244,4 +246,6 @@ class ProfileDetail {
     }
 }
 
+// Expose global instances
 window.MizanoProfileDetail = new ProfileDetail('detail-view');
+window.MizanoProfileDetailPanel = new ProfileDetail('drop-field-profile-panel');

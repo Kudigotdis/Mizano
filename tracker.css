@@ -1,0 +1,155 @@
+/* MIZANO TRACKER STYLES */
+
+#drop-field-tracker {
+    padding: 16px;
+    background: #fdfdfd;
+    min-height: 100vh;
+}
+
+/* Dashboard Sections */
+.tracker-section {
+    margin-bottom: 24px;
+}
+
+.tracker-section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Quick Log Bubbles */
+.quick-log-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.log-bubble {
+    background: #000;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 25px;
+    white-space: nowrap;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.log-bubble:active {
+    transform: scale(0.95);
+}
+
+/* Goal Cards */
+.goal-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.goal-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.progress-bar-bg {
+    background: #eee;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.progress-bar-fill {
+    background: var(--primary-blue, #4472C4);
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+/* Goal Builder */
+.goal-builder-wrapper {
+    background: #fff;
+    padding: 16px;
+}
+
+.gb-sticky-header {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.gb-title-input {
+    width: 100%;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    padding: 8px 0;
+}
+
+.gb-type-selector {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.gb-type-btn {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.gb-type-btn.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.gb-section-card {
+    margin-top: 15px;
+    border: 2px solid #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.gb-section-header {
+    background: #f8f8f8;
+    padding: 12px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.gb-section-content {
+    padding: 12px;
+}
+
+.gb-create-btn {
+    width: 100%;
+    padding: 15px;
+    background: #4472C4;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 20px;
+}

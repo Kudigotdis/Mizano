@@ -289,7 +289,7 @@ class ProfileInterface {
     }
 }
 
-// Global initialization
+// Global initialization — container TBD once a dedicated Profile panel is confirmed
 document.addEventListener('DOMContentLoaded', () => {
-    window.MizanoProfile = new ProfileInterface('panel-14'); // Assign to "About" or a dedicated panel
+    window.MizanoProfile = new ProfileInterface('panel-14'); // placeholder until explicit panel is confirmed
 });

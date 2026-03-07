@@ -1,0 +1,28 @@
+[
+    {
+        "id": "chal_001",
+        "type": "challenge",
+        "challenge_type": "Neighborhood Challenge",
+        "title": "Block 8 Weekly Step Challenge",
+        "goal_text": "Walk 50km collectively this week",
+        "progress": 32,
+        "target_goal": 50,
+        "unit": "km",
+        "participants": 14,
+        "area": "Block 8",
+        "status": "active"
+    },
+    {
+        "id": "chal_002",
+        "type": "challenge",
+        "challenge_type": "Gaborone West Clash",
+        "title": "Weekend 5v5 Scrimmages",
+        "goal_text": "Play 10 matches collectively",
+        "progress": 4,
+        "target_goal": 10,
+        "unit": "matches",
+        "participants": 20,
+        "area": "Gaborone West",
+        "status": "active"
+    }
+]

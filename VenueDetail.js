@@ -27,7 +27,12 @@ class VenueDetail {
           ${window.MizanoImages.render('venues', venue.image || null, 'detail-media-placeholder', venue.name)}
           <div class="detail-main">
             <p class="activity-meta">📍 ${venue.location}</p>
+            <div style="margin: 10px 0; display: flex; gap: 8px;">
+                <button class="mizano-menu-btn" style="background:#fff; border:1px solid #dadce0; border-radius:12px; font-size:0.75rem; padding:6px 12px; height:auto; width:auto; display:flex; align-items:center; gap:6px;" onclick="window.open('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('${venue.name} ${venue.location}'))">🚗 Get Directions</button>
+            </div>
             <p>${venue.description || ''}</p>
+            <p><strong>Owner:</strong> <span style="color:#1a73e8; cursor:pointer;" onclick="window.MyBusiness && window.MyBusiness.viewDetail('${venue.business_id}')">${_safe(venue.business_name || 'Mizano Corporate')}</span></p>
+            <p><strong>Upcoming:</strong> <span style="color:#1a73e8; cursor:pointer;" onclick="window.MyEvents && window.MyEvents.init()">📅 View Events at this Venue</span></p>
             <p><strong>Rating:</strong> ⭐ ${venue.rating}/5</p>
             <p><strong>Features:</strong> ${venue.features?.join(', ') || 'N/A'}</p>
             
@@ -57,9 +62,14 @@ class VenueDetail {
           <p><strong>Rules:</strong> ${space.rules}</p>
           <p><strong>Requirements:</strong> ${space.requirements}</p>
           <button class="book-btn" onclick="window.VenueBooking.openBooking('${space.space_id}')" style="background:#2E7D32; color:#fff; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; margin-top:8px;">Book Now</button>
-        </div>
       </div>
     `;
+  }
+
+  _safe(v) {
+    if (!v) return '';
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+    return v.toString().replace(/[&<>"']/g, m => map[m]);
   }
 }
 
@@ -67,13 +77,13 @@ class VenueDetail {
 document.addEventListener('DOMContentLoaded', () => {
   const style = document.createElement('style');
   style.textContent = `
-    .space-card.expanded .space-body {
-      display: block !important;
+      .space - card.expanded.space - body {
+      display: block!important;
     }
-    .space-card.expanded .expand-icon::before {
+    .space - card.expanded.expand - icon::before {
       content: '[-]';
     }
-  `;
+    `;
   document.head.appendChild(style);
 });
 

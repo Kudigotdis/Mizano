@@ -232,6 +232,75 @@ class FilterEngine {
         return results;
     }
 
+    /**
+     * Aggregates results from multiple entities for the global search overlay.
+     */
+    globalSearch(query) {
+        if (!query) return [];
+        const q = query.toLowerCase();
+        const data = window.mizanoData;
+        if (!data) return [];
+
+        let results = [];
+
+        // 1. Search Activities & Events
+        const activities = [...(data.cache.activities || []), ...(data.cache.events || [])];
+        activities.forEach(item => {
+            const matchName = (item.title || item.event_name || item.eventName || '').toLowerCase().includes(q);
+            const matchSport = (item.sport || item.activity_type || '').toLowerCase().includes(q);
+            if (matchName || matchSport) {
+                results.push({ ...item, mizano_entity_type: 'activities' });
+            }
+        });
+
+        // 2. Search Teams / Groups
+        const teams = data.cache.teams || [];
+        teams.forEach(item => {
+            const matchName = (item.name || item.team_name || '').toLowerCase().includes(q);
+            const matchSport = (item.sport || '').toLowerCase().includes(q);
+            if (matchName || matchSport) {
+                results.push({ ...item, mizano_entity_type: 'teams' });
+            }
+        });
+
+        // 3. Search Businesses
+        const businesses = data.cache.businesses || [];
+        businesses.forEach(item => {
+            const matchName = (item.name || item.business_name || '').toLowerCase().includes(q);
+            const matchCat = (item.category || '').toLowerCase().includes(q);
+            if (matchName || matchCat) {
+                results.push({ ...item, mizano_entity_type: 'businesses' });
+            }
+        });
+
+        // 4. Search Community Posts
+        const community = data.getCommunityPosts();
+        community.forEach(item => {
+            const matchTitle = (item.title || '').toLowerCase().includes(q);
+            const matchBody = (item.body || item.message || '').toLowerCase().includes(q);
+            if (matchTitle || matchBody) {
+                results.push({ ...item, mizano_entity_type: 'community' });
+            }
+        });
+
+        // 5. Search Schools
+        const schools = data.cache.schools || [];
+        schools.forEach(item => {
+            if ((item.school_name || '').toLowerCase().includes(q)) {
+                results.push({ ...item, mizano_entity_type: 'schools' });
+            }
+        });
+
+        // Remove duplicates if same object is in multiple caches (rare but possible)
+        const seen = new Set();
+        return results.filter(item => {
+            const id = item.uid || item.cloud_id || item.event_id || item.activity_id || item.id;
+            if (!id || seen.has(id)) return false;
+            seen.add(id);
+            return true;
+        });
+    }
+
     clearActivityFilter() {
         this.activeActivity = null; // Also clear the instance property if used in task 3
         this.criteria.activeActivity = null;

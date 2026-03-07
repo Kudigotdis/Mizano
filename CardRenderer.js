@@ -81,18 +81,18 @@ class CardRenderer {
             case 'Registration-State Card':
             case 'Event Card':
             case 'Hobby Leisure Card':
+            case 'Competition Card':
                 card.classList.add('card-event');
                 card.innerHTML = this.templateEvent(data);
+                break;
+            case 'Community Post Card':
+                card.innerHTML = this.templateCommunityAction(data);
                 break;
             case 'Team Explorer Card':
                 card.innerHTML = this.templateTeam(data);
                 break;
             case 'Institution Card':
-            case 'venue':
                 card.innerHTML = this.templateInstitution(data);
-                break;
-            case 'Community Post Card':
-                card.innerHTML = this.templateCommunityPost(data);
                 break;
             case 'Job Listing Card':
                 card.innerHTML = this.templateJobListing(data);
@@ -115,6 +115,50 @@ class CardRenderer {
             case 'News Flash Card':
                 card.innerHTML = this.templateNewsFlash(data);
                 break;
+
+            // DOC3 PART 23 - NEW CARDS
+            case 'card-playerprofile':
+                card.innerHTML = this.templatePlayerProfile(data);
+                break;
+            case 'card-leaderboard':
+                card.innerHTML = this.templateLeaderboard(data);
+                break;
+            case 'card-promo':
+                card.innerHTML = this.templatePromo(data);
+                break;
+            case 'card-venue':
+            case 'venue':
+                card.innerHTML = this.templateVenue(data);
+                break;
+            case 'card-lesson':
+                card.innerHTML = this.templateLesson(data);
+                break;
+            case 'card-hobby':
+                card.innerHTML = this.templateHobby(data);
+                break;
+            case 'card-leisure':
+                card.innerHTML = this.templateLeisure(data);
+                break;
+            case 'card-spotlight':
+                card.innerHTML = this.templateSpotlight(data);
+                break;
+            case 'card-school':
+                card.innerHTML = this.templateSchool(data);
+                break;
+            case 'card-community-action':
+            case 'Community Post Card':
+                card.innerHTML = this.templateCommunityAction(data);
+                break;
+            case 'card-service':
+                card.innerHTML = this.templateService(data);
+                break;
+            case 'card-recruitment':
+                card.innerHTML = this.templateRecruitment(data);
+                break;
+            case 'card-minor':
+                card.innerHTML = this.templateMinor(data);
+                break;
+
             default:
                 card.innerHTML = `<div style="padding:16px">Unknown Type: ${data.card_type}</div>`;
         }
@@ -227,15 +271,23 @@ class CardRenderer {
      * Maps data state to 7-color engine keys.
      */
     mapStatus(data) {
-        // Strict v4.0 Mappings
-        if (data.card_type === 'Lost Found Card') {
+        const ct = data.card_type;
+
+        // DOC3 PART 23 Explicit Mappings
+        if (ct === 'card-playerprofile' || ct === 'card-hobby' || ct === 'card-recruitment') return 'recruiting'; // Green
+        if (ct === 'card-leaderboard') return 'finished'; // Charcoal
+        if (ct === 'card-promo' || ct === 'card-spotlight') return 'live'; // Orange
+        if (ct === 'card-lesson' || ct === 'card-service') return 'learning'; // Blue
+        if (ct === 'card-community-action' || ct === 'Survey Card' || ct === 'Suggestion Card') return 'engagement'; // Pink
+        if (ct === 'card-venue' || ct === 'card-leisure' || ct === 'card-school' || ct === 'card-minor' || ct === 'Institution Card' || ct === 'Job Listing Card' || ct === 'Shopping Deal Card' || ct === 'venue') return 'official'; // Light Blue
+
+        // Strict v4.0 Mappings (Backwards Compatibility)
+        if (ct === 'Lost Found Card') {
             const type = data.type || (data.status === 'lost' ? 'lost' : 'found');
             return type === 'lost' ? 'official' : 'recruiting';
         }
-        if (data.card_type === 'Survey Card' || data.card_type === 'Suggestion Card') return 'engagement';
-        if (data.card_type === 'Challenge Card' || data.card_type === 'Match-Making Card') return 'recruiting';
-        if (data.card_type === 'Job Listing Card' || data.card_type === 'Shopping Deal Card' || data.card_type === 'Institution Card' || data.card_type === 'venue') return 'official';
-        if (data.card_type === 'Registration-State Card') return 'upcoming';
+        if (ct === 'Challenge Card' || ct === 'Match-Making Card') return 'recruiting';
+        if (ct === 'Registration-State Card') return 'upcoming';
 
         // Match Live/Upcoming/Finished
         if (data.state === 'Active Now') return 'live';
@@ -363,6 +415,9 @@ class CardRenderer {
                     </div>
                 </div>
             </div>
+            <div class="card-feed__actions" style="margin-top: 12px; display: flex; gap: 8px;">
+                <button class="mizano-action-btn community-boost-btn" data-id="${data.local_id || data.id}" style="flex:1; padding:8px; background:#fff; border:1px solid #ff5722; color:#ff5722; border-radius:4px; font-weight:600; font-size:0.85rem;">Boost Post</button>
+            </div>
         `;
     }
 
@@ -378,6 +433,9 @@ class CardRenderer {
             <div class="card-job__company">${company} · ${location}</div>
             <div class="card-job__salary">${salary}</div>
             <div class="card-job__deadline">Deadline: ${deadline}</div>
+            <div class="card-job__actions" style="margin-top: 12px; display: flex; gap: 8px;">
+                <button class="mizano-action-btn job-apply-btn" data-id="${data.local_id || data.id}" style="flex:1; padding:10px; background:#1e88e5; color:#fff; border:none; border-radius:4px; font-weight:700; font-size:0.9rem;">Quick-Apply</button>
+            </div>
         `;
     }
 
@@ -579,11 +637,383 @@ class CardRenderer {
     }
 
     /**
-     * TEMPLATE: VENUE CARD
+     * DOC3 PART 23 - NEW CARDS (BATCH 1)
      */
+
+    templatePlayerProfile(data) {
+        const sport = data.sport || 'Athlete';
+        const name = data.name || data.title || 'Player';
+        const avatar = data.avatar || '👤';
+        const position = Array.isArray(data.position) ? data.position.join(', ') : (data.position || 'Any Position');
+        const level = data.playing_level || 'Amateur';
+        const area = data.area || data.location || 'Unknown Area';
+        const endorsements = data.endorsement_count || 0;
+
+        let scoutingHtml = '';
+        if (data.scouting_open || data.scouting_open_label) {
+            scoutingHtml = `<span class="card-player__badge-scouting">Scouting Open</span>`;
+        }
+
+        const availability = Array.isArray(data.availability) ? data.availability.slice(0, 2).join(' · ') : (data.availability || '');
+        const availHtml = availability ? `<div class="card-player__availability">${availability}</div>` : '';
+
+        return `
+            <div class="card-player__top-row">
+                <div class="card-player__avatar">${avatar}</div>
+                <div class="card-player__info">
+                    <div class="card-player__name">${name}</div>
+                    <div class="card-player__sport">${sport} · ${position}</div>
+                </div>
+            </div>
+            <div class="card-player__meta-row">
+                <span class="card-player__level">${level}</span>
+                <span class="dot-sep"></span>
+                <span class="card-player__area">${area}</span>
+            </div>
+            ${availHtml}
+            <div class="card-player__footer">
+                <span class="card-player__endorsements">⭐ ${endorsements} Endorsements</span>
+                ${scoutingHtml}
+            </div>
+        `;
+    }
+
+    templateLeaderboard(data) {
+        const rank = parseInt(data.rank_number) || 0;
+        const name = data.name || 'Competitor';
+        const avatar = data.avatar ? `<img src="${data.avatar}" alt="avatar">` : '👤';
+        const score = data.score || 0;
+        const unit = data.unit || 'pts';
+        const scope = data.scope || '';
+
+        let podiumClass = '';
+        if (data.podium_style || rank <= 3) {
+            if (rank === 1) podiumClass = 'rank-gold';
+            else if (rank === 2) podiumClass = 'rank-silver';
+            else if (rank === 3) podiumClass = 'rank-bronze';
+        }
+
+        const rankDisplay = rank > 0 ? `#${rank}` : '-';
+
+        return `
+            <div class="card-leaderboard__row">
+                <div class="card-leaderboard__rank ${podiumClass}">${rankDisplay}</div>
+                <div class="card-leaderboard__avatar">${avatar}</div>
+                <div class="card-leaderboard__info">
+                    <div class="card-leaderboard__name">${name}</div>
+                    <div class="card-leaderboard__scope">${scope}</div>
+                </div>
+                <div class="card-leaderboard__score">
+                    <span class="score-val">${score}</span>
+                    <span class="score-unit">${unit}</span>
+                </div>
+            </div>
+        `;
+    }
+
+    templatePromo(data) {
+        const headline = data.headline || 'Special Promotion';
+        const expiry = this.formatDate(data.expiry_date);
+        const channel = data.channel || 'Shopping';
+        const offer = data.offer_text || '';
+        const discount = data.discount_percent ? `<div class="card-promo__discount">-${data.discount_percent}%</div>` : '';
+        const logo = data.business_logo ? `<img class="card-promo__logo-img" src="${data.business_logo}" alt="logo">` : '<span class="card-promo__logo-emoji">🏷️</span>';
+        const business = data.business_name || 'Mizano Business';
+
+        return `
+            <div class="card-promo__header">
+                <div class="card-promo__business-logo">${logo}</div>
+                <div class="card-promo__business-name">${business}</div>
+                ${discount}
+            </div>
+            <div class="card-promo__body">
+                <div class="card-promo__headline">${headline}</div>
+                <div class="card-promo__offer">${offer}</div>
+            </div>
+            <div class="card-promo__footer">
+                <span class="card-promo__status">Live Offer</span>
+                <span class="card-promo__expiry">Expires: ${expiry}</span>
+            </div>
+        `;
+    }
+
+    templateVenue(data) {
+        const name = data.venue_name || data.name || 'Venue';
+        const type = data.type || 'Facility';
+        const surface = data.surface || 'Unknown Surface';
+        const amenities = Array.isArray(data.amenities) ? data.amenities.slice(0, 3).join(' · ') : (data.amenities || '');
+        const capacity = data.capacity ? `${data.capacity} Capacity` : '';
+        const ownership = data.ownership || '';
+        const booking = data.booking_status || 'Unavailable';
+        const city = data.city || '';
+        const area = data.area || '';
+
+        const location = [area, city].filter(Boolean).join(', ') || 'Botswana';
+
+        let bookingClass = booking.toLowerCase() === 'bookable' ? 'status-bookable' : 'status-not-bookable';
+
+        return `
+            <div class="card-venue__header">
+                <div class="card-venue__title">${name}</div>
+                <div class="card-venue__badge ${bookingClass}">${booking}</div>
+            </div>
+            <div class="card-venue__meta">
+                <span>${type}</span><span class="dot-sep"></span><span>${surface}</span>
+            </div>
+            <div class="card-venue__location">📍 ${location}</div>
+            <div class="card-venue__details">
+                ${capacity ? `<span>👥 ${capacity}</span>` : ''}
+                ${ownership ? `<span style="margin-left: 8px;">🏢 ${ownership}</span>` : ''}
+            </div>
+            ${amenities ? `<div class="card-venue__amenities">${amenities}</div>` : ''}
+        `;
+    }
+
+    templateLesson(data) {
+        const coach = data.coach_name || 'Coach';
+        const sport = data.sport || 'Activity';
+        const skill = data.skill_level || 'All Levels';
+        const age = data.age_bracket || 'All Ages';
+        const schedule = data.schedule_text || data.schedule || 'Flexible Schedule';
+        const rate = data.rate_bwp ? `P${data.rate_bwp} / session` : 'Contact for rate';
+        const sessionType = data.session_type || 'Private/Group';
+
+        return `
+            <div class="card-lesson__header">
+                <div class="card-lesson__coach">${coach}</div>
+                <div class="card-lesson__rate">${rate}</div>
+            </div>
+            <div class="card-lesson__sport">${sport}</div>
+            <div class="card-lesson__details">
+                <span class="card-lesson__skill">${skill}</span>
+                <span class="dot-sep"></span>
+                <span class="card-lesson__age">${age}</span>
+            </div>
+            <div class="card-lesson__meta">
+                <span>📅 ${schedule}</span>
+                <span style="margin-left:8px;">📋 ${sessionType}</span>
+            </div>
+        `;
+    }
+
+    templateHobby(data) {
+        const activity = data.activity_name || data.title || 'Hobby';
+        const tags = Array.isArray(data.interest_tags) ? data.interest_tags.slice(0, 3).join(' · ') : (data.interest_tags || '');
+        const partner = data.looking_for_partner ? '<span class="status-recruiting" style="font-size: 11px; padding: 2px 6px; border: 1px solid #70AD47; color: #70AD47; border-radius: 4px;">Looking for Partner</span>' : '';
+        const area = data.meetup_area || data.area || data.location || 'Flexible Location';
+        const level = data.casual_level || 'Casual';
+
+        return `
+            <div class="card-hobby__header">
+                <div class="card-hobby__title" style="font-weight:600; font-size: 15px;">${activity}</div>
+                ${partner}
+            </div>
+            <div class="card-hobby__meta" style="margin-top: 6px; font-size: 13px; color: #666;">
+                <span>📍 ${area}</span>
+                <span class="dot-sep"></span>
+                <span>🎯 ${level}</span>
+            </div>
+            ${tags ? `<div class="card-hobby__tags" style="margin-top: 8px; font-size: 12px; color: #888;">🏷️ ${tags}</div>` : ''}
+        `;
+    }
+
+    templateLeisure(data) {
+        const name = data.experience_name || data.name || data.title || 'Leisure Experience';
+        const size = data.group_size || 'Open';
+        const reqs = data.entry_requirements || 'None';
+        const area = data.area || data.location || 'Botswana';
+        const price = data.price_bwp ? `P${data.price_bwp}` : 'Free/Varies';
+        const date = this.formatDate(data.date || data.startDate);
+
+        return `
+            <div class="card-leisure__header" style="display:flex; justify-content:space-between; align-items:center;">
+                <div class="card-leisure__title" style="font-weight:600; font-size: 15px;">${name}</div>
+                <div class="card-leisure__price" style="font-weight:600; color:var(--mizano-blue, #1A73E8);">${price}</div>
+            </div>
+            <div class="card-leisure__meta" style="margin-top: 6px; font-size: 13px; color: #666;">
+                <span>📍 ${area}</span>
+                <span class="dot-sep"></span>
+                <span>📅 ${date}</span>
+            </div>
+            <div class="card-leisure__details" style="margin-top: 8px; font-size: 12px; color: #555; display:flex; gap:12px;">
+                <span>👥 Size: ${size}</span>
+                <span>⚠️ Reqs: ${reqs}</span>
+            </div>
+        `;
+    }
+
+    templateSpotlight(data) {
+        const img = data.hero_image ? `<img src="${data.hero_image}" style="width:100%; height:140px; object-fit:cover; border-radius: 6px;" alt="${data.title}">` : '<div class="card-spotlight__placeholder" style="width:100%; height:140px; background:#f0f0f0; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:24px;">✨</div>';
+        const title = data.title || 'Spotlight';
+        const badge = data.trending_badge ? `<span class="card-spotlight__badge" style="position:absolute; top:8px; right:8px; background:rgba(255,165,0,0.9); color:#fff; padding:2px 6px; font-size:11px; border-radius:4px;">🔥 Trending</span>` : '';
+        const subtitle = data.subtitle || '';
+
+        return `
+            <div class="card-spotlight__hero" style="position:relative;">
+                ${img}
+                ${badge}
+            </div>
+            <div class="card-spotlight__body" style="margin-top: 10px;">
+                <div class="card-spotlight__title" style="font-weight:600; font-size: 16px;">${title}</div>
+                <div class="card-spotlight__subtitle" style="font-size: 13px; color: #666; margin-top:2px;">${subtitle}</div>
+            </div>
+        `;
+    }
+
+    templateSchool(data) {
+        const name = data.school_name || data.name || 'School';
+        const affiliation = data.affiliation_badge ? `<span class="card-school__badge" style="background:#e8f4fd; color:#1A73E8; padding:2px 6px; border-radius:4px; font-size:11px;">${data.affiliation_badge}</span>` : '';
+        const students = data.student_count || data.students || '0';
+        const sport = data.primary_sport || 'Multi-sport';
+        const area = data.area || data.location || 'Botswana';
+        const rankings = data.rankings || '';
+
+        return `
+            <div class="card-school__header" style="display:flex; justify-content:space-between; align-items:center;">
+                <div class="card-school__title" style="font-weight:600; font-size: 15px;">${name}</div>
+                ${affiliation}
+            </div>
+            <div class="card-school__meta" style="margin-top: 6px; font-size: 12px; color: #666;">
+                <span>📍 ${area}</span>
+                <span class="dot-sep"></span>
+                <span>🏅 ${sport}</span>
+            </div>
+            <div class="card-school__details" style="margin-top: 8px; font-size: 12px; color: #555; display:flex; gap:12px;">
+                <span>👥 ${students} Students</span>
+                ${rankings ? `<span>🏆 ${rankings}</span>` : ''}
+            </div>
+        `;
+    }
+
+    templateCommunityAction(data) {
+        const type = data.request_type || data.title || 'Community Action';
+        const urgency = data.urgency_level || 'Normal';
+        const area = data.neighbourhood || data.location || 'Local Area';
+        const author = data.posted_by_name || data.author || 'Neighbor';
+        const time = this.formatDate(data.timestamp || data.createdAt);
+
+        const chips = Array.isArray(data.action_chips) ? data.action_chips : ['Help Out'];
+        const chipsHtml = chips.map(c => `<button class="btn-action btn-outline" style="font-size:11px; padding:4px 8px; margin-right:4px; border:1px solid #ccc; background:transparent; border-radius:4px;">${c}</button>`).join('');
+
+        let urgencyColor = urgency.toLowerCase() === 'high' ? 'color:#E53935;' : (urgency.toLowerCase() === 'medium' ? 'color:#FF9800;' : 'color:#4CAF50;');
+
+        return `
+            <div class="card-action__header" style="display:flex; justify-content:space-between;">
+                <div class="card-action__title" style="font-weight:600; font-size: 15px;">${type}</div>
+                <div class="card-action__urgency" style="font-weight:600; font-size: 12px; ${urgencyColor}">${urgency}</div>
+            </div>
+            <div class="card-action__meta" style="margin-top: 6px; font-size: 12px; color: #666;">
+                <span>👤 ${author}</span>
+                <span class="dot-sep"></span>
+                <span>📍 ${area}</span>
+                <span class="dot-sep"></span>
+                <span>⏱️ ${time}</span>
+            </div>
+            <div class="card-action__body" style="margin-top: 8px; font-size: 13px;">
+                ${data.description || data.content || ''}
+            </div>
+            <div class="card-action__footer" style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px;">
+                ${chips.map(c => `
+                    <button class="mizano-action-btn community-help-btn" data-id="${data.local_id || data.id}" data-action="${c}" style="font-size:11px; padding:6px 12px; border:1px solid #ff5722; background:transparent; border-radius:4px; color:#ff5722; font-weight:600;">${c}</button>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    templateService(data) {
+        const name = data.service_name || data.title || 'Service';
+        const provider = data.provider_name || data.provider || 'Provider';
+        const duration = data.duration || 'Varies';
+        const rate = data.rate_bwp ? `P${data.rate_bwp}` : 'Contact for quotes';
+        const category = data.category || 'General';
+        const booking = data.booking_available ? '<span class="status-bookable" style="font-size:11px; background:#e8f4fd; color:#1A73E8; padding:2px 6px; border-radius:4px;">Book Now</span>' : '';
+
+        return `
+            <div class="card-service__header" style="display:flex; justify-content:space-between; align-items:start;">
+                <div>
+                    <div class="card-service__title" style="font-weight:600; font-size: 15px;">${name}</div>
+                    <div class="card-service__provider" style="font-size: 12px; color: #666; margin-top:2px;">by ${provider}</div>
+                </div>
+                <div class="card-service__rate" style="font-weight:600; color:#1A73E8;">${rate}</div>
+            </div>
+            <div class="card-service__meta" style="margin-top: 8px; font-size: 12px; color: #555; display:flex; gap:12px;">
+                <span>⏱️ ${duration}</span>
+                <span>🏷️ ${category}</span>
+            </div>
+            <div class="card-service__footer" style="margin-top: 10px; display:flex; justify-content:flex-end;">
+                ${booking}
+            </div>
+        `;
+    }
+
+    templateRecruitment(data) {
+        const position = data.position_needed || 'Player Needed';
+        const skill = data.skill_level || 'Any Level';
+        const team = data.team_name || data.team || 'Local Team';
+        const sport = data.sport || 'Sports';
+        const area = data.area || data.location || 'Local Area';
+        const deadline = this.formatDate(data.deadline || data.expiry_date);
+
+        return `
+            <div class="card-recruit__header" style="display:flex; justify-content:space-between; align-items:start;">
+                <div>
+                    <div class="card-recruit__position" style="font-weight:600; font-size: 15px; color:#2e7d32;">${position} Needed</div>
+                    <div class="card-recruit__team" style="font-size: 13px; font-weight:500; margin-top:2px;">${team}</div>
+                </div>
+                <div class="card-recruit__badge" style="background:#e8f5e9; color:#2e7d32; font-size:11px; padding:2px 6px; border-radius:4px;">Recruiting</div>
+            </div>
+            <div class="card-recruit__meta" style="margin-top: 8px; font-size: 12px; color: #555;">
+                <span>🎯 ${sport}</span>
+                <span class="dot-sep"></span>
+                <span>🏅 ${skill}</span>
+            </div>
+            <div class="card-recruit__details" style="margin-top: 6px; font-size: 12px; color: #666; display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <span>📍 ${area}</span>
+                    <span style="color:#d32f2f; margin-left:8px;">Needs by: ${deadline}</span>
+                </div>
+                <button class="mizano-action-btn group-join-btn" data-id="${data.local_id || data.id}" style="padding:4px 12px; background:#2e7d32; color:#fff; border:none; border-radius:4px; font-weight:600; font-size:0.8rem;">Join Team</button>
+            </div>
+        `;
+    }
+
+    templateMinor(data) {
+        const name = data.minor_name || data.name || 'Minor User';
+        const age = data.age || 'Unknown Age';
+        const school = data.school || 'Unassigned School';
+        const guardian = data.guardian_status_badge || 'Linked';
+        const tags = Array.isArray(data.sport_chips) ? data.sport_chips.slice(0, 3).join(' · ') : (data.sport_chips || 'Sports');
+
+        let scoutingHtml = '';
+        if (data.scouting_off_label) {
+            scoutingHtml = `<span style="font-size:11px; background:#ffeede; color:#e65100; padding:2px 6px; border-radius:4px;">${data.scouting_off_label}</span>`;
+        } else {
+            scoutingHtml = `<span style="font-size:11px; background:#e8f5e9; color:#2e7d32; padding:2px 6px; border-radius:4px;">Scouting Active</span>`;
+        }
+
+        return `
+            <div class="card-minor__header" style="display:flex; justify-content:space-between; align-items:center;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <div class="card-minor__avatar" style="font-size:24px;">👦</div>
+                    <div>
+                        <div class="card-minor__name" style="font-weight:600; font-size: 15px;">${name}</div>
+                        <div class="card-minor__age" style="font-size: 12px; color: #666;">${age} yrs</div>
+                    </div>
+                </div>
+                <div class="card-minor__guardian" style="font-size:11px; border:1px solid #1A73E8; color:#1A73E8; padding:2px 6px; border-radius:4px;">🛡️ Guardian: ${guardian}</div>
+            </div>
+            <div class="card-minor__meta" style="margin-top: 8px; font-size: 12px; color: #555;">
+                <span>🏫 ${school}</span>
+            </div>
+            <div class="card-minor__sports" style="margin-top: 6px; font-size: 12px; color: #1A73E8;">
+                ${tags}
+            </div>
+            <div class="card-minor__footer" style="margin-top: 10px; display:flex; justify-content:flex-end;">
+                ${scoutingHtml}
+            </div>
+        `;
+    }
 }
 
 // Global initialization logic if needed
 window.MizanoCards = CardRenderer;
-
-

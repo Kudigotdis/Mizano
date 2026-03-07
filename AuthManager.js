@@ -45,9 +45,14 @@ class AuthManager {
             return this.currentUser;
         }
 
-        // Find user in cache
-        const users = window.dataManager?.cache?.users || [];
-        const user = users.find(u => u.uid === userId || u.email === userId);
+        let user = null;
+        if (window.mizanoStorage) {
+            // Using StorageManager as the source of truth
+            user = await window.mizanoStorage.getUser(userId);
+        } else if (window.dataManager && window.dataManager.cache && window.dataManager.cache.users) {
+            // Fallback
+            user = window.dataManager.cache.users.find(u => u.uid === userId || u.email === userId);
+        }
 
         if (!user) {
             console.warn(`AuthManager: User ${userId} not found`);
@@ -57,7 +62,7 @@ class AuthManager {
         this.currentUser = user;
         this.saveSession();
         this.broadcastAuthState();
-        console.log(`AuthManager: Logged in as ${user.full_name}`);
+        console.log(`AuthManager: Logged in as ${user.full_name || user.display_name || user.uid}`);
         return user;
     }
 
@@ -67,6 +72,7 @@ class AuthManager {
     logout() {
         this.currentUser = null;
         localStorage.removeItem(this.sessionKey);
+        localStorage.removeItem('currentUser'); // Sync with StorageManager
         this.broadcastAuthState();
         console.log('AuthManager: Logged out');
     }
@@ -165,6 +171,9 @@ class AuthManager {
     saveSession() {
         if (this.currentUser) {
             localStorage.setItem(this.sessionKey, JSON.stringify(this.currentUser));
+            if (this.currentUser.uid !== 'guest' && window.mizanoStorage) {
+                window.mizanoStorage.setCurrentUser(this.currentUser.profile_id || this.currentUser.uid);
+            }
         }
     }
 

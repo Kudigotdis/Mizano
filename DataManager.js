@@ -14,6 +14,9 @@ class DataManager {
             events: [],
             community: {},
             competitions: [],
+            challenges: [],         // Phase 8: Offline Challenges
+            survey_responses: [],   // Phase 8: Mealfo Surveys
+            participation_stats: [],// Phase 8: Heat map stats
             hobbies: [],
             shopping: [],           // Shopping items
             associations: [],       // Sports associations
@@ -39,45 +42,85 @@ class DataManager {
         try {
             await this.hydrate(); // Load persistent state first
 
-            // SEEDING LOGIC: Check if we need to seed 1,000 RDPs
+            // 1. GATHER ALL USER SOURCES
+            let allUsers = [];
+
+            // A. Loaded from Storage
             if (window.mizanoStorage) {
-                const existingUsers = await window.mizanoStorage.getAllUsers();
-                if (existingUsers.length < 100) { // Seed if empty or mostly empty
-                    console.log('DataManager: Database empty. Seeding 1,000 RDPs and School Fixtures...');
-                    await this.seedDeepRDPs();
-                } else {
-                    this.cache.users = existingUsers;
-                    this.cache.schools = await window.mizanoStorage.getAllSchools();
+                const storedUsers = await window.mizanoStorage.getAllUsers();
+                if (storedUsers && storedUsers.length > 0) {
+                    allUsers = storedUsers;
                 }
             }
 
+            // B. script-injected: window.MIZANO_DATA.profiles (from user_profiles_bw.js)
+            if (window.MIZANO_DATA && window.MIZANO_DATA.profiles) {
+                const normalized = window.MIZANO_DATA.profiles.map(u => this._normalizeUser(u));
+                allUsers = [...allUsers, ...normalized];
+            }
+
+            // C. script-injected: window.MIZANO_DATA.users_personas (from users_personas.js)
+            if (window.MIZANO_DATA && window.MIZANO_DATA.users_personas) {
+                const normalized = window.MIZANO_DATA.users_personas.map(u => this._normalizeUser(u));
+                allUsers = [...allUsers, ...normalized];
+            }
+
+            // D. script-injected: window.MIZANO_DATA.preview_users (from future handoff)
+            if (window.MIZANO_DATA && window.MIZANO_DATA.preview_users) {
+                const normalized = window.MIZANO_DATA.preview_users.map(u => this._normalizeUser(u));
+                allUsers = [...allUsers, ...normalized];
+            }
+
+            this.cache.users = this._deduplicateUsers(allUsers);
+
+            // SEEDING LOGIC: Seed if cache is still small
+            if (this.cache.users.length < 100) {
+                console.log('DataManager: User cache small. Seeding 1,000 RDPs...');
+                await this.seedDeepRDPs();
+            }
+
+            await this.loadAnchorProfiles();
+            this.cache.schools = await window.mizanoStorage?.getAllSchools() || [];
+
             await Promise.all([
-                this.loadAnchorProfiles(),
                 this.loadEntity('activities'),
                 this.loadEntity('teams'),
                 this.loadEntity('businesses'),
-                this.loadEntity('events'), // Load the 580+ events
+                this.loadEntity('events'),
                 this.loadEntity('matches'),
                 this.loadMarathons(),
                 this.seedLeaderboards(),
                 this.loadEntity('community'),
+                this.loadEntity('challenges'),
+                this.loadEntity('survey_responses'),
+                this.loadEntity('participation_stats'),
                 this.loadPhase10Data()
             ]);
 
-            console.log('Mizano DataManager: All local databases loaded into cache.');
+            console.log(`Mizano DataManager: All databases loaded. Total Users: ${this.cache.users.length}`);
         } catch (error) {
             console.error('Mizano DataManager: Initialization failed.', error);
         }
     }
 
+    _deduplicateUsers(users) {
+        const seen = new Set();
+        return users.filter(u => {
+            if (seen.has(u.uid)) return false;
+            seen.add(u.uid);
+            return true;
+        });
+    }
+
     async loadAnchorProfiles() {
         try {
             console.log('DataManager: Loading anchor profiles (Kao & Friends)...');
-            const response = await fetch('./data/mizano_profiles_anchor.json');
+            const response = await fetch('./data/mizano_profiles_anchor.json?v=' + Date.now());
             if (response.ok) {
-                const anchors = await response.json();
+                const rawAnchors = await response.json();
+                const anchors = rawAnchors.map(u => this._normalizeUser(u));
                 this.cache.users = [...(this.cache.users || []), ...anchors];
-                console.log(`DataManager: Merged ${anchors.length} anchor profiles.`);
+                console.log(`DataManager: Normalized and merged ${anchors.length} anchor profiles.`);
             }
         } catch (e) {
             console.warn('DataManager: No anchor profiles found or failed to load.');
@@ -89,7 +132,9 @@ class DataManager {
             // Load RDPs from generated file (Relative to index.html)
             const profileResponse = await fetch('./data/mizano_1000_profiles.json');
             if (profileResponse.ok) {
-                const profiles = await profileResponse.json();
+                const rawProfiles = await profileResponse.json();
+                const profiles = rawProfiles.map(u => this._normalizeUser(u));
+
                 const schoolResponse = await fetch('./data/mizano_schools_fixtures.json');
                 const schools = schoolResponse.ok ? await schoolResponse.json() : [];
 
@@ -98,12 +143,27 @@ class DataManager {
                     if (schools.length) await window.mizanoStorage.saveSchools(schools);
                     this.cache.users = [...(this.cache.users || []), ...profiles];
                     this.cache.schools = schools;
-                    console.log(`DataManager: Successfully seeded ${profiles.length} RDPs.`);
+                    console.log(`DataManager: Successfully normalized and seeded ${profiles.length} RDPs.`);
                 }
             }
         } catch (e) {
             console.error('DataManager: Seeding failed.', e);
         }
+    }
+
+    /**
+     * UNIFIER: Normalizes inconsistent user data keys from different datasets.
+     */
+    _normalizeUser(raw) {
+        return {
+            uid: raw.uid || raw.profileID || raw.profile_id || `USR-${Math.random().toString(36).substr(2, 9)}`,
+            name: raw.name || raw.display_name || raw.fullName || (raw.first_name ? `${raw.first_name} ${raw.surname || ''}`.trim() : 'Anonymous'),
+            role: (raw.role || (raw.capabilities && raw.capabilities[0]) || 'player').toLowerCase(),
+            location: raw.location || (raw.villageTownCity ? `${raw.villageTownCity}${raw.areaNeighborhood ? ' · ' + raw.areaNeighborhood : ''}` : 'Unknown'),
+            whatsapp: raw.whatsapp || raw.whatsappNumber || raw.financial?.whatsapp || '',
+            profile_type: raw.profile_type || (raw.age < 20 ? 'Student' : 'Adult'),
+            ...raw // Keep original fields for specialty views
+        };
     }
 
     /**
