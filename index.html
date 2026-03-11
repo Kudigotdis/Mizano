@@ -63,14 +63,14 @@
                 <button class="nav-btn" data-panel="5">Events</button>
                 <button class="nav-btn" data-panel="6">Groups</button>
                 <button class="nav-btn" data-panel="7">Discover</button>
-                <button class="nav-btn" data-panel="8">Mine</button>
-                <button class="nav-btn" data-panel="9">Community</button>
-                <button class="nav-btn" data-panel="10">Leaderboard</button>
-                <button class="nav-btn" data-panel="11">Shopping</button>
-                <button class="nav-btn" data-panel="12">Shops</button>
-                <button class="nav-btn" data-panel="13">Businesses</button>
-                <button class="nav-btn" data-panel="14">Schools</button>
-                <button class="nav-btn" data-panel="15">Venues</button>
+                <button class="nav-btn" data-panel="8">Community</button>
+                <button class="nav-btn" data-panel="9">Leaderboard</button>
+                <button class="nav-btn" data-panel="10">Shopping</button>
+                <button class="nav-btn" data-panel="11">Shops</button>
+                <button class="nav-btn" data-panel="12">Businesses</button>
+                <button class="nav-btn" data-panel="13">Schools</button>
+                <button class="nav-btn" data-panel="14">Venues</button>
+                <button class="nav-btn" data-panel="15">Mine</button>
                 <!-- Infinite scroll visual duplicates -->
                 <button class="nav-btn" data-panel="0">Home</button>
                 <button class="nav-btn" data-panel="1">Sports</button>
@@ -124,66 +124,60 @@
                 <div class="drop-field" id="drop-field-discover"></div>
             </section>
 
-            <!-- Panel 8: Mine -->
+            <!-- Panel 8: Community -->
             <section class="panel" id="panel-8">
-                <!-- Mine Content handles its own layout -->
-                <div id="mine-panel-content">
-                    <!-- Phase 8 anchor containers — populated by MineRenderer_Phase8_patch.js -->
+                <div class="drop-field" id="drop-field-community"></div>
+            </section>
+
+            <!-- Panel 9: Leaderboard -->
+            <section class="panel" id="panel-9">
+                <div class="drop-field" id="drop-field-leaderboard"></div>
+            </section>
+
+            <!-- Panel 10: Shopping -->
+            <section class="panel" id="panel-10">
+                <div class="drop-field" id="drop-field-shopping"></div>
+            </section>
+
+            <!-- Panel 11: Shops -->
+            <section class="panel" id="panel-11">
+                <div class="drop-field" id="drop-field-shops"></div>
+            </section>
+
+            <!-- Panel 12: Businesses -->
+            <section class="panel" id="panel-12">
+                <div class="drop-field" id="drop-field-businesses"></div>
+            </section>
+
+            <!-- Panel 13: Schools -->
+            <section class="panel" id="panel-13">
+                <div class="drop-field" id="drop-field-schools"></div>
+            </section>
+
+            <!-- Panel 14: Venues -->
+            <section class="panel" id="panel-14">
+                <div class="drop-field" id="drop-field-venues"></div>
+            </section>
+
+            <!-- Panel 15: Mine (Profile & Stats Dashboard) -->
+            <section class="panel" id="panel-15">
+                <!-- 1. Profile Hero Section (Populated by ProfilePanel.js) -->
+                <div id="mine-hero-container"></div>
+
+                <!-- 2. Comparison View Section (Populated by ComparisonView.js) -->
+                <div id="mine-comparison-container" style="display: none;"></div>
+
+                <!-- 3. Dynamic Stats Dashboard (Populated by MineRenderer.js) -->
+                <div id="mine-dashboard-container">
                     <div id="mine-consistency-calendar" data-mine-section="consistency"></div>
                     <div id="mine-habit-chains" data-mine-section="habits"></div>
                     <div id="mine-injury-list" data-mine-section="injuries"></div>
                 </div>
             </section>
 
-            <!-- Panel 9: Community -->
-            <section class="panel" id="panel-9">
-                <div class="drop-field" id="drop-field-community"></div>
-            </section>
-
-            <!-- Panel 10: Leaderboard -->
-            <section class="panel" id="panel-10">
-                <div class="drop-field" id="drop-field-leaderboard"></div>
-            </section>
-
-            <!-- Panel 11: Shopping -->
-            <section class="panel" id="panel-11">
-                <div class="drop-field" id="drop-field-shopping"></div>
-            </section>
-
-            <!-- Panel 12: Shops -->
-            <section class="panel" id="panel-12">
-                <div class="drop-field" id="drop-field-shops"></div>
-            </section>
-
-            <!-- Panel 13: Businesses -->
-            <section class="panel" id="panel-13">
-                <div class="drop-field" id="drop-field-businesses"></div>
-            </section>
-
-            <!-- Panel 14: Schools -->
-            <section class="panel" id="panel-14">
-                <div class="drop-field" id="drop-field-schools"></div>
-            </section>
-
-            <!-- Panel 15: Venues -->
-            <section class="panel" id="panel-15">
-                <div class="drop-field" id="drop-field-venues"></div>
-            </section>
-
             <!-- Infinite Loop Clone for Seamless Swipe -->
             <section class="panel" id="panel-16">
                 <div class="drop-field" id="drop-field-home-clone"></div>
-            </section>
-
-            <!-- Panel 17: Tracker (internal use only — not in Panel Menu) -->
-            <section class="panel" id="panel-17">
-                <!-- Header hidden/handled by TrackerRenderer -->
-                <div class="drop-field" id="drop-field-tracker"></div>
-            </section>
-
-            <!-- Panel 18: User Profile (Dedicated Panel) -->
-            <section class="panel" id="panel-18">
-                <div class="drop-field" id="drop-field-profile-panel" style="padding: 0; min-height: 100vh;"></div>
             </section>
         </div>
     </main>
@@ -362,30 +356,13 @@
             <h2 style="margin-left: 10px;">Menu</h2>
         </div>
         <div class="overlay-content" style="padding: 16px;">
-            <div class="mizano-card" onclick="window.MizanoNav.switchPanel(0); window.MizanoNav.closeTopOverlay();"
+            <div class="mizano-card"
+                onclick="window.MizanoNav.switchPanel(15, 'auto'); window.MizanoNav.closeTopOverlay();"
                 style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
-                <span style="font-size:1.5rem; margin-right:15px;">🏠</span>
-                <div style="flex:1;">
-                    <h3 style="margin:0;">Home</h3>
-                    <p style="margin:0; font-size:0.8rem; color:#666;">Return to the main feed</p>
-                </div>
-                <span>›</span>
-            </div>
-            <div class="mizano-card" onclick="window.MizanoNav.switchPanel(18); window.MizanoNav.closeTopOverlay();"
-                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px; border: 2px solid #1a73e8;">
                 <span style="font-size:1.5rem; margin-right:15px;">👤</span>
                 <div style="flex:1;">
                     <h3 style="margin:0;">My Profile</h3>
                     <p style="margin:0; font-size:0.8rem; color:#666;">View your stats, family, and history</p>
-                </div>
-                <span>›</span>
-            </div>
-            <div class="mizano-card" onclick="window.MizanoNav.switchPanel(17); window.MizanoNav.closeTopOverlay();"
-                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
-                <img src="./assets/images/icons/Tracker Icon.png" style="width:24px; height:24px; margin-right:15px;">
-                <div style="flex:1;">
-                    <h3 style="margin:0;">MIZANO Tracker</h3>
-                    <p style="margin:0; font-size:0.8rem; color:#666;">Track goals, streaks, and health</p>
                 </div>
                 <span>›</span>
             </div>
@@ -401,11 +378,11 @@
                 <span>›</span>
             </div>
             <div class="mizano-card" onclick="window.MizanoNav.pushPage('my-reservations')"
-                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px; background: linear-gradient(135deg, #1b5e20, #2e7d32); color: white;">
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
                 <span style="font-size:1.5rem; margin-right:15px;">📅</span>
                 <div style="flex:1;">
                     <h3 style="margin:0;">My Bookings & Waitlists</h3>
-                    <p style="margin:0; font-size:0.8rem; opacity:0.9;">View and manage your venue reservations</p>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">View and manage your venue reservations</p>
                 </div>
                 <span>›</span>
             </div>
@@ -516,7 +493,7 @@
     <script src="./PulseTriggers.js"></script>
     <script src="./AssociationPulseCard.js"></script>
     <script src="./AssociationsOverlay.js"></script>
-    <script src="./MinePanel.js"></script>
+
     <script src="./GuardianSafety.js"></script>
     <script src="./ProfileInterface.js"></script>
     <script src="./ProfileDetail.js"></script>
@@ -532,6 +509,7 @@
     <script src="./BusinessBuilder.js"></script>
     <script src="./FilterEngine.js"></script>
     <script src="./MineRenderer.js"></script>
+    <script src="./ComparisonView.js"></script>
     <!-- SESSION Phase 8: Engagement Features — must load after MineRenderer.js -->
     <script src="./StreakCalculator.js"></script>
     <script src="./HabitForm.js"></script>

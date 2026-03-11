@@ -139,13 +139,20 @@ class NavigationController {
                                 left: index * window.innerWidth,
                                 behavior: 'auto' // Instant cut
                             });
+                            // Apply fade effect manually for duplicate snaps
+                            const targetPanel = document.getElementById(`panel-${index}`);
+                            if (targetPanel) {
+                                targetPanel.classList.remove('fade-in');
+                                void targetPanel.offsetWidth;
+                                targetPanel.classList.add('fade-in');
+                            }
                         }
                     }
 
                     // Visually slide the Top Nav to the duplicate button smoothly, then snap to real
                     this.syncNavUI(index, btn);
                 } else {
-                    this.switchPanel(index);
+                    this.switchPanel(index, 'auto');
                 }
             });
         });
@@ -221,7 +228,7 @@ class NavigationController {
     /**
      * Navigate to a main panel (Horizontal Level 1)
      */
-    switchPanel(index) {
+    switchPanel(index, behavior = 'smooth') {
         // Boundary enforcement
         if (index < 0 || index >= this.totalPanels) return;
         if (index === this.state.panelIndex) return;
@@ -233,8 +240,18 @@ class NavigationController {
         if (container) {
             container.scrollTo({
                 left: index * window.innerWidth,
-                behavior: 'smooth'
+                behavior: behavior
             });
+
+            // If behavior is auto (instant), apply fade-in effect to target panel
+            if (behavior === 'auto') {
+                const targetPanel = document.getElementById(`panel-${index}`);
+                if (targetPanel) {
+                    targetPanel.classList.remove('fade-in');
+                    void targetPanel.offsetWidth; // Force reflow
+                    targetPanel.classList.add('fade-in');
+                }
+            }
         }
 
         // Android Back Law: Any core page back returns to Home (Panel 0)
@@ -360,7 +377,14 @@ class NavigationController {
     openOverlay(overlayId) {
         // Mapping string keys to element IDs
         const overlayMap = {
-            'panels-menu': 'panels-menu-overlay'
+            'panels-menu': 'panels-menu-overlay',
+            'detail': 'detail-view',
+            'builder': 'builder-view',
+            'builder-choice': 'add-action-overlay', // Re-mapped for consistency with AddActionRouter
+            'add': 'add-action-overlay',
+            'hamburger': 'hamburger-overlay',
+            'search': 'search-overlay',
+            'settings': 'settings-overlay'
         };
 
         const targetId = overlayMap[overlayId] || `${overlayId}-overlay`;
@@ -402,6 +426,12 @@ class NavigationController {
                 break;
             case 'hamburger':
                 this.openOverlay('hamburger');
+                break;
+            // Handle "Mine" / Profile triggers
+            case 'mine-profile':
+            case 'my-profile':
+            case 'profile': // Added 'profile' case
+                this.switchPanel(15, 'auto'); // Updated index from 8 to 15, added 'auto' behavior
                 break;
         }
     }
@@ -540,41 +570,9 @@ class NavigationController {
                 }
                 break;
 
-            // Phase 10: New Card Types Wiring
-            case 'Institution Card':
-                if (data.school_id || (data.id && data.id.startsWith('sch_'))) {
-                    this.pushPage('school-detail', { schoolId: data.school_id || data.id });
-                } else if (data.business_id || (data.id && data.id.startsWith('biz_'))) {
-                    this.pushPage('business-detail', { businessId: data.business_id || data.id });
-                }
-                break;
-
-            case 'Shopping Deal Card':
-                if (data.id) {
-                    this.pushPage('shopping-detail', { itemId: data.id });
-                }
-                break;
-
-            case 'Suggestion Card':
-                this.notifyUI('toast', { message: 'Suggestion accepted!', type: 'success' });
-                // Could open detail or just confirm action
-                break;
-
-            case 'Challenge Card':
-                if (data.challenge_id || data.id) {
-                    this.pushPage('challenge-detail', { challengeId: data.challenge_id || data.id });
-                }
-                break;
-
-            case 'Survey Card':
-                if (data.survey_id || data.id) {
-                    this.pushPage('survey-detail', { surveyId: data.survey_id || data.id });
-                }
-                break;
-
             case 'Stats Card':
                 // navigate to profile stats tab
-                this.switchPanel(8); // Mine Panel
+                this.switchPanel(15); // Mine Panel
                 break;
 
             default:
@@ -636,7 +634,10 @@ class NavigationController {
         if (overlayId) {
             // Mapping string keys to element IDs (Same as openOverlay)
             const overlayMap = {
-                'panels-menu': 'panels-menu-overlay'
+                'panels-menu': 'panels-menu-overlay',
+                'detail': 'detail-view',
+                'builder': 'builder-view',
+                'add': 'add-action-overlay'
             };
             const targetId = overlayMap[overlayId] || `${overlayId}-overlay`;
             this.notifyUI('overlay-close', { overlayId, targetId });
@@ -682,3 +683,5 @@ class NavigationController {
 
 // Singleton Instance
 window.MizanoNav = new NavigationController();
+
+

@@ -159,6 +159,18 @@ class CardRenderer {
                 card.innerHTML = this.templateMinor(data);
                 break;
 
+            case 'Shopping Deal Card':
+                card.innerHTML = this.templateProduct ? this.templateProduct(data) : `<div style="padding:16px;font-weight:600"></div>`;
+                break;
+            case 'Lesson Card':
+            case 'Training/Lesson Progress Card':
+                card.innerHTML = this.templateLesson(data);
+                break;
+            case 'Match-Making Card':
+            case 'Player-Recruitment Card':
+                card.innerHTML = this.templateRecruitment(data);
+                break;
+
             default:
                 card.innerHTML = `<div style="padding:16px">Unknown Type: ${data.card_type}</div>`;
         }
@@ -299,10 +311,10 @@ class CardRenderer {
 
     templateInstitution(data) {
         const logoHTML = data.logo_emblem || data.logo || '🏫';
-        const name = data.name || 'Institution';
+        const institutionName = data.name || 'Institution';
         const verifiedBadge = data.is_verified || data.verified ? '<span class="card-institution__verified">✓</span>' : '';
-        const category = data.category || 'Academic';
-        const location = data.location || 'Botswana';
+        const typeLabel = data.category || 'Academic';
+        const locationLabel = data.location || 'Botswana';
 
         let stats = data.stats || [];
         if (!Array.isArray(stats) && typeof stats === 'object') {
@@ -312,13 +324,15 @@ class CardRenderer {
 
         return `
             <div class="card-institution">
-                <div class="card-institution__logo">${logoHTML}</div>
+                <div class="card-institution__logo">
+                    ${logoHTML}
+                </div>
                 <div class="card-institution__body">
                     <div class="card-institution__name">
-                        ${name}
+                        ${institutionName}
                         ${verifiedBadge}
                     </div>
-                    <div class="card-institution__sub">${category} · ${location}</div>
+                    <div class="card-institution__sub">${typeLabel} · ${locationLabel}</div>
                     <div class="card-institution__stats">
                         ${statsHTML}
                     </div>
@@ -330,16 +344,15 @@ class CardRenderer {
 
 
     templateMatch(data) {
-        const isLiveOrFinished = data.state === 'Active Now' || data.state === 'Passed';
+        const statusValue = this.mapStatus(data);
         const teamA = data.left_team || data.team_a || { name: 'Team A' };
         const teamB = data.right_team || data.team_b || { name: 'Team B' };
 
-        const logoA = teamA.logo || data.team_a_logo ? `<img src="${teamA.logo || data.team_a_logo}" alt="${teamA.name}">` : '⚽';
-        const logoB = teamB.logo || data.team_b_logo ? `<img src="${teamB.logo || data.team_b_logo}" alt="${teamB.name}">` : '🏆';
+        const homeLogoHTML = teamA.logo || data.team_a_logo ? `<img src="${teamA.logo || data.team_a_logo}" alt="${teamA.name}">` : '⚽';
+        const awayLogoHTML = teamB.logo || data.team_b_logo ? `<img src="${teamB.logo || data.team_b_logo}" alt="${teamB.name}">` : '🏆';
 
+        const isLiveOrFinished = statusValue === 'live' || statusValue === 'finished';
         const kickoffTime = data.start_time || data.match_time || 'TBA';
-        const venueName = data.venue || data.venue_name || 'TBA';
-        const locationName = data.location || data.venue_location || 'Botswana';
 
         let scoreOrTimeHTML = `<div class="card-match__score-time">${kickoffTime}</div>`;
         if (isLiveOrFinished) {
@@ -353,7 +366,9 @@ class CardRenderer {
         }
 
         const htScoreHTML = data.match_period || data.ht_score ? `<div class="card-match__ht">${data.match_period || data.ht_score}</div>` : '';
-        const minuteHTML = data.state === 'Active Now' && data.match_minute ? `<div class="card-match__minute">${data.match_minute}'</div>` : '';
+        const minuteHTML = statusValue === 'live' && data.match_minute ? `<div class="card-match__minute">${data.match_minute}'</div>` : '';
+        const venueName = data.venue || data.venue_name || 'TBA';
+        const locationName = data.location || data.venue_location || 'Botswana';
 
         let safetyFooterHTML = '';
         if (data.safety_status && data.safety_status !== 'NONE') {
@@ -363,7 +378,7 @@ class CardRenderer {
         return `
             <div class="card-match__teams">
                 <div class="card-match__team">
-                    <div class="card-match__logo">${logoA}</div>
+                    <div class="card-match__logo">${homeLogoHTML}</div>
                     <div class="card-match__team-name">${teamA.name}</div>
                 </div>
                 <div class="card-match__center">
@@ -372,7 +387,7 @@ class CardRenderer {
                     ${minuteHTML}
                 </div>
                 <div class="card-match__team">
-                    <div class="card-match__logo">${logoB}</div>
+                    <div class="card-match__logo">${awayLogoHTML}</div>
                     <div class="card-match__team-name">${teamB.name}</div>
                 </div>
             </div>
@@ -395,64 +410,61 @@ class CardRenderer {
      */
 
     templateCommunityPost(data) {
-        const title = data.post_title || data.title || 'Untitled Post';
-        const content = data.post_content || data.content || '';
+        const postTitle = data.post_title || data.title || 'Untitled Post';
+        const postBody = data.post_content || data.content || '';
         const author = data.author || { name: 'Anonymous', avatar: null };
-        const avatar = author.profile_picture || author.avatar || data.author_avatar || '👤';
-        const village = data.author_village || author.village || 'Botswana';
-        const area = data.author_area || author.area || 'Central';
-        const timestamp = data.timestamp || this.formatDate(data.createdAt);
+        const avatarHTML = author.profile_picture || author.avatar || data.author_avatar || '👤';
+        const authorFullName = author.name || 'Anonymous';
+        const cityOrVillage = data.author_village || author.village || 'Botswana';
+        const areaOrNeighbourhood = data.author_area || author.area || 'Central';
+        const timeAgo = data.timestamp || this.formatDate(data.createdAt);
 
         return `
-            <div class="card-feed__title">${title}</div>
-            <div class="card-feed__body">${content}</div>
+            <div class="card-feed__title">${postTitle}</div>
+            <div class="card-feed__body">${postBody}</div>
             <div class="card-feed__author-row">
-                <div class="card-feed__avatar">${avatar}</div>
+                <div class="card-feed__avatar">
+                    ${avatarHTML}
+                </div>
                 <div class="card-feed__author-info">
-                    <div class="card-feed__author-name">${author.name}</div>
+                    <div class="card-feed__author-name">${authorFullName}</div>
                     <div class="card-feed__author-location">
-                        ${village}<span class="dot-sep"></span>${area}<span class="dot-sep"></span>${timestamp}
+                        ${cityOrVillage}<span class="dot-sep"></span>${areaOrNeighbourhood}<span class="dot-sep"></span>${timeAgo}
                     </div>
                 </div>
-            </div>
-            <div class="card-feed__actions" style="margin-top: 12px; display: flex; gap: 8px;">
-                <button class="mizano-action-btn community-boost-btn" data-id="${data.local_id || data.id}" style="flex:1; padding:8px; background:#fff; border:1px solid #ff5722; color:#ff5722; border-radius:4px; font-weight:600; font-size:0.85rem;">Boost Post</button>
             </div>
         `;
     }
 
     templateJobListing(data) {
-        const title = data.job_title || data.title || 'Job Opening';
-        const company = data.company_name || data.company || 'Organization';
-        const location = data.location || 'Botswana';
-        const salary = data.salary_range || data.salary || 'Negotiable';
-        const deadline = data.deadline_date || this.formatDate(data.deadline);
+        const jobTitle = data.job_title || data.title || 'Job Opening';
+        const companyName = data.company_name || data.company || 'Organization';
+        const workLocation = data.location || 'Botswana';
+        const salaryInfo = data.salary_range || data.salary || 'Negotiable';
+        const closeDate = data.deadline_date || this.formatDate(data.deadline);
 
         return `
-            <div class="card-job__title">${title}</div>
-            <div class="card-job__company">${company} · ${location}</div>
-            <div class="card-job__salary">${salary}</div>
-            <div class="card-job__deadline">Deadline: ${deadline}</div>
-            <div class="card-job__actions" style="margin-top: 12px; display: flex; gap: 8px;">
-                <button class="mizano-action-btn job-apply-btn" data-id="${data.local_id || data.id}" style="flex:1; padding:10px; background:#1e88e5; color:#fff; border:none; border-radius:4px; font-weight:700; font-size:0.9rem;">Quick-Apply</button>
-            </div>
+            <div class="card-job__title">${jobTitle}</div>
+            <div class="card-job__company">${companyName} · ${workLocation}</div>
+            <div class="card-job__salary">${salaryInfo}</div>
+            <div class="card-job__deadline">Deadline: ${closeDate}</div>
         `;
     }
 
     templateLostFound(data) {
-        const type = data.type || (data.status === 'lost' ? 'lost' : 'found');
-        const statusLabel = data.status_label || (type === 'lost' ? 'Looking For' : 'Found');
-        const statusClass = type === 'lost' ? 'status-looking' : 'status-found';
-        const item = data.item_name || data.title || 'Item';
-        const location = data.location || 'Botswana';
-        const date = data.date || this.formatDate(data.createdAt);
+        const typeOfReport = data.type || (data.status === 'lost' ? 'lost' : 'found');
+        const statusLabel = data.status_label || (typeOfReport === 'lost' ? 'Looking For' : 'Found');
+        const statusClass = typeOfReport === 'lost' ? 'status-looking' : 'status-found';
+        const itemName = data.item_name || data.title || 'Item';
+        const foundLocation = data.location || 'Botswana';
+        const reportDate = data.date || this.formatDate(data.createdAt);
 
         return `
             <div class="card-lostfound__top">
                 <span class="card-lostfound__status ${statusClass}">${statusLabel}</span>
-                <span class="card-lostfound__item">${item}</span>
+                <span class="card-lostfound__item">${itemName}</span>
             </div>
-            <div class="card-lostfound__location">${location}<span class="dot-sep"></span>${date}</div>
+            <div class="card-lostfound__location">${foundLocation}<span class="dot-sep"></span>${reportDate}</div>
         `;
     }
 
@@ -551,22 +563,22 @@ class CardRenderer {
     }
 
     templateShoppingDeal(data) {
-        const image = data.product_image || (data.image_path ? `<img src="${data.image_path}" alt="${data.product_name || data.title}">` : '👟');
-        const name = data.product_name || data.title || 'Product';
-        const category = data.category || data.subcategory || 'General';
-        const price = data.price_display || (data.price_pula ? `P${data.price_pula.toFixed(2)}` : 'Free');
-        const seller = data.seller_name || data.seller || 'Mizano Seller';
-        const location = data.location || 'Botswana';
+        const prodImage = data.product_image || (data.image_path ? `<img src="${data.image_path}" alt="${data.product_name || data.title}">` : '👟');
+        const prodName = data.product_name || data.title || 'Product';
+        const prodCategory = data.category || data.subcategory || 'General';
+        const prodPrice = data.price_display || (data.price_pula ? `P${data.price_pula.toFixed(2)}` : 'Free');
+        const prodSeller = data.seller_name || data.seller || 'Mizano Seller';
+        const prodLocation = data.location || 'Botswana';
 
         return `
             <div class="card-product__image">
-                ${image}
+                ${prodImage}
             </div>
-            <div class="card-product__name">${name}</div>
-            <div class="card-product__category">${category}</div>
+            <div class="card-product__name">${prodName}</div>
+            <div class="card-product__category">${prodCategory}</div>
             <div class="card-product__footer">
-                <div class="card-product__price">${price}</div>
-                <div class="card-product__seller">${seller} · ${location}</div>
+                <div class="card-product__price">${prodPrice}</div>
+                <div class="card-product__seller">${prodSeller} · ${prodLocation}</div>
             </div>
         `;
     }
@@ -585,7 +597,7 @@ class CardRenderer {
         const target = data.target_goal || data.goalValue || 10;
         const unit = data.unit || data.goalUnit || 'km';
         const participantCount = data.participant_count || data.participants || 1;
-        const percent = data.progress_pct || Math.min(100, Math.round((current / target) * 100));
+        const percent = data.progress_pct || Math.min(100, Math.round((current / (target || 1)) * 100));
 
         return `
             <div class="card-challenge__type">${challengeType}</div>
@@ -628,6 +640,11 @@ class CardRenderer {
     }
 
     templateStats(data) {
+        const labelText = data.label || 'Performance Index';
+        const valueNum = data.value || '8.2';
+        const trendVal = data.trend || '+0.4';
+        const isPositive = !trendVal.toString().startsWith('-');
+
         return `
             <div class="card-feed__title">📊 Community Stats</div>
             <div class="card-feed__body">
@@ -1013,7 +1030,112 @@ class CardRenderer {
             </div>
         `;
     }
+
+    /**
+     * PHASE 10: ENGAGEMENT TEMPLATES
+     */
+
+    templateSuggestion(data) {
+        const title = data.title || 'Recommended for You';
+        const desc = data.description || 'Based on your recent activity.';
+        const icon = data.icon || '💡';
+        const action = data.action_label || 'View Activity';
+
+        return `
+            <div style="padding: 16px;">
+                <div style="display: flex; gap: 12px; align-items: flex-start;">
+                    <div style="font-size: 1.8rem;">${icon}</div>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 700; color: #16a085; font-size: 0.95rem; margin-bottom: 4px;">SUGGESTION</div>
+                        <div style="font-weight: 800; font-size: 1.1rem; line-height: 1.2; margin-bottom: 6px;">${title}</div>
+                        <div style="font-size: 0.85rem; color: #555; line-height: 1.4;">${desc}</div>
+                    </div>
+                </div>
+                <button class="mizano-action-btn" data-id="${data.id}" style="width: 100%; margin-top: 15px; padding: 10px; background: #16a085; color: #fff; border: none; border-radius: 6px; font-weight: 700;">${action}</button>
+            </div>
+        `;
+    }
+
+    templateChallenge(data) {
+        const title = data.title || 'Active Challenge';
+        const target = data.target || 'Complete 3 matches';
+        const progress = data.progress || 0;
+        const total = data.total || 3;
+        const pct = Math.floor((progress / (total || 1)) * 100);
+
+        return `
+            <div style="padding: 16px; background: linear-gradient(135deg, #fff 0%, #f0f7f4 100%);">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="font-weight: 700; color: #27ae60; font-size: 0.8rem; letter-spacing: 0.5px;">COMMUNITY CHALLENGE</div>
+                    <div style="font-size: 1.2rem;">🏆</div>
+                </div>
+                <div style="font-weight: 800; font-size: 1.2rem; margin: 8px 0;">${title}</div>
+                <div style="font-size: 0.9rem; color: #444; margin-bottom: 12px;">${target}</div>
+                
+                <div style="height: 8px; background: #eee; border-radius: 4px; overflow: hidden; margin-bottom: 6px;">
+                    <div style="width: ${pct}%; height: 100%; background: #27ae60; transition: width 0.5s;"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; color: #666;">
+                    <span>PROGRESS: ${pct}%</span>
+                    <span>${progress}/${total}</span>
+                </div>
+                <button class="mizano-action-btn job-apply-btn" data-id="${data.id}" style="width: 100%; margin-top: 15px; padding: 10px; background: #fff; border: 2px solid #27ae60; color: #27ae60; border-radius: 6px; font-weight: 700;">Join Challenge</button>
+            </div>
+        `;
+    }
+
+    templateSurvey(data) {
+        const question = data.question || 'How was your experience?';
+        const options = data.options || ['Great', 'Good', 'Average', 'Poor'];
+
+        return `
+            <div style="padding: 16px; background: #fff;">
+                <div style="font-weight: 700; color: #8e44ad; font-size: 0.8rem; margin-bottom: 10px;">QUICK POLL</div>
+                <div style="font-weight: 700; font-size: 1.1rem; line-height: 1.3; margin-bottom: 15px;">${question}</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    ${options.map(opt => `
+                        <div class="mizano-action-btn community-help-btn" data-action="vote" data-id="${data.id}" style="padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.9rem; font-weight: 600; text-align: center; cursor: pointer;">
+                            ${opt}
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    templateStats(data) {
+        const label = data.label || 'Performance Index';
+        const value = data.value || '8.2';
+        const trend = data.trend || '+0.4';
+        const isPositive = !trend.toString().startsWith('-');
+
+        return `
+            <div style="padding: 16px; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <div style="font-weight: 700; color: #3498db; font-size: 0.8rem; margin-bottom: 4px;">DYNAMIC STATS</div>
+                    <div style="font-weight: 800; font-size: 1.1rem;">${label}</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 1.8rem; font-weight: 900; color: #2c3e50;">${value}</div>
+                    <div style="font-size: 0.8rem; font-weight: 700; color: ${isPositive ? '#27ae60' : '#e74c3c'};">
+                        ${isPositive ? '▲' : '▼'} ${trend}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    formatDate(dateStr) {
+        if (!dateStr) return 'TBA';
+        try {
+            const d = new Date(dateStr);
+            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        } catch (e) {
+            return dateStr;
+        }
+    }
 }
 
 // Global initialization logic if needed
 window.MizanoCards = CardRenderer;
+

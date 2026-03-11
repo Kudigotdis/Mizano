@@ -79,9 +79,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Golden-rule panel list — only change with explicit confirmation
         const panelNames = [
             'Home', 'Sports', 'Hobbies', 'Leisure', 'Lessons',
-            'Events', 'Groups', 'Discover', 'Mine', 'Community',
+            'Events', 'Groups', 'Discover', 'Community',
             'Leaderboard', 'Shopping', 'Shops', 'Businesses',
-            'Schools', 'Venues'
+            'Schools', 'Venues', 'Mine'
         ];
 
         container.innerHTML = '';
@@ -93,21 +93,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             btn.textContent = name;
             btn.style.cssText = 'display:block; width:100%; padding:16px; text-align:center; font-size:1.1rem; border:none; background:#fff; cursor:pointer; font-weight:500;';
             btn.addEventListener('click', () => {
-                window.MizanoNav.back();
+                // Close the overlay directly to avoid history pop-state race conditions
+                window.MizanoNav.closeTopOverlay();
+                // Short postponement to allow UI thread to close the overlay before scrolling
                 setTimeout(() => {
-                    window.MizanoNav.switchPanel(targetIdx);
-                }, 100);
+                    window.MizanoNav.switchPanel(targetIdx, 'auto');
+                }, 50);
             });
             container.appendChild(btn);
         });
     }
 
-    // Safe initialization
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', generatePanelsMenu);
-    } else {
-        generatePanelsMenu();
-    }
+    // 4. Initial call
+    generatePanelsMenu();
 
     // 5. APEX UI: INTERACTION HANDLERS (Level 1-4 Hierarchy)
     const btnPanels = document.getElementById('btn-panels-mizano');
@@ -571,12 +569,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         const { type, index, overlayId, pageId, data } = e.detail;
         switch (type) {
             case 'panel-switch':
-                if (index === 8 && window.MizanoMine) window.MizanoMine.render();
-                if (index === 8 && window.ProfilePanel) window.ProfilePanel.init();
-                if (index === 17 && window.MizanoTrackerRenderer) window.MizanoTrackerRenderer.render();
-                if (index === 18 && window.MizanoProfileDetailPanel && window.authManager) {
-                    const u = window.authManager.getCurrentUser();
-                    if (u) window.MizanoProfileDetailPanel.render(u.uid || u.profile_id);
+                if (index === 15) {
+                    if (window.MizanoMine) window.MizanoMine.render();
+                    if (window.ProfilePanel) window.ProfilePanel.init();
+                    if (window.MizanoComparison) window.MizanoComparison.render();
                 }
                 const panel = document.getElementById(`panel-${index}`);
                 if (panel && window.mizanoStorage) panel.scrollTop = window.mizanoStorage.loadScroll(index);
@@ -864,3 +860,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }, 100);
 });
+
+
+

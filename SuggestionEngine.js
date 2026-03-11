@@ -36,9 +36,12 @@ class SuggestionEngine {
             season = 'dry';
         }
 
-        // Weather mocked to 'any' since weather_cache is not yet implemented fully 
-        // in StorageManager. Fallback to 'clear' or 'any'.
+        // Weather retrieval from StorageManager weather_cache
         let weather = 'any';
+        const weatherCache = window.mizanoStorage ? window.mizanoStorage.load('weather_cache') : null;
+        if (weatherCache && (Date.now() - weatherCache.timestamp < 3600000)) { // 1 hour threshold
+            weather = weatherCache.payload.condition || 'any';
+        }
 
         let validSuggestions = this.suggestions.filter(s =>
             (s.season === 'all' || s.season === season) &&

@@ -10,7 +10,8 @@ class MineRenderer {
     }
 
     render() {
-        if (!this.container || !this.dataManager) return;
+        const container = document.getElementById('mine-dashboard-container');
+        if (!container || !this.dataManager) return;
 
         const user = this.dataManager.getCurrentUser();
         if (!user) {
@@ -30,9 +31,9 @@ class MineRenderer {
             `;
         }
 
-        this.container.innerHTML = `
+        container.innerHTML = `
             <div class="mine-dashboard">
-                ${this.templateProfileCard(user)}
+
                 ${this.templateConsistencyCalendar()}
                 ${this.templateHabitChain()}
                 ${suggestionHtml}

@@ -15,6 +15,9 @@ class DataManager {
             community: {},
             competitions: [],
             challenges: [],         // Phase 8: Offline Challenges
+            habits: [],             // Phase 10: Habit Chains
+            habit_logs: [],         // Phase 10: Habit Logs
+            injury_log: [],         // Phase 10: Injury Log
             survey_responses: [],   // Phase 8: Mealfo Surveys
             participation_stats: [],// Phase 8: Heat map stats
             hobbies: [],
@@ -173,8 +176,18 @@ class DataManager {
         const storage = window.mizanoStorage;
         if (!storage) return;
 
+        const user = await storage.getCurrentUserId();
+        if (user) {
+            // Hydrate user-specific Phase 10 entities
+            this.cache.habits = await storage.getEntitiesByUser('habits', user) || [];
+            this.cache.habit_logs = await storage.getEntitiesByUser('habit_logs', user) || [];
+            this.cache.injury_log = await storage.getEntitiesByUser('injury_log', user) || [];
+            this.cache.challenges = await storage.getEntitiesByUser('challenges', user) || [];
+            this.cache.survey_responses = await storage.getEntitiesByUser('survey_responses', user) || [];
+        }
+
         this.cache.rsvps = storage.loadRSVPs();
-        console.log('DataManager: Hydrated RSVP states from persistent storage.');
+        console.log('DataManager: Hydrated Phase 10 entities and RSVP states.');
     }
 
     /**
@@ -661,8 +674,21 @@ class DataManager {
             console.log(`DataManager: Loaded ${this.cache.associations.length} associations from global script.`);
         }
 
+        // Load Phase 10 Specific Suggestions & Surveys if available
+        if (window.MIZANO_DATA && window.MIZANO_DATA.sample_activity_suggestions) {
+            this.cache.activity_suggestions = window.MIZANO_DATA.sample_activity_suggestions;
+        }
+
         console.log('DataManager: Phase 10 data loading complete.');
     }
+
+    // Phase 10 Getters
+    getChallenges() { return this.cache.challenges || []; }
+    getHabits() { return this.cache.habits || []; }
+    getHabitLogs() { return this.cache.habit_logs || []; }
+    getInjuries() { return this.cache.injury_log || []; }
+    getSurveyResponses() { return this.cache.survey_responses || []; }
+    getParticipationStats() { return this.cache.participation_stats || []; }
 
     async createActivity(activityData) {
         const newAct = {
@@ -720,31 +746,31 @@ class DataManager {
      */
     getHomeFeed() {
         const activities = this.cache.activities || [];
-        const events = this.cache.events || []; // Pull the 580+ events
+        const events = this.cache.events || [];
+        const challenges = this.getChallenges().filter(c => c.status === 'active');
 
         // 1. Generate Dynamic Cards (Fallback to samples if available)
-        const suggestions = window.MIZANO_DATA && window.MIZANO_DATA.sample_activity_suggestions ?
-            window.MIZANO_DATA.sample_activity_suggestions : [
-                {
-                    card_type: 'Suggestion Card',
-                    title: 'Try Padel Tennis',
-                    description: 'The fastest growing sport in Gaborone. Book a court at Set & Smash.',
-                    action_label: "I'll try it"
-                }
-            ];
+        const suggestion = window.MizanoSuggestionEngine ? window.MizanoSuggestionEngine.getCurrentSuggestion() : null;
+        const suggestionCard = suggestion ? [{
+            ...suggestion,
+            mizano_entity_type: 'suggestion',
+            priority: 100
+        }] : [];
 
         // Mixing them into the feed
-        const feed = [...events, ...activities];
+        const feed = [...suggestionCard, ...challenges, ...events, ...activities];
 
-        // Sort by dates to make it a true chronological feed
+        // Sort by priority then date
         feed.sort((a, b) => {
+            const prioA = a.priority || (a.mizano_entity_type === 'suggestion' ? 100 : a.mizano_entity_type === 'challenge' ? 80 : 50);
+            const prioB = b.priority || (b.mizano_entity_type === 'suggestion' ? 100 : b.mizano_entity_type === 'challenge' ? 80 : 50);
+
+            if (prioB !== prioA) return prioB - prioA;
+
             const dateA = new Date(a.startDate || a.start_date || a.start_time || '2026-01-01');
             const dateB = new Date(b.startDate || b.start_date || b.start_time || '2026-01-01');
             return dateA - dateB;
         });
-
-        if (feed.length > 0 && suggestions.length > 0) feed.splice(0, 0, suggestions[0]);
-        // Add more dynamic mixing logic if real challenges/surveys exist in MIZANO_DATA
 
         return feed;
     }

@@ -115,7 +115,7 @@ window.MyVenues = (function () {
 
         return `
         <div class="mv-card" id="mv-card-${id}">
-            <div class="mv-card-header me-col-header" data-id="${id}">
+            <div class="mv-card-header mv-col-header" data-id="${id}">
                 <div class="mv-card-img">${imgHtml}</div>
                 <div style="flex:1;min-width:0;">
                     <h4 class="mv-card-title">${_safe(data.name) || 'Unnamed Venue'}</h4>
@@ -250,11 +250,11 @@ window.MyVenues = (function () {
     // ─── HANDLERS ─────────────────────────────────────────────────────────────
 
     function _attachListeners() {
-        document.querySelectorAll('.me-col-header').forEach(hdr => {
+        document.querySelectorAll('.mv-col-header').forEach(hdr => {
             hdr.addEventListener('click', () => {
                 const id = hdr.dataset.id;
                 if (_editingId === id) return;
-                const body = document.getElementById(`mg-body-${id}`); // reuse logic
+                const body = document.getElementById(`mv-body-${id}`);
                 const isHidden = (body.style.display === 'none' || body.style.display === '');
                 body.style.display = isHidden ? 'block' : 'none';
             });

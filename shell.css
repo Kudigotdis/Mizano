@@ -791,6 +791,23 @@ body {
     font-size: 18px;
 }
 
+/* PANEL TRANSITIONS */
+@keyframes panelFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.panel.fade-in {
+    animation: panelFadeIn 0.35s ease-out forwards;
+}
+
 /* MOBILE OPTIMIZATIONS */
 @media (max-width: 600px) {
     .nav-btn {

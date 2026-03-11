@@ -91,7 +91,7 @@ window.MyMinors = (function () {
             <div style="font-size:4rem;margin-bottom:20px;">🧒</div>
             <h3 style="color:#1a1a1a;margin:0 0 12px;font-size:1.2rem;">No Minor Profiles</h3>
             <p style="font-size:0.9rem;line-height:1.6;margin:0 auto 30px;max-width:260px;">Create player files for your children or dependents to manage their club activities.</p>
-            <button onclick="window.AddActionRouter.openForm('player_file')" style="background:#1a73e8;color:#fff;border:none;padding:12px 24px;border-radius:24px;font-weight:700;cursor:pointer;">Add Dependent</button>
+            <button onclick="window.AddActionRouter.openForm('minor')" style="background:#1a73e8;color:#fff;border:none;padding:12px 24px;border-radius:24px;font-weight:700;cursor:pointer;">Add Dependent</button>
         </div>`;
     }
 

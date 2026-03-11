@@ -51,7 +51,7 @@ window.AddActionRouter = (function () {
             desc: 'List a shop, coaching service, gym, or corporate sponsor'
         },
         {
-            type: 'playerfile',
+            type: 'activity_custom',
             icon: '📋',
             label: 'Add Player File',
             desc: 'Create your sport-specific athletic profile and CV'
@@ -85,6 +85,7 @@ window.AddActionRouter = (function () {
         venue: 'Add Venue',
         business: 'Add Business',
         playerfile: 'Add Player File',
+        activity_custom: 'Add Player File',
         event_post: 'Create Post',
         habit: 'Add Habit',
         injury: 'Log Injury'
@@ -139,7 +140,10 @@ window.AddActionRouter = (function () {
 
         // Drag handle
         const handle = `<div style="width:40px;height:4px;background:#ddd;border-radius:2px;
-            margin:12px auto 4px;"></div>`;
+            margin:12px auto 16px;"></div>`;
+
+        // Profile Card Injection
+        const profileCard = _renderProfileCard();
 
         // Option rows
         const rows = OPTIONS.map(opt => `
@@ -148,41 +152,67 @@ window.AddActionRouter = (function () {
                        cursor:pointer;transition:background 0.15s;border-bottom:1px solid #f5f5f5;"
                 onmouseenter="this.style.background='#f8f8f8'"
                 onmouseleave="this.style.background='transparent'">
-                <span style="font-size:1.6rem;width:40px;text-align:center;flex-shrink:0;">${opt.icon}</span>
-                <div style="flex:1;min-width:0;">
-                    <div style="font-weight:700;font-size:0.92rem;color:#1a1a1a;">${opt.label}</div>
-                    <div style="font-size:0.78rem;color:#888;margin-top:1px;">${opt.desc}</div>
+                <div style="font-size:1.6rem;width:32px;text-align:center;">${opt.icon}</div>
+                <div style="flex:1;">
+                    <div style="font-weight:700;font-size:0.95rem;color:#1a1a1a;">${opt.label}</div>
+                    <div style="font-size:0.75rem;color:#777;margin-top:2px;line-height:1.2;">${opt.desc}</div>
                 </div>
-                <span style="color:#ccc;font-size:1rem;flex-shrink:0;">›</span>
-            </div>`).join('');
+                <div style="color:#ccc;font-size:1.2rem;">›</div>
+            </div>
+        `).join('');
 
-        // Cancel row
-        const cancelRow = `
-            <div id="add-action-cancel" style="padding:16px 20px;text-align:center;
-                cursor:pointer;color:#e53935;font-weight:600;font-size:0.92rem;">
-                Cancel
-            </div>`;
+        sheet.innerHTML = `
+            ${handle}
+            ${profileCard}
+            <div style="padding:0 0 40px;">
+                ${rows}
+            </div>
+        `;
 
-        sheet.innerHTML = handle + rows + cancelRow;
-
+        _sheetEl = sheet;
+        _overlayEl = overlay;
         root.appendChild(overlay);
         root.appendChild(sheet);
         document.body.appendChild(root);
 
-        _overlayEl = overlay;
-        _sheetEl = sheet;
-
-        // Attach listeners
+        // Attach listeners to rows
         sheet.querySelectorAll('.add-action-row').forEach(row => {
             row.addEventListener('click', () => {
                 const type = row.dataset.type;
-                closeSheet(() => {
-                    setTimeout(() => _handleOptionTap(type), 200);
-                });
+                openForm(type);
             });
         });
 
-        sheet.querySelector('#add-action-cancel').addEventListener('click', closeSheet);
+        // Attach Profile Card listener
+        const pCard = sheet.querySelector('.add-action-profile-card');
+        if (pCard) {
+            pCard.addEventListener('click', () => {
+                if (window.MizanoNav) {
+                    window.MizanoNav.switchPanel(15);
+                    closeSheet();
+                }
+            });
+        }
+    }
+
+    // ─── PROFILE CARD RENDERER ───────────────────────────────────────────────
+
+    function _renderProfileCard() {
+        const user = window.authManager?.getCurrentUser() || { full_name: 'Guest User', email: 'guest@mizano.app', uid: 'guest' };
+        const avatar = user.profile_picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.full_name || 'Guest')}&background=random&color=fff`;
+
+        return `
+            <div class="add-action-profile-card"
+                style="margin:0 20px 16px; padding:16px; background:#f9f9f9; border-radius:16px;
+                       display:flex; align-items:center; gap:12px; cursor:pointer; border:1px solid #eee;">
+                <img src="${avatar}" style="width:48px; height:48px; border-radius:12px; object-fit:cover; background:#eee;" />
+                <div style="flex:1;">
+                    <div style="font-weight:800; font-size:1rem; color:#1a1a1a;">${user.full_name || 'Mizano User'}</div>
+                    <div style="font-size:0.8rem; color:#666;">View & Edit My Profile</div>
+                </div>
+                <div style="background:#1a73e8; color:#fff; padding:6px 12px; border-radius:8px; font-size:0.75rem; font-weight:700;">Mine</div>
+            </div>
+        `;
     }
 
     // ─── OPEN / CLOSE ─────────────────────────────────────────────────────────
@@ -305,34 +335,35 @@ window.AddActionRouter = (function () {
                     if (window.BusinessForm) return window.BusinessForm.render();
                     return _stub('Business', 'Session 9');
                 case 'playerfile':
+                case 'player_file':
+                case 'activity_custom':
                     if (window.PlayerFileForm) return window.PlayerFileForm.render();
-                    return _stub('Player File', 'Session 10');
+                    return _stub('Custom Activity');
                 case 'event_post':
                     if (window.EventPostForm) return window.EventPostForm.render();
-                    return _stub('Event Post', 'Session 11');
+                    return _stub('Event Post');
                 case 'habit':
                     if (window.HabitForm) return window.HabitForm.render();
-                    return _stub('Habit', 'Phase 8');
+                    return _stub('Habit');
                 case 'injury':
                     if (window.InjuryForm) return window.InjuryForm.render();
-                    return _stub('Injury', 'Phase 8');
+                    return _stub('Injury');
                 default:
-                    return _stub(formType, '?');
+                    return _stub(formType);
             }
         } catch (e) {
             console.error('AddActionRouter: form render error', formType, e);
-            return _stub(formType, '?');
+            return _stub(formType);
         }
     }
 
-    function _stub(formName, session) {
+    function _stub(formName) {
         return `
         <div style="padding:40px 24px;text-align:center;color:#888;">
             <div style="font-size:2.5rem;margin-bottom:12px;">🚧</div>
             <h3 style="color:#1a1a1a;margin:0 0 8px;">${formName} Form</h3>
             <p style="font-size:0.85rem;line-height:1.5;margin:0;">
-                This form is coming in ${session}.<br>
-                Complete previous sessions first.
+                Coming soon.
             </p>
         </div>`;
     }
@@ -408,3 +439,5 @@ window.AddActionRouter = (function () {
 window.toggleAddActionPanel = function () {
     window.AddActionRouter.openSheet();
 };
+
+

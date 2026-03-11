@@ -250,7 +250,7 @@ window.MyEvents = (function () {
             </div>
             <div style="margin-top:12px; font-size:0.8rem; color:#666; display:flex; justify-content:space-between; align-items:center;">
                 <div>Price: ${data.price || 'Free'} • Deadline: ${data.deadline || '1 day before'}</div>
-                <div style="color:#1a73e8; font-weight:700; cursor:pointer;" onclick="window.MyEvents._viewAttendees('${id}')">View Attendees ›</div>
+                <div style="color:#1a73e8; font-weight:700; cursor:pointer;" onclick="window.MyEvents._viewAttendees('${data.local_id || data.activity_id}')">View Attendees ›</div>
             </div>
         </div>`;
     }

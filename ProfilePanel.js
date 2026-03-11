@@ -2,7 +2,7 @@
  * MIZANO — ProfilePanel.js (Session 2)
  * Applied Android Studio Otter Pipeline standards.
  *
- * Populates #mine-panel-content inside Panel 8 (Mine).
+ * Populates containers inside Panel 15 (Mine).
  * This is the first thing a user sees after signup.
  *
  * Dependencies: StorageManager.js (Session 1), window.MizanoAuth, window.MizanoNav
@@ -31,9 +31,9 @@ window.ProfilePanel = (function () {
     // ─── INIT ─────────────────────────────────────────────────────────────────
 
     async function init() {
-        const container = document.getElementById('mine-panel-content');
+        const container = document.getElementById('mine-hero-container');
         if (!container) {
-            console.warn('ProfilePanel: #mine-panel-content not found');
+            console.warn('ProfilePanel: #mine-hero-container not found');
             return;
         }
 
@@ -496,7 +496,7 @@ window.ProfilePanel = (function () {
             _isEditing = false;
             _removeEditingBar();
             // Re-render
-            const container = document.getElementById('mine-panel-content');
+            const container = document.getElementById('mine-hero-container');
             if (container) {
                 container.innerHTML = _buildHero(_profile) + _buildSubCards(_profile);
                 _attachCardListeners(container, false);
@@ -512,7 +512,7 @@ window.ProfilePanel = (function () {
         _isEditing = false;
         _profile = _editOriginal || _profile;
         _removeEditingBar();
-        const container = document.getElementById('mine-panel-content');
+        const container = document.getElementById('mine-hero-container');
         if (container) {
             container.innerHTML = _buildHero(_profile) + _buildSubCards(_profile);
             _attachCardListeners(container, false);
