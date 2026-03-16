@@ -2,6 +2,27 @@ if (!window.MIZANO_DATA) window.MIZANO_DATA = {};
 
 window.MIZANO_DATA.preview_users = [
     {
+        uid: "BW-GAB-PAPHANI-01",
+        profile_id: "BW-GAB-PAPHANI-01",
+        first_name: "Paphani",
+        surname: "Masalila",
+        name: "Paphani Masalila",
+        role: "creator",
+        location: "Gaborone · Madimo Village",
+        profile_type: "Creator",
+        gender: "Male",
+        age: 39,
+        villageTownCity: "Gaborone",
+        onboarding_level: 5,
+        nationality: "Motswana",
+        bio: "Creator of Madimo FC. Dedicated to grassroots soccer and community engagement.",
+        whatsapp: "+26771234455",
+        avatar: "https://i.pravatar.cc/150?u=paphani",
+        profile_picture: "https://i.pravatar.cc/150?u=paphani",
+        interests: ["Soccer", "Coaching", "Community Development"],
+        connections: []
+    },
+    {
         uid: "PREVIEW-KAO-01",
         profile_id: "PREVIEW-KAO-01",
         first_name: "Kao",

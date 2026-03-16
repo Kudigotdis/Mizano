@@ -68,7 +68,7 @@ window.HabitForm = {
       try {
         await window.mizanoStorage.saveEntity('habits', habitData);
         alert('Habit chain created!');
-        if (window.MizanoNav) window.MizanoNav.closeOverlay('builder-view');
+        if (window.MizanoNav) window.MizanoNav.closeOverlay('builder');
         if (window.MizanoMine && window.MizanoMine.refreshData) {
           window.MizanoMine.refreshData();
         }

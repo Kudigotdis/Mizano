@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mizano Platform Shell</title>
+    <link rel="stylesheet" href="./shell.css">
+    <link rel="stylesheet" href="./cards.css">
+    <link rel="stylesheet" href="./pulse.css">
+    <link rel="stylesheet" href="./profile.css">
+    <link rel="stylesheet" href="./detail.css">
+    <link rel="stylesheet" href="./builder.css">
+    <link rel="stylesheet" href="./marathon.css">
+    <link rel="stylesheet" href="./teams.css">
+    <link rel="stylesheet" href="./filters.css">
+    <link rel="stylesheet" href="./mine.css">
+    <link rel="stylesheet" href="./tracker.css">
+    <link rel="stylesheet" href="./assets/css/forms.css">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#1E88E5">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Mizano: ServiceWorker registered'))
+                    .catch(err => console.log('Mizano: ServiceWorker failed', err));
+            });
+        }
+    </script>
+</head>
+
+<body style="background-color: #ecf1f6;">
+
+    <!-- SPLASH SCREEN OVERLAY -->
+    <div id="splash-screen">
+        <div class="splash-logo"></div>
+        <h2 style="font-weight: 700; color: #1E88E5;">MIZANO</h2>
+    </div>
+
+    <!-- AUTH REDIRECTION LOGIC -->
+    <script src="./StorageManager.js"></script>
+    <script src="./assets/js/auth.js"></script>
+    <script>
+        (async () => {
+            const splash = document.getElementById('splash-screen');
+
+            // Wait for auth to initialize (or use a small delay)
+            await new Promise(r => setTimeout(r, 500));
+            const loggedIn = await window.MizanoAuth.isLoggedIn();
+
+            if (loggedIn) {
+                console.log('index.html: Session detected. Fading splash...');
+                setTimeout(() => {
+                    splash.classList.add('fade-out');
+                    setTimeout(() => splash.style.display = 'none', 500);
+                }, 1000);
+            } else {
+                console.log('index.html: No session. Redirecting to login...');
+                window.location.href = 'login.html';
+            }
+        })();
+    </script>
+
+    <!-- TOP BAR (Level 1) -->
+    <header class="top-bar">
+        <nav class="top-carousel-container">
+            <div class="top-carousel" id="top-nav-carousel">
+                <button class="nav-btn active" data-panel="0">Home</button>
+                <button class="nav-btn" data-panel="1">Sports</button>
+                <button class="nav-btn" data-panel="2">Hobbies</button>
+                <button class="nav-btn" data-panel="3">Leisure</button>
+                <button class="nav-btn" data-panel="4">Lessons</button>
+                <button class="nav-btn" data-panel="5">Events</button>
+                <button class="nav-btn" data-panel="6">Groups</button>
+                <button class="nav-btn" data-panel="7">Discover</button>
+                <button class="nav-btn" data-panel="8">Community</button>
+                <button class="nav-btn" data-panel="9">Leaderboard</button>
+                <button class="nav-btn" data-panel="10">Shopping</button>
+                <button class="nav-btn" data-panel="11">Shops</button>
+                <button class="nav-btn" data-panel="12">Businesses</button>
+                <button class="nav-btn" data-panel="13">Schools</button>
+                <button class="nav-btn" data-panel="14">Venues</button>
+                <button class="nav-btn" data-panel="15">Mine</button>
+                <!-- Infinite scroll visual duplicates -->
+                <button class="nav-btn" data-panel="0">Home</button>
+                <button class="nav-btn" data-panel="1">Sports</button>
+                <button class="nav-btn" data-panel="2">Hobbies</button>
+                <button class="nav-btn" data-panel="3">Leisure</button>
+                <button class="nav-btn" data-panel="4">Lessons</button>
+                <button class="nav-btn" data-panel="5">Events</button>
+        </nav>
+    </header>
+
+    <!-- MAIN PANEL CAROUSEL -->
+    <main class="panel-carousel-container">
+        <div class="panel-carousel" id="main-carousel">
+            <!-- Panel 0: Home -->
+            <section class="panel active" id="panel-0">
+                <div class="drop-field" id="drop-field-home"></div>
+            </section>
+
+            <!-- Panel 1: Sports -->
+            <section class="panel" id="panel-1">
+                <div class="drop-field" id="drop-field-sports"></div>
+            </section>
+
+            <!-- Panel 2: Hobbies -->
+            <section class="panel" id="panel-2">
+                <div class="drop-field" id="drop-field-hobbies"></div>
+            </section>
+
+            <!-- Panel 3: Leisure -->
+            <section class="panel" id="panel-3">
+                <div class="drop-field" id="drop-field-leisure"></div>
+            </section>
+
+            <!-- Panel 4: Lessons -->
+            <section class="panel" id="panel-4">
+                <div class="drop-field" id="drop-field-lessons"></div>
+            </section>
+
+            <!-- Panel 5: Events -->
+            <section class="panel" id="panel-5">
+                <div class="drop-field" id="drop-field-events"></div>
+            </section>
+
+            <!-- Panel 6: Groups -->
+            <section class="panel" id="panel-6">
+                <div class="drop-field" id="drop-field-groups"></div>
+            </section>
+
+            <!-- Panel 7: Discover -->
+            <section class="panel" id="panel-7">
+                <div class="drop-field" id="drop-field-discover"></div>
+            </section>
+
+            <!-- Panel 8: Community -->
+            <section class="panel" id="panel-8">
+                <div class="drop-field" id="drop-field-community"></div>
+            </section>
+
+            <!-- Panel 9: Leaderboard -->
+            <section class="panel" id="panel-9">
+                <div class="drop-field" id="drop-field-leaderboard"></div>
+            </section>
+
+            <!-- Panel 10: Shopping -->
+            <section class="panel" id="panel-10">
+                <div class="drop-field" id="drop-field-shopping"></div>
+            </section>
+
+            <!-- Panel 11: Shops -->
+            <section class="panel" id="panel-11">
+                <div class="drop-field" id="drop-field-shops"></div>
+            </section>
+
+            <!-- Panel 12: Businesses -->
+            <section class="panel" id="panel-12">
+                <div class="drop-field" id="drop-field-businesses"></div>
+            </section>
+
+            <!-- Panel 13: Schools -->
+            <section class="panel" id="panel-13">
+                <div class="drop-field" id="drop-field-schools"></div>
+            </section>
+
+            <!-- Panel 14: Venues -->
+            <section class="panel" id="panel-14">
+                <div class="drop-field" id="drop-field-venues"></div>
+            </section>
+
+            <!-- Panel 15: Mine (Profile & Stats Dashboard) -->
+            <section class="panel" id="panel-15">
+                <!-- 1. Profile Hero Section (Populated by ProfilePanel.js) -->
+                <div id="mine-hero-container"></div>
+
+                <!-- 2. Comparison View Section (Populated by ComparisonView.js) -->
+                <div id="mine-comparison-container" style="display: none;"></div>
+
+                <!-- 3. Dynamic Stats Dashboard (Populated by MineRenderer.js) -->
+                <div id="mine-dashboard-container">
+                    <div id="mine-consistency-calendar" data-mine-section="consistency"></div>
+                    <div id="mine-habit-chains" data-mine-section="habits"></div>
+                    <div id="mine-injury-list" data-mine-section="injuries"></div>
+                </div>
+            </section>
+
+            <!-- Infinite Loop Clone for Seamless Swipe -->
+            <section class="panel" id="panel-16">
+                <div class="drop-field" id="drop-field-home-clone"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- APEX DECK: Interactive Layers -->
+    <div id="apex-deck" class="apex-deck">
+
+        <!-- LEVEL 1: Bottom Menu Bar (#242424) -->
+        <footer class="bottom-menu-mizano">
+            <button class="mizano-menu-btn" id="btn-activities-level" title="Activity">
+                <img src="./assets/images/icons/Activities Icon.webp" alt="Activity">
+            </button>
+            <button class="mizano-menu-btn" id="btn-panels-mizano" title="Panels">
+                <img src="./assets/images/icons/Panels Icon.webp" alt="Panels">
+            </button>
+            <button class="mizano-menu-btn" id="btn-search-mizano" title="Search">
+                <img src="./assets/images/icons/Search Icon.webp" alt="Search">
+            </button>
+            <button class="mizano-menu-btn" id="btn-add-content" title="Add">
+                <img src="./assets/images/icons/Add Icon.webp" alt="Add">
+            </button>
+            <button class="mizano-menu-btn" id="btn-hamburger-mizano" title="Menu">
+                <img src="./assets/images/icons/Menu Hamburger Icon.webp" alt="Menu">
+            </button>
+        </footer>
+
+        <!-- PLACES FILTER BAR -->
+        <div class="places-filter-bar">
+            <div class="location-selector">
+                <span class="location-text" id="village-trigger">Gaborone</span>
+                <span style="margin: 0 6px; color: #ccc;">·</span>
+                <span class="location-text" id="area-trigger">All</span>
+            </div>
+            <div class="card-tally">
+                <span class="tally-count" id="card-count"></span>
+            </div>
+        </div>
+
+        <!-- LEVEL 2: Activity Filter -->
+        <div id="level-2-activity" class="deck-level level-activity-field">
+            <div class="activity-field-bar">
+                <span id="current-activity-label">Activity Field</span>
+                <button class="icon-btn-minimal" id="clock-trigger">
+                    <img src="./assets/images/icons/Clock Icon.webp" alt="Clock">
+                </button>
+            </div>
+        </div>
+
+        <!-- LEVEL 3: Time Period -->
+        <div id="level-3-time" class="deck-level level-time-period">
+            <button class="icon-btn-minimal" id="calendar-trigger">
+                <img src="./assets/images/icons/Calender Icon.webp" alt="Calendar">
+            </button>
+            <div class="time-carousel-minimal" id="time-carousel">
+                <button class="time-pill active" data-time="all">All</button>
+                <button class="time-pill" data-time="past">Past</button>
+                <button class="time-pill" data-time="yesterday">Yesterday</button>
+                <button class="time-pill" data-time="today">Today</button>
+                <button class="time-pill" data-time="upcoming">Upcoming</button>
+            </div>
+        </div>
+
+        <!-- LEVEL 4: Date Picker -->
+        <div id="level-4-datepicker" class="deck-level level-datepicker">
+            <div class="calendar-header-minimal"
+                style="display: flex; gap: 8px; justify-content: center; align-items: center;">
+                <span class="month-label" id="month-selection-trigger"
+                    style="cursor:pointer; font-weight: bold;">February</span>
+                <span class="year-label" id="year-selection-trigger" style="cursor:pointer; color: #555;">2026</span>
+            </div>
+            <div class="day-tiles-container-wrapper">
+                <button class="day-scroll-btn prev" id="day-scroll-prev"></button>
+                <div class="day-tiles-scroll" id="day-tiles">
+                    <!-- Generated Day Tiles -->
+                </div>
+                <button class="day-scroll-btn next" id="day-scroll-next"></button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- OVERLAYS (Outside the Apex Deck) -->
+
+    <!-- SETTINGS OVERLAY -->
+    <div id="settings-overlay" class="overlay">
+        <div class="overlay-header">
+            <button id="settings-close">Back</button>
+            <h2 style="margin-left: 10px;">Settings</h2>
+        </div>
+        <div class="overlay-content">
+            <div id="settings-auth-container"
+                style="padding: 10px; margin-bottom: 20px; border-bottom: 1px solid #eee;">
+                <!-- Auth Switcher Injected Here -->
+            </div>
+            <div class="mizano-card" data-status="interest">
+                <h3>Account Settings</h3>
+                <p>Profile, Privacy, Security</p>
+            </div>
+            <div class="mizano-card" data-status="upcoming">
+                <h3>Display</h3>
+                <p>Dark Mode, Language (Setswana)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATIONS OVERLAY -->
+    <div id="notifications-overlay" class="overlay">
+        <div class="overlay-header">
+            <button class="back-btn" onclick="window.MizanoNav.back()">‹</button>
+            <h2 style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">Notifications</h2>
+        </div>
+        <div class="overlay-content" id="notifications-list" style="padding:16px;">
+            <p style="text-align:center; color:#666; margin-top:50px;">No new notifications</p>
+        </div>
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div id="search-overlay" class="overlay">
+        <div class="overlay-header">
+            <button class="back-btn" id="search-back-btn">‹</button>
+            <input type="text" id="mizano-search-input" placeholder="Search matches, sports, venues..."
+                style="flex:1; margin: 0 10px; padding: 12px; border: 2px solid #000; font-family: inherit; font-size: 1rem; border-radius: 0;">
+        </div>
+        <div class="overlay-content" id="search-results-container" style="padding: 16px;">
+            <div id="search-results">
+                <p style="text-align: center; color: #777; margin-top: 50px;">Start typing to search activities, places,
+                    and people.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOCATION SELECTION OVERLAY -->
+    <div id="location-overlay" class="overlay">
+        <div class="overlay-header">
+            <button class="back-btn" id="location-close-btn">‹</button>
+            <h2 id="location-overlay-title"
+                style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">Select Location</h2>
+        </div>
+        <div class="overlay-content" style="padding: 16px;">
+            <div id="location-list-container">
+                <!-- Javascript will populate this with villages or areas -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MONTH SELECTION OVERLAY -->
+    <div id="month-overlay" class="overlay">
+        <div class="overlay-header" style="justify-content: center;">
+            <h2 id="month-overlay-title" style="text-align:center; font-size:1.1rem; margin:0; color:#aaa;">Select a
+                Month Below</h2>
+        </div>
+        <div class="overlay-content" style="padding: 16px; overflow-y: auto; max-height: calc(100vh - 60px);">
+            <div id="month-grid-container" style="display: flex; flex-direction: column; gap: 4px;">
+                <!-- Javascript will populate this with months -->
+            </div>
+        </div>
+    </div>
+
+    <!-- YEAR SELECTION OVERLAY -->
+    <div id="year-overlay" class="overlay">
+        <div class="overlay-header" style="justify-content: center;">
+            <h2 id="year-overlay-title" style="text-align:center; font-size:1.1rem; margin:0; color:#aaa;">Select a Year
+                Below</h2>
+        </div>
+        <div class="overlay-content" style="padding: 16px; overflow-y: auto; max-height: calc(100vh - 60px);">
+            <div id="year-grid-container" style="display: flex; flex-direction: column; gap: 2px;">
+                <!-- Javascript will populate this with years -->
+            </div>
+        </div>
+    </div>
+
+    <!-- HAMBURGER MENU OVERLAY -->
+    <div id="hamburger-overlay" class="overlay">
+        <div class="overlay-header">
+            <button class="back-btn" onclick="window.MizanoNav.back()">‹ Back</button>
+            <h2 style="margin-left: 10px;">Menu</h2>
+        </div>
+        <div class="overlay-content" style="padding: 16px;">
+            <div class="mizano-card"
+                onclick="window.MizanoNav.switchPanel(15, 'auto'); window.MizanoNav.closeTopOverlay();"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <span style="font-size:1.5rem; margin-right:15px;">👤</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">My Profile</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">View your stats, family, and history</p>
+                </div>
+                <span>›</span>
+            </div>
+            <div class="mizano-card" onclick="window.MizanoNav.openOverlay('notifications')"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <span style="font-size:1.5rem; margin-right:15px;">🔔</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">Notifications</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">View recent alerts and updates</p>
+                </div>
+                <span class="notif-badge" id="menu-notif-count"
+                    style="display:none; position:relative; top:0; right:0;">0</span>
+                <span>›</span>
+            </div>
+            <div class="mizano-card" onclick="window.MizanoNav.pushPage('my-reservations')"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <span style="font-size:1.5rem; margin-right:15px;">📅</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">My Bookings & Waitlists</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">View and manage your venue reservations</p>
+                </div>
+                <span>›</span>
+            </div>
+            <div class="mizano-card" onclick="window.MizanoNav.openOverlay('settings')"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <span style="font-size:1.5rem; margin-right:15px;">⚙️</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">Settings</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">Account, Privacy, and Language</p>
+                </div>
+                <span>›</span>
+            </div>
+            <div class="mizano-card" onclick="window.mizanoStorage.logout(); window.location.href='login.html';"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-top:20px; background: #ffebee; border: 1px solid #ef9a9a;">
+                <span style="font-size:1.5rem; margin-right:15px;">🚪</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0; color: #c62828;">Log Out</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- PANELS MENU OVERLAY -->
+    <div id="panels-menu-overlay" class="overlay">
+        <div class="overlay-header">
+            <h2 style="flex:1; text-align:center; font-size:1.1rem; margin:0;">Select Panel</h2>
+        </div>
+        <div class="overlay-content" id="panels-list" style="overflow-y:auto; flex:1;">
+            <!-- Populated by generatePanelsMenu() in shell.js -->
+        </div>
+    </div>
+
+    <!-- BUILDER VIEW OVERLAY — All 7 Creation Forms inject here (Sessions 4–10) -->
+    <div id="builder-view" class="overlay" style="z-index:10001; flex-direction:column; overflow-y:auto;">
+        <!-- Content injected by AddActionRouter.openForm() -->
+    </div>
+
+    <!-- DETAIL VIEW OVERLAY — All entity detail pages inject here -->
+    <div id="detail-view" class="overlay" style="z-index:10000; flex-direction:column; overflow-y:auto;">
+        <!-- Content injected by NavigationController.renderPage() -->
+    </div>
+
+    <!-- ADD ACTION PANEL — The + bottom sheet -->
+    <div id="add-action-overlay" class="overlay"
+        style="z-index:10002; background:rgba(0,0,0,0.5); align-items:flex-end;">
+    </div>
+    <div id="add-action-panel" style="position:fixed; bottom:0; left:0; right:0; z-index:10003;
+               background:#fff; border-radius:20px 20px 0 0;
+               transform:translateY(100%); transition:transform 280ms ease-out;
+               padding:0 0 30px; max-height:85vh; overflow-y:auto; display:none;">
+        <div style="width:40px; height:4px; background:#ddd; border-radius:2px; margin:12px auto 8px;"></div>
+        <!-- Options injected by AddActionRouter.init() -->
+        <div id="add-action-options"></div>
+        <div style="padding:0 16px; margin-top:8px;">
+            <button onclick="window.AddActionRouter && window.AddActionRouter.close()" style="width:100%; padding:14px; background:#f1f3f4; border:none;
+                       border-radius:12px; font-size:0.95rem; color:#444; cursor:pointer;">
+                Cancel
+            </button>
+        </div>
+    </div>
+
+    <!-- Data source scripts -->
+    <script src="./ImageManager.js"></script>
+    <!-- GROUP 1: Existing data files -->
+    <script src="./data/databases/sports_activities_dropdown.js"></script>
+    <script src="./data/databases/teams.js"></script>
+    <script src="./data/databases/activities.js"></script>
+    <script src="./data/databases/schools.js"></script>
+    <script src="./data/databases/users_generated.js"></script>
+    <script src="./data/databases/users_personas.js"></script>
+    <script src="./data/databases/generated_matches.js"></script>
+    <script src="./data/databases/generated_leaderboards.js"></script>
+    <script src="./data/databases/community_generated.js"></script>
+    <script src="./data/databases/competitions_generated.js"></script>
+    <script src="./data/databases/corporate_teams_generated.js"></script>
+    <script src="./data/databases/shopping_items.js"></script>
+    <script src="./data/databases/activities_stress.js"></script>
+    <script src="./data/databases/hobbies_leisure_300.js"></script>
+    <script src="./data/databases/businesses.js"></script>
+    <script src="./data/databases/venues.js"></script>
+    <script src="./data/databases/spaces.js"></script>
+    <script src="./data/databases/time_slots.js"></script>
+
+    <!-- GROUP 2: New data files -->
+    <script src="./data/hobbies_data.js"></script>
+    <script src="./data/leisure_data.js"></script>
+    <script src="./data/lessons_tutors.js"></script>
+    <script src="./data/discover_spotlights.js"></script>
+    <script src="./data/businesses_full.js"></script>
+    <script src="./data/venues_full.js"></script>
+    <script src="./data/groups_clubs.js"></script>
+    <script src="./data/user_profiles_bw.js"></script>
+    <script src="./data/community_extended.js"></script>
+    <script src="./data/events_generated.js"></script>
+
+    <!-- GROUP 3: Patch files -->
+    <script src="./data/activities_fix.js"></script>
+    <script src="./data/matches_enrichment.js"></script>
+
+    <!-- GROUP 4: System -->
+    <script src="./AuthManager.js"></script>
+    <script src="./DataManager.js"></script>
+    <script src="./NotificationManager.js"></script>
+    <script src="./SuggestionEngine.js"></script>
+    <script src="./NavigationController.js"></script>
+    <script src="./InfiniteScroll.js"></script>
+    <script src="./CardRenderer.js"></script>
+    <script src="./PulseUpdater.js"></script>
+    <script src="./PulseTriggers.js"></script>
+    <script src="./AssociationPulseCard.js"></script>
+    <script src="./AssociationsOverlay.js"></script>
+
+    <script src="./GuardianSafety.js"></script>
+    <script src="./ProfileInterface.js"></script>
+    <script src="./ProfileDetail.js"></script>
+    <script src="./MarathonDetail.js"></script>
+    <script src="./MarathonRegForm.js"></script>
+    <script src="./TeamBuilder.js"></script>
+    <script src="./TeamDetail.js"></script>
+    <script src="./FilterPanels.js"></script>
+    <script src="./DetailInterface.js"></script>
+    <script src="./InstitutionDetail.js"></script>
+    <script src="./ShoppingDetail.js"></script>
+    <script src="./CompetitionBuilder.js"></script>
+    <script src="./BusinessBuilder.js"></script>
+    <script src="./FilterEngine.js"></script>
+    <script src="./MineRenderer.js"></script>
+    <script src="./ComparisonView.js"></script>
+    <!-- SESSION Phase 8: Engagement Features — must load after MineRenderer.js -->
+    <script src="./StreakCalculator.js"></script>
+    <script src="./HabitForm.js"></script>
+    <script src="./InjuryForm.js"></script>
+    <script src="./MineRenderer_Phase8_patch.js"></script>
+    <script src="./LeaderboardEngine.js"></script>
+    <script src="./ResultEntryForm.js"></script>
+    <script src="./BookingManager.js"></script>
+    <script src="./VenueDetail.js"></script>
+    <script src="./VenueBooking.js"></script>
+    <script src="./ReservationsView.js"></script>
+    <script src="./js/edit_system.js"></script>
+
+    <script src="./scripts/TrackerStorage.js"></script>
+    <script src="./scripts/GoalCardRenderer.js"></script>
+    <script src="./scripts/NoteCardRenderer.js"></script>
+    <script src="./scripts/GoalBuilder.js"></script>
+    <script src="./scripts/TrackerRenderer.js"></script>
+
+    <!-- ACTIVITY FILTER OVERLAY -->
+    <div id="activity-overlay" class="overlay" style="z-index:9999; flex-direction:column;">
+        <div class="overlay-header">
+            <button class="back-btn" id="activity-overlay-close">‹</button>
+            <h2 style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">Select Activity</h2>
+        </div>
+        <div class="overlay-content" id="activity-list-container" style="padding:16px; overflow-y:auto; flex:1;">
+        </div>
+        <div style="padding:8px 16px; border-top:1px solid #eee; background:#fff;">
+            <input type="text" id="activity-search-input" placeholder="Search activities..."
+                style="width:100%; padding:10px; border:2px solid #000; font-size:1rem; box-sizing:border-box;" />
+        </div>
+    </div>
+    <script src="shell.js"></script>
+
+    <!-- ===== MIZANO MODULE SCRIPTS — SESSION ORDER ===== -->
+    <!-- SESSION 1: StorageManager.js already loaded above in data scripts -->
+    <!-- SESSION 2: Profile panel — depends on StorageManager -->
+    <script src='./ProfilePanel.js'></script>
+    <!-- SESSION 3: Add Action Router — depends on StorageManager -->
+    <script src='./AddActionRouter.js'></script>
+    <!-- SESSION 4: Minor Form — depends on AddActionRouter -->
+    <script src='./MinorForm.js'></script>
+    <!-- SESSION 5: Event Form — depends on AddActionRouter -->
+    <script src='./EventForm.js'></script>
+    <!-- SESSION 6: Group Form — depends on AddActionRouter -->
+    <script src='./GroupForm.js'></script>
+    <!-- SESSION 7: Association Form — depends on AddActionRouter -->
+    <script src='./AssociationForm.js'></script>
+    <!-- SESSION 8: Venue Form — depends on AddActionRouter -->
+    <script src='./VenueForm.js'></script>
+    <!-- SESSION 9: Business Form — depends on AddActionRouter -->
+    <script src='./BusinessForm.js'></script>
+    <!-- SESSION 10: Player File Form — depends on AddActionRouter -->
+    <script src='./PlayerFileForm.js'></script>
+    <!-- SESSION 11: Event Post Form — depends on AddActionRouter -->
+    <script src='./EventPostForm.js'></script>
+    <!-- SESSION 11B: Promo Builder -->
+    <script src='./PromoBuilder.js'></script>
+    <script src='./GroupPromoWizard.js'></script>
+    <!-- SESSION 12: My Groups Sub-Panel -->
+    <script src='./MyGroups.js'></script>
+    <!-- SESSION 13: My Events Sub-Panel -->
+    <script src='./MyEvents.js'></script>
+    <!-- SESSION 14: My Business Sub-Panel -->
+    <script src='./MyBusiness.js'></script>
+    <!-- SESSION 15: My Player Files Sub-Panel -->
+    <script src='./MyPlayerFiles.js'></script>
+    <!-- SESSION 16: My Associations Sub-Panel -->
+    <script src='./MyAssociations.js'></script>
+    <!-- SESSION 17: My Venues Sub-Panel -->
+    <script src='./MyVenues.js'></script>
+    <!-- SESSION 18: My Minors Sub-Panel -->
+    <script src='./MyMinors.js'></script>
+</body>
+
+</html>

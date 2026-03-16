@@ -31,9 +31,9 @@ window.ProfilePanel = (function () {
     // ─── INIT ─────────────────────────────────────────────────────────────────
 
     async function init() {
-        const container = document.getElementById('mine-hero-container');
+        const container = document.getElementById('profile-content');
         if (!container) {
-            console.warn('ProfilePanel: #mine-hero-container not found');
+            console.warn('ProfilePanel: #profile-content not found');
             return;
         }
 
@@ -61,6 +61,7 @@ window.ProfilePanel = (function () {
             _profile = { uid: userId, profile_id: userId };
         }
 
+        // Render the main profile sections
         container.innerHTML = _buildHero(_profile) + _buildSubCards(_profile);
         _attachCardListeners(container, false);
     }
@@ -83,39 +84,50 @@ window.ProfilePanel = (function () {
         ).join('');
 
         return `
-        <div class="profile-hero" id="profile-hero" style="padding:20px 16px 12px;background:#fff;border-bottom:1px solid #f0f0f0;">
-
-            <!-- Avatar row -->
-            <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:12px;">
-                <div id="avatar-tap-zone" style="cursor:pointer;flex-shrink:0;">
-                    ${avatarHTML}
-                    <div style="font-size:0.65rem;color:#888;text-align:center;margin-top:3px;">Change</div>
-                </div>
-                <div style="flex:1;min-width:0;">
-                    <div style="display:flex;align-items:center;flex-wrap:wrap;">
-                        <span id="hero-displayname" style="font-size:1.15rem;font-weight:700;color:#1a1a1a;">${name}</span>
-                        ${demoLabel}
-                        <button id="btn-edit-profile" onclick="window.ProfilePanel.startEdit()"
-                            style="margin-left:auto;background:#1a73e8;color:#fff;border:none;border-radius:8px;padding:6px 14px;font-size:0.8rem;cursor:pointer;flex-shrink:0;">
-                            Edit Profile
-                        </button>
+        <div id="edit-user-profile" style="margin: 12px 12px 0; border: 1px solid #ddd; overflow: hidden; border-radius:12px; background:#fff;">
+            <!-- HERO CONTENT (Always Visible) -->
+            <div class="profile-hero" id="profile-hero" style="padding:16px;">
+                <!-- Avatar row -->
+                <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:12px;">
+                    <div id="avatar-tap-zone" style="cursor:pointer;flex-shrink:0;">
+                        ${avatarHTML}
+                        <div style="font-size:0.65rem;color:#888;text-align:center;margin-top:3px;">Change</div>
                     </div>
-                    <div id="hero-username" style="color:#888;font-size:0.85rem;margin:2px 0;">${username}</div>
-                    <div id="hero-location" style="color:#555;font-size:0.82rem;">${location}</div>
-                    <div id="hero-interests" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;">${interestChips}</div>
+                    <div style="flex:1;min-width:0;">
+                        <div style="display:flex;align-items:center;flex-wrap:wrap;">
+                            <span id="hero-displayname" style="font-size:1.15rem;font-weight:700;color:#1a1a1a;">${name}</span>
+                            ${demoLabel}
+                        </div>
+                        <div id="hero-username" style="color:#888;font-size:0.85rem;margin:2px 0;">${username}</div>
+                        <div id="hero-location" style="color:#555;font-size:0.82rem;">${location}</div>
+                        <div id="hero-interests" style="margin-top:6px;display:flex;flex-wrap:wrap;gap:4px;">${interestChips}</div>
+                    </div>
+                </div>
+
+                <!-- Completeness Bar -->
+                <div style="margin-top:4px;">
+                    <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#666;margin-bottom:4px;">
+                        <span>Profile completeness</span>
+                        <span id="hero-pct" style="font-weight:600;color:#1a73e8;">${completeness}%</span>
+                    </div>
+                    <div style="background:#e9ecef;border-radius:4px;height:6px;overflow:hidden;">
+                        <div id="hero-bar" style="background:#1a73e8;height:6px;width:${completeness}%;border-radius:4px;transition:width 0.4s ease;"></div>
+                    </div>
+                    ${_completenessNextTip(profile)}
                 </div>
             </div>
 
-            <!-- Completeness Bar -->
-            <div style="margin-top:4px;">
-                <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#666;margin-bottom:4px;">
-                    <span>Profile completeness</span>
-                    <span id="hero-pct" style="font-weight:600;color:#1a73e8;">${completeness}%</span>
+            <!-- Collapsible Header -->
+            <div id="profile-hero-header" style="padding:14px 16px; background:#f9f9f9; display:flex; align-items:center; justify-content:space-between; cursor:pointer; border-top:1px solid #eee;">
+                <h3 style="margin:0; font-size:0.9rem; font-weight:700; color:#1a1a1a;">Account Details</h3>
+                <span id="profile-hero-arrow" style="color:#666; font-size:1.2rem; transition: transform 0.2s ease-in-out; display:inline-block; transform:rotate(0deg);">›</span>
+            </div>
+
+            <!-- Collapsible Body (Default Collapsed) -->
+            <div id="profile-hero-body" style="display:none; padding:16px; background:#fff; border-top:1px solid #f0f0f0;">
+                <div style="font-size:0.85rem; color:#666;">
+                    Tap <strong>'My Identity'</strong> below to edit your basic information, or tap the avatar to change your photo.
                 </div>
-                <div style="background:#e9ecef;border-radius:4px;height:6px;overflow:hidden;">
-                    <div id="hero-bar" style="background:#1a73e8;height:6px;width:${completeness}%;border-radius:4px;transition:width 0.4s ease;"></div>
-                </div>
-                ${_completenessNextTip(profile)}
             </div>
         </div>`;
     }
@@ -206,7 +218,7 @@ window.ProfilePanel = (function () {
             {
                 id: 'card-associations',
                 icon: '🏛️',
-                title: 'My Associations',
+                title: 'Associations',
                 emptyMsg: 'No associations linked',
                 summary: profile._hasAssociation ? 'Associated with governing bodies' : '',
                 action: 'associations'
@@ -238,7 +250,7 @@ window.ProfilePanel = (function () {
             {
                 id: 'card-minors',
                 icon: '👶',
-                title: 'My Minors',
+                title: 'Guardian Menu',
                 emptyMsg: 'No minor profiles added',
                 summary: profile._hasMinors ? 'Minor profiles registered' : '',
                 action: 'minors'
@@ -276,60 +288,97 @@ window.ProfilePanel = (function () {
     // ─── CARD LISTENERS ───────────────────────────────────────────────────────
 
     function _attachCardListeners(container, isDemo) {
+        // Hero Toggle
+        const heroHeader = container.querySelector('#profile-hero-header');
+        if (heroHeader) {
+            heroHeader.addEventListener('click', () => {
+                const body = document.getElementById('profile-hero-body');
+                const arrow = document.getElementById('profile-hero-arrow');
+                const isOpen = body.style.display !== 'none' && body.style.display !== '';
+                body.style.display = isOpen ? 'none' : 'block';
+                // arrow.textContent = isOpen ? '⌄' : '⌄'; 
+                if (arrow) {
+                    arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(90deg)';
+                }
+            });
+        }
+
         container.querySelectorAll('.mine-sub-card').forEach(card => {
             card.addEventListener('touchstart', () => { card.style.transform = 'scale(0.98)'; }, { passive: true });
             card.addEventListener('touchend', () => { card.style.transform = 'scale(1)'; }, { passive: true });
             card.addEventListener('click', () => {
                 if (isDemo) { _showSignUpModal(); return; }
+                
+                // Visual feedback: brief highlight then route
+                card.style.background = '#f0f7ff';
+                setTimeout(() => { card.style.background = '#fff'; }, 200);
+                
                 _routeCard(card.dataset.action);
             });
         });
+    }
 
-        // Avatar tap — file picker
-        const avatarZone = container.querySelector('#avatar-tap-zone');
-        if (avatarZone) {
-            avatarZone.addEventListener('click', () => {
-                if (isDemo) { _showSignUpModal(); return; }
-                _openAvatarPicker();
-            });
+    async function _routeCard(action) {
+        console.log('ProfilePanel: Routing card action ->', action);
+
+        // Demo guard
+        if (window.MizanoAuth && (window.MizanoAuth.isGuest() || (window.MizanoAuth.isDemo && window.MizanoAuth.isDemo()))) {
+            _showSignUpModal();
+            return;
+        }
+
+        // Standardise mapping: profile cards -> internal modules
+        const modules = {
+            'playerfiles': window.MyPlayerFiles,
+            'groups': window.MyGroups,
+            'associations': window.MyAssociations,
+            'events': window.MyEvents,
+            'venues': window.MyVenues,
+            'business': window.MyBusiness,
+            'minors': window.MyMinors,
+            'identity': null // Identity edit handled internally or by specialized module
+        };
+
+        if (action === 'identity') {
+            startEdit();
+            return;
+        }
+
+        const module = modules[action];
+        if (module && typeof module.init === 'function') {
+            module.init();
+        } else {
+            console.error(`ProfilePanel: Module for ${action} not found or has no init()`);
+            // Fallback to form router if specific module init fails or is missing
+            const formMapping = {
+                'playerfiles': 'player_file',
+                'groups': 'group',
+                'associations': 'association',
+                'events': 'event',
+                'venues': 'venue',
+                'business': 'business',
+                'minors': 'minor'
+            };
+            if (window.AddActionRouter && window.AddActionRouter.openForm) {
+                window.AddActionRouter.openForm(formMapping[action] || action);
+            }
         }
     }
 
-    function _routeCard(action) {
-        switch (action) {
-            case 'identity':
-                startEdit();
-                break;
-            case 'playerfiles':
-                if (window.MyPlayerFiles) window.MyPlayerFiles.init();
-                else console.log('ProfilePanel: MyPlayerFiles stub — coming in Session 15');
-                break;
-            case 'groups':
-                if (window.MyGroups) window.MyGroups.init();
-                else console.log('ProfilePanel: MyGroups stub — coming in Session 12');
-                break;
-            case 'associations':
-                if (window.MyAssociations) window.MyAssociations.init();
-                else console.log('ProfilePanel: MyAssociations stub — coming in Session 16');
-                break;
-            case 'events':
-                if (window.MyEvents) window.MyEvents.init();
-                else console.log('ProfilePanel: MyEvents stub — coming in Session 13');
-                break;
-            case 'venues':
-                if (window.MyVenues) window.MyVenues.init();
-                else console.log('ProfilePanel: MyVenues stub — coming in Session 17');
-                break;
-            case 'business':
-                if (window.MyBusiness) window.MyBusiness.init();
-                else console.log('ProfilePanel: MyBusiness stub — coming in Session 14');
-                break;
-            case 'minors':
-                if (window.MyMinors) window.MyMinors.init();
-                else console.log('ProfilePanel: MyMinors stub — coming in Session 18');
-                break;
-            default:
-                console.log('ProfilePanel: Unknown card action —', action);
+    /**
+     * _showSignUpModal
+     * Implementation of the previously missing function to handle demo-mode/guest blocks.
+     */
+    function _showSignUpModal() {
+        if (typeof window.MizanoShell?.toast === 'function') {
+            window.MizanoShell.toast('Please Sign Up or Log In to access this feature', 'info');
+        }
+        
+        // If the NavigationController has a signup target, use it
+        if (window.MizanoNav && window.MizanoNav.openOverlay) {
+            setTimeout(() => {
+                window.MizanoNav.openOverlay('hamburger'); // Or similar landing point
+            }, 1500);
         }
     }
 

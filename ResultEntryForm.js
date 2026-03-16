@@ -5,7 +5,7 @@
 
 class ResultEntry {
     constructor() {
-        this.containerId = 'result-entry-overlay';
+        this.containerId = 'builder-view';
         this.isOpen = false;
     }
 
@@ -24,8 +24,12 @@ class ResultEntry {
     }
 
     close() {
-        const overlay = document.getElementById(this.containerId);
-        if (overlay) overlay.classList.remove('active');
+        if (window.MizanoNav) {
+            window.MizanoNav.closeOverlay('builder');
+        } else {
+            const overlay = document.getElementById(this.containerId);
+            if (overlay) overlay.classList.remove('active');
+        }
         this.isOpen = false;
     }
 

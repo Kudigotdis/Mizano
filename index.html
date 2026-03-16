@@ -17,6 +17,17 @@
     <link rel="stylesheet" href="./mine.css">
     <link rel="stylesheet" href="./tracker.css">
     <link rel="stylesheet" href="./assets/css/forms.css">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#1E88E5">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Mizano: ServiceWorker registered'))
+                    .catch(err => console.log('Mizano: ServiceWorker failed', err));
+            });
+        }
+    </script>
 </head>
 
 <body style="background-color: #ecf1f6;">
@@ -28,14 +39,17 @@
     </div>
 
     <!-- AUTH REDIRECTION LOGIC -->
+    <!-- StorageManager must load first so AuthManager can restore sessions -->
     <script src="./StorageManager.js"></script>
-    <script src="./assets/js/auth.js"></script>
+    <script src="./AuthManager.js"></script>
     <script>
         (async () => {
             const splash = document.getElementById('splash-screen');
 
-            // Wait for auth to initialize (or use a small delay)
-            await new Promise(r => setTimeout(r, 500));
+            // Wait for StorageManager IndexedDB init + AuthManager to be ready
+            await new Promise(r => setTimeout(r, 600));
+
+            // window.MizanoAuth is now defined by AuthManager.js
             const loggedIn = await window.MizanoAuth.isLoggedIn();
 
             if (loggedIn) {
@@ -43,7 +57,7 @@
                 setTimeout(() => {
                     splash.classList.add('fade-out');
                     setTimeout(() => splash.style.display = 'none', 500);
-                }, 1000);
+                }, 800);
             } else {
                 console.log('index.html: No session. Redirecting to login...');
                 window.location.href = 'login.html';
@@ -159,20 +173,9 @@
                 <div class="drop-field" id="drop-field-venues"></div>
             </section>
 
-            <!-- Panel 15: Mine (Profile & Stats Dashboard) -->
+            <!-- Panel 15: Mine (Cleared) -->
             <section class="panel" id="panel-15">
-                <!-- 1. Profile Hero Section (Populated by ProfilePanel.js) -->
-                <div id="mine-hero-container"></div>
-
-                <!-- 2. Comparison View Section (Populated by ComparisonView.js) -->
-                <div id="mine-comparison-container" style="display: none;"></div>
-
-                <!-- 3. Dynamic Stats Dashboard (Populated by MineRenderer.js) -->
-                <div id="mine-dashboard-container">
-                    <div id="mine-consistency-calendar" data-mine-section="consistency"></div>
-                    <div id="mine-habit-chains" data-mine-section="habits"></div>
-                    <div id="mine-injury-list" data-mine-section="injuries"></div>
-                </div>
+                <!-- Cleared: Profile and Tracker moved to dedicated overlays -->
             </section>
 
             <!-- Infinite Loop Clone for Seamless Swipe -->
@@ -200,7 +203,7 @@
                 <img src="./assets/images/icons/Add Icon.webp" alt="Add">
             </button>
             <button class="mizano-menu-btn" id="btn-hamburger-mizano" title="Menu">
-                <img src="./assets/images/icons/Menu Hamburger Icon.webp" alt="Menu">
+                <img id="hamburger-button" src="./assets/images/icons/Menu Hamburger Icon.webp" alt="Menu">
             </button>
         </footer>
 
@@ -294,6 +297,33 @@
         </div>
     </div>
 
+    <!-- PROFILE OVERLAY -->
+    <div id="profile-overlay" class="overlay">
+        <div class="overlay-header">
+            <button class="back-btn" onclick="window.MizanoNav.back()">‹ Back</button>
+            <h2 style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">My Profile</h2>
+        </div>
+        <div class="overlay-content" id="profile-content" style="padding:0;">
+            <!-- Populated by ProfilePanel.js -->
+        </div>
+    </div>
+
+    <!-- TRACKER OVERLAY -->
+    <div id="tracker-overlay" class="overlay">
+        <div class="overlay-header">
+            <button class="back-btn" onclick="window.MizanoNav.back()">‹ Back</button>
+            <h2 style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">Tracker Dashboard</h2>
+        </div>
+        <div class="overlay-content" id="tracker-content" style="padding:16px;">
+            <!-- Populated by TrackerRenderer.js -->
+            <div id="tracker-dashboard-container">
+                <div id="tracker-consistency-calendar" data-tracker-section="consistency"></div>
+                <div id="tracker-habit-chains" data-tracker-section="habits"></div>
+                <div id="tracker-injury-list" data-tracker-section="injuries"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- SEARCH OVERLAY -->
     <div id="search-overlay" class="overlay">
         <div class="overlay-header">
@@ -320,6 +350,55 @@
             <div id="location-list-container">
                 <!-- Javascript will populate this with villages or areas -->
             </div>
+        </div>
+    </div>
+
+    <!-- SCHOOL SELECTION OVERLAY -->
+    <style>
+        #school-alpha-sidebar {
+            width: 30px;
+            min-width: 30px;
+            background: #F2F2F0; /* light grey column */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 6px 0;
+            border-left: 1px solid #e8e8e5;
+            overflow: hidden;
+        }
+        #school-alpha-sidebar .alpha-letter {
+            font-size: 10px;
+            font-weight: 500;
+            color: rgba(60, 60, 60, 0.4); /* charcoal grey text, 40% transparent */
+            background: transparent;
+            cursor: pointer;
+            line-height: 1;
+            padding: 2px 4px;
+            border-radius: 4px;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: color 0.15s, opacity 0.15s;
+        }
+        #school-alpha-sidebar .alpha-letter.active {
+            color: #3C3C3C; /* charcoal grey solid */
+            font-weight: bold;
+        }
+    </style>
+    <div id="school-overlay" class="overlay" style="z-index:10005; flex-direction:column;">
+        <div class="overlay-header">
+            <button class="back-btn" id="school-overlay-close">‹</button>
+            <h2 style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">Select School</h2>
+        </div>
+        <div style="display:flex; flex:1; overflow:hidden;">
+            <div id="school-list-area" style="flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch;">
+                <!-- Populated by SchoolSelector.js -->
+            </div>
+            <div id="school-alpha-sidebar"></div>
+        </div>
+        <div style="padding:8px 16px; border-top:1px solid #eee; background:#fff;">
+            <input type="text" id="school-search-input" placeholder="Search for a school..."
+                style="width:100%; padding:10px; border:2px solid #000; font-size:1rem; box-sizing:border-box;" />
         </div>
     </div>
 
@@ -353,11 +432,11 @@
     <div id="hamburger-overlay" class="overlay">
         <div class="overlay-header">
             <button class="back-btn" onclick="window.MizanoNav.back()">‹ Back</button>
-            <h2 style="margin-left: 10px;">Menu</h2>
+            <h2 id="hamburger-menu-title" style="margin-left: 10px;">Menu</h2>
         </div>
         <div class="overlay-content" style="padding: 16px;">
             <div class="mizano-card"
-                onclick="window.MizanoNav.switchPanel(15, 'auto'); window.MizanoNav.closeTopOverlay();"
+                onclick="window.MizanoNav.closeTopOverlay(); window.MizanoNav.openOverlay('profile');"
                 style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
                 <span style="font-size:1.5rem; margin-right:15px;">👤</span>
                 <div style="flex:1;">
@@ -366,7 +445,17 @@
                 </div>
                 <span>›</span>
             </div>
-            <div class="mizano-card" onclick="window.MizanoNav.openOverlay('notifications')"
+            <div class="mizano-card"
+                onclick="window.MizanoNav.closeTopOverlay(); window.MizanoNav.openOverlay('tracker');"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <span style="font-size:1.5rem; margin-right:15px;">📊</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">Tracker</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">Monitor goals, habits, and streaks</p>
+                </div>
+                <span>›</span>
+            </div>
+            <div class="mizano-card" onclick="window.MizanoNav.closeTopOverlay(); window.MizanoNav.openOverlay('notifications')"
                 style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
                 <span style="font-size:1.5rem; margin-right:15px;">🔔</span>
                 <div style="flex:1;">
@@ -377,12 +466,21 @@
                     style="display:none; position:relative; top:0; right:0;">0</span>
                 <span>›</span>
             </div>
-            <div class="mizano-card" onclick="window.MizanoNav.pushPage('my-reservations')"
+            <div class="mizano-card" onclick="window.MizanoNav.pushPage('my-reservations', { tab: 'waitlist' })"
                 style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
-                <span style="font-size:1.5rem; margin-right:15px;">📅</span>
+                <span style="font-size:1.5rem; margin-right:15px;">⏳</span>
                 <div style="flex:1;">
-                    <h3 style="margin:0;">My Bookings & Waitlists</h3>
-                    <p style="margin:0; font-size:0.8rem; color:#666;">View and manage your venue reservations</p>
+                    <h3 style="margin:0;">Waitlist</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">Track your venue booking requests</p>
+                </div>
+                <span>›</span>
+            </div>
+            <div class="mizano-card" onclick="window.MizanoNav.pushPage('my-reservations', { tab: 'bookings' })"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <span style="font-size:1.5rem; margin-right:15px;">🏟️</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">My Bookings</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">Manage requests for your venues</p>
                 </div>
                 <span>›</span>
             </div>
@@ -395,13 +493,24 @@
                 </div>
                 <span>›</span>
             </div>
-            <div class="mizano-card" onclick="window.mizanoStorage.logout(); window.location.href='login.html';"
+            <div class="mizano-card" onclick="window.mizanoStorage && window.mizanoStorage.logout(); window.authManager && window.authManager.logout(); window.location.href='login.html';"
                 style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-top:20px; background: #ffebee; border: 1px solid #ef9a9a;">
                 <span style="font-size:1.5rem; margin-right:15px;">🚪</span>
                 <div style="flex:1;">
                     <h3 style="margin:0; color: #c62828;">Log Out</h3>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATIONS OVERLAY -->
+    <div id="notifications-overlay" class="overlay">
+        <div class="overlay-header">
+            <button class="back-btn" onclick="window.MizanoNav.back()">‹ Back</button>
+            <h2 style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">Notifications</h2>
+        </div>
+        <div class="overlay-content" id="notifications-list" style="padding:16px; overflow-y:auto;">
+            <!-- Rendered by NotificationManager.js -->
         </div>
     </div>
     <!-- PANELS MENU OVERLAY -->
@@ -475,14 +584,14 @@
     <script src="./data/groups_clubs.js"></script>
     <script src="./data/user_profiles_bw.js"></script>
     <script src="./data/community_extended.js"></script>
-    <script src="./data/events_generated.js"></script>
+    <script src="./data/mizano_events_integrated.js"></script>
 
     <!-- GROUP 3: Patch files -->
     <script src="./data/activities_fix.js"></script>
     <script src="./data/matches_enrichment.js"></script>
 
     <!-- GROUP 4: System -->
-    <script src="./AuthManager.js"></script>
+    <!-- AuthManager already loaded above for splash auth check -->
     <script src="./DataManager.js"></script>
     <script src="./NotificationManager.js"></script>
     <script src="./SuggestionEngine.js"></script>
@@ -493,6 +602,8 @@
     <script src="./PulseTriggers.js"></script>
     <script src="./AssociationPulseCard.js"></script>
     <script src="./AssociationsOverlay.js"></script>
+    <script src="./data/paphani_profile.js"></script>
+    <script src="./data/madimo_fixtures.js"></script>
 
     <script src="./GuardianSafety.js"></script>
     <script src="./ProfileInterface.js"></script>
@@ -519,6 +630,7 @@
     <script src="./ResultEntryForm.js"></script>
     <script src="./BookingManager.js"></script>
     <script src="./VenueDetail.js"></script>
+    <script src="./EventDetail.js"></script>
     <script src="./VenueBooking.js"></script>
     <script src="./ReservationsView.js"></script>
     <script src="./js/edit_system.js"></script>
@@ -530,59 +642,102 @@
     <script src="./scripts/TrackerRenderer.js"></script>
 
     <!-- ACTIVITY FILTER OVERLAY -->
+    <style>
+        #activity-alpha-sidebar {
+            width: 30px;
+            min-width: 30px;
+            background: #F2F2F0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 6px 0;
+            border-left: 1px solid #e8e8e5;
+            overflow: hidden;
+        }
+        #activity-alpha-sidebar .alpha-letter {
+            font-size: 10px;
+            font-weight: 500;
+            color: #C0C0B8;
+            background: transparent;
+            cursor: pointer;
+            line-height: 1;
+            padding: 2px 4px;
+            border-radius: 4px;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: color 0.15s;
+        }
+        #activity-alpha-sidebar .alpha-letter:hover {
+            color: #4A4A45;
+        }
+        #activity-alpha-sidebar .alpha-letter.active {
+            color: #2C2C28;
+            background: #DDDDD8;
+        }
+        #activity-alpha-sidebar .alpha-disabled {
+            color: #C0C0B8; /* Inherit normal letter color for consistency */
+            opacity: 0.6; /* Increased opacity to ensure it's easily visible to the eye */
+            pointer-events: none;
+            cursor: default;
+        }
+    </style>
     <div id="activity-overlay" class="overlay" style="z-index:9999; flex-direction:column;">
         <div class="overlay-header">
             <button class="back-btn" id="activity-overlay-close">‹</button>
             <h2 style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">Select Activity</h2>
         </div>
-        <div class="overlay-content" id="activity-list-container" style="padding:16px; overflow-y:auto; flex:1;">
+        <div style="display:flex; flex:1; overflow:hidden;">
+            <div id="activity-list-area" style="flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch;">
+            </div>
+            <div id="activity-alpha-sidebar"></div>
         </div>
         <div style="padding:8px 16px; border-top:1px solid #eee; background:#fff;">
             <input type="text" id="activity-search-input" placeholder="Search activities..."
                 style="width:100%; padding:10px; border:2px solid #000; font-size:1rem; box-sizing:border-box;" />
         </div>
     </div>
+
+    <!-- TEAM MANAGER OVERLAY -->
+    <div id="team-manager-overlay" class="overlay" style="z-index:10010; flex-direction:column;">
+        <div class="overlay-header">
+            <button class="back-btn" onclick="window.TeamManager.close()">‹</button>
+            <h2 id="team-manager-title" style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">Manage Team</h2>
+        </div>
+        <div id="team-fixtures-container" style="flex:1; overflow-y:auto; padding-bottom:40px;">
+            <!-- Fixtures rendered here -->
+        </div>
+    </div>
+    <script src="./data/mizano_schools_data.js"></script>
     <script src="shell.js"></script>
 
-    <!-- ===== MIZANO MODULE SCRIPTS — SESSION ORDER ===== -->
-    <!-- SESSION 1: StorageManager.js already loaded above in data scripts -->
-    <!-- SESSION 2: Profile panel — depends on StorageManager -->
-    <script src='./ProfilePanel.js'></script>
-    <!-- SESSION 3: Add Action Router — depends on StorageManager -->
-    <script src='./AddActionRouter.js'></script>
-    <!-- SESSION 4: Minor Form — depends on AddActionRouter -->
-    <script src='./MinorForm.js'></script>
-    <!-- SESSION 5: Event Form — depends on AddActionRouter -->
-    <script src='./EventForm.js'></script>
-    <!-- SESSION 6: Group Form — depends on AddActionRouter -->
-    <script src='./GroupForm.js'></script>
-    <!-- SESSION 7: Association Form — depends on AddActionRouter -->
-    <script src='./AssociationForm.js'></script>
-    <!-- SESSION 8: Venue Form — depends on AddActionRouter -->
-    <script src='./VenueForm.js'></script>
-    <!-- SESSION 9: Business Form — depends on AddActionRouter -->
-    <script src='./BusinessForm.js'></script>
-    <!-- SESSION 10: Player File Form — depends on AddActionRouter -->
-    <script src='./PlayerFileForm.js'></script>
-    <!-- SESSION 11: Event Post Form — depends on AddActionRouter -->
-    <script src='./EventPostForm.js'></script>
-    <!-- SESSION 11B: Promo Builder -->
-    <script src='./PromoBuilder.js'></script>
-    <script src='./GroupPromoWizard.js'></script>
-    <!-- SESSION 12: My Groups Sub-Panel -->
-    <script src='./MyGroups.js'></script>
-    <!-- SESSION 13: My Events Sub-Panel -->
-    <script src='./MyEvents.js'></script>
-    <!-- SESSION 14: My Business Sub-Panel -->
-    <script src='./MyBusiness.js'></script>
-    <!-- SESSION 15: My Player Files Sub-Panel -->
-    <script src='./MyPlayerFiles.js'></script>
-    <!-- SESSION 16: My Associations Sub-Panel -->
-    <script src='./MyAssociations.js'></script>
-    <!-- SESSION 17: My Venues Sub-Panel -->
-    <script src='./MyVenues.js'></script>
-    <!-- SESSION 18: My Minors Sub-Panel -->
-    <script src='./MyMinors.js'></script>
+
+    <!-- ===== MIZANO MODULE SCRIPTS ===== -->
+    <script src="./ProfilePanel.js"></script>
+    <script src="./AddActionRouter.js"></script>
+    <script src="./PromoBuilder.js"></script>
+    <script src="./GroupPromoWizard.js"></script>
+
+    <!-- Forms -->
+    <script src="./SchoolSelector.js"></script>
+    <script src="./MinorForm.js"></script>
+    <script src="./EventForm.js"></script>
+    <script src="./GroupForm.js"></script>
+    <script src="./AssociationForm.js"></script>
+    <script src="./VenueForm.js"></script>
+    <script src="./BusinessForm.js"></script>
+    <script src="./PlayerFileForm.js"></script>
+    <script src="./EventPostForm.js"></script>
+    <script src="./TeamManager.js"></script>
+
+    <!-- Sub-Panels -->
+    <script src="./MyGroups.js"></script>
+    <script src="./MyEvents.js"></script>
+    <script src="./MyBusiness.js"></script>
+    <script src="./MyPlayerFiles.js"></script>
+    <script src="./MyAssociations.js"></script>
+    <script src="./MyVenues.js"></script>
+    <script src="./MyMinors.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,64 @@
+--- Processing MIZANO_EVENTS_DATABASE_2026.md ---
+  FILTERED: string - string
+  FOUND: ORG-DWC-2026 - Orange Digital Warriors Cup
+  FOUND: CHO-VKT-2026 - Choppies Village Kitchen Tournament
+  FOUND: BTC-CC-2026 - BTC Connected Cup
+  FOUND: DEB-DC-2026 - Debswana Diamond Cup
+  FOUND: KAL-DC-2026 - Kgalagadi Desert Challenge
+  FOUND: GUA-SH-U16-2026 - Guardian Shield U16
+  FOUND: FNB-SSF-2026 - FNB School Sports Festival
+  FOUND: PRES-CC-2026 - President's Charity Cup
+  FOUND: MAS-TOP8-2026 - Mascom Top 8 Challenge
+  FOUND: ORG-FS-U13-2026 - Orange Future Stars U13
+  FOUND: BFL-RZQ-2026 - BFL Regional Zone Qualifiers
+  FOUND: IND-CUP-2026 - Independence Cup
+  FOUND: CHO-FRT-2026 - Choppies Food Relief Tournament
+  FOUND: BSB-CUP-2026 - Botswana Savings Bank Cup
+  FOUND: MAS-WC-2026 - Mascom Wireless Challenge
+  FOUND: ORG-MCS-2026 - Orange Money Charity Shield
+  FOUND: FNB-CSL-2026 - FNB Corporate Social League
+  FOUND: BTC-ESC-2026 - BTC End of Season Classic
+  FOUND: CHO-CC-2026 - Choppies Christmas Cracker
+  FOUND: MIZ-NCL-2026 - Mizano National Champions League
+--- Processing BOTSWANA_2026_EVENTS_DATABASE.md ---
+  FILTERED: BW-2026-{MONTH}-{NUMBER} - String
+  FOUND: BW-2026-JAN-001 - December Summer Cup
+  FOUND: BW-2026-JAN-002 - The Day Club
+  FOUND: BW-2026-FEB-001 - Unscripted Vision Board Affair
+  FOUND: BW-2026-FEB-002 - Senkgamorodi Cycle Classic
+  FOUND: BW-2026-FEB-003 - FNB Kazungula Marathon
+  FOUND: BW-2026-FEB-004 - Letsekela Music and Arts Festival
+  FOUND: BW-2026-MAR-001 - Herero Mbanderu Annual Cultural Festival
+  FOUND: BW-2026-MAR-002 - Francistown Motorshow
+  FOUND: BW-2026-MAR-003 - Jumpstart 3 Hours Burnout-Fitness Bootcamp
+  FOUND: BW-2026-MAR-004 - Ghetto Classic
+  FOUND: BW-2026-MAR-005 - FEARLESS 10K Run Series
+  FOUND: BW-2026-MAR-006 - Gabs Half Marathon 2026
+  FOUND: BW-2026-MAR-007 - Phuduhuhdu Cultural Festival
+  FOUND: BW-2026-MAR-008 - Jwaneng Netball Extravaganza
+  FOUND: BW-2026-MAR-009 - BORRC Round 1
+  FOUND: BW-2026-MAR-010 - Mother of All Vintage Lifestyle 90s & 70s
+  FOUND: BW-2026-MAR-011 - Black And White Party
+  FOUND: BW-2026-MAR-012 - Yecho Cultural Music Fest
+  FOUND: BW-2026-MAR-013 - Madikwe Cultural Festival
+  FOUND: BW-2026-APR-001 - Easter Eve Bash
+  FOUND: BW-2026-APR-002 - Phill's Apparel Annual Football Tournament
+  FOUND: BW-2026-APR-003 - Jwaneng Easter Softball Tournament
+  FOUND: BW-2026-APR-004 - MA-SA Easter Cup Horse Racing 2026
+  FOUND: BW-2026-APR-005 - Shashemooke Motofest
+  FOUND: BW-2026-APR-006 - SADC King of Drags
+  FOUND: BW-2026-APR-007 - International Tennis Federation Under 18 J30
+  FOUND: BW-2026-APR-008 - Road to Golden Grand Prix
+  FOUND: BW-2026-APR-009 - International Tennis Federation Under 18 J60
+  FOUND: BW-2026-APR-010 - Motse Wa Setso Cultural Festival
+  FOUND: BW-2026-APR-011 - Jwaneng Mine General Manager's Charity Cycling Race
+  FOUND: BW-2026-APR-012 - Agro-Tour Botswana Expo 2026
+  FOUND: BW-2026-APR-013 - Sandveld Ranchers Association Field Day
+  FOUND: BW-2026-APR-014 - Stanbic Bank Music N Lifestyle Festival
+  FOUND: BW-2026-APR-015 - Babirwa Cultural & Conservation Experience 'Ride with Nature'
+  FOUND: BW-2026-APR-016 - Tropic of Capricorn International Marathon
+  FOUND: BW-2026-APR-017 - Family Fun Day
+  FOUND: BW-2026-APR-018 - Manyana 4x4 Meet & Camping
+  FOUND: BW-2026-APR-019 - Gaborone Golden Grand Prix
+  FOUND: BW-2026-APR-020 - Wayeyi Cultural Festival
+  FOUND: BW-2026-APR-021 - Khama The Great Trek (KTGT) 2026

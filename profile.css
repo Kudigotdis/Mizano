@@ -84,3 +84,15 @@
     display: none;
     text-align: center;
 }
+
+/* FIX 12: Highlighting & Expansion */
+.card-expanded {
+    border: 2px solid #1a73e8 !important;
+    background: #f8fbff !important;
+    transform: scale(1.01);
+}
+
+#edit-user-profile {
+    background: #e8f0fe !important;
+    border-radius: 12px;
+}

@@ -308,6 +308,11 @@ class FilterEngine {
         this.updateUILabel();
     }
 
+
+    /**
+     * Internal trigger for the listener.
+     */
+
     /**
      * Internal trigger for the listener.
      */

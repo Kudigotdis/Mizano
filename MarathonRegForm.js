@@ -117,7 +117,11 @@ class MarathonRegForm {
     }
 
     close() {
-        this.container.classList.remove('active');
+        if (window.MizanoNav) {
+            window.MizanoNav.closeOverlay('builder');
+        } else {
+            this.container.classList.remove('active');
+        }
         this.currentStep = 1;
         this.formData = {};
     }
@@ -133,7 +137,6 @@ class MarathonRegForm {
 
         alert('Registration Successful! Your details have been saved offline.');
         this.close();
-        window.MizanoNav.back(); // Back to card list or detail
     }
 }
 

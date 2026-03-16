@@ -13,7 +13,7 @@ class StorageManager {
     constructor(prefix = 'mizano_') {
         this.prefix = prefix;
         this.dbName = 'MizanoDB';
-        this.dbVersion = 5; // Bumped to 5 for Phase 8 Engagement features
+        this.dbVersion = 10; // Bumped to 10 to force clean upgrade and check indices
         this.db = null;
         this._initPromise = null;
     }
@@ -29,13 +29,27 @@ class StorageManager {
         this._initPromise = new Promise((resolve, reject) => {
             const request = indexedDB.open(this.dbName, this.dbVersion);
 
+            request.onblocked = (e) => {
+                // Don't reject — the versionchange handler on the old connection will close it.
+                // Log a warning and wait for the onsuccess to fire once the old tab closes.
+                console.warn('StorageManager: IndexedDB upgrade is blocked by another tab. Waiting for it to close...');
+            };
+
             request.onerror = (e) => {
                 console.error('StorageManager: Database error', e.target.errorCode);
-                reject('Database error: ' + e.target.errorCode);
+                this._initPromise = null;
+                reject(new Error('Database error: ' + e.target.errorCode));
             };
 
             request.onsuccess = (e) => {
                 this.db = e.target.result;
+                // Allow other tabs to upgrade by closing this connection when asked
+                this.db.onversionchange = () => {
+                    console.warn('StorageManager: Version change detected. Closing connection to allow upgrade.');
+                    this.db.close();
+                    this.db = null;
+                    this._initPromise = null;
+                };
                 console.log('StorageManager: IndexedDB ready — version', this.dbVersion);
                 resolve();
             };
@@ -65,8 +79,13 @@ class StorageManager {
                 }
 
                 // ── user_profiles (extended profile data) ─────────────────
+                let upStore;
                 if (!db.objectStoreNames.contains('user_profiles')) {
-                    const upStore = db.createObjectStore('user_profiles', { keyPath: 'local_id', autoIncrement: true });
+                    upStore = db.createObjectStore('user_profiles', { keyPath: 'local_id', autoIncrement: true });
+                } else {
+                    upStore = e.target.transaction.objectStore('user_profiles');
+                }
+                if (!upStore.indexNames.contains('by_uid')) {
                     upStore.createIndex('by_uid', 'uid', { unique: true });
                 }
 
@@ -215,6 +234,14 @@ class StorageManager {
                     partStore.createIndex('by_type', 'location_type', { unique: false });
                 }
 
+                // ── PHASE 11: SYNC QUEUE — offline operation log ───────────
+                if (!db.objectStoreNames.contains('sync_queue')) {
+                    const sqStore = db.createObjectStore('sync_queue', { keyPath: 'local_id', autoIncrement: true });
+                    sqStore.createIndex('by_store', 'store_name', { unique: false });
+                    sqStore.createIndex('by_status', 'status', { unique: false });
+                    sqStore.createIndex('by_timestamp', 'timestamp', { unique: false });
+                }
+
                 console.log('StorageManager: onupgradeneeded complete — all stores ready');
             };
         });
@@ -232,20 +259,50 @@ class StorageManager {
      */
     _addSyncMeta(data) {
         const now = Date.now();
-        return {
+        const record = {
             ...data,
-            local_id: undefined,   // auto-increment — set by IndexedDB
-            cloud_id: null,        // null until first successful cloud sync
+            cloud_id: data.cloud_id || null,
             last_modified: now,
-            sync_status: 'pending',   // 'pending' | 'synced' | 'conflict' | 'error'
-            sync_attempts: 0,
+            sync_status: data.sync_status || 'pending',
+            sync_attempts: data.sync_attempts || 0,
             created_at: data.created_at || now
         };
+        // If local_id is undefined, DELETE it entirely from the record object.
+        // This allows IndexedDB's autoIncrement to generate the key on add().
+        // Never leave local_id: undefined in a record — it causes transaction aborts.
+        if (record.local_id === undefined) {
+            delete record.local_id;
+        }
+        return record;
     }
 
     async _getDB() {
-        if (!this.db) await this.init();
+        if (!this.db) {
+            await this.init();
+        }
         return this.db;
+    }
+
+    /**
+     * Internal helper to handle transactions safely with automatic retry on closure errors.
+     */
+    async _safeTransaction(storeNames, mode, callback) {
+        let db = await this._getDB();
+        try {
+            const tx = db.transaction(storeNames, mode);
+            return await callback(tx);
+        } catch (err) {
+            const errStr = err.toString();
+            if (errStr.includes('closing') || errStr.includes('closed') || err.name === 'InvalidStateError') {
+                console.warn('StorageManager: Connection lost or closing. Re-initializing...');
+                this.db = null;
+                this._initPromise = null;
+                db = await this._getDB();
+                const tx = db.transaction(storeNames, mode);
+                return await callback(tx);
+            }
+            throw err;
+        }
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -258,14 +315,14 @@ class StorageManager {
      * @returns {Promise<number>} local_id of the saved record
      */
     async saveEntity(storeName, data) {
-        const db = await this._getDB();
         const record = this._addSyncMeta(data);
-        return new Promise((resolve, reject) => {
-            const tx = db.transaction([storeName], 'readwrite');
-            const store = tx.objectStore(storeName);
-            const req = store.add(record);
-            req.onsuccess = () => resolve(req.result);
-            req.onerror = () => reject(`saveEntity failed on store: ${storeName}`);
+        return this._safeTransaction([storeName], 'readwrite', (tx) => {
+            return new Promise((resolve, reject) => {
+                const store = tx.objectStore(storeName);
+                const req = store.add(record);
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(`saveEntity failed on store: ${storeName}`);
+            });
         });
     }
 
@@ -275,30 +332,30 @@ class StorageManager {
      * @returns {Promise<void>}
      */
     async updateEntity(storeName, localId, updates) {
-        const db = await this._getDB();
-        return new Promise((resolve, reject) => {
-            const tx = db.transaction([storeName], 'readwrite');
-            const store = tx.objectStore(storeName);
-            const getReq = store.get(localId);
+        return this._safeTransaction([storeName], 'readwrite', (tx) => {
+            return new Promise((resolve, reject) => {
+                const store = tx.objectStore(storeName);
+                const getReq = store.get(localId);
 
-            getReq.onsuccess = () => {
-                const existing = getReq.result;
-                if (!existing) {
-                    reject(`updateEntity: record ${localId} not found in ${storeName}`);
-                    return;
-                }
-                const updated = {
-                    ...existing,
-                    ...updates,
-                    local_id: localId,
-                    last_modified: Date.now(),
-                    sync_status: 'pending'
+                getReq.onsuccess = () => {
+                    const existing = getReq.result;
+                    if (!existing) {
+                        reject(`updateEntity: record ${localId} not found in ${storeName}`);
+                        return;
+                    }
+                    const updated = {
+                        ...existing,
+                        ...updates,
+                        local_id: localId,
+                        last_modified: Date.now(),
+                        sync_status: 'pending'
+                    };
+                    const putReq = store.put(updated);
+                    putReq.onsuccess = () => resolve();
+                    putReq.onerror = () => reject(`updateEntity put failed on ${storeName}`);
                 };
-                const putReq = store.put(updated);
-                putReq.onsuccess = () => resolve();
-                putReq.onerror = () => reject(`updateEntity put failed on ${storeName}`);
-            };
-            getReq.onerror = () => reject(`updateEntity get failed on ${storeName}`);
+                getReq.onerror = () => reject(`updateEntity get failed on ${storeName}`);
+            });
         });
     }
 
@@ -308,27 +365,49 @@ class StorageManager {
      * @returns {Promise<Array>}
      */
     async getEntitiesByUser(storeName, userId) {
-        const db = await this._getDB();
-        return new Promise((resolve, reject) => {
-            const tx = db.transaction([storeName], 'readonly');
-            const store = tx.objectStore(storeName);
-            const getAll = store.getAll();
+        return this._safeTransaction([storeName], 'readonly', (tx) => {
+            return new Promise((resolve, reject) => {
+                const store = tx.objectStore(storeName);
+                const getAll = store.getAll();
 
-            getAll.onsuccess = () => {
-                const all = getAll.result || [];
-                const filtered = all.filter(record => {
-                    if (record.owner_uid === userId) return true;
-                    if (record.user_uid === userId) return true;
-                    if (record.admin_uid === userId) return true;
-                    if (record.guardian_uid === userId) return true;
-                    if (record.organizer_uid === userId) return true;
-                    if (Array.isArray(record.members) && record.members.includes(userId)) return true;
-                    if (Array.isArray(record.admins) && record.admins.includes(userId)) return true;
-                    return false;
-                });
-                resolve(filtered);
-            };
-            getAll.onerror = () => reject(`getEntitiesByUser failed on ${storeName}`);
+                getAll.onsuccess = () => {
+                    const all = getAll.result || [];
+                    const filtered = all.filter(record => {
+                        if (record.owner_uid === userId) return true;
+                        if (record.user_uid === userId) return true;
+                        if (record.admin_uid === userId) return true;
+                        if (record.guardian_uid === userId) return true;
+                        if (record.organizer_uid === userId) return true;
+                        if (Array.isArray(record.members) && record.members.includes(userId)) return true;
+                        if (Array.isArray(record.admins) && record.admins.includes(userId)) return true;
+                        return false;
+                    });
+                    resolve(filtered);
+                };
+                getAll.onerror = () => reject(`getEntitiesByUser failed on ${storeName}`);
+            });
+        });
+    }
+
+    /**
+     * Generic filter for any store.
+     * @param {string} storeName 
+     * @param {Function} predicate - (item) => boolean
+     * @returns {Promise<Array>}
+     */
+    async getEntitiesByFilter(storeName, predicate) {
+        return this._safeTransaction([storeName], 'readonly', (tx) => {
+            return new Promise((resolve, reject) => {
+                const store = tx.objectStore(storeName);
+                const getAll = store.getAll();
+
+                getAll.onsuccess = () => {
+                    const all = getAll.result || [];
+                    const filtered = all.filter(predicate);
+                    resolve(filtered);
+                };
+                getAll.onerror = () => reject(`getEntitiesByFilter failed on ${storeName}`);
+            });
         });
     }
 
@@ -352,25 +431,24 @@ class StorageManager {
      * @returns {Promise<Object>} merged profile object
      */
     async getProfile(userId) {
-        const db = await this._getDB();
-        return new Promise((resolve, reject) => {
-            const tx = db.transaction(['users', 'user_profiles'], 'readonly');
-            const usersStore = tx.objectStore('users');
-            const profileStore = tx.objectStore('user_profiles');
+        return this._safeTransaction(['users', 'user_profiles'], 'readonly', (tx) => {
+            return new Promise((resolve, reject) => {
+                const usersStore = tx.objectStore('users');
+                const profileStore = tx.objectStore('user_profiles');
 
-            const userReq = usersStore.get(userId);
-            userReq.onsuccess = () => {
-                const userBase = userReq.result || {};
-                // user_profiles indexed by uid
-                const profileIndex = profileStore.index('by_uid');
-                const profReq = profileIndex.get(userId);
-                profReq.onsuccess = () => {
-                    const extended = profReq.result || {};
-                    resolve({ ...userBase, ...extended });
+                const userReq = usersStore.get(userId);
+                userReq.onsuccess = () => {
+                    const userBase = userReq.result || {};
+                    const profileIndex = profileStore.index('by_uid');
+                    const profReq = profileIndex.get(userId);
+                    profReq.onsuccess = () => {
+                        const extended = profReq.result || {};
+                        resolve({ ...userBase, ...extended });
+                    };
+                    profReq.onerror = () => resolve(userBase);
                 };
-                profReq.onerror = () => resolve(userBase); // graceful fallback
-            };
-            userReq.onerror = () => reject(`getProfile: users store read failed for ${userId}`);
+                userReq.onerror = () => reject(`getProfile: users store read failed for ${userId}`);
+            });
         });
     }
 
@@ -379,45 +457,69 @@ class StorageManager {
      * @returns {Promise<void>}
      */
     async saveProfile(profileData) {
-        const db = await this._getDB();
-        return new Promise((resolve, reject) => {
-            const tx = db.transaction(['users', 'user_profiles'], 'readwrite');
-            const usersStore = tx.objectStore('users');
-            const profileStore = tx.objectStore('user_profiles');
+        console.log('StorageManager: saveProfile initiated for', profileData.uid || profileData.profile_id);
+        const uid = profileData.uid || profileData.profile_id;
 
-            // Core auth record goes to users
-            const userRecord = {
-                profile_id: profileData.uid || profileData.profile_id,
-                uid: profileData.uid || profileData.profile_id,
-                username: profileData.username,
-                whatsapp: profileData.whatsapp,
-                password_hash: profileData.password_hash,
-                profile_type: profileData.profile_type,
-                created_at: profileData.created_at || Date.now(),
-                last_modified: Date.now(),
-                sync_status: 'pending',
-                sync_attempts: 0,
-                cloud_id: null
-            };
-            usersStore.put(userRecord);
+        if (!uid) {
+            console.error('StorageManager: saveProfile failed - No UID provided', profileData);
+            throw new Error('No UID provided for profile');
+        }
 
-            // Extended profile data goes to user_profiles
-            const extRecord = this._addSyncMeta({
-                uid: profileData.uid || profileData.profile_id,
-                display_name: profileData.display_name || profileData.name,
-                dob: profileData.dob,
-                gender: profileData.gender,
-                city: profileData.city,
-                area: profileData.area,
-                interests: profileData.interests || [],
-                avatar: profileData.avatar || null,
-                completeness: profileData.completeness || 0,
-                ...profileData
+        return this._safeTransaction(['users', 'user_profiles'], 'readwrite', (tx) => {
+            return new Promise((resolve, reject) => {
+                const usersStore = tx.objectStore('users');
+                const profileStore = tx.objectStore('user_profiles');
+
+                tx.oncomplete = () => {
+                    console.log('StorageManager: saveProfile transaction complete');
+                    resolve();
+                };
+                tx.onabort = (e) => {
+                    console.error('StorageManager: saveProfile transaction aborted', tx.error || e);
+                    reject(tx.error || 'Transaction aborted');
+                };
+                tx.onerror = (e) => {
+                    console.error('StorageManager: saveProfile transaction error', tx.error || e);
+                    reject(tx.error || 'Transaction error');
+                };
+
+                const userRecord = {
+                    profile_id: uid,
+                    uid: uid,
+                    username: profileData.username || '',
+                    whatsapp: profileData.whatsapp || '',
+                    password_hash: profileData.password_hash || '',
+                    profile_type: profileData.profile_type || 'User',
+                    created_at: profileData.created_at || Date.now(),
+                    last_modified: Date.now(),
+                    sync_status: 'pending',
+                    sync_attempts: 0,
+                    cloud_id: null
+                };
+                
+                usersStore.put(userRecord);
+
+                const profileIndex = profileStore.index('by_uid');
+                const getReq = profileIndex.get(uid);
+
+                getReq.onsuccess = () => {
+                    const existing = getReq.result;
+                    const extRecord = this._addSyncMeta({
+                        uid: uid,
+                        display_name: profileData.display_name || profileData.name || profileData.full_name || 'Anonymous',
+                        avatar: profileData.avatar || profileData.profile_picture || null,
+                        ...profileData
+                    });
+
+                    if (existing) {
+                        extRecord.local_id = existing.local_id;
+                        profileStore.put(extRecord);
+                    } else {
+                        delete extRecord.local_id;
+                        profileStore.add(extRecord);
+                    }
+                };
             });
-            profileStore.put(extRecord);
-
-            tx.oncomplete = () => resolve();
-            tx.onerror = () => reject('saveProfile transaction failed');
         });
     }
 
@@ -608,6 +710,7 @@ class StorageManager {
     setCurrentUser(id) { localStorage.setItem('currentUser', id); }
     getCurrentUserId() { return localStorage.getItem('currentUser'); }
 
+
     checkMigration() {
         const version = this.load('version', '1.0');
         if (version === '1.0') {
@@ -623,11 +726,36 @@ class StorageManager {
     saveReservation(reservation) {
         const reservations = this.load('reservations', []);
         reservations.push(reservation);
-        return this.save('reservations', reservations);
+        this.save('reservations', reservations);
+        return reservation;
+    }
+
+    updateReservation(reservationId, updates) {
+        const reservations = this.load('reservations', []);
+        const idx = reservations.findIndex(r => r.reservation_id === reservationId);
+        if (idx !== -1) {
+            reservations[idx] = { ...reservations[idx], ...updates, last_modified: Date.now() };
+            this.save('reservations', reservations);
+            return true;
+        }
+        return false;
     }
 
     getUserReservations(userId) {
         return this.load('reservations', []).filter(r => r.user_id === userId);
+    }
+
+    getVenueBookings(venueId) {
+        return this.load('reservations', []).filter(r => r.venue_id === venueId);
+    }
+
+    async getBookingsForOwner(ownerId) {
+        // First get all venues owned by the user
+        const venues = await this.getEntitiesByUser('venues', ownerId);
+        const venueIds = venues.map(v => v.local_id || v.venue_id);
+        
+        // Return all reservations for these venues
+        return this.load('reservations', []).filter(r => venueIds.includes(r.venue_id));
     }
 
     saveWaitlistEntry(entry) {
@@ -639,6 +767,108 @@ class StorageManager {
     getUserWaitlists(userId) {
         return this.load('waitlists', []).filter(w => w.user_id === userId);
     }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SYNC QUEUE — Phase 11: offline operation log
+    // ─────────────────────────────────────────────────────────────────────────
+
+    /**
+     * Enqueue a pending sync operation.
+     * Called by any module that mutates data while potentially offline.
+     * The PulseUpdater scheduler drains this queue every 15 minutes.
+     * NEVER call this for 'medical_records'.
+     * @param {string} storeName  - Target IndexedDB store for the cloud push
+     * @param {string} operation  - 'create' | 'update' | 'delete'
+     * @param {Object} data       - The payload to push to the backend
+     * @returns {Promise<number>} local_id of the queued entry
+     */
+    async queueSync(storeName, operation, data) {
+        if (storeName === 'medical_records') {
+            console.warn('StorageManager: medical_records MUST NEVER be synced. queueSync blocked.');
+            return Promise.resolve(null);
+        }
+        return this.saveEntity('sync_queue', {
+            store_name: storeName,
+            operation,
+            payload: data,
+            status: 'pending',
+            timestamp: Date.now()
+        });
+    }
+
+    /**
+     * Get all pending sync operations (used by PulseUpdater).
+     * @returns {Promise<Array>}
+     */
+    async getPendingSyncQueue() {
+        return this._safeTransaction(['sync_queue'], 'readonly', (tx) => {
+            return new Promise((resolve, reject) => {
+                const store = tx.objectStore('sync_queue');
+                const idx = store.index('by_status');
+                const req = idx.getAll('pending');
+                req.onsuccess = () => resolve(req.result || []);
+                req.onerror = () => reject('getPendingSyncQueue failed');
+            });
+        });
+    }
+
+    /**
+     * Mark a sync queue entry as completed (or failed).
+     * @param {number} localId
+     * @param {'synced'|'error'} status
+     */
+    async resolveSyncQueueEntry(localId, status = 'synced') {
+        return this.updateEntity('sync_queue', localId, { status });
+    }
+
+    /**
+     * Get all users from the 'users' store.
+     * Required for real credential lookup during login.
+     * @returns {Promise<Array>}
+     */
+    async getAllUsers() {
+        return this._safeTransaction(['users'], 'readonly', (tx) => {
+            return new Promise((resolve, reject) => {
+                const store = tx.objectStore('users');
+                const req = store.getAll();
+                req.onsuccess = () => resolve(req.result || []);
+                req.onerror = () => reject('getAllUsers failed');
+            });
+        });
+    }
+
+    /**
+     * Logout utility: Clears the current session and redirects to login/splash.
+     * Called from hamburger menu and AuthManager.logout().
+     */
+    logout() {
+        localStorage.removeItem('mizano_session');
+        localStorage.removeItem('currentUser');
+        console.log('StorageManager: Session cleared. Reloading.');
+        window.location.reload();
+    }
+
+    /**
+     * Saves scroll position to LocalStorage for a specific view
+     * @param {string} viewId 
+     * @param {number} position 
+     */
+    saveScroll(viewId, position) {
+        let scrolls = this.load('mizano_scrolls', {});
+        scrolls[viewId] = position;
+        this.save('mizano_scrolls', scrolls);
+    }
+
+    /**
+     * Loads saved scroll position from LocalStorage
+     * @param {string} viewId 
+     * @returns {number}
+     */
+    loadScroll(viewId) {
+        let scrolls = this.load('mizano_scrolls', {});
+        return scrolls[viewId] || 0;
+    }
+
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

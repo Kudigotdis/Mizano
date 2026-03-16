@@ -79,12 +79,19 @@ window.AddActionRouter = (function () {
     // ─── FORM TITLES ──────────────────────────────────────────────────────────
     const FORM_TITLES = {
         minor: 'Add Minor',
+        minors: 'Add Minor',
         event: 'Add Event',
+        events: 'Add Event',
         group: 'Add Group',
+        groups: 'Add Group',
         association: 'Add Association',
+        associations: 'Add Association',
         venue: 'Add Venue',
+        venues: 'Add Venue',
         business: 'Add Business',
         playerfile: 'Add Player File',
+        playerfiles: 'Add Player File',
+        player_file: 'Add Player File',
         activity_custom: 'Add Player File',
         event_post: 'Create Post',
         habit: 'Add Habit',
@@ -142,9 +149,6 @@ window.AddActionRouter = (function () {
         const handle = `<div style="width:40px;height:4px;background:#ddd;border-radius:2px;
             margin:12px auto 16px;"></div>`;
 
-        // Profile Card Injection
-        const profileCard = _renderProfileCard();
-
         // Option rows
         const rows = OPTIONS.map(opt => `
             <div class="add-action-row" data-type="${opt.type}"
@@ -161,12 +165,16 @@ window.AddActionRouter = (function () {
             </div>
         `).join('');
 
+        // Profile Card Injection (Now at bottom)
+        const profileCard = _renderProfileCard();
+
         sheet.innerHTML = `
             ${handle}
-            ${profileCard}
-            <div style="padding:0 0 40px;">
+            <div style="padding:0 0 10px;">
                 ${rows}
             </div>
+            ${profileCard}
+            <div style="height:40px;"></div>
         `;
 
         _sheetEl = sheet;
@@ -179,18 +187,20 @@ window.AddActionRouter = (function () {
         sheet.querySelectorAll('.add-action-row').forEach(row => {
             row.addEventListener('click', () => {
                 const type = row.dataset.type;
-                openForm(type);
+                closeSheet(() => {
+                    openForm(type);
+                });
             });
         });
 
         // Attach Profile Card listener
-        const pCard = sheet.querySelector('.add-action-profile-card');
+        const pCard = document.getElementById('add-action-profile-card');
         if (pCard) {
             pCard.addEventListener('click', () => {
-                if (window.MizanoNav) {
-                    window.MizanoNav.switchPanel(15);
-                    closeSheet();
-                }
+                window.AddActionRouter.closeSheet();
+                setTimeout(() => {
+                    if (window.MizanoNav) window.MizanoNav.openOverlay('profile');
+                }, 300);
             });
         }
     }
@@ -198,20 +208,23 @@ window.AddActionRouter = (function () {
     // ─── PROFILE CARD RENDERER ───────────────────────────────────────────────
 
     function _renderProfileCard() {
-        const user = window.authManager?.getCurrentUser() || { full_name: 'Guest User', email: 'guest@mizano.app', uid: 'guest' };
-        const avatar = user.profile_picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.full_name || 'Guest')}&background=random&color=fff`;
-
         return `
-            <div class="add-action-profile-card"
-                style="margin:0 20px 16px; padding:16px; background:#f9f9f9; border-radius:16px;
-                       display:flex; align-items:center; gap:12px; cursor:pointer; border:1px solid #eee;">
-                <img src="${avatar}" style="width:48px; height:48px; border-radius:12px; object-fit:cover; background:#eee;" />
-                <div style="flex:1;">
-                    <div style="font-weight:800; font-size:1rem; color:#1a1a1a;">${user.full_name || 'Mizano User'}</div>
-                    <div style="font-size:0.8rem; color:#666;">View & Edit My Profile</div>
-                </div>
-                <div style="background:#1a73e8; color:#fff; padding:6px 12px; border-radius:8px; font-size:0.75rem; font-weight:700;">Mine</div>
-            </div>
+          <div id="add-action-profile-card" style="
+            margin: 16px 16px 0;
+            padding: 14px 16px;
+            background: #1E88E5;
+            color: #fff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+          ">
+            <span style="font-size:1.4rem;">👤</span>
+            <span>My Profile</span>
+          </div>
         `;
     }
 
@@ -285,13 +298,16 @@ window.AddActionRouter = (function () {
         _attachCollapsibleInternalListeners(builderView);
 
         // Call init for forms that need post-render setup
-        if (formType === 'event_post' && window.EventPostForm) {
+        if ((formType === 'minor' || formType === 'minors') && window.MinorForm && window.MinorForm.init) {
+            window.MinorForm.init();
+        } else if (formType === 'event_post' && window.EventPostForm) {
             window.EventPostForm.init();
         } else if (formType === 'habit' && window.HabitForm) {
             window.HabitForm.init();
         } else if (formType === 'injury' && window.InjuryForm) {
             window.InjuryForm.init();
         }
+
     }
 
     function _buildFormHeader(formType) {
@@ -302,11 +318,11 @@ window.AddActionRouter = (function () {
             background:#fff;border-bottom:1px solid #f0f0f0;
             position:sticky;top:0;z-index:100;">
             <button onclick="window.MizanoNav && window.MizanoNav.closeOverlay('builder')"
-                style="background:none;border:none;font-size:1.4rem;cursor:pointer;
-                       color:#1a73e8;padding:4px 8px 4px 0;font-weight:600;">‹</button>
-            <h2 style="flex:1;text-align:center;font-size:1rem;font-weight:700;
-                       margin:0;color:#1a1a1a;">${title}</h2>
-            <div style="width:40px;"></div><!-- balance spacer -->
+                style="background:none;border:none;padding:8px;cursor:pointer;font-size:1.4rem;color:#444;display:flex;align-items:center;justify-content:center;">
+                ✕
+            </button>
+            <h2 style="flex:1;text-align:center;font-size:1rem;margin:0;font-weight:700;color:#1a1a1a;">${title}</h2>
+            <div style="width:40px;"></div> <!-- visual balance -->
         </div>`;
     }
 
@@ -317,24 +333,30 @@ window.AddActionRouter = (function () {
         try {
             switch (formType) {
                 case 'minor':
+                case 'minors':
                     if (window.MinorForm) return window.MinorForm.render();
                     return _stub('Minor Profile', 'Session 4');
                 case 'event':
+                case 'events':
                     if (window.EventForm) return window.EventForm.render();
                     return _stub('Event / Activity', 'Session 5');
                 case 'group':
+                case 'groups':
                     if (window.GroupForm) return window.GroupForm.render();
                     return _stub('Group', 'Session 6');
                 case 'association':
+                case 'associations':
                     if (window.AssociationForm) return window.AssociationForm.render();
                     return _stub('Association', 'Session 7');
                 case 'venue':
+                case 'venues':
                     if (window.VenueForm) return window.VenueForm.render();
                     return _stub('Venue', 'Session 8');
                 case 'business':
                     if (window.BusinessForm) return window.BusinessForm.render();
                     return _stub('Business', 'Session 9');
                 case 'playerfile':
+                case 'playerfiles':
                 case 'player_file':
                 case 'activity_custom':
                     if (window.PlayerFileForm) return window.PlayerFileForm.render();

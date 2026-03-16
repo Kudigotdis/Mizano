@@ -664,8 +664,8 @@ window.BusinessForm = (function () {
             .bf-toggle-wrap input { opacity:0; width:0; height:0; }
             .bf-toggle-slider { position:absolute; cursor:pointer; inset:0; background:#ccc; border-radius:24px; transition:background 0.2s; }
             .bf-toggle-slider:before { content:''; position:absolute; width:18px; height:18px; left:3px; top:3px; background:#fff; border-radius:50%; transition:transform 0.2s; }
-            .bf-toggle-wrap input:checked + .gf-toggle-slider { background:#1a73e8; }
-            .bf-toggle-wrap input:checked + .gf-toggle-slider:before { transform:translateX(20px); }
+            .bf-toggle-wrap input:checked + .bf-toggle-slider { background:#1a73e8; }
+            .bf-toggle-wrap input:checked + .bf-toggle-slider:before { transform:translateX(20px); }
             .bf-photo-box { width:100%; aspect-ratio:1; background:#f5f5f5; border:1px dashed #ccc; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
         </style>`;
     }

@@ -1,0 +1,17 @@
+Total blocks found: 15
+Found 1 objects in the block
+Object 0 FAIL: Expecting property name enclosed in double quotes: line 2 column 3 (char 4)
+--- Snippet ---
+{
+  eventID: "string",           
+  eventName: "string",          
+  eventSlug: "string",          
+  sponsor: "object",            
+  competitionForm
+...
+"string",       
+  allowStreams: "boolean",      
+  sponsorshipActive: "boolean", 
+  offlineEnabled: "boolean",    
+  villageWaiver: "boolean"      
+}

@@ -160,7 +160,8 @@ class CardRenderer {
                 break;
 
             case 'Shopping Deal Card':
-                card.innerHTML = this.templateProduct ? this.templateProduct(data) : `<div style="padding:16px;font-weight:600"></div>`;
+            case 'card-shopping':
+                card.innerHTML = this.templateShoppingDeal(data);
                 break;
             case 'Lesson Card':
             case 'Training/Lesson Progress Card':
@@ -240,7 +241,7 @@ class CardRenderer {
      */
     attachExpandLogic(card) {
         const toggleBtn = card.querySelector('.toggle-details-btn');
-        const panel = card.querySelector('.school-details-panel');
+        const panel = card.querySelector('.card-details-panel') || card.querySelector('.school-details-panel');
 
         if (toggleBtn && panel) {
             toggleBtn.addEventListener('click', (e) => {
@@ -254,7 +255,7 @@ class CardRenderer {
                 } else {
                     panel.classList.add('visible');
                     toggleBtn.classList.add('expanded');
-                    toggleBtn.innerHTML = '-';
+                    toggleBtn.innerHTML = '−';
                 }
             });
         }
@@ -271,12 +272,20 @@ class CardRenderer {
     }
 
     /**
-     * Renders an empty state in the container.
+     * Shows a premium empty state message in the container.
      */
-    renderEmpty(message = 'No results found matching your filters.') {
+    renderEmpty(msg = 'No results found matching your filters.') {
         if (!this.container) return;
         this.clear();
-        this.container.innerHTML = `<div class="placeholder-msg">${message}</div>`;
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'mizano-empty-state';
+        emptyDiv.style.cssText = 'text-align: center; color: #777; padding: 60px 20px; font-style: italic; animation: fadeIn 0.5s ease-out;';
+        emptyDiv.innerHTML = `
+            <div style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;">🔎</div>
+            <div style="font-weight: 700; font-size: 1.1rem; color: #444; margin-bottom: 8px;">Nothing here yet</div>
+            <p style="font-size: 0.9rem; max-width: 240px; margin: 0 auto; line-height: 1.4;">${msg}</p>
+        `;
+        this.container.appendChild(emptyDiv);
     }
 
     /**
@@ -503,11 +512,36 @@ class CardRenderer {
 
         const priceText = data.price_display || data.priceRange || data.price_range || 'Free Entry';
 
+        // Additional nested metadata designed for the collapsible panel
+        const raw = data.raw_data || {};
+        
+        // Extract reliable fields
+        const organizer = data.organizer || (raw.sponsor && raw.sponsor.name) || 'Mizano Events';
+        const venue = data.venue_name || (typeof raw.venue === 'string' ? raw.venue : (raw.venue && raw.venue.primary)) || 'TBA';
+        const locationStr = data.location || raw.region || 'Botswana';
+        const formatStr = raw.competitionFormat ? raw.competitionFormat.replace(/_/g, ' ') : (data.category || 'Event');
+
         return `
+            <button class="toggle-details-btn">+</button>
             <div class="card-event__title">${eventTitle}</div>
             <div class="card-event__date">${formattedDate}</div>
             <div class="card-event__tags">${tagsHTML}</div>
             <div class="card-event__price-bar">${priceText}</div>
+
+            <div class="card-details-panel">
+                <div class="card-details-panel__row">
+                    <div class="card-details-panel__label">Organizer</div>
+                    <div class="card-details-panel__value">${organizer}</div>
+                </div>
+                <div class="card-details-panel__row">
+                    <div class="card-details-panel__label">Location</div>
+                    <div class="card-details-panel__value">${venue}, ${locationStr}</div>
+                </div>
+                <div class="card-details-panel__row">
+                    <div class="card-details-panel__label">Format</div>
+                    <div class="card-details-panel__value" style="text-transform: capitalize;">${formatStr}</div>
+                </div>
+            </div>
         `;
     }
 

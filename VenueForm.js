@@ -486,8 +486,8 @@ window.VenueForm = (function () {
             .vf-toggle-wrap input { opacity:0; width:0; height:0; }
             .vf-toggle-slider { position:absolute; cursor:pointer; inset:0; background:#ccc; border-radius:24px; transition:background 0.2s; }
             .vf-toggle-slider:before { content:''; position:absolute; width:18px; height:18px; left:3px; top:3px; background:#fff; border-radius:50%; transition:transform 0.2s; }
-            .vf-toggle-wrap input:checked + .gf-toggle-slider { background:#1a73e8; }
-            .vf-toggle-wrap input:checked + .gf-toggle-slider:before { transform:translateX(20px); }
+            .vf-toggle-wrap input:checked + .vf-toggle-slider { background:#1a73e8; }
+            .vf-toggle-wrap input:checked + .vf-toggle-slider:before { transform:translateX(20px); }
             .vf-photo-box { width:100%; aspect-ratio:1; background:#f5f5f5; border:1px dashed #ccc; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
             /* Fix for position absolute inside relative container */
             #vf-mgr-results { position:static; border:1px solid #dadce0; margin-top:2px; box-shadow:0 2px 4px rgba(0,0,0,0.05); }

@@ -16,6 +16,10 @@
             --radius-md: 8px;
         }
 
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             background: #FFFFFF;
@@ -26,6 +30,7 @@
         .signup-container {
             max-width: 500px;
             margin: 0 auto;
+            padding: 0 16px;
         }
 
         .header-logo {
@@ -108,7 +113,7 @@
         }
 
         .section-content {
-            padding: 20px;
+            padding: 16px;
             display: block;
             /* Default for Identity */
         }
@@ -188,6 +193,25 @@
             text-decoration: none;
             font-weight: 600;
         }
+
+        input.form-control,
+        select.form-control,
+        textarea.form-control {
+            border-radius: 12px;
+            border: 1px solid #dcdcdc;
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        input.form-control:focus,
+        select.form-control:focus {
+            outline: none;
+            border-color: #1E88E5;
+        }
     </style>
 </head>
 
@@ -195,7 +219,7 @@
     <div class="signup-container">
         <div class="header-logo">
             <img src="./assets/images/logo.webp" alt="Mizano Logo">
-            <h1 style="font-size: 1.5rem; margin-top: 10px;">Mizano</h1>
+            <h1>Mizano</h1>
         </div>
 
         <form id="signup-form">
@@ -221,15 +245,13 @@
                         <label>Username</label>
                         <input type="text" name="username" class="form-control" placeholder="e.g. kao_modise" required>
                     </div>
-                    <div style="display: flex; gap: 10px;">
-                        <div class="field-group" style="flex:1">
-                            <label>First Name</label>
-                            <input type="text" name="firstName" class="form-control" required>
-                        </div>
-                        <div class="field-group" style="flex:1">
-                            <label>Other Names</label>
-                            <input type="text" name="middleNames" class="form-control">
-                        </div>
+                    <div class="field-group">
+                        <label>First Name</label>
+                        <input type="text" name="firstName" class="form-control" required>
+                    </div>
+                    <div class="field-group">
+                        <label>Other Names</label>
+                        <input type="text" name="middleNames" class="form-control" placeholder="Middle name(s)">
                     </div>
                     <div class="field-group">
                         <label>Surname</label>
@@ -445,8 +467,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const grid = document.getElementById('interests-grid');
             const counterEl = document.getElementById('interests-count');
-            const data = []; // DISABLED INLINE - Using assets/js/signup_interests.js instead because replace_file_content failed
-            // const data = window.MIZANO_INTERESTS_DATA || [];
+            const data = window.MIZANO_INTERESTS_DATA || [];
 
 
             if (data.length === 0) {
@@ -512,8 +533,8 @@
 
                 // Toggle active class on chips
                 document.querySelectorAll('input[name="interests"]').forEach(inp => {
-                    if (inp.checked) inp.parentElement.classList.add('active');
-                    else inp.parentElement.classList.remove('active');
+                    if (inp.checked) inp.parentElement.classList.add('selected');
+                    else inp.parentElement.classList.remove('selected');
                 });
             }
         });

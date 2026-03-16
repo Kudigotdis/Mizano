@@ -127,21 +127,46 @@ window.MinorForm = (function () {
                     <span class="collapsible-arrow mf-arrow">›</span>
                 </div>
                 <div class="mf-section-body" id="sec-school-location" style="display:none;">
-                    <div id="mf-school-wrap" style="margin-bottom:10px;">
+                    <!-- SCHOOL SELECTION OVERLAY TRIGGER -->
+                    <div class="mf-field-group" style="margin-bottom:10px;">
                         <label class="mf-label">School</label>
-                        <input type="text" id="mf-school-search" class="mf-input"
-                            placeholder="Search school name…"
-                            oninput="window.MinorForm._searchSchools(this.value)">
-                        <div id="mf-school-results" style="display:none;border:1px solid #dadce0;
-                            border-radius:8px;margin-top:4px;max-height:150px;overflow-y:auto;"></div>
-                        <input type="hidden" id="mf-school-id">
-                        <button type="button" class="mf-link-btn" style="margin-top:4px;"
-                            onclick="window.MinorForm._toggleCustomSchool()">
-                            Not in the list? Enter manually
+                        <button type="button" class="mf-input" 
+                            style="width:100%;text-align:left;background:#f7f7f7;color:#333;display:flex;justify-content:space-between;align-items:center;cursor:pointer;"
+                            onclick="if(window.SchoolSelector) window.SchoolSelector.open()">
+                            <span id="mf-school-display" style="opacity:0.6;">Select a school...</span>
+                            <span>›</span>
                         </button>
-                        <input type="text" id="mf-school-custom" class="mf-input" style="display:none;margin-top:6px;"
-                            placeholder="Enter school name">
+                        <input type="hidden" id="mf-school-id" name="school_id">
+                        <input type="hidden" id="mf-school-name" name="school_name">
+                        <input type="hidden" id="mf-school-is-new" value="false">
                     </div>
+
+                    <!-- TEACHERS -->
+                    <div class="mf-field-group" style="margin-bottom:15px;padding-top:10px;border-top:1px dashed #eee;">
+                        <label class="mf-label">Teachers (Optional)</label>
+                        <p class="mf-hint" style="margin-bottom:8px;">Add teachers to optionally link their accounts</p>
+                        <div style="display:flex;gap:8px;margin-bottom:10px;">
+                            <input type="text" id="mf-teacher-input" class="mf-input" placeholder="Teacher name..." style="flex:1;">
+                            <button type="button" class="mf-submit-btn" style="width:auto;padding:0 16px;margin:0;" 
+                                onclick="window.MinorForm._addTeacher()">Add</button>
+                        </div>
+                        <div id="mf-teachers-list" style="display:flex;flex-direction:column;gap:6px;"></div>
+                    </div>
+
+                    <!-- School type (auto-filled, read-only) -->
+                    <div class="mf-field-group" style="margin-bottom:10px;">
+                        <label class="mf-label">School Type</label>
+                        <input
+                            type="text"
+                            id="mf-school-type"
+                            name="school_type"
+                            class="mf-input"
+                            placeholder="Auto-filled when school selected"
+                            readonly
+                            style="background:#f7f7f7;color:#666;"
+                        >
+                    </div>
+
                     <div style="margin-bottom:10px;">
                         <label class="mf-label">Grade / Year</label>
                         <select id="mf-grade" class="mf-input">
@@ -157,20 +182,17 @@ window.MinorForm = (function () {
                             <option>Not in school</option>
                         </select>
                     </div>
+
                     <div style="display:flex;gap:10px;">
                         <div style="flex:1;">
                             <label class="mf-label">Village / Town <span class="mf-req-star">*</span></label>
-                            <select id="mf-city" class="mf-input" required
-                                onchange="window.MinorForm._loadAreas(this.value)">
-                                <option value="">Select city…</option>
-                                ${_cityOptions()}
-                            </select>
+                            <input type="text" id="mf-city" name="city" class="mf-input" required
+                                placeholder="Auto-filled or enter manually">
                         </div>
                         <div style="flex:1;">
                             <label class="mf-label">Area / Neighbourhood</label>
-                            <select id="mf-area" class="mf-input">
-                                <option value="">Select area…</option>
-                            </select>
+                            <input type="text" id="mf-area" name="area" class="mf-input"
+                                placeholder="Auto-filled or enter manually">
                         </div>
                     </div>
                 </div>
@@ -253,6 +275,62 @@ window.MinorForm = (function () {
                 </button>
             </div>
         </div>`;
+    }
+
+    // Called after render() injects into DOM
+    function init() {
+        window.MinorForm._teachersList = [];
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // TEACHERS UI HELPERS
+    // ─────────────────────────────────────────────────────────────────────────
+
+    function _addTeacher() {
+        const input = document.getElementById('mf-teacher-input');
+        if(!input) return;
+        const name = input.value.trim();
+        if(!name) return;
+        
+        window.MinorForm._teachersList = window.MinorForm._teachersList || [];
+        // Prevent duplicates
+        if(!window.MinorForm._teachersList.some(t => t.name.toLowerCase() === name.toLowerCase())) {
+            window.MinorForm._teachersList.push({ id: 'TCH-' + Date.now(), name: name });
+            _renderTeachers();
+        }
+        input.value = '';
+    }
+
+    function _removeTeacher(id) {
+        window.MinorForm._teachersList = (window.MinorForm._teachersList || []).filter(t => t.id !== id);
+        _renderTeachers();
+    }
+
+    function _renderTeachers() {
+        const listEl = document.getElementById('mf-teachers-list');
+        if(!listEl) return;
+        const list = window.MinorForm._teachersList || [];
+        if(list.length === 0) {
+            listEl.innerHTML = '';
+            return;
+        }
+        
+        listEl.innerHTML = list.map(t => `
+            <div style="display:flex;justify-content:space-between;align-items:center;background:#f5f7ff;padding:8px 12px;border-radius:4px;font-size:0.85rem;color:#1E88E5;">
+                <span>${_safeAttr(t.name)}</span>
+                <button type="button" onclick="window.MinorForm._removeTeacher('${t.id}')" style="background:none;border:none;color:#d32f2f;font-weight:bold;cursor:pointer;padding:4px;">✕</button>
+            </div>
+        `).join('');
+    }
+
+    function _safeAttr(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -362,59 +440,9 @@ window.MinorForm = (function () {
         if (display) display.textContent = `Age: ${age} years · Category: ${cat}`;
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // SCHOOL SEARCH
-    // ─────────────────────────────────────────────────────────────────────────
 
-    function _searchSchools(query) {
-        const resultsEl = document.getElementById('mf-school-results');
-        if (!query || query.length < 2) { resultsEl.style.display = 'none'; return; }
 
-        window.mizanoStorage.performTransaction('schools', 'readonly', store => store.getAll()).then(all => {
-            const matches = (all || []).filter(s =>
-                (s.name || '').toLowerCase().includes(query.toLowerCase())
-            ).slice(0, 8);
 
-            if (!matches.length) { resultsEl.style.display = 'none'; return; }
-            resultsEl.style.display = 'block';
-            resultsEl.innerHTML = matches.map(s => `
-                <div onclick="window.MinorForm._selectSchool('${s.id}','${_safeAttr(s.name)}')"
-                    style="padding:10px 14px;cursor:pointer;font-size:0.85rem;border-bottom:1px solid #f5f5f5;"
-                    onmouseenter="this.style.background='#f5f7ff'"
-                    onmouseleave="this.style.background='transparent'">
-                    ${s.name}
-                </div>`).join('');
-        }).catch(() => { resultsEl.style.display = 'none'; });
-    }
-
-    function _selectSchool(id, name) {
-        document.getElementById('mf-school-id').value = id;
-        document.getElementById('mf-school-search').value = name;
-        document.getElementById('mf-school-results').style.display = 'none';
-    }
-
-    function _toggleCustomSchool() {
-        const custom = document.getElementById('mf-school-custom');
-        if (custom) custom.style.display = custom.style.display === 'none' ? 'block' : 'none';
-    }
-
-    // ─────────────────────────────────────────────────────────────────────────
-    // LOCATION CASCADE
-    // ─────────────────────────────────────────────────────────────────────────
-
-    function _loadAreas(city) {
-        const areaSelect = document.getElementById('mf-area');
-        if (!areaSelect) return;
-        areaSelect.innerHTML = '<option value="">Select area…</option>';
-        if (!city) return;
-
-        // Use signup_locations.js if available
-        if (window.MIZANO_LOCATIONS && window.MIZANO_LOCATIONS[city]) {
-            window.MIZANO_LOCATIONS[city].forEach(area => {
-                areaSelect.insertAdjacentHTML('beforeend', `<option value="${area}">${area}</option>`);
-            });
-        }
-    }
 
     // ─────────────────────────────────────────────────────────────────────────
     // SUBMIT
@@ -433,19 +461,15 @@ window.MinorForm = (function () {
             return;
         }
 
-        const userId = _getUserId();
-        const now = Date.now();
-        const firstName = document.getElementById('mf-first-name')?.value.trim() || '';
-        const lastName = document.getElementById('mf-last-name')?.value.trim() || '';
-        const dob = document.getElementById('mf-dob')?.value || '';
-        const gender = document.getElementById('mf-gender')?.value || '';
-        const schoolId = document.getElementById('mf-school-id')?.value || '';
-        const schoolCustom = document.getElementById('mf-school-custom')?.value.trim() || '';
-        const grade = document.getElementById('mf-grade')?.value || '';
-        const city = document.getElementById('mf-city')?.value || '';
-        const area = document.getElementById('mf-area')?.value || '';
-        const relationship = document.getElementById('mf-relationship')?.value || '';
-        const linkedUsername = document.getElementById('mf-linked-username')?.value.trim() || '';
+        // ── School validation ───────────────────────────────────────────────
+        const minorData = {};
+        minorData.school_name   = document.getElementById('mf-school-name')?.value || '';
+        minorData.school_id     = document.getElementById('mf-school-id')?.value     || '';
+        minorData.school_type   = document.getElementById('mf-school-type')?.value   || '';
+        minorData.school_city   = document.getElementById('mf-city')?.value           || '';
+        minorData.school_area   = document.getElementById('mf-area')?.value           || '';
+        minorData.school_is_new = document.getElementById('mf-school-is-new')?.value === 'true';
+        minorData.teachers      = window.MinorForm._teachersList || [];
 
         // Collect interests
         const interests = [];
@@ -478,11 +502,14 @@ window.MinorForm = (function () {
             dob,
             gender,
             avatar,
-            school_id: schoolId || null,
-            school_name: schoolCustom || null,
+            school_id: minorData.school_id || null,
+            school_name: minorData.school_name || null,
+            school_type: minorData.school_type || null,
+            school_is_new: minorData.school_is_new,
             grade,
-            city,
-            area,
+            teachers: minorData.teachers,
+            city: minorData.school_city,
+            area: minorData.school_area,
             interests,
             linked_username: linkedUsername || null,
             invite_status: 'na',
@@ -515,7 +542,8 @@ window.MinorForm = (function () {
         if (!get('mf-last-name')) errors.push('Minor\'s last name is required.');
         if (!get('mf-dob')) errors.push('Date of birth is required.');
         if (!get('mf-gender')) errors.push('Gender is required.');
-        if (!get('mf-city')) errors.push('Village/Town is required.');
+        const cityVal = document.getElementById('mf-city')?.value?.trim() || '';
+        if (!cityVal) errors.push('Village/Town is required.');
 
         const interests = document.querySelectorAll('.mf-interest-chip.active');
         if (!interests.length) {
@@ -715,15 +743,14 @@ window.MinorForm = (function () {
 
     return {
         render,
+        init,
         _selectPath,
         _sendInvite,
         _pickPhoto,
         _previewPhoto,
         _calcAge,
-        _searchSchools,
-        _selectSchool,
-        _toggleCustomSchool,
-        _loadAreas,
+        _addTeacher,
+        _removeTeacher,
         _submit,
         _toggleChip
     };

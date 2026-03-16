@@ -160,12 +160,12 @@ class NavigationController {
         // No arrow buttons in the top nav by design
 
         // Bottom Menu (Delegated)
-        const bottomMenu = document.querySelector('.bottom-menu');
+        const bottomMenu = document.querySelector('.bottom-menu-mizano') || document.querySelector('.bottom-menu');
         if (bottomMenu) {
             bottomMenu.addEventListener('click', (e) => {
                 const btn = e.target.closest('.menu-btn');
                 if (btn) {
-                    const actionId = btn.id.replace('btn-', '');
+                    const actionId = btn.id.replace('btn-', '').replace('-mizano', '').replace('-level', '');
                     this.handleBottomMenuAction(actionId);
                 }
             });
@@ -211,9 +211,12 @@ class NavigationController {
 
     /**
      * Navigate to the next panel if possible.
+     * The carousel has panels 0–15 (16 real) + panel-16 (clone of Home for seamless loop).
+     * Navigation wraps only within the 16 real panels.
      */
     nextPanel() {
-        const nextIndex = (this.state.panelIndex + 1) % this.totalPanels;
+        const realPanels = 16; // panels 0-15
+        const nextIndex = (this.state.panelIndex + 1) % realPanels;
         this.switchPanel(nextIndex);
     }
 
@@ -221,7 +224,8 @@ class NavigationController {
      * Navigate to the previous panel if possible.
      */
     prevPanel() {
-        const prevIndex = (this.state.panelIndex - 1 + this.totalPanels) % this.totalPanels;
+        const realPanels = 16; // panels 0-15
+        const prevIndex = (this.state.panelIndex - 1 + realPanels) % realPanels;
         this.switchPanel(prevIndex);
     }
 
@@ -231,7 +235,11 @@ class NavigationController {
     switchPanel(index, behavior = 'smooth') {
         // Boundary enforcement
         if (index < 0 || index >= this.totalPanels) return;
-        if (index === this.state.panelIndex) return;
+
+        // Allow re-render for Mine panel (15) even if already active —
+        // MineRenderer needs to refresh user data every visit.
+        const isMine = (index === 15);
+        if (!isMine && index === this.state.panelIndex) return;
 
         this.state.panelIndex = index;
 
@@ -344,6 +352,9 @@ class NavigationController {
         console.log(`NavigationController: Rendering ${pageId}`, data);
 
         switch (pageId) {
+            case 'event-detail':
+                if (window.MizanoEventDetail) window.MizanoEventDetail.render(data.eventId);
+                break;
             case 'school-detail':
                 if (window.MizanoInstitutionDetail) window.MizanoInstitutionDetail.render(data.schoolId, 'school');
                 break;
@@ -357,7 +368,7 @@ class NavigationController {
                 if (window.MizanoVenueDetail) window.MizanoVenueDetail.render(data.venueId);
                 break;
             case 'my-reservations':
-                if (window.ReservationsView) window.ReservationsView.render();
+                if (window.ReservationsView) window.ReservationsView.render(data.tab || 'waitlist');
                 break;
             case 'detail':
                 if (window.MizanoDetail) window.MizanoDetail.render(data.activityId);
@@ -422,7 +433,8 @@ class NavigationController {
                 this.openOverlay('builder-choice');
                 break;
             case 'notif':
-                this.togglePanel('notifications-panel');
+            case 'notifications':
+                this.openOverlay('notifications');
                 break;
             case 'hamburger':
                 this.openOverlay('hamburger');
@@ -571,8 +583,8 @@ class NavigationController {
                 break;
 
             case 'Stats Card':
-                // navigate to profile stats tab
-                this.switchPanel(15); // Mine Panel
+                // navigate to tracker dashboard overlay
+                this.openOverlay('tracker');
                 break;
 
             default:
@@ -627,6 +639,13 @@ class NavigationController {
                 this.syncNavUI(state.panelIndex);
                 break;
         }
+    }
+
+    /**
+     * Public alias for back() strictly for overlays to support legacy calls.
+     */
+    closeOverlay(id) {
+        this.back();
     }
 
     closeTopOverlay() {

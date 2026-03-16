@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mizano Alpha Nav</title>
+    <style>
+        :root {
+            --sidebar-bg: #F2F2F0;
+            --sidebar-inactive: #C0C0B8;
+            --sidebar-hover: #4A4A45;
+            --sidebar-active-text: #2C2C28;
+            --sidebar-active-bg: #DDDDD8;
+            --list-divider: rgba(0,0,0,0.05);
+            --charcoal: #2C2C28;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden; /* Prevent body scroll */
+            background: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* THE LIST (LEFT SIDE) */
+        .list-area {
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .item {
+            padding: 12px 20px;
+            font-size: 14px;
+            text-align: center;
+            color: var(--charcoal);
+            border-bottom: 0.5px solid var(--list-divider);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .item:active {
+            background: #f9f9f9;
+        }
+
+        .anchor {
+            height: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        /* THE SIDEBAR (RIGHT SIDE) */
+        .sidebar {
+            width: 32px;
+            height: 100%;
+            background: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .letter {
+            width: 24px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--sidebar-inactive);
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 1px 0;
+            user-select: none;
+        }
+
+        .letter:hover:not(.disabled) {
+            color: var(--sidebar-hover);
+        }
+
+        .letter.active {
+            color: var(--sidebar-active-text);
+            background: var(--sidebar-active-bg);
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .letter.disabled {
+            color: #DCDCD8;
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        /* Hide scrollbars but keep functionality */
+        .list-area::-webkit-scrollbar {
+            display: none;
+        }
+        .list-area {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .list-content {
+            animation: fadeIn 0.4s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="list-area" id="list-area">
+        <div class="list-content" id="list-content">
+            <!-- Items injected by JS -->
+        </div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <!-- A-Z injected by JS -->
+    </div>
+</div>
+
+<script>
+    // 1. DATA FORMAT
+    const data = {
+        A: ["Acacia Park", "Alpha Gym", "Athletics BW", "Apex Studio", "Aero Club"],
+        B: ["Block 3 FC", "Broadhurst Runners", "Blue Tree Golf", "Bonsai Garden"],
+        C: ["Central Stadium", "City Gym", "Clubhouse Squash", "Cricket Oval"],
+        D: ["Dunes Adventure", "Desert Run", "Downtown Yoga"],
+        E: ["Elite Fitness", "Eagle Eye Archery", "Emerald Pool"],
+        F: ["Falcon Heights", "Field Masters", "Forest Trail"],
+        G: ["Gaborone Club", "Grand Arena", "Green Valley"],
+        H: ["Heritage Park", "Highland Court", "Horizon Gym"],
+        I: ["Infinity Pool", "Iron Works", "Island Resort"],
+        J: ["Jungle Jam", "Jupiter Sports", "Jade Garden"],
+        // K missing for demo of disabled state
+        L: ["Lake View", "Liberty Park", "Lighthouse Gym"],
+        M: ["Mizano Central", "Main Mall Loop", "Mountain Bike Park"],
+        N: ["Northern Fields", "Nexus Hub", "Neon Arena"],
+        O: ["Oasis Garden", "Oceanic Pool", "Olympus Gym"],
+        P: ["Phakalane Golf", "Pinnacle Sports", "Prairie Field"],
+        Q: ["Quartz Court", "Quarry Pit", "Quiet Zone"],
+        R: ["River Walk", "Royal Arena", "Rugby Grounds"],
+        S: ["Sport City", "Sun Arena", "Star Stadium", "Sunset Boulevard"],
+        T: ["Ten Pin Alley", "Track Side", "Thunder Dome"],
+        U: ["Urban Climb", "Unity Hub", "Utility Field"],
+        V: ["Village Gym", "Victory Park", "Valley View"],
+        W: ["Water Works", "Wild West", "West Wing"],
+        // X, Y, Z missing
+    };
+
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+    const listContent = document.getElementById('list-content');
+    const sidebar = document.getElementById('sidebar');
+    const listArea = document.getElementById('list-area');
+
+    // 2. BUILD DOM
+    function init() {
+        // Build Sidebar
+        alphabet.forEach(char => {
+            const span = document.createElement('span');
+            span.className = 'letter';
+            span.id = 'nav-' + char;
+            span.textContent = char;
+            
+            if (!data[char] || data[char].length === 0) {
+                span.classList.add('disabled');
+            } else {
+                span.addEventListener('click', () => {
+                    const target = document.getElementById('sec-' + char);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+            sidebar.appendChild(span);
+        });
+
+        // Flatten and build List
+        const flatItems = [];
+        Object.keys(data).forEach(letter => {
+            data[letter].forEach(name => {
+                flatItems.push({ name, letter });
+            });
+        });
+
+        // Sort A-Z
+        flatItems.sort((a, b) => a.name.localeCompare(b.name));
+
+        let currentLetter = '';
+        flatItems.forEach(item => {
+            // Insert anchor when letter changes
+            if (item.letter !== currentLetter) {
+                currentLetter = item.letter;
+                const anchor = document.createElement('div');
+                anchor.id = 'sec-' + currentLetter;
+                anchor.className = 'anchor';
+                listContent.appendChild(anchor);
+            }
+
+            const div = document.createElement('div');
+            div.className = 'item';
+            div.textContent = item.name;
+            listContent.appendChild(div);
+        });
+
+        // 3. HIGHLIGHT TRACKING (IntersectionObserver)
+        const observerOptions = {
+            root: listArea,
+            rootMargin: '-5% 0px -85% 0px', // Precise trigger zone near top
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const letter = entry.target.id.replace('sec-', '');
+                    
+                    // Remove active from all
+                    document.querySelectorAll('.letter').forEach(el => el.classList.remove('active'));
+                    
+                    // Add active to matching
+                    const navItem = document.getElementById('nav-' + letter);
+                    if (navItem) navItem.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all anchors
+        document.querySelectorAll('.anchor').forEach(el => observer.observe(el));
+    }
+
+    init();
+</script>
+
+</body>
+</html>

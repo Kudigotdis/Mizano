@@ -50,7 +50,7 @@ const BookingManager = {
             space_id: slot.space_id,
             venue_id: slot.venue_id,
             total_price: space.price_per_hour * duration,
-            status: 'confirmed',
+            status: 'pending', // Default to pending for owner approval
             created_at: new Date().toISOString(),
             last_modified: Date.now(),
             sync_status: 'pending'
@@ -127,6 +127,55 @@ const BookingManager = {
 
         window.mizanoStorage.saveWaitlistEntry(entry);
         return entry;
+    },
+
+    /**
+     * Approve a pending reservation (Venue Owner)
+     */
+    async approveBooking(reservationId) {
+        if (window.mizanoStorage) {
+            await window.mizanoStorage.updateReservation(reservationId, { status: 'approved' });
+            this.notifyUserOfStatus(reservationId, 'approved');
+        }
+    },
+
+    /**
+     * Reject a pending reservation (Venue Owner)
+     */
+    async rejectBooking(reservationId) {
+        if (window.mizanoStorage) {
+            // Find reservation to free up slot
+            const reservations = window.mizanoStorage.load('reservations', []);
+            const reservation = reservations.find(r => r.reservation_id === reservationId);
+            
+            if (reservation) {
+                // Free up the slot
+                const slots = window.mizanoStorage.load('time_slots') || window.MIZANO_DATA.time_slots;
+                const slotIdx = slots.findIndex(s => s.slot_id === reservation.slot_id);
+                if (slotIdx !== -1) {
+                    slots[slotIdx].is_booked = false;
+                    window.mizanoStorage.cacheDatabase('time_slots', slots);
+                }
+            }
+
+            await window.mizanoStorage.updateReservation(reservationId, { status: 'rejected' });
+            this.notifyUserOfStatus(reservationId, 'rejected');
+        }
+    },
+
+    /**
+     * Notify user when status changes
+     */
+    notifyUserOfStatus(reservationId, status) {
+        console.log(`[BOOKING NOTIFICATION] Reservation ${reservationId} is now ${status}`);
+        // In a real app, this would trigger a push notification via NotificationManager
+        if (window.NotificationManager) {
+            window.NotificationManager.add({
+                title: `Booking ${status.toUpperCase()}`,
+                message: `Your reservation ${reservationId} has been ${status} by the venue owner.`,
+                type: status === 'approved' ? 'success' : 'alert'
+            });
+        }
     },
 
     /**

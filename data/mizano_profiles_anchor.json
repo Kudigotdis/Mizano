@@ -1,5 +1,26 @@
 [
   {
+    "profileID": "BW-GAB-PAPHANI-01",
+    "fullName": "Paphani Masalila",
+    "dateOfBirth": "1985-06-12",
+    "gender": "Male",
+    "country": "Botswana",
+    "villageTownCity": "Gaborone",
+    "areaNeighborhood": "Madimo Village",
+    "whatsappNumber": "+26771234455",
+    "mobileNetwork": "Mascom",
+    "mobileMoneyNetwork": "MyZaka",
+    "isPaidProfile": true,
+    "villageWaiverActive": false,
+    "borrowScore": 5.0,
+    "capabilities": [
+      "Player",
+      "Guardian",
+      "Creator"
+    ],
+    "managed_teams": ["GC009"]
+  },
+  {
     "profileID": "BW-GAB-1001",
     "fullName": "Kao Modise",
     "dateOfBirth": "1982-05-15",

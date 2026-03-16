@@ -31,7 +31,11 @@ class DataManager {
             },
             venues: [],             // Venue booking system
             spaces: [],             // Bookable spaces
-            time_slots: []          // Time slot availability
+            time_slots: [],         // Time slot availability
+            marathons: [],          // Global marathons
+            schools: [],             // Educational institutions
+            discover: [],        // Spotlight/Discover panel data
+            lessons: []          // Lesson/tutor data
         };
         this.basePath = './data/databases/';
     }
@@ -640,26 +644,89 @@ class DataManager {
             console.log(`DataManager: Loaded ${this.cache.competitions.length} competitions.`);
         }
 
-        // Merge Corporate Teams into main teams cache
-        if (window.MIZANO_DATA && window.MIZANO_DATA.teams) {
-            const corporateTeams = window.MIZANO_DATA.teams.filter(t => t.category === 'Corporate');
-            this.cache.teams = [...(this.cache.teams || []), ...corporateTeams];
-            console.log(`DataManager: Merged ${corporateTeams.length} corporate teams into teams cache.`);
+        // ── FIX: Merge dedicated hobbies dataset ─────────────────────────────
+        if (window.MIZANO_DATA && window.MIZANO_DATA.hobbies) {
+            const hobbies = window.MIZANO_DATA.hobbies.map(h => ({
+                ...h,
+                activity_type: 'Hobby',          // normalise casing for filter match
+                card_type: 'card-hobby',         // Use specific hobby template
+                location: h.location?.display || h.location?.village || h.location || '',
+                location_name: h.location?.venue_name || ''
+            }));
+            this.cache.activities = [...(this.cache.activities || []), ...hobbies];
+            console.log(`DataManager: Merged ${hobbies.length} hobby items into activities.`);
         }
 
-        // Merge Hobbies/Leisure into activities
+        // ── FIX: Merge dedicated leisure dataset ─────────────────────────────
+        if (window.MIZANO_DATA && window.MIZANO_DATA.leisure) {
+            const leisure = window.MIZANO_DATA.leisure.map(l => ({
+                ...l,
+                activity_type: 'Leisure',        // already correct, keep explicit
+                card_type: 'card-leisure',       // Use specific leisure template
+                location: l.location?.display || l.location?.village || l.location || '',
+                location_name: l.location?.venue_name || ''
+            }));
+            this.cache.activities = [...(this.cache.activities || []), ...leisure];
+            console.log(`DataManager: Merged ${leisure.length} leisure items into activities.`);
+        }
+
+        // ── FIX: Merge dedicated lessons/tutors dataset ───────────────────────
+        if (window.MIZANO_DATA && window.MIZANO_DATA.lessons) {
+            const lessons = window.MIZANO_DATA.lessons.map(l => ({
+                ...l,
+                activity_id: l.lesson_id || l.activity_id,
+                activity_type: 'lesson',         // matches shell.js panel 4 filter
+                title: l.title,
+                location: l.location?.display || l.location?.village || '',
+                location_name: l.location?.venue_name || l.location?.display || ''
+            }));
+            this.cache.activities = [...(this.cache.activities || []), ...lessons];
+            console.log(`DataManager: Merged ${lessons.length} lessons into activities.`);
+        }
+
+        // ── FIX: Merge ALL groups (not just corporate) into teams cache ───────
+        if (window.MIZANO_DATA && window.MIZANO_DATA.groups) {
+            const allGroups = window.MIZANO_DATA.groups.map(g => ({
+                ...g,
+                id: g.group_id || g.id,
+                name: g.name,
+                location: g.location?.display || g.location?.village || '',
+                location_name: g.location?.venue_name || ''
+            }));
+            this.cache.teams = [...(this.cache.teams || []), ...allGroups];
+            console.log(`DataManager: Merged ${allGroups.length} groups/clubs into teams cache.`);
+        }
+
+        // ── FIX: Load discover/spotlight data into its own cache ─────────────
+        if (window.MIZANO_DATA && window.MIZANO_DATA.discover) {
+            this.cache.discover = window.MIZANO_DATA.discover.map(d => ({
+                ...d,
+                location: d.location || d.location_display || (d.tags ? d.tags.join(' ') : ''),
+                title: d.title || d.headline || 'Spotlight',
+                card_type: 'card-spotlight'
+            }));
+            console.log(`DataManager: Loaded ${this.cache.discover.length} discover spotlights.`);
+        }
+
+        // ── KEEP: Old activities filter (legacy hobbies_leisure_300.js) ───────
         if (window.MIZANO_DATA && window.MIZANO_DATA.activities) {
             const hobbiesLeisure = window.MIZANO_DATA.activities.filter(a =>
                 a.activity_type === 'Hobbies' || a.activity_type === 'Leisure'
             );
-            this.cache.activities = [...(this.cache.activities || []), ...hobbiesLeisure];
-            console.log(`DataManager: Merged ${hobbiesLeisure.length} hobbies/leisure activities.`);
+            if (hobbiesLeisure.length > 0) {
+                this.cache.activities = [...(this.cache.activities || []), ...hobbiesLeisure];
+                console.log(`DataManager: Merged ${hobbiesLeisure.length} legacy hobbies/leisure activities.`);
+            }
         }
 
         // Load Shopping Items
         if (window.MIZANO_DATA && window.MIZANO_DATA.shopping) {
-            this.cache.shopping = window.MIZANO_DATA.shopping;
-            console.log(`DataManager: Loaded ${this.cache.shopping.length} shopping items.`);
+            this.cache.shopping = window.MIZANO_DATA.shopping.map(item => ({
+                ...item,
+                card_type: 'card-shopping',
+                location: item.location?.display || item.location?.village || item.location || 'Botswana'
+            }));
+            console.log(`DataManager: Loaded ${this.cache.shopping.length} shopping items (normalized).`);
         }
 
         // Mizano Stress Test Integration
@@ -672,6 +739,17 @@ class DataManager {
         if (window.MIZANO_DATA && window.MIZANO_DATA.associations) {
             this.cache.associations = window.MIZANO_DATA.associations;
             console.log(`DataManager: Loaded ${this.cache.associations.length} associations from global script.`);
+        }
+        
+        // Load Schools (ensure normalization)
+        if (window.MIZANO_DATA && window.MIZANO_DATA.schools) {
+            const schools = window.MIZANO_DATA.schools.map(s => ({
+                ...s,
+                location: s.location?.display || s.location?.village || s.location || 'Botswana',
+                card_type: 'card-school'
+            }));
+            this.cache.schools = [...(this.cache.schools || []), ...schools];
+            console.log(`DataManager: Loaded ${schools.length} schools (normalized).`);
         }
 
         // Load Phase 10 Specific Suggestions & Surveys if available

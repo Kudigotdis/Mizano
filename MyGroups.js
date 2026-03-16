@@ -15,29 +15,23 @@ window.MyGroups = (function () {
 
     // ─── INIT ─────────────────────────────────────────────────────────────────
 
-    async function init() {
-        const userId = window.MizanoAuth?.getCurrentUserId?.();
+    async function init(container) {
+        const userId = window.MizanoAuth?.getCurrentUser?.()?.uid;
         if (!userId) return;
 
-        const detailView = document.getElementById('detail-view');
-        if (!detailView) return;
+        const target = container || document.getElementById('detail-view');
+        if (!target) return;
 
-        detailView.innerHTML = _buildHeader() + `<div id="mg-content-wrap" style="padding-bottom:120px;">
+        target.innerHTML = _buildHeader() + `<div id="mg-content-wrap" style="padding-bottom:120px;">
             <div style="padding:40px;text-align:center;"><span class="spinner" style="font-size:2rem;">⏳</span></div>
         </div>`;
 
-        if (window.MizanoNav?.openOverlay) {
-            window.MizanoNav.openOverlay('detail');
-        } else {
-            detailView.style.display = 'block';
-            detailView.classList.add('active');
-        }
-
         await refresh();
+        if (window.MizanoNav) window.MizanoNav.openOverlay('detail');
     }
 
     async function refresh() {
-        const userId = window.MizanoAuth?.getCurrentUserId?.();
+        const userId = window.MizanoAuth?.getCurrentUser?.()?.uid;
         const wrap = document.getElementById('mg-content-wrap');
         if (!wrap || !userId) return;
 
@@ -58,7 +52,7 @@ window.MyGroups = (function () {
                 const roleOrder = { 'Owner': 0, 'Admin': 1, 'Captain': 2, 'Coach': 3, 'Member': 4, 'Fan': 5 };
                 return (roleOrder[aRole] || 99) - (roleOrder[bRole] || 99);
             });
-            wrap.innerHTML = _buildFilterChips() + _groups.map(g => _buildGroupCard(g, userId)).join('');
+            wrap.innerHTML = _buildFilterChips() + _groups.map(g => _buildGroupCard(g, userId)).join('') + _buildBottomActions();
             _attachListeners();
         }
     }
@@ -70,7 +64,7 @@ window.MyGroups = (function () {
         <div class="overlay-header sticky-top" style="display:flex;align-items:center;padding:14px 16px;background:#fff;border-bottom:1px solid #f0f0f0;position:sticky;top:0;z-index:100;">
             <button onclick="window.MizanoNav && window.MizanoNav.back()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:#1a73e8;padding:4px 8px;font-weight:600;">‹</button>
             <h2 style="flex:1;text-align:center;font-size:1rem;font-weight:700;margin:0;color:#1a1a1a;">My Groups</h2>
-            <button onclick="window.AddActionRouter.openForm('group')" style="background:none;border:none;color:#1a73e8;font-weight:600;font-size:0.9rem;cursor:pointer;">+ New Group</button>
+            <div style="width:40px;"></div>
         </div>
         <style>
             .mg-card { background:#fff; margin:12px 16px; border-radius:12px; border:1px solid #e0e0e0; box-shadow:0 2px 8px rgba(0,0,0,0.04); overflow:hidden; }
@@ -113,12 +107,22 @@ window.MyGroups = (function () {
     function _buildEmptyState() {
         return `<div style="padding:60px 24px;text-align:center;color:#666;">
             <div style="font-size:4rem;margin-bottom:20px;">🏟️</div>
-            <h3 style="color:#1a1a1a;margin:0 0 12px;font-size:1.2rem;">No groups yet</h3>
+            <h3 style="color:#1a1a1a;margin:0 0 12px;font-size:1.2rem;">No Groups added yet.</h3>
             <p style="font-size:0.9rem;line-height:1.6;margin:0 auto 30px;max-width:260px;">Create or join a team, club, or federation to start organizing.</p>
             <div style="display:flex;gap:12px;justify-content:center;">
                 <button onclick="window.AddActionRouter.openForm('group')" style="background:#1a73e8;color:#fff;border:none;padding:12px 24px;border-radius:24px;font-weight:700;cursor:pointer;">Create Group</button>
                 <button onclick="window.MizanoNav.openPanel(1)" style="background:#fff;color:#1a73e8;border:1px solid #1a73e8;padding:12px 24px;border-radius:24px;font-weight:700;cursor:pointer;">Browse</button>
             </div>
+        </div>`;
+    }
+
+    function _buildBottomActions() {
+        return `
+        <div style="position:fixed; bottom:20px; left:0; right:0; display:flex; justify-content:center; pointer-events:none; z-index:1000;">
+            <button onclick="window.AddActionRouter.openForm('group')" 
+                style="background:#1a73e8; color:#fff; border:none; padding:14px 32px; border-radius:28px; font-weight:700; cursor:pointer; box-shadow:0 4px 12px rgba(26,115,232,0.4); pointer-events:auto;">
+                + Create Group
+            </button>
         </div>`;
     }
 

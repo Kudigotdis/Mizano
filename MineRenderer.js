@@ -1,17 +1,20 @@
 /**
- * MIZANO MINE RENDERER (User Dashboard)
- * Handles Panel 8: Profile, Stats, Auth Switching
+ * MIZANO TRACKER RENDERER (User Dashboard)
+ * Handles Tracker Overlay: Stats, Consistency, Health
  */
 
-class MineRenderer {
+class TrackerRenderer {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
         this.dataManager = window.mizanoData;
     }
 
     render() {
-        const container = document.getElementById('mine-dashboard-container');
-        if (!container || !this.dataManager) return;
+        const container = document.getElementById('tracker-dashboard-container') || this.container;
+        if (!container || !this.dataManager) {
+            console.warn('TrackerRenderer: Target container not found.');
+            return;
+        }
 
         const user = this.dataManager.getCurrentUser();
         if (!user) {
@@ -32,12 +35,13 @@ class MineRenderer {
         }
 
         container.innerHTML = `
-            <div class="mine-dashboard">
-
+            <div class="tracker-dashboard">
+                ${this.templateProfileCard(user)}
                 ${this.templateConsistencyCalendar()}
                 ${this.templateHabitChain()}
                 ${suggestionHtml}
                 ${this.templateHealthRecovery()}
+                ${this.templateManagedTeams(user)}
                 ${this.templateQuickActions(user)}
                 
                 <div class="section-title">My Activity Hub</div>
@@ -62,7 +66,7 @@ class MineRenderer {
                     ${window.MizanoImages.render('avatars', user.profile_picture || null)}
                 </div>
                 <div class="profile-info">
-                    <h2 class="profile-name">${user.name}</h2>
+                    <h2 class="profile-name">${user.full_name || user.name || 'Mizano User'}</h2>
                     <div class="profile-role">${user.profile_type || 'User'} • ${user.village_town || 'Gaborone'}</div>
                     <div class="profile-id">ID: ${user.uid}</div>
                 </div>
@@ -192,7 +196,7 @@ class MineRenderer {
         container.innerHTML = `
             <div class="auth-switcher" style="padding: 12px; background: #fff; border: 2px solid #000; margin-bottom: 20px;">
                 <label style="font-size: 0.75rem; color: #000; display:block; margin-bottom:8px; font-weight:bold; text-transform:uppercase;">Experience App As:</label>
-                <select onchange="window.MizanoMine.handleSwitch(this.value)" style="width:100%; padding:10px; border:2px solid #000; font-family:inherit; background:#fff; cursor:pointer;">
+                <select onchange="window.MizanoTracker.handleSwitch(this.value)" style="width:100%; padding:10px; border:2px solid #000; font-family:inherit; background:#fff; cursor:pointer;">
                     ${options}
                 </select>
                 <div style="font-size: 0.7rem; color: #666; margin-top: 8px;">* Select a persona to test different permissions and feed views.</div>
@@ -228,7 +232,31 @@ class MineRenderer {
     handleSwitch(uid) {
         this.dataManager.setCurrentUser(uid);
     }
+
+    templateManagedTeams(user) {
+        if (!user.managed_teams || user.managed_teams.length === 0) return '';
+
+        let teamsHtml = '';
+        user.managed_teams.forEach(teamId => {
+            // For demo: assume GC009 is Madimo FC
+            const teamName = teamId === 'GC009' ? 'Madimo FC' : `Team ${teamId}`;
+            teamsHtml += `
+                <div class="mizano-card" style="margin-top:10px; border-left:4px solid #1E88E5; padding:12px; display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <div style="font-weight:bold; font-size:1rem;">${teamName}</div>
+                        <div style="font-size:0.8rem; color:#666;">Manager / Coach</div>
+                    </div>
+                    <button class="action-pill" onclick="window.TeamManager.open('${teamId}')">Manage Team</button>
+                </div>
+            `;
+        });
+
+        return `
+            <div class="section-title" style="margin-top:20px;">Teams I Manage</div>
+            ${teamsHtml}
+        `;
+    }
 }
 
-// Global Init
-window.MizanoMine = new MineRenderer('drop-field-mine');
+// Global Init — container ID matches index.html #tracker-dashboard-container
+window.MizanoTracker = new TrackerRenderer('tracker-dashboard-container');

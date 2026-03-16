@@ -65,7 +65,7 @@ window.InjuryForm = {
       try {
         await window.mizanoStorage.saveEntity('injury_log', injuryData);
         alert('Recovery log updated!');
-        if (window.MizanoNav) window.MizanoNav.closeOverlay('builder-view');
+        if (window.MizanoNav) window.MizanoNav.closeOverlay('builder');
         if (window.MizanoMine && window.MizanoMine.refreshData) {
           window.MizanoMine.refreshData();
         }

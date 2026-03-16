@@ -36,6 +36,16 @@ body {
     height: 100vh;
 }
 
+/* GLOBAL SCROLLBAR REMOVAL (Premium App Feel) */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
 /* TOP BAR (Level 1) */
 .top-bar {
     position: fixed;

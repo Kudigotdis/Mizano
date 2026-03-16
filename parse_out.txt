@@ -1,0 +1,30 @@
+Testing block 1
+FAILED: Invalid control character at: line 10 column 28 (char 319)
+--- Context ---
+       "name": "Mascom",
+       "logo": "/assets/sponsors/mascom-logo.webp",
+       "industry": "Telecommunications",
+>>     "facebookPage": "https:
+       "websiteURL": "https:
+     },
+     "competitionFormat": "single_elimination",
+Testing block 8
+FAILED: Invalid control character at: line 14 column 30 (char 362)
+--- Context ---
+         "district": "Gaborone",
+         "founded": 2015,
+         "contactWhatsApp": "+267XXXXXXXX",
+>>       "facebookPage": "https:
+         "teamColors": {"primary": "#FF0000", "secondary": "#FFFFFF"},
+         "homeVenue": {
+           "venueID": "HOL-PARK",
+Testing block 9
+FAILED: Invalid control character at: line 8 column 28 (char 211)
+--- Context ---
+         "sponsorName": "Mascom Wireless",
+         "industry": "Telecommunications",
+         "logo": "/assets/sponsors/mascom-logo.webp",
+>>       "websiteURL": "https:
+         "facebookPage": "https:
+         "contactEmail": "sponsorship@mascom.bw",
+         "eventsSponsored": [

@@ -182,6 +182,60 @@ class PulseUpdater {
 
         return Math.round(totalScore / sectors.length);
     }
+
+    /**
+     * Start the 15-minute sync scheduler
+     * Drains the sync_queue from StorageManager when online.
+     */
+    startSyncScheduler() {
+        console.log('PulseUpdater: 15-minute sync scheduler started.');
+        
+        // Run immediately after 5 seconds, then every 15 minutes (900,000 ms)
+        setTimeout(() => this._processSyncQueue(), 5000);
+        setInterval(() => this._processSyncQueue(), 15 * 60 * 1000);
+
+        // Also attempt sync when the device comes back online
+        window.addEventListener('online', () => {
+            console.log('PulseUpdater: Network restored. Triggering sync...');
+            this._processSyncQueue();
+        });
+    }
+
+    async _processSyncQueue() {
+        if (!navigator.onLine) return; // Skip if offline
+
+        try {
+            // Priority 1: StorageManager general entity sync queue
+            if (window.mizanoStorage && window.mizanoStorage.getPendingSyncQueue) {
+                const pendingOps = await window.mizanoStorage.getPendingSyncQueue();
+                if (pendingOps && pendingOps.length > 0) {
+                    console.log(`PulseUpdater: Found ${pendingOps.length} pending operations in StorageManager. Mock syncing...`);
+                    for (const op of pendingOps) {
+                        // Stub for API call: await fetch('/api/sync', { method: 'POST', body: JSON.stringify(op) })
+                        await window.mizanoStorage.resolveSyncQueueEntry(op.local_id, 'synced');
+                    }
+                    console.log('PulseUpdater: StorageManager sync complete.');
+                }
+            }
+
+            // Priority 2: Pulse KPI sync queue
+            const kpiItems = await this.getPendingSync();
+            if (kpiItems && kpiItems.length > 0) {
+                console.log(`PulseUpdater: Found ${kpiItems.length} pending KPI updates. Mock syncing...`);
+                // Stub for API batch push
+                const tx = this.db.transaction(this.storeName, 'readwrite');
+                const store = tx.objectStore(this.storeName);
+                for (const item of kpiItems) {
+                    item.sync_status = 'synced';
+                    await store.put(item);
+                }
+                console.log('PulseUpdater: KPI sync complete.');
+            }
+
+        } catch (err) {
+            console.error('PulseUpdater: Sync cycle failed', err);
+        }
+    }
 }
 
 // Global instance
@@ -192,7 +246,11 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', async () => {
         await window.pulseUpdater.init();
         await window.pulseUpdater.loadInitialData();
+        window.pulseUpdater.startSyncScheduler();
     });
 } else {
-    window.pulseUpdater.init().then(() => window.pulseUpdater.loadInitialData());
+    window.pulseUpdater.init().then(() => {
+        window.pulseUpdater.loadInitialData();
+        window.pulseUpdater.startSyncScheduler();
+    });
 }

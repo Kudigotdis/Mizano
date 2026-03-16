@@ -1,0 +1,30 @@
+{
+    "name": "Mizano — Community Sports & Activities",
+    "short_name": "Mizano",
+    "description": "Botswana's grassroots sports and community activities platform. Find matches, join teams, discover events near you.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#ecf1f6",
+    "theme_color": "#1E88E5",
+    "lang": "en",
+    "scope": "./",
+    "icons": [
+        {
+            "src": "./assets/images/icons/mizano-icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "./assets/images/icons/mizano-icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["sports", "social", "lifestyle"],
+    "screenshots": [],
+    "related_applications": [],
+    "prefer_related_applications": false
+}

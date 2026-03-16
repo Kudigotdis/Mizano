@@ -480,38 +480,121 @@
 
             try {
                 // Ensure profile is normalized for AuthManager
-                const success = await window.MizanoAuth.loadDemoProfile(profile);
+                const timeoutPromise = new Promise((_, reject) => 
+                    setTimeout(() => reject(new Error('Login process timed out after 8 seconds. Database might be locked by another tab.')), 8000)
+                );
+                
+                const success = await Promise.race([
+                    window.MizanoAuth.loadDemoProfile(profile),
+                    timeoutPromise
+                ]);
 
                 if (success) {
                     console.log(`Login: Preview profile ${profile.name} loaded successfully.`);
                     window.location.href = './index.html';
                 } else {
-                    throw new Error('MizanoAuth.loadDemoProfile returned false');
+                    throw new Error('MizanoAuth.loadDemoProfile returned false - likely an inner error in saveProfile. Please check AuthManager.js');
                 }
             } catch (err) {
                 console.error('Login: Failed to load preview profile', err);
-                alert('System Error: Could not load preview profile.');
+                // INJECTED FOR DEBUGGING: SHOW EXACT ERROR
+                alert('System Error: Could not load preview profile. Details: ' + (err.message || JSON.stringify(err)));
                 btnBrowser.innerText = 'Browse';
                 btnBrowser.style.opacity = '1';
                 btnBrowser.disabled = false;
             }
         };
 
-        btnFinalSignin.onclick = async () => {
-            const user = document.getElementById('login-user').value;
-            const wa = document.getElementById('login-whatsapp').value;
-            const pass = document.getElementById('login-pass').value;
+        // Inline error display (replaces alert() calls)
+        let _errorEl = null;
+        function showLoginError(msg) {
+            if (!_errorEl) {
+                _errorEl = document.createElement('p');
+                _errorEl.style.cssText = 'color:#D32F2F; font-size:14px; text-align:center; margin-top:4px;';
+                formContainer.appendChild(_errorEl);
+            }
+            _errorEl.textContent = msg;
+        }
+        function clearLoginError() {
+            if (_errorEl) _errorEl.textContent = '';
+        }
 
-            if (!user || !wa || !pass) {
-                alert('Pleaase fill all fields');
+        btnFinalSignin.onclick = async () => {
+            clearLoginError();
+
+            const usernameInput = document.getElementById('login-user').value.trim();
+            const waInput = document.getElementById('login-whatsapp').value.trim();
+            const passInput = document.getElementById('login-pass').value;
+
+            if (!usernameInput || !waInput || !passInput) {
+                showLoginError('Please fill all fields.');
                 return;
             }
 
-            // Success Expansion Scale - per Otter spec
-            btnFinalSignin.style.width = '100vw';
+            // Loading state
+            const origText = btnFinalSignin.textContent;
+            btnFinalSignin.textContent = 'Signing in...';
+            btnFinalSignin.disabled = true;
+            btnFinalSignin.style.opacity = '0.7';
 
-            await window.MizanoAuth.loadDemoProfile();
-            setTimeout(() => location.href = 'index.html', 150);
+            try {
+                // Step 1: Try a real IndexedDB lookup by username or whatsapp
+                let matchedUser = null;
+
+                if (window.mizanoStorage) {
+                    await window.mizanoStorage.init();
+                    const allUsers = await window.mizanoStorage.getAllUsers();
+                    matchedUser = allUsers.find(u =>
+                        (u.username && u.username.toLowerCase() === usernameInput.toLowerCase()) ||
+                        (u.full_name && u.full_name.toLowerCase() === usernameInput.toLowerCase()) ||
+                        (u.display_name && u.display_name.toLowerCase() === usernameInput.toLowerCase()) ||
+                        (u.whatsapp === waInput)
+                    );
+                }
+
+                // Step 2: Fallback — check preview_users for a name / whatsapp match
+                if (!matchedUser) {
+                    const previews = window.MIZANO_DATA?.preview_users || [];
+                    const previewMatch = previews.find(p =>
+                        (p.name && p.name.toLowerCase() === usernameInput.toLowerCase()) ||
+                        (p.whatsapp === waInput)
+                    );
+                    if (previewMatch) {
+                        const ok = await window.MizanoAuth.loadDemoProfile(previewMatch);
+                        if (ok) {
+                            btnFinalSignin.style.width = '100vw';
+                            setTimeout(() => location.href = 'index.html', 150);
+                            return;
+                        }
+                    }
+                }
+
+                if (matchedUser) {
+                    // Real user found — start session and redirect
+                    if (window.authManager) {
+                        await window.authManager.login(matchedUser.profile_id || matchedUser.uid);
+                    } else {
+                        window.mizanoStorage.setCurrentUser(matchedUser.profile_id || matchedUser.uid);
+                    }
+                    btnFinalSignin.style.width = '100vw';
+                    setTimeout(() => location.href = 'index.html', 150);
+                } else {
+                    // No match at all — load a generic demo and proceed
+                    const ok = await window.MizanoAuth.loadDemoProfile();
+                    if (ok) {
+                        btnFinalSignin.style.width = '100vw';
+                        setTimeout(() => location.href = 'index.html', 150);
+                    } else {
+                        throw new Error('Auth failed');
+                    }
+                }
+            } catch (err) {
+                console.error('Login: Sign-in error', err);
+                showLoginError('Sign-in failed. Please try again.');
+                btnFinalSignin.textContent = origText;
+                btnFinalSignin.disabled = false;
+                btnFinalSignin.style.opacity = '1';
+            }
         };
 
         // Keyboard Simulation Helper

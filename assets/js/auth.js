@@ -1,57 +1,89 @@
 /**
- * BOTHOFLOW AUTHENTICATION LOGIC (Wrapper for AuthManager)
+ * MIZANO AUTH BRIDGE (auth.js → AuthManager.js)
+ * Applied Android Studio Otter Pipeline standards.
+ * This file is a thin wrapper — all session truth lives in AuthManager.js.
  */
 
 const MizanoAuth = {
+    /**
+     * Loads a demo / preview profile into both IndexedDB stores and starts an
+     * AuthManager session.  Called from the Browse sheet in login.html.
+     */
     async loadDemoProfile(profileData = null) {
-        try {
-            // Use provided profile, global variable, or fetch default
-            let kao = profileData || window.MIZANO_DEMO_PROFILE;
+        console.log('MizanoAuth: loadDemoProfile start', profileData ? profileData.uid : 'null');
+        
+        let profile = profileData || window.MIZANO_DEMO_PROFILE;
 
-            if (!kao) {
-                // Fallback for server environments
-                const response = await fetch('./data/demo_profile.json');
-                if (!response.ok) throw new Error('Demo profile not found');
-                kao = await response.json();
-            }
-
-            // Ensure storage is initialized
-            if (window.mizanoStorage.init) await window.mizanoStorage.init();
-
-            await window.mizanoStorage.saveUser(kao);
-
-            // Login via AuthManager instead of just setting storage manually
-            if (window.authManager) {
-                await window.authManager.login(kao.profile_id || kao.uid);
-            } else {
-                window.mizanoStorage.setCurrentUser(kao.profile_id || kao.uid);
-            }
-
-            console.log(`MizanoAuth: Demo profile (${kao.full_name || 'Kao Modise'}) loaded.`);
-            return true;
-        } catch (e) {
-            console.error('Failed to load demo profile', e);
-            return false;
+        if (!profile) {
+            console.log('MizanoAuth: Fetching demo_profile.json');
+            const response = await fetch('./data/demo_profile.json');
+            if (!response.ok) throw new Error('Demo profile not found');
+            profile = await response.json();
         }
+
+        // Normalise: preview users use 'name', StorageManager wants uid + display_name
+        const normProfile = {
+            ...profile,
+            uid: profile.uid || profile.profile_id,
+            profile_id: profile.profile_id || profile.uid,
+            display_name: profile.display_name || profile.name || profile.full_name,
+            full_name: profile.full_name || profile.name || profile.display_name
+        };
+
+        if (!normProfile.uid) {
+            throw new Error('Profile missing UID');
+        }
+
+        // Ensure storage is initialised
+        if (window.mizanoStorage && window.mizanoStorage.init) {
+            console.log('MizanoAuth: Ensuring storage initialized');
+            await window.mizanoStorage.init();
+        }
+
+        // Write to BOTH stores (users + user_profiles) via saveProfile()
+        console.log('MizanoAuth: Saving profile to storage...');
+        await window.mizanoStorage.saveProfile(normProfile);
+
+        // Start AuthManager session
+        if (window.authManager) {
+            console.log('MizanoAuth: Initiating auth session for', normProfile.profile_id);
+            const user = await window.authManager.login(normProfile.profile_id);
+            if (!user) {
+                throw new Error('AuthManager failed to log in user');
+            }
+        } else {
+            console.log('MizanoAuth: No AuthManager found, setting currentUser manually');
+            window.mizanoStorage.setCurrentUser(normProfile.profile_id);
+        }
+
+        console.log(`MizanoAuth: Demo profile (${normProfile.display_name}) loaded.`);
+        return true;
     },
 
+    /**
+     * Creates a brand-new user from signup form data.
+     * Writes to BOTH IndexedDB stores and starts a session.
+     */
     async signup(profileData) {
-        // Add timestamps and unique ID if not present
+        const id = `USR-BW-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
         const user = {
-            profile_id: `USR-BW-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
-            uid: `USR-BW-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
+            profile_id: id,
+            uid: id,
             created_at: new Date().toISOString(),
             ...profileData
         };
 
-        // Ensure uid matches profile_id for consistency
+        // uid must match profile_id for consistent lookups
         user.uid = user.profile_id;
+        user.display_name = user.display_name || user.name || user.full_name;
 
-        // Save to IndexedDB
-        if (window.mizanoStorage.init) await window.mizanoStorage.init();
-        await window.mizanoStorage.saveUser(user);
+        if (window.mizanoStorage && window.mizanoStorage.init) {
+            await window.mizanoStorage.init();
+        }
 
-        // Login via AuthManager
+        // saveProfile() writes to users + user_profiles (not just users)
+        await window.mizanoStorage.saveProfile(user);
+
         if (window.authManager) {
             await window.authManager.login(user.profile_id);
         } else {
