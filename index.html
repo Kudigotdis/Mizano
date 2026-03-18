@@ -484,6 +484,24 @@
                 </div>
                 <span>›</span>
             </div>
+            <div class="mizano-card" onclick="window.MizanoNav.closeTopOverlay(); window.SchoolsDirectory.open();"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <span style="font-size:1.5rem; margin-right:15px;">🏫</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">Schools</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">Browse schools, teams, and players</p>
+                </div>
+                <span>›</span>
+            </div>
+            <div class="mizano-card" onclick="window.MizanoNav.closeTopOverlay(); window.MizanoNav.openOverlay('associations-directory');"
+                style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
+                <span style="font-size:1.5rem; margin-right:15px;">🏅</span>
+                <div style="flex:1;">
+                    <h3 style="margin:0;">Associations</h3>
+                    <p style="margin:0; font-size:0.8rem; color:#666;">National sports bodies & federations</p>
+                </div>
+                <span>›</span>
+            </div>
             <div class="mizano-card" onclick="window.MizanoNav.openOverlay('settings')"
                 style="cursor:pointer; display:flex; align-items:center; padding:15px; margin-bottom:12px;">
                 <span style="font-size:1.5rem; margin-right:15px;">⚙️</span>
@@ -585,6 +603,10 @@
     <script src="./data/user_profiles_bw.js"></script>
     <script src="./data/community_extended.js"></script>
     <script src="./data/mizano_events_integrated.js"></script>
+    <script src="./data/bnsc_executive_profiles.js"></script>
+    <script>
+        console.log("Mizano: Total BNSC Executives loaded:", window.MIZANO_DATA?.totalBnscExecutives || 0);
+    </script>
 
     <!-- GROUP 3: Patch files -->
     <script src="./data/activities_fix.js"></script>
@@ -709,10 +731,14 @@
         </div>
     </div>
     <script src="./data/mizano_schools_data.js"></script>
+    <script src="./data/bnscAffiliates.js"></script>
+    <script src="./AssociationsDirectory.js"></script>
+    <script src="./SchoolsDirectory.js"></script>
     <script src="shell.js"></script>
 
 
     <!-- ===== MIZANO MODULE SCRIPTS ===== -->
+    <script src="./FormHelpers.js"></script>
     <script src="./ProfilePanel.js"></script>
     <script src="./AddActionRouter.js"></script>
     <script src="./PromoBuilder.js"></script>
@@ -738,6 +764,420 @@
     <script src="./MyAssociations.js"></script>
     <script src="./MyVenues.js"></script>
     <script src="./MyMinors.js"></script>
+
+    <!-- ASSOCIATIONS DIRECTORY OVERLAY -->
+    <style>
+        #assoc-alpha-sidebar {
+            width: 30px;
+            min-width: 30px;
+            background: #F2F2F0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 6px 0;
+            border-left: 1px solid #e8e8e5;
+            overflow: hidden;
+        }
+        #assoc-alpha-sidebar .alpha-letter {
+            font-size: 10px;
+            font-weight: 500;
+            color: #C0C0B8;
+            background: transparent;
+            cursor: pointer;
+            line-height: 1;
+            padding: 2px 4px;
+            border-radius: 4px;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: color 0.15s;
+        }
+        #assoc-alpha-sidebar .alpha-letter:hover {
+            color: #4A4A45;
+        }
+        #assoc-alpha-sidebar .alpha-letter.active {
+            color: #2C2C28;
+            background: #DDDDD8;
+        }
+        #assoc-alpha-sidebar .alpha-disabled {
+            opacity: 0.4;
+            pointer-events: none;
+            cursor: default;
+        }
+        .assoc-section-header {
+            background: #ecf1f6;
+            padding: 6px 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #888;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        .assoc-list-item {
+            display: flex;
+            align-items: center;
+            padding: 13px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            background: #fff;
+            transition: background 0.12s;
+            -webkit-tap-highlight-color: rgba(30,136,229,0.08);
+        }
+        .assoc-list-item:active {
+            background: #f0f6ff;
+        }
+        .assoc-list-item .assoc-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: #1E88E5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-right: 14px;
+            flex-shrink: 0;
+            color: #fff;
+            overflow: hidden;
+        }
+        .assoc-list-item .assoc-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .assoc-list-item .assoc-meta {
+            flex: 1;
+            min-width: 0;
+        }
+        .assoc-list-item .assoc-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0 0 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .assoc-list-item .assoc-sport {
+            font-size: 0.78rem;
+            color: #888;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .assoc-list-item .assoc-chevron {
+            color: #bbb;
+            font-size: 1.1rem;
+            padding-left: 8px;
+            flex-shrink: 0;
+        }
+    </style>
+
+    <div id="associations-directory-overlay" class="overlay" style="z-index:9800; flex-direction:column;">
+        <div class="overlay-header">
+            <button class="back-btn" onclick="window.MizanoNav.back()">‹</button>
+            <h2 style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">Associations</h2>
+        </div>
+        <div style="display:flex; flex:1; overflow:hidden;">
+            <div id="assoc-list-area" style="flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; background:#ecf1f6;">
+                <!-- Populated by AssociationsDirectory.js -->
+            </div>
+            <div id="assoc-alpha-sidebar"></div>
+        </div>
+        <div style="padding:8px 16px; border-top:1px solid #eee; background:#fff;">
+            <input type="text" id="assoc-search-input" placeholder="Search associations..."
+                style="width:100%; padding:10px; border:2px solid #000; font-size:1rem; box-sizing:border-box;" />
+        </div>
+    </div>
+
+    <!-- ASSOCIATION DETAIL OVERLAY -->
+    <style>
+        #association-detail-overlay .assoc-detail-hero {
+            background: linear-gradient(135deg, #1E88E5 0%, #1565C0 100%);
+            padding: 28px 20px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+        #association-detail-overlay .assoc-detail-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 14px;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        #association-detail-overlay .assoc-detail-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+        #association-detail-overlay .assoc-detail-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 0 4px;
+            line-height: 1.3;
+        }
+        #association-detail-overlay .assoc-detail-abbr {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin: 0 0 10px;
+        }
+        #association-detail-overlay .assoc-detail-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            letter-spacing: 0.05em;
+        }
+        #association-detail-overlay .assoc-detail-section {
+            padding: 16px 16px 14px;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+        }
+        #association-detail-overlay .assoc-detail-section-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin: 0 0 8px;
+        }
+        #association-detail-overlay .assoc-detail-section-body {
+            font-size: 0.9rem;
+            color: #333;
+            line-height: 1.55;
+            margin: 0;
+        }
+        #association-detail-overlay .assoc-detail-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            background: #fff;
+        }
+        #association-detail-overlay .assoc-detail-row-label {
+            font-size: 0.78rem;
+            color: #999;
+            min-width: 90px;
+            padding-top: 1px;
+            flex-shrink: 0;
+        }
+        #association-detail-overlay .assoc-detail-row-value {
+            font-size: 0.88rem;
+            color: #1a1a1a;
+            font-weight: 500;
+            flex: 1;
+        }
+        #association-detail-overlay .assoc-contact-btn {
+            display: block;
+            width: calc(100% - 32px);
+            margin: 16px;
+            padding: 14px;
+            border: 2px solid #1E88E5;
+            background: transparent;
+            color: #1E88E5;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 0;
+            font-family: inherit;
+        }
+        #association-detail-overlay .assoc-tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px 16px 14px;
+            background: #fff;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        #association-detail-overlay .assoc-tag {
+            background: #ecf1f6;
+            color: #444;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        /* Swipe UI & Tab Styles */
+        .assoc-tabs-wrapper {
+            position: sticky;
+            top: 48px; /* Below header */
+            background: #fff;
+            z-index: 5;
+            border-bottom: 1px solid #eee;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            display: flex;
+        }
+        .assoc-tabs {
+            display: flex;
+            padding: 0 8px;
+            min-width: 100%;
+        }
+        .assoc-tab {
+            padding: 12px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #888;
+            white-space: nowrap;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+        .assoc-tab.active {
+            color: #1E88E5;
+        }
+        .assoc-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 16px;
+            right: 16px;
+            height: 3px;
+            background: #1E88E5;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .assoc-panels-viewport {
+            overflow: hidden;
+            width: 100%;
+        }
+        .assoc-panels-container {
+            display: flex;
+            width: 500%; /* 5 panels */
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        .assoc-panel {
+            width: 20%; /* 100% / 5 panels */
+            flex-shrink: 0;
+            min-height: 300px;
+            padding-bottom: 40px;
+        }
+
+        /* Groups List with Alpha Sidebar */
+        .assoc-groups-wrapper {
+            display: flex;
+            height: 100%;
+        }
+        .assoc-groups-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+        .assoc-groups-sidebar {
+            width: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            border-left: 1px solid #fafafa;
+            padding: 4px 0;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #1E88E5;
+            user-select: none;
+        }
+        .assoc-groups-sidebar span {
+            height: 14px;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        /* People Section Styles (Existing/Refined) */
+        /* People Section Styles */
+        .assoc-people-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .assoc-person-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .assoc-person-card:active {
+            transform: scale(0.98);
+            background: #f0f2f5;
+        }
+        .assoc-person-avatar {
+            width: 40px;
+            height: 40px;
+            background: #1E88E5;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            text-transform: uppercase;
+        }
+        .assoc-person-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .assoc-person-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .assoc-person-role {
+            font-size: 0.75rem;
+            color: #666;
+            margin: 2px 0 0;
+        }
+    </style>
+
+    <div id="association-detail-overlay" class="overlay" style="z-index:9900; flex-direction:column; overflow-y:auto;">
+        <div class="overlay-header" style="position:sticky; top:0; z-index:10; background:#fff;">
+            <button class="back-btn" onclick="window.MizanoNav.back()">‹</button>
+            <h2 id="assoc-detail-title" style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">Association</h2>
+        </div>
+        <div id="assoc-detail-content">
+            <!-- Populated dynamically by AssociationsDirectory.js -->
+        </div>
+    </div>
+
+    <!-- SCHOOL DETAIL OVERLAY -->
+    <div id="school-detail-overlay" class="overlay" style="z-index:9910; flex-direction:column; overflow-y:auto;">
+        <div class="overlay-header" style="position:sticky; top:0; z-index:10; background:#fff;">
+            <button class="back-btn" onclick="window.MizanoNav.back()">‹</button>
+            <h2 id="school-detail-title" style="flex:1; text-align:center; font-size:1.1rem; margin:0; padding-right:24px;">School Profile</h2>
+        </div>
+        <div id="school-detail-content">
+            <!-- Populated dynamically by SchoolsDirectory.js -->
+        </div>
+    </div>
+
 </body>
 
 </html>

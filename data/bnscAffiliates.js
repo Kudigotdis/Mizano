@@ -1327,18 +1327,18 @@ const bnscAffiliates = [
   },
 ];
 
-export default bnscAffiliates;
+// Exported via window.bnscAffiliates
 
 // Named exports for convenience
-export const getAffiliate = (id) =>
+const getAffiliate = (id) =>
   bnscAffiliates.find((a) => a.id === id) || null;
 
-export const getAffiliatesBySport = (sport) =>
+const getAffiliatesBySport = (sport) =>
   bnscAffiliates.filter((a) =>
     a.sport.toLowerCase().includes(sport.toLowerCase())
   );
 
-export const searchAffiliates = (query) => {
+const searchAffiliates = (query) => {
   const q = query.toLowerCase();
   return bnscAffiliates.filter(
     (a) =>
@@ -1348,6 +1348,9 @@ export const searchAffiliates = (query) => {
   );
 };
 
-export const getAllSports = () => [...new Set(bnscAffiliates.map((a) => a.sport))];
+const getAllSports = () => [...new Set(bnscAffiliates.map((a) => a.sport))];
 
-export const totalAffiliates = bnscAffiliates.length;
+const totalAffiliates = bnscAffiliates.length;
+
+// Ensure global access for Mizano scripts
+window.bnscAffiliates = bnscAffiliates;

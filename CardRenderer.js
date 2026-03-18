@@ -61,6 +61,32 @@ class CardRenderer {
     }
 
     /**
+     * Clears the container.
+     */
+    clear() {
+        if (this.container) {
+            this.container.innerHTML = '';
+            this.scroller.disconnect();
+        }
+    }
+
+    /**
+     * Renders an empty state message.
+     */
+    renderEmpty() {
+        if (!this.container) return;
+        this.clear();
+        this.container.innerHTML = `
+            <div style="padding: 40px 20px; text-align: center; color: #888;">
+                <div style="font-size: 3rem; margin-bottom: 10px;">🔍</div>
+                <div style="font-weight: 700; font-size: 1.1rem; color: #444;">No items found</div>
+                <p style="font-size: 0.9rem; margin-top: 8px;">Try adjusting your filters or checking back later.</p>
+                <button onclick="window.MizanoFilter && window.MizanoFilter.reset()" style="margin-top: 15px; padding: 10px 20px; background: #eee; border: none; border-radius: 20px; font-weight: 600; cursor: pointer;">Reset Filters</button>
+            </div>
+        `;
+    }
+
+    /**
      * Factory for creating card elements based on type.
      */
     createCard(data) {
@@ -122,6 +148,9 @@ class CardRenderer {
                 break;
             case 'card-leaderboard':
                 card.innerHTML = this.templateLeaderboard(data);
+                break;
+            case 'card-school':
+                card.innerHTML = this.templateSchool(data);
                 break;
             case 'card-promo':
                 card.innerHTML = this.templatePromo(data);
@@ -294,28 +323,24 @@ class CardRenderer {
     mapStatus(data) {
         const ct = data.card_type;
 
-        // DOC3 PART 23 Explicit Mappings
-        if (ct === 'card-playerprofile' || ct === 'card-hobby' || ct === 'card-recruitment') return 'recruiting'; // Green
-        if (ct === 'card-leaderboard') return 'finished'; // Charcoal
-        if (ct === 'card-promo' || ct === 'card-spotlight') return 'live'; // Orange
-        if (ct === 'card-lesson' || ct === 'card-service') return 'learning'; // Blue
-        if (ct === 'card-community-action' || ct === 'Survey Card' || ct === 'Suggestion Card') return 'engagement'; // Pink
-        if (ct === 'card-venue' || ct === 'card-leisure' || ct === 'card-school' || ct === 'card-minor' || ct === 'Institution Card' || ct === 'Job Listing Card' || ct === 'Shopping Deal Card' || ct === 'venue') return 'official'; // Light Blue
+        // 1. Match Live/Upcoming/Finished (Spec Hierarchy)
+        if (data.state === 'Active Now' || data.is_live) return 'live'; // Green Pulsing
+        if (data.state === 'Active Soon' || data.is_upcoming) return 'upcoming'; // Orange
+        if (data.state === 'Passed' || data.is_finished) return 'finished'; // Gray
 
-        // Strict v4.0 Mappings (Backwards Compatibility)
-        if (ct === 'Lost Found Card') {
-            const type = data.type || (data.status === 'lost' ? 'lost' : 'found');
-            return type === 'lost' ? 'official' : 'recruiting';
-        }
-        if (ct === 'Challenge Card' || ct === 'Match-Making Card') return 'recruiting';
-        if (ct === 'Registration-State Card') return 'upcoming';
+        // 2. Emergency/High Urgency
+        if (data.urgency_level === 'High' || data.is_emergency) return 'emergency'; // Red
 
-        // Match Live/Upcoming/Finished
-        if (data.state === 'Active Now') return 'live';
-        if (data.state === 'Active Soon') return 'upcoming';
-        if (data.state === 'Passed') return 'finished';
-
-        return 'official';
+        // 3. Explicit Mappings
+        if (ct === 'card-playerprofile' || ct === 'card-hobby' || ct === 'card-recruitment' || ct === 'Player-Recruitment Card') return 'recruiting'; 
+        if (ct === 'card-leaderboard') return 'finished'; 
+        if (ct === 'card-promo' || ct === 'card-spotlight') return 'live'; 
+        if (ct === 'card-lesson' || ct === 'card-service' || ct === 'Registration-State Card') return 'learning'; 
+        if (ct === 'Suggestion Card') return 'interest'; // Blue
+        if (ct === 'card-community-action' || ct === 'Survey Card') return 'engagement'; // Pink
+        
+        // 4. Default Official
+        return 'official'; // Light Blue
     }
 
     templateInstitution(data) {
@@ -339,6 +364,39 @@ class CardRenderer {
                 <div class="card-institution__body">
                     <div class="card-institution__name">
                         ${institutionName}
+                        ${verifiedBadge}
+                    </div>
+                    <div class="card-institution__sub">${typeLabel} · ${locationLabel}</div>
+                    <div class="card-institution__stats">
+                        ${statsHTML}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    templateSchool(data) {
+        const logoHTML = data.logo || '🏫';
+        const schoolName = data.name || data.school_name || 'School';
+        const verifiedBadge = data.is_verified || data.verified ? '<span class="card-institution__verified" style="color:#1E88E5;">✓</span>' : '';
+        const typeLabel = data.type || 'Secondary School';
+        const locationLabel = data.location || data.city || 'Botswana';
+
+        let stats = data.stats || {};
+        const statsHTML = `
+            <div class="card-institution__stat">${stats.students || '—'} <span>Students</span></div>
+            <div class="card-institution__stat">${stats.athletes || '—'} <span>Athletes</span></div>
+            <div class="card-institution__stat">${data.teams?.length || 0} <span>Teams</span></div>
+        `;
+
+        return `
+            <div class="card-institution">
+                <div class="card-institution__logo" style="background: #e3f2fd;">
+                    ${logoHTML}
+                </div>
+                <div class="card-institution__body">
+                    <div class="card-institution__name">
+                        ${schoolName}
                         ${verifiedBadge}
                     </div>
                     <div class="card-institution__sub">${typeLabel} · ${locationLabel}</div>
@@ -401,6 +459,12 @@ class CardRenderer {
                 </div>
             </div>
             <div class="card-match__venue">${venueName}<span class="dot-sep"></span>${locationName}</div>
+            
+            <div class="card-social-share" style="display:flex; gap:10px; margin-top:12px; border-top:1px solid #eee; padding-top:10px;">
+                <a href="https://wa.me/?text=Check out this match on Mizano: ${teamA.name} vs ${teamB.name} at ${venueName}" target="_blank" style="text-decoration:none; font-size:0.8rem; color:#25D366; font-weight:bold;">WhatsApp</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://mizano.bw/match/${data.activity_id || ''}" target="_blank" style="text-decoration:none; font-size:0.8rem; color:#1877F2; font-weight:bold;">Facebook</a>
+            </div>
+
             ${safetyFooterHTML}
         `;
     }
@@ -410,7 +474,27 @@ class CardRenderer {
     }
 
     templateTeam(data) {
-        return this.templateInstitution(data);
+        const logoHTML = data.logo || data.logo_emblem || '🛡️';
+        const teamName = data.team_name || data.name || 'Team';
+        const nickname = data.nickname ? `"${data.nickname}"` : '';
+        const league = data.league || 'Local League';
+        const location = data.location_full || data.location || 'Botswana';
+        const verified = data.verified ? '<span class="card-institution__verified" style="color:#4CAF50;">✓</span>' : '';
+
+        return `
+            <div class="card-institution">
+                <div class="card-institution__logo" style="background: #f8f9fa; border: 1px solid #eee;">
+                    ${logoHTML}
+                </div>
+                <div class="card-institution__body">
+                    <div class="card-institution__name">
+                        ${teamName} ${nickname}
+                        ${verified}
+                    </div>
+                    <div class="card-institution__sub">${league} · ${location}</div>
+                </div>
+            </div>
+        `;
     }
 
 
@@ -541,6 +625,10 @@ class CardRenderer {
                     <div class="card-details-panel__label">Format</div>
                     <div class="card-details-panel__value" style="text-transform: capitalize;">${formatStr}</div>
                 </div>
+                <div class="card-details-panel__share" style="margin-top:15px; padding-top:10px; border-top:1px solid #ddd; display:flex; gap:15px;">
+                    <a href="https://wa.me/?text=I'm attending ${eventTitle} on Mizano! Check it out: https://mizano.bw/event/${data.activity_id || data.event_id || ''}" target="_blank" style="text-decoration:none; color:#25D366; font-weight:bold; font-size:0.85rem;">WhatsApp Share</a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://mizano.bw/event/${data.activity_id || data.event_id || ''}" target="_blank" style="text-decoration:none; color:#1877F2; font-weight:bold; font-size:0.85rem;">FB Share</a>
+                </div>
             </div>
         `;
     }
@@ -566,15 +654,6 @@ class CardRenderer {
     }
 
 
-    /**
-     * Clears the container and resets the scroller.
-     * Prevents memory leaks by disconnecting previous observations.
-     */
-    clear() {
-        if (!this.container) return;
-        this.scroller.disconnect();
-        this.container.innerHTML = '';
-    }
 
     static templateLeaderboardSummary(data) {
         return `

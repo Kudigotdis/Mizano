@@ -223,10 +223,10 @@ window.EventForm = (function () {
                 </div>
             </div>
 
-            <!-- ── SECTION 5: FEES AND DETAILS ────────────────────────── -->
+            <!-- ── SECTION 5: TICKETING & REGISTRATION ────────────────── -->
             <div class="ef-section">
                 <div class="ef-section-hd collapsible-header" data-sec="fees">
-                    <span class="ef-sec-title">Fees &amp; Details</span>
+                    <span class="ef-sec-title">Ticketing &amp; Registration</span>
                     <span class="collapsible-arrow ef-arrow">›</span>
                 </div>
                 <div class="ef-section-body" id="sec-fees" style="display:none;">
@@ -238,13 +238,16 @@ window.EventForm = (function () {
                             <span class="ef-toggle-slider"></span>
                         </label>
                     </div>
-                    <div id="ef-fee-amount-wrap" style="display:none;margin-bottom:10px;">
-                        <label class="ef-label">Entry Fee (BWP)</label>
-                        <input type="number" id="ef-fee-amount" class="ef-input"
-                            placeholder="e.g. 25" min="0" step="0.5">
+                    
+                    <div id="ef-tickets-wrap" style="display:none;margin-bottom:16px;">
+                        <label class="ef-label">Ticket Tiers</label>
+                        <p class="ef-hint" style="margin-top:0;">Define different prices (e.g. VIP, Early Bird).</p>
+                        <div id="ef-tickets-list" style="margin-bottom:10px;"></div>
+                        <button type="button" class="ef-secondary-btn" style="width:100%;" onclick="window.EventForm._openAddTicketModal()">+ Add Ticket Tier</button>
+                        <input type="hidden" id="ef-tickets-data" value="[]">
                     </div>
 
-                    <label class="ef-label">Description / Rules</label>
+                    <label class="ef-label">Registration Description / Rules</label>
                     <textarea id="ef-description" class="ef-input ef-textarea"
                         placeholder="What to bring, dress code, scoring format, rules…"></textarea>
 
@@ -256,7 +259,7 @@ window.EventForm = (function () {
                     <div id="ef-cover-preview" style="display:none;margin-bottom:8px;">
                         <img id="ef-cover-img" style="width:100%;max-height:160px;object-fit:cover;border-radius:8px;">
                     </div>
-                    <button type="button" class="ef-secondary-btn" onclick="window.EventForm._pickCover()">
+                    <button type="button" class="ef-secondary-btn" style="width:100%;" onclick="window.EventForm._pickCover()">
                         📷 Upload Cover Photo
                     </button>
                     <input type="file" id="ef-cover-input" accept="image/*" style="display:none;"
@@ -324,6 +327,20 @@ window.EventForm = (function () {
                                 placeholder="Referee contact phone (+267)">
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- ── SECTION 7: LOGISTICS & TASKS ───────────────────────── -->
+            <div class="ef-section">
+                <div class="ef-section-hd collapsible-header" data-sec="logistics">
+                    <span class="ef-sec-title">Logistics &amp; Tasks</span>
+                    <span class="collapsible-arrow ef-arrow">›</span>
+                </div>
+                <div class="ef-section-body" id="sec-logistics" style="display:none;">
+                    <p class="ef-hint">List equipment needed or tasks for volunteers/organisers.</p>
+                    <div id="ef-logistics-list" style="margin-bottom:12px;"></div>
+                    <button type="button" class="ef-secondary-btn" style="width:100%;" onclick="window.EventForm._openAddLogisticsModal()">+ Add Task / Item</button>
+                    <input type="hidden" id="ef-logistics-data" value="[]">
                 </div>
             </div>
 
@@ -489,8 +506,136 @@ window.EventForm = (function () {
     // ─────────────────────────────────────────────────────────────────────────
 
     function _toggleFee(isFree) {
-        const wrap = document.getElementById('ef-fee-amount-wrap');
+        const wrap = document.getElementById('ef-tickets-wrap');
         if (wrap) wrap.style.display = isFree ? 'none' : 'block';
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // TICKETS & LOGISTICS (REPEATABLE)
+    // ─────────────────────────────────────────────────────────────────────────
+
+    let _ticketsMgr = null;
+    let _logisticsMgr = null;
+
+    function init() {
+        _ticketsMgr = window.FormHelpers.createRepeatable({
+            containerId: 'ef-tickets-list',
+            dataId: 'ef-tickets-data',
+            renderRow: (item, index) => `
+                <div class="ef-ticket-row" style="display:flex;align-items:center;gap:10px;background:#f9f9f9;padding:8px 12px;border-radius:10px;margin-bottom:6px;border:1px solid #eee;">
+                    <div style="flex:1;">
+                        <div style="font-weight:700;font-size:0.85rem;">${item.name}</div>
+                        <div style="font-size:0.75rem;color:#666;">P${item.price} · Qty: ${item.quantity || 'unlimited'}</div>
+                    </div>
+                    <span style="color:#e53935;cursor:pointer;font-weight:700;font-size:1.2rem;padding:4px;" onclick="window.EventForm._removeTicket(${index})">×</span>
+                </div>`,
+            onEmpty: () => `<div style="padding:16px;text-align:center;color:#aaa;font-size:0.8rem;border:1px dashed #ddd;border-radius:10px;">No ticket tiers added.</div>`
+        });
+
+        _logisticsMgr = window.FormHelpers.createRepeatable({
+            containerId: 'ef-logistics-list',
+            dataId: 'ef-logistics-data',
+            renderRow: (item, index) => `
+                <div class="ef-logistics-row" style="display:flex;align-items:center;gap:10px;background:#f9f9f9;padding:8px 12px;border-radius:10px;margin-bottom:6px;border:1px solid #eee;">
+                    <div style="flex:1;">
+                        <div style="font-weight:700;font-size:0.85rem;">${item.title}</div>
+                        <div style="font-size:0.75rem;color:#666;">Type: ${item.type}</div>
+                    </div>
+                    <span style="color:#e53935;cursor:pointer;font-weight:700;font-size:1.2rem;padding:4px;" onclick="window.EventForm._removeLogistics(${index})">×</span>
+                </div>`,
+            onEmpty: () => `<div style="padding:16px;text-align:center;color:#aaa;font-size:0.8rem;border:1px dashed #ddd;border-radius:10px;">No tasks or items listed.</div>`
+        });
+    }
+
+    function _removeTicket(index) { if (_ticketsMgr) _ticketsMgr.remove(index); }
+    function _removeLogistics(index) { if (_logisticsMgr) _logisticsMgr.remove(index); }
+
+    function _openAddTicketModal() {
+        const modalId = 'ef-ticket-modal';
+        let modal = document.getElementById(modalId);
+        if (modal) modal.remove();
+
+        modal = document.createElement('div');
+        modal.id = modalId;
+        modal.style.cssText = `position:fixed;inset:0;z-index:200005;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;padding:20px;`;
+        modal.innerHTML = `
+            <div style="background:#fff;border-radius:16px;width:100%;max-width:340px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+                <div style="padding:16px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;background:#f8f9fa;">
+                    <h3 style="margin:0;font-size:0.95rem;font-weight:700;">Add Ticket Tier</h3>
+                    <span style="cursor:pointer;font-size:1.4rem;color:#888;" id="eftk-close">×</span>
+                </div>
+                <div style="padding:20px;">
+                    <label class="ef-label">Tier Name</label>
+                    <input type="text" id="eftk-name" class="ef-input" placeholder="e.g. Early Bird, VIP">
+                    
+                    <label class="ef-label" style="margin-top:12px;">Price (BWP)</label>
+                    <input type="number" id="eftk-price" class="ef-input" value="10" min="0">
+
+                    <label class="ef-label" style="margin-top:12px;">Quantity Available (Optional)</label>
+                    <input type="number" id="eftk-qty" class="ef-input" placeholder="unlimited" min="1">
+                </div>
+                <div style="padding:16px;display:flex;gap:10px;background:#f8f9fa;">
+                    <button id="eftk-cancel" style="flex:1;padding:12px;background:#fff;border:1px solid #dadce0;border-radius:10px;font-weight:600;cursor:pointer;">Cancel</button>
+                    <button id="eftk-add" style="flex:1;padding:12px;background:#1a73e8;color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;">Add</button>
+                </div>
+            </div>`;
+        document.body.appendChild(modal);
+
+        document.getElementById('eftk-close').onclick = () => modal.remove();
+        document.getElementById('eftk-cancel').onclick = () => modal.remove();
+        document.getElementById('eftk-add').onclick = () => {
+            const name = document.getElementById('eftk-name').value.trim();
+            if (!name) { _showToast('Name is required', 'error'); return; }
+            const price = parseFloat(document.getElementById('eftk-price').value) || 0;
+            const qty = parseInt(document.getElementById('eftk-qty').value) || null;
+            if (_ticketsMgr) _ticketsMgr.add({ name, price, quantity: qty });
+            modal.remove();
+        };
+    }
+
+    function _openAddLogisticsModal() {
+        const modalId = 'ef-log-modal';
+        let modal = document.getElementById(modalId);
+        if (modal) modal.remove();
+
+        modal = document.createElement('div');
+        modal.id = modalId;
+        modal.style.cssText = `position:fixed;inset:0;z-index:200005;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;padding:20px;`;
+        modal.innerHTML = `
+            <div style="background:#fff;border-radius:16px;width:100%;max-width:340px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+                <div style="padding:16px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;background:#f8f9fa;">
+                    <h3 style="margin:0;font-size:0.95rem;font-weight:700;">Add Logistic Task/Item</h3>
+                    <span style="cursor:pointer;font-size:1.4rem;color:#888;" id="eflg-close">×</span>
+                </div>
+                <div style="padding:20px;">
+                    <label class="ef-label">Title</label>
+                    <input type="text" id="eflg-title" class="ef-input" placeholder="e.g. Set up cones, Bring water">
+                    
+                    <label class="ef-label" style="margin-top:12px;">Type</label>
+                    <select id="eflg-type" class="ef-input">
+                        <option>Equipment</option>
+                        <option>Volunteer Task</option>
+                        <option>Admin Duty</option>
+                        <option>Security</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div style="padding:16px;display:flex;gap:10px;background:#f8f9fa;">
+                    <button id="eflg-cancel" style="flex:1;padding:12px;background:#fff;border:1px solid #dadce0;border-radius:10px;font-weight:600;cursor:pointer;">Cancel</button>
+                    <button id="eflg-add" style="flex:1;padding:12px;background:#1a73e8;color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;">Add</button>
+                </div>
+            </div>`;
+        document.body.appendChild(modal);
+
+        document.getElementById('eflg-close').onclick = () => modal.remove();
+        document.getElementById('eflg-cancel').onclick = () => modal.remove();
+        document.getElementById('eflg-add').onclick = () => {
+            const title = document.getElementById('eflg-title').value.trim();
+            if (!title) { _showToast('Title is required', 'error'); return; }
+            const type = document.getElementById('eflg-type').value;
+            if (_logisticsMgr) _logisticsMgr.add({ title, type });
+            modal.remove();
+        };
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -651,8 +796,11 @@ window.EventForm = (function () {
             gender_category: document.getElementById('ef-gender-cat')?.value,
             format: document.getElementById('ef-format')?.value || 'Team-based',
             max_participants: parseInt(document.getElementById('ef-max-participants')?.value) || 0,
+            
             is_free: isFree,
-            fee_amount: isFree ? 0 : parseFloat(document.getElementById('ef-fee-amount')?.value) || 0,
+            tickets: isFree ? [] : JSON.parse(document.getElementById('ef-tickets-data')?.value || '[]'),
+            logistics: JSON.parse(document.getElementById('ef-logistics-data')?.value || '[]'),
+
             description: document.getElementById('ef-description')?.value.trim() || '',
             prizes: document.getElementById('ef-prizes')?.value.trim() || '',
             cover_photo: document.getElementById('ef-cover-img')?.src || null,
@@ -775,21 +923,17 @@ window.EventForm = (function () {
     function _safeAttr(v) { return (v || '').replace(/'/g, '&#39;'); }
 
     function _showToast(msg, type = 'success') {
-        let t = document.getElementById('ef-toast');
-        if (!t) {
-            t = document.createElement('div');
-            t.id = 'ef-toast';
-            document.body.appendChild(t);
+        if (window.FormHelpers) window.FormHelpers.showToast(msg, type);
+        else {
+            let t = document.getElementById('ef-toast');
+            if (!t) { t = document.createElement('div'); t.id = 'ef-toast'; document.body.appendChild(t); }
+            t.style.cssText = `position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:99999;
+                background:${type === 'error' ? '#e53935' : '#323232'};color:#fff;
+                padding:10px 20px;border-radius:8px;font-size:0.85rem;font-weight:500;
+                white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);pointer-events:none;`;
+            t.textContent = msg; t.style.display = 'block';
+            clearTimeout(t._t); t._t = setTimeout(() => { t.style.display = 'none'; }, 3000);
         }
-        t.style.cssText = `
-            position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:99999;
-            background:${type === 'error' ? '#e53935' : '#323232'};color:#fff;
-            padding:10px 20px;border-radius:8px;font-size:0.85rem;font-weight:500;
-            white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);pointer-events:none;`;
-        t.textContent = msg;
-        t.style.display = 'block';
-        clearTimeout(t._t);
-        t._t = setTimeout(() => { t.style.display = 'none'; }, 3000);
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -863,14 +1007,15 @@ window.EventForm = (function () {
     // ─────────────────────────────────────────────────────────────────────────
 
     return {
-        render,
+        render, init,
         _charCount, _filterSports, _showSportList, _selectSport,
         _onDateChange, _suggestEndTime, _selectRecur, _showNextDates,
         _toggleVenueMode, _searchVenues, _selectVenue, _loadAreas,
         _selectFormat, _toggleFee, _pickCover, _previewCover,
         _searchOrganiser, _searchGroups, _searchAssociations,
         _searchSponsors, _addSponsor, _removeSponsor, _pickLinked,
-        _toggleReferee, _submit, _removeSponsor
+        _toggleReferee, _submit, _removeSponsor,
+        _openAddTicketModal, _removeTicket, _openAddLogisticsModal, _removeLogistics
     };
 
 })();

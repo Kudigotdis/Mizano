@@ -306,8 +306,15 @@ window.AddActionRouter = (function () {
             window.HabitForm.init();
         } else if (formType === 'injury' && window.InjuryForm) {
             window.InjuryForm.init();
+        } else if ((formType === 'venue' || formType === 'venues') && window.VenueForm && window.VenueForm._initSpaces) {
+            window.VenueForm._initSpaces();
+        } else if ((formType === 'event' || formType === 'events') && window.EventForm && window.EventForm.init) {
+            window.EventForm.init();
+        } else if (formType === 'business' && window.BusinessForm && window.BusinessForm.init) {
+            window.BusinessForm.init();
+        } else if (formType === 'association' && window.AssociationForm && window.AssociationForm.init) {
+            window.AssociationForm.init();
         }
-
     }
 
     function _buildFormHeader(formType) {

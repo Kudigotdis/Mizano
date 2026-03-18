@@ -5,8 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
-  --c-live:#FFA500;--c-upcoming:#FFD700;--c-finished:#505050;
+  --c-live:#70AD47;--c-upcoming:#FFA500;--c-finished:#505050;
   --c-recruiting:#70AD47;--c-learning:#4472C4;--c-engagement:#FF69B4;
+  --c-interest:#4472C4;--c-emergency:#D32F2F;
   --c-official:#87CEEB;--c-bg:#ecf1f6;--c-surface:#ffffff;
   --c-text:#111111;--c-meta:#6b7280;--c-faint:#f4f6f9;
   --c-divider:#e5e9ef;--c-gold:#FFB300;--c-dot:#c8cdd5;
@@ -36,15 +37,17 @@
 .mizano-card:active{transform:scale(.985);box-shadow:var(--shadow-lift)}
 
 /* BORDER SYSTEM */
-.mizano-card[data-status="live"],.mizano-card.border-live{border-color:rgba(255,165,0,.70)}
-.mizano-card[data-status="upcoming"],.mizano-card.border-upcoming{border-color:rgba(255,215,0,.70)}
-.mizano-card[data-status="finished"],.mizano-card.border-finished{border-color:rgba(80,80,80,.70)}
-.mizano-card[data-status="recruiting"],.mizano-card.border-recruiting{border-color:rgba(112,173,71,.70)}
-.mizano-card[data-status="learning"],.mizano-card.border-learning{border-color:rgba(68,114,196,.70)}
-.mizano-card[data-status="interest"],.mizano-card[data-status="engagement"],.mizano-card.border-engagement{border-color:rgba(255,105,180,.70)}
+.mizano-card[data-status="live"],.mizano-card.border-live{border-color:rgba(112,173,71,.80)}
+.mizano-card[data-status="upcoming"],.mizano-card.border-upcoming{border-color:rgba(255,165,0,.80)}
+.mizano-card[data-status="finished"],.mizano-card.border-finished{border-color:rgba(80,80,80,.80)}
+.mizano-card[data-status="recruiting"],.mizano-card.border-recruiting{border-color:rgba(112,173,71,.80)}
+.mizano-card[data-status="learning"],.mizano-card.border-learning{border-color:rgba(68,114,196,.80)}
+.mizano-card[data-status="interest"],.mizano-card.border-interest{border-color:rgba(68,114,196,.80)}
+.mizano-card[data-status="emergency"],.mizano-card.border-emergency{border-color:rgba(211,47,47,.90)}
+.mizano-card[data-status="engagement"],.mizano-card.border-engagement{border-color:rgba(255,105,180,.70)}
 .mizano-card[data-status="official"],.mizano-card.border-official{border-color:rgba(135,206,235,.70)}
 
-@keyframes pulse-border{0%,100%{border-color:rgba(255,165,0,.70)}50%{border-color:rgba(255,165,0,1);box-shadow:0 0 0 3px rgba(255,165,0,.15)}}
+@keyframes pulse-border{0%,100%{border-color:rgba(112,173,71,.70)}50%{border-color:rgba(112,173,71,1);box-shadow:0 0 0 3px rgba(112,173,71,.20)}}
 .mizano-card[data-status="live"]{animation:pulse-border 2s ease-in-out infinite}
 
 .dot-sep{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--c-dot);margin:0 6px;vertical-align:middle;flex-shrink:0}
@@ -124,7 +127,7 @@
 /* ═══ 4. FEED CARD ════════════════════════════════════════ */
 /* Title first, then body, then avatar LEFT + two-line author */
 .card-feed__title{font-family:var(--font-head);font-size:18px;font-weight:700;line-height:1.3;margin:0 0 7px}
-.card-feed__body{font-size:13px;color:var(--c-meta);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px}
+.card-feed__body{font-size:13px;color:var(--c-meta);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px}
 
 /* Author row: avatar on far left, two-line block to the right */
 .card-feed__author-row{display:flex;align-items:center;gap:10px}

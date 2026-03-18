@@ -14,17 +14,21 @@ class FilterEngine {
             category: 'all',
             sport: 'all',
             status: 'all',
-            location: 'Gaborone',
+            location: 'all',
             area: 'all', // Added area tracking
             timeFrame: 'all',
             date: null
         };
         this.onFilterChange = null;
 
-        // Force Gaborone every time, regardless of cache
-        this.criteria.location = 'Gaborone';
-        this.criteria.date = null; // Fix Bug 1: Date filter persists across sessions
+        // Ensure clean state for time-based filters on startup
+        this.criteria.date = null;
         this.criteria.timeFrame = 'all';
+        this.criteria.activeActivity = null;
+        
+        // Force location filters to default on startup to avoid blank screen regressions
+        this.criteria.location = 'all';
+        this.criteria.area = 'all';
 
         // Trigger initial apply if we loaded saved filters
         if (savedCriteria) {
@@ -93,9 +97,10 @@ class FilterEngine {
             category: 'all',
             sport: 'all',
             status: 'all',
-            location: 'Gaborone',
+            location: 'all',
             timeFrame: 'all',
-            date: null
+            date: null,
+            activeActivity: null
         };
 
         if (window.mizanoStorage) {
@@ -119,7 +124,7 @@ class FilterEngine {
             return [];
         }
 
-        let results = dataList;
+        let results = dataList.filter(item => item !== null && item !== undefined);
 
         // 1. Root: Location Filter (Places)
         if (this.criteria.location && this.criteria.location.toLowerCase() !== 'all' && this.criteria.location.toLowerCase() !== 'all locations') {
@@ -218,15 +223,11 @@ class FilterEngine {
 
         // 6. Activity Filter (Additive)
         if (this.criteria.activeActivity) {
-            const target = this.criteria.activeActivity;
-            results = results.filter(e =>
-                (e.activity && e.activity === target) ||
-                (e.activityType && e.activityType === target) ||
-                (e.activity_type && e.activity_type === target) ||
-                (e.sport && e.sport === target) ||
-                (e.category && e.category === target) ||
-                (e.type && e.type === target)
-            );
+            const target = this.criteria.activeActivity.toLowerCase();
+            results = results.filter(e => {
+                const activityVal = (e.activity || e.activityType || e.activity_type || e.sport || e.category || e.type || '').toLowerCase();
+                return activityVal === target;
+            });
         }
 
         return results;

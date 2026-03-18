@@ -559,16 +559,16 @@ class StorageManager {
     }
 
     /**
-     * Clears auth session from LocalStorage only.
+     * Logout utility: Clears the current session and redirects to login/splash.
      * IndexedDB data is KEPT — user's content stays on device.
-     * @returns {Promise<void>}
      */
-    async logout() {
+    logout() {
         localStorage.removeItem('mizano_session');
         localStorage.removeItem('currentUser');
         localStorage.removeItem('mizano_last_panel');
-        console.log('StorageManager: session cleared — IndexedDB data preserved');
-        return Promise.resolve();
+        localStorage.removeItem(this.prefix + 'mizano_scrolls');
+        console.log('StorageManager: session cleared — reloading page');
+        window.location.reload();
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -837,16 +837,7 @@ class StorageManager {
         });
     }
 
-    /**
-     * Logout utility: Clears the current session and redirects to login/splash.
-     * Called from hamburger menu and AuthManager.logout().
-     */
-    logout() {
-        localStorage.removeItem('mizano_session');
-        localStorage.removeItem('currentUser');
-        console.log('StorageManager: Session cleared. Reloading.');
-        window.location.reload();
-    }
+
 
     /**
      * Saves scroll position to LocalStorage for a specific view

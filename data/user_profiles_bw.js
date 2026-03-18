@@ -1,5 +1,23 @@
 window.MIZANO_DATA = window.MIZANO_DATA || {};
-window.MIZANO_DATA.profiles = [];
+window.MIZANO_DATA.profiles = [
+    {
+        "uid": "USR-BW-GAB-1987",
+        "display_name": "Kudzanai Chitate",
+        "first_name": "Kudzanai",
+        "surname": "Chitate",
+        "gender": "Male",
+        "age": 38,
+        "dob": "1987-04-05",
+        "location": "Gaborone",
+        "role": "SUPER ADMIN",
+        "profile_type": "creator",
+        "whatsapp": "+26771001987",
+        "interests": ["Chess", "Technology", "Sports Management"],
+        "verified": true,
+        "rating": 5.0,
+        "capabilities": ["SuperAdmin", "Creator", "Guardian"]
+    }
+];
 for (let i = 0; i < 500; i++) {
     const names = ["Kagiso", "Mpho", "Thabo", "Dineo", "Lesego", "Boitumelo", "Neo", "Kefilwe", "Tshepiso", "Mizano"];
     const surnames = ["Modise", "Tau", "Nkwe", "Sithole", "Dube", "Seretse", "Moagi", "Tshiamo"];

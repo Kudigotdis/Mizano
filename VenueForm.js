@@ -118,11 +118,11 @@ window.VenueForm = (function () {
                 <div class="vf-section-body" id="sec-facilities" style="display:none;">
                     <div style="display:flex;gap:10px;">
                         <div style="flex:1;">
-                            <label class="vf-label">Capacity (Players)</label>
-                            <input type="number" id="vf-cap-play" class="vf-input" placeholder="e.g. 22" min="0">
+                            <label class="vf-label">Total Capacity (Players)</label>
+                            <input type="number" id="vf-cap-play" class="vf-input" placeholder="e.g. 50" min="0">
                         </div>
                         <div style="flex:1;">
-                            <label class="vf-label">Capacity (Spectators)</label>
+                            <label class="vf-label">Total Capacity (Spectators)</label>
                             <input type="number" id="vf-cap-spec" class="vf-input" placeholder="e.g. 500" min="0">
                         </div>
                     </div>
@@ -143,7 +143,21 @@ window.VenueForm = (function () {
                 </div>
             </div>
 
-            <!-- ── SECTION 4: BOOKING & MANAGEMENT ────────────────────── -->
+            <!-- ── SECTION 4: VENUE SPACES (Repeatable) ────────────────── -->
+            <div class="vf-section">
+                <div class="vf-section-hd collapsible-header" data-sec="spaces">
+                    <span class="vf-sec-title">Venue Spaces / Pitches</span>
+                    <span class="collapsible-arrow vf-arrow">›</span>
+                </div>
+                <div class="vf-section-body" id="sec-spaces" style="display:none;">
+                    <p class="vf-hint">Add specific pitches, courts, or halls within this venue.</p>
+                    <div id="vf-spaces-list" style="margin-bottom:12px;"></div>
+                    <button type="button" class="vf-secondary-btn" onclick="window.VenueForm._openAddSpaceModal()">+ Add Space / Pitch</button>
+                    <input type="hidden" id="vf-spaces-data" value="[]">
+                </div>
+            </div>
+
+            <!-- ── SECTION 5: BOOKING & MANAGEMENT ────────────────────── -->
             <div class="vf-section" style="border-bottom:none;">
                 <div class="vf-section-hd collapsible-header" data-sec="booking">
                     <span class="vf-sec-title">Booking &amp; Management</span>
@@ -295,6 +309,91 @@ window.VenueForm = (function () {
     }
 
     // ─────────────────────────────────────────────────────────────────────────
+    // SPACES (REPEATABLE)
+    // ─────────────────────────────────────────────────────────────────────────
+
+    let _spacesMgr = null;
+
+    function _initSpaces() {
+        _spacesMgr = window.FormHelpers.createRepeatable({
+            containerId: 'vf-spaces-list',
+            dataId: 'vf-spaces-data',
+            renderRow: (item, index) => `
+                <div class="vf-space-card" style="display:flex;align-items:center;justify-content:space-between;background:#f9f9f9;padding:10px;border-radius:10px;border:1px solid #eee;margin-bottom:8px;">
+                    <div style="flex:1;">
+                        <div style="font-weight:700;font-size:0.85rem;color:#1a1a1a;">${item.name}</div>
+                        <div style="font-size:0.75rem;color:#666;">${item.type} • ${item.surface}</div>
+                        <div style="font-size:0.75rem;color:#1a73e8;font-weight:600;">Cap: ${item.capacity} Players</div>
+                    </div>
+                    <span style="color:#e53935;cursor:pointer;font-weight:700;padding:8px;font-size:1.2rem;" onclick="window.VenueForm._removeSpace(${index})">×</span>
+                </div>`,
+            onEmpty: () => `<div style="padding:20px;text-align:center;color:#aaa;font-size:0.82rem;border:1px dashed #ddd;border-radius:10px;">No specific spaces added yet.</div>`
+        });
+    }
+
+    function _removeSpace(index) {
+        if (_spacesMgr) _spacesMgr.remove(index);
+    }
+
+    function _openAddSpaceModal() {
+        const modalId = 'vf-space-modal';
+        let modal = document.getElementById(modalId);
+        if (modal) modal.remove();
+
+        modal = document.createElement('div');
+        modal.id = modalId;
+        modal.style.cssText = `position:fixed;inset:0;z-index:200005;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;padding:20px;`;
+        modal.innerHTML = `
+            <div style="background:#fff;border-radius:16px;width:100%;max-width:360px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+                <div style="padding:16px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;background:#f8f9fa;">
+                    <h3 style="margin:0;font-size:1rem;font-weight:700;">Add Venue Space</h3>
+                    <span style="cursor:pointer;font-size:1.5rem;color:#888;" id="vf-space-close">×</span>
+                </div>
+                <div style="padding:20px;max-height:70vh;overflow-y:auto;">
+                    <label class="vf-label">Space Name</label>
+                    <input type="text" id="vfs-name" class="vf-input" placeholder="e.g. Main Pitch, Court A">
+                    
+                    <label class="vf-label" style="margin-top:12px;">Space Type</label>
+                    <select id="vfs-type" class="vf-input">
+                        ${VENUE_TYPES.map(t => `<option>${t}</option>`).join('')}
+                    </select>
+
+                    <label class="vf-label" style="margin-top:12px;">Surface</label>
+                    <select id="vfs-surface" class="vf-input">
+                        ${SURFACES.map(s => `<option>${s}</option>`).join('')}
+                    </select>
+
+                    <label class="vf-label" style="margin-top:12px;">Capacity (Players)</label>
+                    <input type="number" id="vfs-cap" class="vf-input" value="22" min="1">
+                </div>
+                <div style="padding:16px;display:flex;gap:10px;background:#f8f9fa;">
+                    <button id="vfs-cancel" style="flex:1;padding:12px;background:#fff;border:1px solid #dadce0;border-radius:10px;font-weight:600;cursor:pointer;">Cancel</button>
+                    <button id="vfs-add" style="flex:1;padding:12px;background:#1a73e8;color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;">Add Space</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        const close = () => modal.remove();
+        document.getElementById('vf-space-close').onclick = close;
+        document.getElementById('vfs-cancel').onclick = close;
+        document.getElementById('vfs-add').onclick = () => {
+            const name = document.getElementById('vfs-name').value.trim();
+            if (!name) { _showToast('Please enter a space name', 'error'); return; }
+            
+            const space = {
+                name,
+                type: document.getElementById('vfs-type').value,
+                surface: document.getElementById('vfs-surface').value,
+                capacity: parseInt(document.getElementById('vfs-cap').value) || 0
+            };
+
+            if (_spacesMgr) _spacesMgr.add(space);
+            close();
+        };
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
     // CHIPS & TOGGLES
     // ─────────────────────────────────────────────────────────────────────────
 
@@ -385,18 +484,16 @@ window.VenueForm = (function () {
         const typeSlug = type.toLowerCase().replace(/\s+/g, '');
         const venueId = `VEN-${cityCode}-${typeSlug}-${now}`;
 
-        // Get amenities chips
+        // Get children data
         const amenities = Array.from(document.querySelectorAll('.vf-chip.active')).map(c => c.dataset.val);
+        const photos = JSON.parse(document.getElementById('vf-photos-data').value || '[]');
+        const spaces = JSON.parse(document.getElementById('vf-spaces-data').value || '[]');
 
-        // Geolocation handles
+        // Geolocation
         let lat = document.getElementById('vf-lat').value.trim();
         let lng = document.getElementById('vf-lng').value.trim();
         const coords = (lat && lng) ? { lat: parseFloat(lat), lng: parseFloat(lng) } : null;
 
-        // Photos payload limit check
-        const photos = JSON.parse(document.getElementById('vf-photos-data').value || '[]');
-
-        // Booking data extracted only if bookable
         const isBookable = document.getElementById('vf-bookable-toggle').checked;
         const feeType = document.getElementById('vf-fee-type').value;
 
@@ -410,12 +507,14 @@ window.VenueForm = (function () {
             city,
             area,
             location_coords: coords,
-            photos, // Array of base64 strings
+            photos, 
 
             capacity_players: parseInt(document.getElementById('vf-cap-play').value) || null,
             capacity_spectators: parseInt(document.getElementById('vf-cap-spec').value) || null,
             amenities,
             ownership_type: document.getElementById('vf-owner-type').value,
+
+            spaces: spaces, // Added in Session 8
 
             is_bookable: isBookable,
             booking_contact_name: isBookable ? document.getElementById('vf-book-name').value.trim() : null,
@@ -427,12 +526,13 @@ window.VenueForm = (function () {
             managed_by_store: document.getElementById('vf-mgr-type').value,
             managed_by_id: document.getElementById('vf-mgr-id').value || null,
 
-            submitted_by: userId
+            submitted_by: userId,
+            created_at: new Date().toISOString()
         };
 
         try {
             await window.mizanoStorage.saveEntity('venues', record);
-            _showToast('Venue submitted! It will appear publicly soon. 📍');
+            _showToast('Venue submitted successfully! 📍');
             setTimeout(() => {
                 window.MizanoNav?.closeOverlay('builder');
                 window.MyVenues?.refresh?.();
@@ -448,13 +548,16 @@ window.VenueForm = (function () {
     // ─────────────────────────────────────────────────────────────────────────
 
     function _showToast(msg, type = 'success') {
-        let t = document.getElementById('vf-toast');
-        if (!t) { t = document.createElement('div'); t.id = 'vf-toast'; document.body.appendChild(t); }
-        t.style.cssText = `position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:99999;
-            background:${type === 'error' ? '#e53935' : (type === 'info' ? '#1a73e8' : '#323232')};color:#fff;padding:10px 20px;
-            border-radius:8px;font-size:0.85rem;font-weight:500;box-shadow:0 2px 8px rgba(0,0,0,0.3);`;
-        t.textContent = msg; t.style.display = 'block';
-        clearTimeout(t._t); t._t = setTimeout(() => t.style.display = 'none', 3000);
+        if (window.FormHelpers) window.FormHelpers.showToast(msg, type);
+        else {
+            let t = document.getElementById('vf-toast');
+            if (!t) { t = document.createElement('div'); t.id = 'vf-toast'; document.body.appendChild(t); }
+            t.style.cssText = `position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:99999;
+                background:${type === 'error' ? '#e53935' : (type === 'info' ? '#1a73e8' : '#323232')};color:#fff;padding:10px 20px;
+                border-radius:8px;font-size:0.85rem;font-weight:500;box-shadow:0 2px 8px rgba(0,0,0,0.3);`;
+            t.textContent = msg; t.style.display = 'block';
+            clearTimeout(t._t); t._t = setTimeout(() => t.style.display = 'none', 3000);
+        }
     }
     function _safeAttr(v) { return (v || '').replace(/'/g, '&#39;'); }
 

@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const storage = window.mizanoStorage;
     const notifications = window.MizanoNotifications;
     if (notifications) await notifications.init();
+    if (window.AssociationsDirectory) window.AssociationsDirectory.init();
+    if (window.SchoolsDirectory) window.SchoolsDirectory.init();
 
     // STEP 1: STARTUP: Clear any persisted date filter to prevent stale filters from previous sessions
     localStorage.removeItem('mizano_selected_date');
@@ -509,51 +511,57 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const updateUIWithFilters = () => {
         const activeIdx = window.MizanoNav?.state?.currentIndex || 0;
-        
         const renderJobs = [
             // Panel 0: Home
             () => {
                 dataManager.cache.homeFeed = dataManager.getHomeFeed();
                 const totalHome = updatePanel('home', 'homeFeed');
+                
+                // CRITICAL: Sync clones for the smooth-scroll horizon effect
                 const homeClone = document.getElementById('drop-field-home-clone');
                 const homeActual = document.getElementById('drop-field-home');
-                if (homeClone && homeActual) homeClone.innerHTML = homeActual.innerHTML;
+                if (homeClone && homeActual) {
+                    homeClone.innerHTML = homeActual.innerHTML;
+                }
+
+                // Update Overall Platform Capacity Tally (Phase 11 Fix)
                 const cardTally = document.getElementById('card-count');
-                if (cardTally) cardTally.innerText = totalHome > 888 ? '888' : totalHome;
+                if (cardTally) {
+                    const totalAcrossAll = (dataManager.cache.activities?.length || 0) + (dataManager.cache.events?.length || 0);
+                    cardTally.innerText = totalAcrossAll > 888 ? '888+' : totalAcrossAll;
+                }
             },
-            // Panel 1: Search
-            () => updatePanel('search', 'activities'),
-            // Panel 2: Sports
+            // Panel 1: Sports
             () => updatePanel('sports', 'activities', a => {
                 const t = (a.activity_type || a.type || '').toLowerCase();
                 const cat = (a.category || '').toLowerCase();
                 return t === 'match' || t === 'sports' || t === 'sport' || cat === 'sports' || cat === 'sport' ||
                     a.card_type === 'Standard Match Card' || a.card_type === 'Competition Card';
             }),
-            // Panel 3: Hobbies
+            // Panel 2: Hobbies
             () => updatePanel('hobbies', 'activities', a => {
                 const t = (a.activity_type || a.type || '').toLowerCase();
                 const cat = (a.category || '').toLowerCase();
                 return t === 'hobbies' || t === 'hobby' || cat === 'hobby' || cat === 'hobbies' ||
                     a.card_type === 'Hobby Leisure Card';
             }),
+            // Panel 3: Leisure
+            () => updatePanel('leisure', 'activities', a => {
+                const t = (a.activity_type || a.type || '').toLowerCase();
+                const cat = (a.category || '').toLowerCase();
+                return t === 'leisure' || cat === 'leisure' || a.card_type === 'Hobby Leisure Card';
+            }),
             // Panel 4: Lessons
             () => updatePanel('lessons', 'activities', a => {
                 const t = (a.activity_type || a.type || '').toLowerCase();
                 return t === 'lesson' || t === 'lessons' || t === 'coaching' || t === 'tutor';
             }),
-            // Panel 5: Events / Leisure / Marathons
+            // Panel 5: Events
             () => {
-                updatePanel('leisure', 'activities', a => {
-                    const t = (a.activity_type || a.type || '').toLowerCase();
-                    const cat = (a.category || '').toLowerCase();
-                    return t === 'leisure' || cat === 'leisure' || a.card_type === 'Hobby Leisure Card';
-                });
                 if (dataManager.cache.events) renderers.events.render(mapToCardData('events', filterEngine.filterData(dataManager.cache.events)));
                 if (dataManager.cache.marathons) {
                     const marathonCards = mapToCardData('marathons', filterEngine.filterData(dataManager.cache.marathons));
                     renderers.events.render(marathonCards, true);
-                    renderers.discover.render(marathonCards, true);
                 }
             },
             // Panel 6: Groups
@@ -564,14 +572,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                     ...filterEngine.filterData(dataManager.cache.discover || []),
                     ...filterEngine.filterData(dataManager.cache.competitions || [])
                 ];
-                const discoverCards = [
-                    ...mapToCardData('discover', filterEngine.filterData(dataManager.cache.discover || [])),
-                    ...mapToCardData('competitions', filterEngine.filterData(dataManager.cache.competitions || []))
-                ];
-                if (discoverCards.length > 0) {
-                    renderers.discover.render(discoverCards);
-                } else {
-                    renderers.discover.renderEmpty();
+                renderers.discover.render(mapToCardData('mixed', discoverItems));
+                
+                if (dataManager.cache.marathons) {
+                    const marathonCards = mapToCardData('marathons', filterEngine.filterData(dataManager.cache.marathons));
+                    renderers.discover.render(marathonCards, true);
                 }
             },
             // Panel 8: Community

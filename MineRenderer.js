@@ -41,6 +41,7 @@ class TrackerRenderer {
                 ${this.templateHabitChain()}
                 ${suggestionHtml}
                 ${this.templateHealthRecovery()}
+                ${user.role === 'guardian' ? this.templateMinorFamily(user) : ''}
                 ${this.templateManagedTeams(user)}
                 ${this.templateQuickActions(user)}
                 
@@ -187,7 +188,7 @@ class TrackerRenderer {
             if (roles[role].length === 0) return '';
             const roleLabel = role.charAt(0).toUpperCase() + role.slice(1);
             const userOptions = roles[role].slice(0, 15).map(u =>
-                `<option value="${u.uid}" ${u.uid === this.dataManager.getCurrentUser()?.uid ? 'selected' : ''}>${u.name}</option>`
+                `<option value="${u.uid}" ${u.uid === this.dataManager.getCurrentUser()?.uid ? 'selected' : ''}>${u.full_name || u.name}</option>`
             ).join('');
 
             return `<optgroup label="${roleLabel}s">${userOptions}</optgroup>`;
@@ -207,7 +208,7 @@ class TrackerRenderer {
     templateAuthSwitcher() {
         // Deprecated in Mine Panel, but kept for Login Screen
         const users = this.dataManager.getAllUsers();
-        const options = users.map(u => `<option value="${u.uid}" ${u.uid === this.dataManager.getCurrentUser()?.uid ? 'selected' : ''}>${u.name} (${u.profile_type})</option>`).join('');
+        const options = users.map(u => `<option value="${u.uid}" ${u.uid === this.dataManager.getCurrentUser()?.uid ? 'selected' : ''}>${u.full_name || u.name} (${u.profile_type})</option>`).join('');
 
         return `
             <div class="auth-switcher" style="margin: 20px 0; padding: 10px; background: #eee; border-radius: 8px;">
@@ -231,6 +232,7 @@ class TrackerRenderer {
 
     handleSwitch(uid) {
         this.dataManager.setCurrentUser(uid);
+        if (window.MizanoNav) window.MizanoNav.switchPanel(0); // Jump home after switch
     }
 
     templateManagedTeams(user) {
@@ -256,7 +258,40 @@ class TrackerRenderer {
             ${teamsHtml}
         `;
     }
+
+    templateMinorFamily(user) {
+        const minors = (user.minors || []).map(mId => this.dataManager.getById('users', mId)).filter(Boolean);
+        if (minors.length === 0) return `
+            <div class="section-title" style="margin-top:20px;">Minor Family Management</div>
+            <div class="mizano-card" style="margin-top:10px; border-left:4px solid #f39c12; padding:12px;">
+                <div style="font-size:0.9rem; color:#666;">No minors linked to this account.</div>
+                <button class="action-pill" style="margin-top:10px; width:100%;" onclick="alert('Opening Link Minor flow...')">+ Link Minor Account</button>
+            </div>
+        `;
+
+        const minorCards = minors.map(m => `
+            <div class="mizano-card" style="margin-top:10px; border-left:4px solid #2ecc71; padding:12px; display:flex; justify-content:space-between; align-items:center;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <div style="width:40px; height:40px; border-radius:50%; background:#eee; overflow:hidden;">
+                        ${window.MizanoImages.render('avatars', m.profile_picture || null)}
+                    </div>
+                    <div>
+                        <div style="font-weight:bold; font-size:1rem;">${m.full_name || m.name}</div>
+                        <div style="font-size:0.8rem; color:#666;">${m.village_town || 'Gaborone'} • ${m.uid}</div>
+                    </div>
+                </div>
+                <button class="action-pill" onclick="window.MizanoNav.openPage('profile-view', { userId: '${m.uid}' })">View Philanthropic</button>
+            </div>
+        `).join('');
+
+        return `
+            <div class="section-title" style="margin-top:20px;">Minor Family Management</div>
+            ${minorCards}
+            <button class="action-pill" style="margin-top:10px; width:100%; border:1px dashed #2ecc71; background:none; color:#27ae60;" onclick="alert('Opening Link Minor flow...')">+ Link Another Minor</button>
+        `;
+    }
 }
 
 // Global Init — container ID matches index.html #tracker-dashboard-container
-window.MizanoTracker = new TrackerRenderer('tracker-dashboard-container');
+window.MizanoMine = new TrackerRenderer('tracker-dashboard-container');
+window.MizanoTracker = window.MizanoMine; // Legacy shim

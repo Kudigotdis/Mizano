@@ -159,23 +159,36 @@ window.BusinessForm = (function () {
                 </div>
             </div>
 
-            <!-- ── SECTION 4: SERVICES & INTERESTS ────────────────────── -->
+            <!-- ── SECTION 4: PRODUCTS, SERVICES & JOBS ────────────── -->
             <div class="bf-section">
                 <div class="bf-section-hd collapsible-header" data-sec="services">
-                    <span class="bf-sec-title">Services &amp; Interests</span>
+                    <span class="bf-sec-title">Products, Services &amp; Jobs</span>
                     <span class="collapsible-arrow bf-arrow">›</span>
                 </div>
                 <div class="bf-section-body" id="sec-services" style="display:none;">
+                    
+                    <label class="bf-label">Products &amp; Price List</label>
+                    <p class="bf-hint" style="margin-top:0;">Showcase what you sell (e.g. Smoothie - P45).</p>
+                    <div id="bf-products-list" style="margin-bottom:10px;"></div>
+                    <button type="button" class="bf-secondary-btn" style="width:100%;margin-bottom:16px;" onclick="window.BusinessForm._openAddProdModal()">+ Add Product / Item</button>
+                    <input type="hidden" id="bf-products-data" value="[]">
+
                     <label class="bf-label">Services Offered</label>
                     <div id="bf-service-chips" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
                         ${SERVICES.map(s => `<span class="bf-chip bf-svc-chip" data-val="${s}" onclick="window.BusinessForm._toggleSvcChip(this)">${s}</span>`).join('')}
                     </div>
-                    <div style="display:flex;gap:6px;">
+                    <div style="display:flex;gap:6px;margin-bottom:16px;">
                         <input type="text" id="bf-custom-svc" class="bf-input" placeholder="Add custom service..." style="flex:1;">
                         <button type="button" class="bf-secondary-btn" style="width:auto;padding:0 12px;font-size:1.2rem;" onclick="window.BusinessForm._addCustomService()">+</button>
                     </div>
 
-                    <label class="bf-label" style="margin-top:20px;">Associated Sports/Activities</label>
+                    <label class="bf-label">Jobs &amp; Opportunities</label>
+                    <p class="bf-hint" style="margin-top:0;">Are you hiring? List open roles here.</p>
+                    <div id="bf-jobs-list" style="margin-bottom:10px;"></div>
+                    <button type="button" class="bf-secondary-btn" style="width:100%;margin-bottom:16px;" onclick="window.BusinessForm._openAddJobModal()">+ Add Job Opening</button>
+                    <input type="hidden" id="bf-jobs-data" value="[]">
+
+                    <label class="bf-label" style="margin-top:10px;">Associated Sports/Activities</label>
                     <div id="bf-sports-chips" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
                         ${SPORTS.map(s => `<span class="bf-chip bf-sport-chip" data-val="${s}" onclick="window.BusinessForm._toggleSportChip(this)">${s}</span>`).join('')}
                     </div>
@@ -262,6 +275,133 @@ window.BusinessForm = (function () {
                 <button type="button" class="bf-submit-btn" onclick="window.BusinessForm._submit()">List Business</button>
             </div>
         </div>`;
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // INITIALIZATION & REPEATABLES
+    // ─────────────────────────────────────────────────────────────────────────
+
+    let _prodMgr = null;
+    let _jobMgr = null;
+
+    function init() {
+        _prodMgr = window.FormHelpers.createRepeatable({
+            containerId: 'bf-products-list',
+            dataId: 'bf-products-data',
+            renderRow: (item, index) => `
+                <div class="bf-row" style="display:flex;align-items:center;gap:10px;background:#f9f9f9;padding:8px 12px;border-radius:10px;margin-bottom:6px;border:1px solid #eee;">
+                    <div style="flex:1;">
+                        <div style="font-weight:700;font-size:0.85rem;">${item.name}</div>
+                        <div style="font-size:0.75rem;color:#666;">P${item.price} · ${item.cat}</div>
+                    </div>
+                    <span style="color:#e53935;cursor:pointer;font-weight:700;font-size:1.2rem;padding:4px;" onclick="window.BusinessForm._removeProduct(${index})">×</span>
+                </div>`,
+            onEmpty: () => `<div style="padding:16px;text-align:center;color:#aaa;font-size:0.8rem;border:1px dashed #ddd;border-radius:10px;">No products added.</div>`
+        });
+
+        _jobMgr = window.FormHelpers.createRepeatable({
+            containerId: 'bf-jobs-list',
+            dataId: 'bf-jobs-data',
+            renderRow: (item, index) => `
+                <div class="bf-row" style="display:flex;align-items:center;gap:10px;background:#f9f9f9;padding:8px 12px;border-radius:10px;margin-bottom:6px;border:1px solid #eee;">
+                    <div style="flex:1;">
+                        <div style="font-weight:700;font-size:0.85rem;">${item.title}</div>
+                        <div style="font-size:0.75rem;color:#666;">${item.type}</div>
+                    </div>
+                    <span style="color:#e53935;cursor:pointer;font-weight:700;font-size:1.2rem;padding:4px;" onclick="window.BusinessForm._removeJob(${index})">×</span>
+                </div>`,
+            onEmpty: () => `<div style="padding:16px;text-align:center;color:#aaa;font-size:0.8rem;border:1px dashed #ddd;border-radius:10px;">No job openings listed.</div>`
+        });
+    }
+
+    function _removeProduct(index) { if (_prodMgr) _prodMgr.remove(index); }
+    function _removeJob(index) { if (_jobMgr) _jobMgr.remove(index); }
+
+    function _openAddProdModal() {
+        const modalId = 'bf-prod-modal';
+        let modal = document.getElementById(modalId);
+        if (modal) modal.remove();
+
+        modal = document.createElement('div');
+        modal.id = modalId;
+        modal.style.cssText = `position:fixed;inset:0;z-index:200005;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;padding:20px;`;
+        modal.innerHTML = `
+            <div style="background:#fff;border-radius:16px;width:100%;max-width:340px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+                <div style="padding:16px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;background:#f8f9fa;">
+                    <h3 style="margin:0;font-size:0.95rem;font-weight:700;">Add Product / Service</h3>
+                    <span style="cursor:pointer;font-size:1.4rem;color:#888;" id="bfp-close">×</span>
+                </div>
+                <div style="padding:20px;">
+                    <label class="bf-label">Item Name</label>
+                    <input type="text" id="bfp-name" class="bf-input" placeholder="e.g. Football Boots, Gym Session">
+                    
+                    <label class="bf-label" style="margin-top:12px;">Price (BWP)</label>
+                    <input type="number" id="bfp-price" class="bf-input" value="0" min="0">
+
+                    <label class="bf-label" style="margin-top:12px;">Category</label>
+                    <input type="text" id="bfp-cat" class="bf-input" placeholder="e.g. Equipment, Food, Service">
+                </div>
+                <div style="padding:16px;display:flex;gap:10px;background:#f8f9fa;">
+                    <button id="bfp-cancel" style="flex:1;padding:12px;background:#fff;border:1px solid #dadce0;border-radius:10px;font-weight:600;cursor:pointer;">Cancel</button>
+                    <button id="bfp-add" style="flex:1;padding:12px;background:#1a73e8;color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;">Add</button>
+                </div>
+            </div>`;
+        document.body.appendChild(modal);
+
+        document.getElementById('bfp-close').onclick = () => modal.remove();
+        document.getElementById('bfp-cancel').onclick = () => modal.remove();
+        document.getElementById('bfp-add').onclick = () => {
+            const name = document.getElementById('bfp-name').value.trim();
+            if (!name) { _showToast('Name is required', 'error'); return; }
+            const price = parseFloat(document.getElementById('bfp-price').value) || 0;
+            const cat = document.getElementById('bfp-cat').value.trim() || 'General';
+            if (_prodMgr) _prodMgr.add({ name, price, cat });
+            modal.remove();
+        };
+    }
+
+    function _openAddJobModal() {
+        const modalId = 'bf-job-modal';
+        let modal = document.getElementById(modalId);
+        if (modal) modal.remove();
+
+        modal = document.createElement('div');
+        modal.id = modalId;
+        modal.style.cssText = `position:fixed;inset:0;z-index:200005;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;padding:20px;`;
+        modal.innerHTML = `
+            <div style="background:#fff;border-radius:16px;width:100%;max-width:340px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+                <div style="padding:16px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;background:#f8f9fa;">
+                    <h3 style="margin:0;font-size:0.95rem;font-weight:700;">Add Job Opening</h3>
+                    <span style="cursor:pointer;font-size:1.4rem;color:#888;" id="bfj-close">×</span>
+                </div>
+                <div style="padding:20px;">
+                    <label class="bf-label">Title</label>
+                    <input type="text" id="bfj-title" class="bf-input" placeholder="e.g. Sales Assistant, Coach">
+                    
+                    <label class="bf-label" style="margin-top:12px;">Type</label>
+                    <select id="bfj-type" class="bf-input">
+                        <option>Full-time</option>
+                        <option>Part-time</option>
+                        <option>Volunteer</option>
+                        <option>Contract</option>
+                    </select>
+                </div>
+                <div style="padding:16px;display:flex;gap:10px;background:#f8f9fa;">
+                    <button id="bfj-cancel" style="flex:1;padding:12px;background:#fff;border:1px solid #dadce0;border-radius:10px;font-weight:600;cursor:pointer;">Cancel</button>
+                    <button id="bfj-add" style="flex:1;padding:12px;background:#1a73e8;color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;">Add</button>
+                </div>
+            </div>`;
+        document.body.appendChild(modal);
+
+        document.getElementById('bfj-close').onclick = () => modal.remove();
+        document.getElementById('bfj-cancel').onclick = () => modal.remove();
+        document.getElementById('bfj-add').onclick = () => {
+            const title = document.getElementById('bfj-title').value.trim();
+            if (!title) { _showToast('Title is required', 'error'); return; }
+            const type = document.getElementById('bfj-type').value;
+            if (_jobMgr) _jobMgr.add({ title, type });
+            modal.remove();
+        };
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -630,13 +770,16 @@ window.BusinessForm = (function () {
     }
 
     function _showToast(msg, type = 'success') {
-        let t = document.getElementById('bf-toast');
-        if (!t) { t = document.createElement('div'); t.id = 'bf-toast'; document.body.appendChild(t); }
-        t.style.cssText = `position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:99999;
-            background:${type === 'error' ? '#e53935' : (type === 'info' ? '#1a73e8' : '#323232')};color:#fff;padding:10px 20px;
-            border-radius:8px;font-size:0.85rem;font-weight:500;box-shadow:0 2px 8px rgba(0,0,0,0.3);`;
-        t.textContent = msg; t.style.display = 'block';
-        clearTimeout(t._t); t._t = setTimeout(() => t.style.display = 'none', 3000);
+        if (window.FormHelpers) window.FormHelpers.showToast(msg, type);
+        else {
+            let t = document.getElementById('bf-toast');
+            if (!t) { t = document.createElement('div'); t.id = 'bf-toast'; document.body.appendChild(t); }
+            t.style.cssText = `position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:99999;
+                background:${type === 'error' ? '#e53935' : (type === 'info' ? '#1a73e8' : '#323232')};color:#fff;padding:10px 20px;
+                border-radius:8px;font-size:0.85rem;font-weight:500;box-shadow:0 2px 8px rgba(0,0,0,0.3);`;
+            t.textContent = msg; t.style.display = 'block';
+            clearTimeout(t._t); t._t = setTimeout(() => t.style.display = 'none', 3000);
+        }
     }
     function _safeAttr(v) { return (v || '').replace(/'/g, '&#39;'); }
 
@@ -671,10 +814,11 @@ window.BusinessForm = (function () {
     }
 
     return {
-        render,
+        render, init,
         _previewLogo, _loadAreas, _getLocation, _toggleDay, _toggle24h, _copyMon,
         _toggleSvcChip, _toggleSportChip, _addCustomService, _toggleCorp, _openCorpGroup,
         _searchAdmins, _addAdmin, _updateAdminRole, _removeAdmin,
-        _addPhoto, _removePhoto, _docUploaded, _submit
+        _addPhoto, _removePhoto, _docUploaded, _submit,
+        _openAddProdModal, _removeProduct, _openAddJobModal, _removeJob
     };
 })();

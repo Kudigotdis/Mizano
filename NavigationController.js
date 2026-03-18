@@ -395,7 +395,9 @@ class NavigationController {
             'add': 'add-action-overlay',
             'hamburger': 'hamburger-overlay',
             'search': 'search-overlay',
-            'settings': 'settings-overlay'
+            'settings': 'settings-overlay',
+            'associations-directory': 'associations-directory-overlay',
+            'association-detail': 'association-detail-overlay'
         };
 
         const targetId = overlayMap[overlayId] || `${overlayId}-overlay`;

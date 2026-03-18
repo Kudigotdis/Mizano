@@ -175,7 +175,7 @@ window.PlayerFileForm = (function () {
             <!-- ── SECTION 4: TRANSFER & CONTRACTS ────────────────────── -->
             <div class="pf-section">
                 <div class="pf-section-hd collapsible-header" data-sec="transfer">
-                    <span class="pf-sec-title">Transfer Status</span>
+                    <span class="pf-sec-title">Transfer &amp; Contract History</span>
                     <span class="collapsible-arrow pf-arrow">›</span>
                 </div>
                 <div class="pf-section-body" id="sec-transfer" style="display:none;">
@@ -198,11 +198,57 @@ window.PlayerFileForm = (function () {
                     <div style="border:1px dashed #ccc;padding:12px;border-radius:8px;background:#fafafa;margin-top:16px;">
                         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
                             <span style="font-size:0.8rem;font-weight:600;">Clearance Letter / ITC</span>
-                            <button type="button" class="bf-secondary-btn" style="width:auto;padding:4px 10px;font-size:0.75rem;" onclick="document.getElementById('pf-doc-clearance').click()">Upload</button>
+                            <button type="button" class="pf-secondary-btn" style="width:auto;padding:4px 10px;font-size:0.75rem;" onclick="document.getElementById('pf-doc-clearance').click()">Upload</button>
                             <input type="file" id="pf-doc-clearance" accept="image/*,.pdf" style="display:none;" onchange="window.PlayerFileForm._docUploaded(this, 'pf-doc-clearance-status')">
                         </div>
                         <div id="pf-doc-clearance-status" style="font-size:0.7rem;color:#1a73e8;display:none;">✓ File selected</div>
                     </div>
+                </div>
+            </div>
+
+            <!-- ── SECTION 5: ACHIEVEMENTS & AWARDS ──────────────────── -->
+            <div class="pf-section">
+                <div class="pf-section-hd collapsible-header" data-sec="achieve">
+                    <span class="pf-sec-title">Achievements &amp; Awards</span>
+                    <span class="collapsible-arrow pf-arrow">›</span>
+                </div>
+                <div class="pf-section-body" id="sec-achieve" style="display:none;">
+                    <p class="pf-hint">List your trophies, medals, or individual awards.</p>
+                    <div id="pf-achieve-list" style="margin-bottom:12px;"></div>
+                    <button type="button" class="pf-secondary-btn" style="width:100%;" onclick="window.PlayerFileForm._openAddAchieveModal()">+ Add Achievement</button>
+                    <input type="hidden" id="pf-achieve-data" value="[]">
+                </div>
+            </div>
+
+            <!-- ── SECTION 6: EDUCATION ──────────────────────────────── -->
+            <div class="pf-section">
+                <div class="pf-section-hd collapsible-header" data-sec="edu">
+                    <span class="pf-sec-title">Education</span>
+                    <span class="collapsible-arrow pf-arrow">›</span>
+                </div>
+                <div class="pf-section-body" id="sec-edu" style="display:none;">
+                    <label class="pf-label">Highest School / Institution</label>
+                    <input type="text" id="pf-edu-school" class="pf-input" placeholder="e.g. Maru-a-Pula School">
+                    
+                    <div style="display:flex;gap:10px;margin-top:10px;">
+                        <div style="flex:1;">
+                            <label class="pf-label">Grade / Year</label>
+                            <input type="text" id="pf-edu-grade" class="pf-input" placeholder="e.g. Form 5 / Year 1">
+                        </div>
+                        <div style="flex:1;">
+                            <label class="pf-label">Academic Focus</label>
+                            <input type="text" id="pf-edu-focus" class="pf-input" placeholder="e.g. Sciences / Commerce">
+                        </div>
+                    </div>
+                    
+                    <label class="pf-label" style="margin-top:10px;">Education Status</label>
+                    <select id="pf-edu-status" class="pf-input">
+                        <option>Full-time Student</option>
+                        <option>Part-time Student</option>
+                        <option>Completed</option>
+                        <option>Apprenticeship</option>
+                        <option>Other</option>
+                    </select>
                 </div>
             </div>
 
@@ -233,7 +279,7 @@ window.PlayerFileForm = (function () {
                     <div style="border:1px dashed #e53935;padding:12px;border-radius:8px;background:#ffebee;margin-top:16px;">
                         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
                             <span style="font-size:0.8rem;font-weight:600;color:#c62828;">Annual Medical Certificate</span>
-                            <button type="button" class="bf-secondary-btn" style="width:auto;padding:4px 10px;font-size:0.75rem;background:#fff;border:1px solid #e53935;" onclick="document.getElementById('pf-doc-med').click()">Upload Local Copy</button>
+                            <button type="button" class="pf-secondary-btn" style="width:auto;padding:4px 10px;font-size:0.75rem;background:#fff;border:1px solid #e53935;" onclick="document.getElementById('pf-doc-med').click()">Upload Local Copy</button>
                             <input type="file" id="pf-doc-med" accept="image/*,.pdf" style="display:none;" onchange="window.PlayerFileForm._docUploaded(this, 'pf-doc-med-status')">
                         </div>
                         <div id="pf-doc-med-status" style="font-size:0.7rem;color:#c62828;display:none;">✓ File selected</div>
@@ -253,6 +299,73 @@ window.PlayerFileForm = (function () {
                 <button type="button" class="pf-submit-btn" onclick="window.PlayerFileForm._submit()">Save Player File</button>
             </div>
         </div>`;
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // INITIALIZATION & REPEATABLES
+    // ─────────────────────────────────────────────────────────────────────────
+
+    let _achieveMgr = null;
+
+    function init() {
+        _achieveMgr = window.FormHelpers.createRepeatable({
+            containerId: 'pf-achieve-list',
+            dataId: 'pf-achieve-data',
+            renderRow: (item, index) => `
+                <div class="pf-achieve-row" style="display:flex;align-items:center;gap:10px;background:#f9f9f9;padding:8px 12px;border-radius:10px;margin-bottom:6px;border:1px solid #eee;">
+                    <div style="flex:1;">
+                        <div style="font-weight:700;font-size:0.85rem;">${item.title}</div>
+                        <div style="font-size:0.75rem;color:#666;">${item.year} · ${item.org}</div>
+                    </div>
+                    <span style="color:#e53935;cursor:pointer;font-weight:700;font-size:1.2rem;padding:4px;" onclick="window.PlayerFileForm._removeAchieve(${index})">×</span>
+                </div>`,
+            onEmpty: () => `<div style="padding:16px;text-align:center;color:#aaa;font-size:0.8rem;border:1px dashed #ddd;border-radius:10px;">No achievements listed yet.</div>`
+        });
+    }
+
+    function _removeAchieve(index) { if (_achieveMgr) _achieveMgr.remove(index); }
+
+    function _openAddAchieveModal() {
+        const modalId = 'pf-ach-modal';
+        let modal = document.getElementById(modalId);
+        if (modal) modal.remove();
+
+        modal = document.createElement('div');
+        modal.id = modalId;
+        modal.style.cssText = `position:fixed;inset:0;z-index:200005;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;padding:20px;`;
+        modal.innerHTML = `
+            <div style="background:#fff;border-radius:16px;width:100%;max-width:340px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+                <div style="padding:16px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;background:#f8f9fa;">
+                    <h3 style="margin:0;font-size:0.95rem;font-weight:700;">Add Achievement</h3>
+                    <span style="cursor:pointer;font-size:1.4rem;color:#888;" id="pfach-close">×</span>
+                </div>
+                <div style="padding:20px;">
+                    <label class="pf-label">Title / Award</label>
+                    <input type="text" id="pfach-title" class="pf-input" placeholder="e.g. League Top Scorer, MVP">
+                    
+                    <label class="pf-label" style="margin-top:12px;">Organization / League</label>
+                    <input type="text" id="pfach-org" class="pf-input" placeholder="e.g. BFA Premier League">
+
+                    <label class="pf-label" style="margin-top:12px;">Year</label>
+                    <input type="text" id="pfach-year" class="pf-input" placeholder="e.g. 2023, 2021-22">
+                </div>
+                <div style="padding:16px;display:flex;gap:10px;background:#f8f9fa;">
+                    <button id="pfach-cancel" style="flex:1;padding:12px;background:#fff;border:1px solid #dadce0;border-radius:10px;font-weight:600;cursor:pointer;">Cancel</button>
+                    <button id="pfach-add" style="flex:1;padding:12px;background:#1a73e8;color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;">Add</button>
+                </div>
+            </div>`;
+        document.body.appendChild(modal);
+
+        document.getElementById('pfach-close').onclick = () => modal.remove();
+        document.getElementById('pfach-cancel').onclick = () => modal.remove();
+        document.getElementById('pfach-add').onclick = () => {
+            const title = document.getElementById('pfach-title').value.trim();
+            if (!title) { _showToast('Title is required', 'error'); return; }
+            const org = document.getElementById('pfach-org').value.trim() || 'N/A';
+            const year = document.getElementById('pfach-year').value.trim() || 'N/A';
+            if (_achieveMgr) _achieveMgr.add({ title, org, year });
+            modal.remove();
+        };
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -404,6 +517,15 @@ window.PlayerFileForm = (function () {
                 contract_end_date: document.getElementById('pf-contract-end').value || null,
                 previous_major_club: document.getElementById('pf-prev-club').value.trim(),
                 clearance_document: itcdoc
+            },
+
+            achievements: JSON.parse(document.getElementById('pf-achieve-data').value || '[]'),
+
+            education: {
+                school_name: document.getElementById('pf-edu-school').value.trim(),
+                grade_year: document.getElementById('pf-edu-grade').value.trim(),
+                focus: document.getElementById('pf-edu-focus').value.trim(),
+                status: document.getElementById('pf-edu-status').value
             }
         };
 
@@ -444,13 +566,16 @@ window.PlayerFileForm = (function () {
     // ─────────────────────────────────────────────────────────────────────────
 
     function _showToast(msg, type = 'success') {
-        let t = document.getElementById('pf-toast');
-        if (!t) { t = document.createElement('div'); t.id = 'pf-toast'; document.body.appendChild(t); }
-        t.style.cssText = `position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:99999;
-            background:${type === 'error' ? '#e53935' : (type === 'info' ? '#1a73e8' : '#323232')};color:#fff;padding:10px 20px;
-            border-radius:8px;font-size:0.85rem;font-weight:500;box-shadow:0 2px 8px rgba(0,0,0,0.3);`;
-        t.textContent = msg; t.style.display = 'block';
-        clearTimeout(t._t); t._t = setTimeout(() => t.style.display = 'none', 3000);
+        if (window.FormHelpers) window.FormHelpers.showToast(msg, type);
+        else {
+            let t = document.getElementById('pf-toast');
+            if (!t) { t = document.createElement('div'); t.id = 'pf-toast'; document.body.appendChild(t); }
+            t.style.cssText = `position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:99999;
+                background:${type === 'error' ? '#e53935' : (type === 'info' ? '#1a73e8' : '#323232')};color:#fff;padding:10px 20px;
+                border-radius:8px;font-size:0.85rem;font-weight:500;box-shadow:0 2px 8px rgba(0,0,0,0.3);`;
+            t.textContent = msg; t.style.display = 'block';
+            clearTimeout(t._t); t._t = setTimeout(() => t.style.display = 'none', 3000);
+        }
     }
     function _safeAttr(v) { return (v || '').replace(/'/g, '&#39;'); }
 
@@ -478,8 +603,9 @@ window.PlayerFileForm = (function () {
     }
 
     return {
-        render,
+        render, init,
         _toggleSubject, _loadMinors, _updatePositions, _docUploaded,
-        _searchEntity, _selectLink, _removeLink, _submit
+        _searchEntity, _selectLink, _removeLink, _submit,
+        _openAddAchieveModal, _removeAchieve
     };
 })();
